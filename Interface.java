@@ -26,6 +26,8 @@ public class Interface {
         System.out.println("Enter your choice to get the data from the following menu:");
         System.out.println("\t1.Stores and Profit by Country- It gives you the profit made in 'N' countries with highest number of stores.");
         System.out.println("\t2.Top Product Holders by Category - It gives list of stores from a given country which hold most amount of products.");
-        System.out.println("\t3.Customer Returned Item Count Analysis");
+        System.out.println("\t3.Customer Returned Item Count Analysis-It gives  count of items returned by each customer.");
+        System.out.println("\t4.Discounted Products in Specific Category-It gives list of discounted products given a category");
+        
     }
 }
