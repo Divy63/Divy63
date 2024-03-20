@@ -1,17 +1,17 @@
 
 class Database {
-    private Connection connection;
+    // private Connection connection;
 
-    public MyDatabase() {
-		try {
-			String url = "jdbc:sqlite:library.db";
-			// create a connection to the database
-			connection = DriverManager.getConnection(url);
-		} catch (SQLException e) {
-			e.printStackTrace(System.out);
-		}
+    public Database() {
+        // try {
+        // String url = "jdbc:sqlite:library.db";
+        // // create a connection to the database
+        // connection = DriverManager.getConnection(url);
+        // } catch (SQLException e) {
+        // e.printStackTrace(System.out);
+        // }
 
-	}
+    }
 
     public void storeProfitByCountry(int countryLimit) {
         System.out.println("storeProfitByCountry not implemented yet!!");
