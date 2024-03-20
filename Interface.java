@@ -27,8 +27,15 @@ public class Interface {
             if (parts[0].equals("m"))
                 displayMenu();
             else if (parts[0].equals("spc")) {
-                if (parts.length >= 2)
-                    db.storeProfitByCountry(parts[1]);
+                if (parts.length >= 2) {
+                    try {
+                        db.storeProfitByCountry(parts[1]);
+                    } catch (IOException ioe) {
+                        System.out.println("Limit must be an integer.");
+                    }
+                } else {
+                    System.out.println("Require an argument for this command");
+                }
             }
 
             else if (parts[0].equals("topproducts")) {
