@@ -14,7 +14,7 @@ public class Interface {
         System.out.println();// Getting on a new line
         System.out.println("Welcome to Store Management!");// label
 
-        System.out.println("To get started, ENTER 'm' for Menu:");
+        System.out.print("To get started, ENTER 'm' for Menu:");
         String command = consoleIn.nextLine();
         String[] parts;
         // String arg = "";
@@ -29,7 +29,7 @@ public class Interface {
             else if (parts[0].equals("spc")) {
                 if (parts.length >= 2) {
                     try {
-                        int limit=Integer.parseInt(parts[1]);
+                        int limit = Integer.parseInt(parts[1]);
                         db.storeProfitByCountry(limit);
                     } catch (NumberFormatException nfe) {
                         System.out.println("Limit must be an integer.");
@@ -79,11 +79,23 @@ public class Interface {
             }
 
             else if (parts[0].equals("rp")) {
-                db.returnedProducts(parts[1]);
+                if (parts.length >= 2) {
+                    db.returnedProducts(parts[1]);
+                } else {
+                    System.out.println("Require an argument for this command");
+                }
             } else if (parts[0].equals("rpr")) {
-                db.returnedByRegion(parts[1]);
+                if (parts.length >= 2) {
+                    db.returnedByRegion(parts[1]);
+                } else {
+                    System.out.println("Require an argument for this command");
+                }
             } else if (parts[0].equals("avgp")) {
-                db.averagePrice(parts[1]);
+                if (parts.length >= 2) {
+                    db.averagePrice(parts[1]);
+                } else {
+                    System.out.println("Require an argument for this command");
+                }
             } else if (parts[0].equals("exceed")) {
                 db.exceed7();
             } else if (parts[0].equals("lra")) {
@@ -105,33 +117,35 @@ public class Interface {
      * Method that prints the menu to be displayed
      */
     private static void displayMenu() {
+
+        System.out.println(
+                "\tspc <country limit> - Stores and Profit by Country");
+        System.out.println(
+                "\ttopproducts <country code> - Top Product Holders by Category");
+        System.out.println(
+                "\trc <customerID> - Customer Returned Item Count Analysis");
+        System.out.println(
+                "\tdp <category name> - Discounted Products in Specific Category");
+        System.out.println(
+                "\tsd <orderID> - Shipping Details for Ordered Products");
+        System.out.println(
+                "\tss <category name> - Category Sales Summary");
+        System.out.println(
+                "\tsubcp - Sub-Category Product Inventory and Sales Overview");
+        System.out.println(
+                "\trp <custID> - Products Returned by Customer");
+        System.out.println(
+                "\trpr <region> - Product Returns by Region");
+        System.out.println(
+                "\tavgp <categoryID> - Average Product Price in Category");
+        System.out.println(
+                "\texceed <> - Order Shipping Details for Orders Exceeding 7 Items");
+        System.out.println(
+                "\tlra <> - Country-wise Largest Returned Order Amount");
+        System.out.println("\tm - Display the Menu.");
+        System.out.println("\te - Exit the system.");
+
         System.out.println("Enter your choice to get the specific data from the following menu:");
-        System.out.println(
-                "spc <country limit> - Stores and Profit by Country");
-        System.out.println(
-                "topproducts <country code> - Top Product Holders by Category");
-        System.out.println(
-                "rc <customerID> - Customer Returned Item Count Analysis");
-        System.out.println(
-                "dp <category name> - Discounted Products in Specific Category");
-        System.out.println(
-                "sd <orderID> - Shipping Details for Ordered Products");
-        System.out.println(
-                "ss <category name> - Category Sales Summary");
-        System.out.println(
-                "subcp - Sub-Category Product Inventory and Sales Overview");
-        System.out.println(
-                "rp <custID> - Products Returned by Customer");
-        System.out.println(
-                "rpr <region> - Product Returns by Region");
-        System.out.println(
-                "avgp <categoryID> - Average Product Price in Category");
-        System.out.println(
-                "exceed <> - Order Shipping Details for Orders Exceeding 7 Items");
-        System.out.println(
-                "lra <> - Country-wise Largest Returned Order Amount");
-        System.out.println("m - Display the Menu.");
-        System.out.println("e - Exit the system.");
     }
 }
 
