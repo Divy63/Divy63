@@ -29,8 +29,9 @@ public class Interface {
             else if (parts[0].equals("spc")) {
                 if (parts.length >= 2) {
                     try {
-                        db.storeProfitByCountry(parts[1]);
-                    } catch (IOException ioe) {
+                        int limit=Integer.parseInt(parts[1]);
+                        db.storeProfitByCountry(limit);
+                    } catch (NumberFormatException nfe) {
                         System.out.println("Limit must be an integer.");
                     }
                 } else {
@@ -48,7 +49,6 @@ public class Interface {
 
             else if (parts[0].equals("rc")) {
                 if (parts.length >= 2) {
-                    int custID = Integer.parseInt(parts[1]);
                     db.returnedItemCount(parts[1]);
                 } else {
                     System.out.println("Require an argument for this command");
