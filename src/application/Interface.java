@@ -145,6 +145,7 @@ public class Interface {
                 "\texceed - Order Shipping Mode Details for Orders Exceeding 7 Items");
         System.out.println(
                 "\tlra <country limit> - Country-wise Largest Returned Order Amount");
+        System.out.println("\ti - To initialize the database");
         System.out.println("\tm - Display the Menu.");
         System.out.println("\te - Exit the system.");
 
