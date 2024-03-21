@@ -1,3 +1,6 @@
+package application;
+
+import application.mydatabase.Database;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -14,7 +17,7 @@ public class Interface {
         System.out.println();// Getting on a new line
         System.out.println("Welcome to Store Management!");// label
 
-        System.out.print("To get started, ENTER 'm' for Menu:");
+        System.out.print("To get started, ENTER 'm' for Menu: ");
         String command = consoleIn.nextLine();
         String[] parts;
         // String arg = "";
@@ -139,9 +142,9 @@ public class Interface {
         System.out.println(
                 "\tavgp <categoryID> - Average Product Price in Category");
         System.out.println(
-                "\texceed <> - Order Shipping Details for Orders Exceeding 7 Items");
+                "\texceed - Order Shipping Mode Details for Orders Exceeding 7 Items");
         System.out.println(
-                "\tlra <> - Country-wise Largest Returned Order Amount");
+                "\tlra <country limit> - Country-wise Largest Returned Order Amount");
         System.out.println("\tm - Display the Menu.");
         System.out.println("\te - Exit the system.");
 
