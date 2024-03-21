@@ -14,7 +14,7 @@ public class product {
     private static void makeProductFile() {
         try {
             Scanner s = new Scanner(new File("data-files/order-details.csv"));
-            Writer w = new BufferedWriter(new FileWriter("data-files/products.csv"));
+            Writer w = new BufferedWriter(new FileWriter("final-data-files/products.csv"));
             String write = String.format("productID,name,sub-category,category\n");
             Map<String, List<String>> product = new HashMap<>();
             List<String> temp;
@@ -57,7 +57,7 @@ public class product {
     private static void makeCatFile() {
         try {
             Scanner s = new Scanner(new File("data-files/order-details.csv"));
-            Writer w = new BufferedWriter(new FileWriter("data-files/category.csv"));
+            Writer w = new BufferedWriter(new FileWriter("final-data-files/category.csv"));
             String write = String.format("catID,name\n");
             Set<String> category = new HashSet<>();
             String input[];
@@ -134,7 +134,7 @@ public class product {
             s.close();
 
             s = new Scanner(new File("data-files/sub-category1.csv"));
-            w = new BufferedWriter(new FileWriter("data-files/sub-category.csv"));
+            w = new BufferedWriter(new FileWriter("final-data-files/sub-category.csv"));
             sub_categories = new HashMap<>();
             s.nextLine();
             while (s.hasNextLine()) {

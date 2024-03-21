@@ -54,7 +54,7 @@ public class cleanup {
     private static void makeAddressData() {
         try {
             Scanner read = new Scanner(new File("data-files/order-details.csv"));
-            Writer write = new BufferedWriter(new FileWriter("final-data-files/address-unsorted.csv"));
+            Writer write = new BufferedWriter(new FileWriter("data-files/address-unsorted.csv"));
 
             Map<String, List<String>> address = new HashMap<>();
             int addressID = 1;
@@ -95,7 +95,7 @@ public class cleanup {
             read.close();
             write.close();
 
-            read = new Scanner(new File("final-data-files/address-unsorted.csv"));
+            read = new Scanner(new File("data-files/address-unsorted.csv"));
             write = new BufferedWriter(new FileWriter("final-data-files/address.csv"));
             write.write("addressID,city,state,country\n");
             Map<Integer, String> sortedAddress = new HashMap<>();
@@ -118,6 +118,11 @@ public class cleanup {
 
             read.close();
             write.close();
+            File tempFile = new File("data-files/address-unsorted.csv");
+
+            if (tempFile.exists()) {
+                tempFile.delete();
+            }
         } catch (IOException io) {
             io.printStackTrace();
         }
@@ -210,7 +215,7 @@ public class cleanup {
             Scanner s = new Scanner(new File("data-files/new-us-orders.csv"));
             String[] input;
             String write;
-            Writer w = new BufferedWriter(new FileWriter("data-files/order-details.csv"));
+            Writer w = new BufferedWriter(new FileWriter("final-data-files/order-details.csv"));
             while (s.hasNextLine()) {
                 input = s.nextLine().split(regex);
                 write = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n", input[1], input[2],
