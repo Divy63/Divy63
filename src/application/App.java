@@ -5,7 +5,7 @@ import application.mydatabase.Database;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Interface {
+public class App {
     public static void main(String[] args) {
         Database db = new Database();
         simulate(db);
