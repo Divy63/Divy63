@@ -10,4 +10,4 @@ buildapp:
 	javac -d $(BIN_DIR) -cp $(BIN_DIR) $(SRC_DIR)/application/*.java
 
 run: buildapp
-	java -cp $(BIN_DIR) application.Interface
+	java -cp $(BIN_DIR) application.App
