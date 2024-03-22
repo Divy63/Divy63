@@ -112,6 +112,7 @@ public class App {
             command = consoleIn.nextLine();
         }
 
+        System.out.println("\nExiting Store Management interface. Have a great day!\n");
         consoleIn.close();
 
     }

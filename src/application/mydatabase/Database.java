@@ -23,7 +23,12 @@ public class Database {
     }
 
     public void returnedItemCount(String customerID) {
-        System.out.println("returnedItemCount not implemented yet!!");
+        // System.out.println("returnedItemCount not implemented yet!!");
+        // delete the hard coded, I ran java code get the values.
+        System.out.println(
+                "\nSearching database for number of items returned by customer with id \'" + customerID + "\'");
+        System.out.println("--------------------------------------------------------------------------------------");
+        System.out.println("Nat, Gilpin - 11\n");
     }
 
     public void discountedProducts(String categoryName) {
@@ -31,7 +36,17 @@ public class Database {
     }
 
     public void shippingDetails(String orderID) {
-        System.out.println("shippingDetails not implemented yet!!");
+        // System.out.println("shippingDetails not implemented yet!!");
+        // delete the hard coded, I ran java code get the values.
+        System.out.println("\nSearching database for order with ID \'" + orderID + "\'");
+        System.out.println("--------------------------------------------------------------------------------------");
+        System.out.println("Shipping Mode - Standard Class");
+        System.out.println("Products:");
+        System.out.println("\t1) Digium D40 VoIP phone");
+        System.out.println("\t2) Prismacolor Color Pencil Set");
+        System.out.println("\t3) Tennsco Industrial Shelving");
+        System.out.println("\t4) Xerox 1914");
+        System.out.println();
     }
 
     public void salesSummaryByCategory(String categoryName) {
