@@ -40,13 +40,13 @@ make run
 # Cloning repository
 To clone this copy the following into terminal:
 ```
-git clone https://github.com/hetu2344/Battleship.git
+git clone https://github.com/Divy63/Store_Management.git
 ```
 ## Cloning in VS code
 Open command `Command Palette` by shortcut: `cmd + shift + P` and type `Git clone`
 select the first option and paste the following: 
 ```
-https://github.com/hetu2344/Battleship.git
+https://github.com/Divy63/Store_Management.git
 ```
 # Group Members
 [Het Patel](https://github.com/hetu2344)
