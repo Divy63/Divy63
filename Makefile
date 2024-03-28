@@ -11,3 +11,10 @@ buildapp:
 
 run: buildapp
 	java -cp $(BIN_DIR) application.App
+
+buildClean:
+	javac -d $(BIN_DIR) $(SRC_DIR)/datacleanup/*.java
+
+cleanup: buildClean
+	java -cp $(BIN_DIR) datacleanup.cleanup
+	java -cp $(BIN_DIR) datacleanup.product

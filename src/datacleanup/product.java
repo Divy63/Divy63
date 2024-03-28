@@ -7,13 +7,14 @@ public class product {
     final static String regex = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
 
     public static void main(String[] args) {
-        // makeCatFile();
+        makeProductFile();
+        makeCatFile();
         makeSubCatFile();
     }
     
     private static void makeProductFile() {
         try {
-            Scanner s = new Scanner(new File("data-files/order-details.csv"));
+            Scanner s = new Scanner(new File("final-data-files/order-details.csv"));
             Writer w = new BufferedWriter(new FileWriter("final-data-files/products.csv"));
             String write = String.format("productID,name,sub-category,category\n");
             Map<String, List<String>> product = new HashMap<>();
@@ -56,7 +57,7 @@ public class product {
 
     private static void makeCatFile() {
         try {
-            Scanner s = new Scanner(new File("data-files/order-details.csv"));
+            Scanner s = new Scanner(new File("final-data-files/order-details.csv"));
             Writer w = new BufferedWriter(new FileWriter("final-data-files/category.csv"));
             String write = String.format("catID,name\n");
             Set<String> category = new HashSet<>();
@@ -89,7 +90,7 @@ public class product {
             category.put("Technology", "2");
             category.put("Office Supplies", "1");
 
-            Scanner s = new Scanner(new File("data-files/order-details.csv"));
+            Scanner s = new Scanner(new File("final-data-files/order-details.csv"));
             Writer w = new BufferedWriter(new FileWriter("data-files/sub-category1.csv"));
             String write = String.format("subCatID,name,catID\n");
             Map<String, List<String>> sub_categories = new HashMap<>();

@@ -66,8 +66,8 @@
 65,IT-2021-4707944,14/08/21,16/08/21,Second Class,JL-15850,John Lucas,Consumer,Stuttgart,Baden-Württemberg,Germany,Central,FUR-BO-10004408,Furniture,Bookcases,"Dania Stackable Bookrack, Pine",221.292,2,0.1,-22.188
 66,IT-2021-4707944,14/08/21,16/08/21,Second Class,JL-15850,John Lucas,Consumer,Stuttgart,Baden-Württemberg,Germany,Central,OFF-SU-10003907,Office Supplies,Supplies,"Stiletto Letter Opener, Easy Grip",150,5,0,28.5
 67,IT-2021-4707944,14/08/21,16/08/21,Second Class,JL-15850,John Lucas,Consumer,Stuttgart,Baden-Württemberg,Germany,Central,TEC-CO-10001162,Technology,Copiers,"Canon Wireless Fax, Laser",757.32,2,0,371.04
-68,ES-2018-5220738,22/12/18,24/12/18,Second Class,Co-12640,Corey-Lock,Consumer,Mansfield,England,United Kingdom,North,OFF-PA-10003937,Office Supplies,Paper,"Green Bar Memo Slips, Recycled",50.58,3,0,9.09
-69,ES-2018-5220738,22/12/18,24/12/18,Second Class,Co-12640,Corey-Lock,Consumer,Mansfield,England,United Kingdom,North,OFF-AR-10002902,Office Supplies,Art,"Sanford Canvas, Water Color",107.4,2,0,0
+68,ES-2018-5220738,22/12/18,24/12/18,Second Class,CL-12640,Corey Lock,Consumer,Mansfield,England,United Kingdom,North,OFF-PA-10003937,Office Supplies,Paper,"Green Bar Memo Slips, Recycled",50.58,3,0,9.09
+69,ES-2018-5220738,22/12/18,24/12/18,Second Class,CL-12640,Corey Lock,Consumer,Mansfield,England,United Kingdom,North,OFF-AR-10002902,Office Supplies,Art,"Sanford Canvas, Water Color",107.4,2,0,0
 70,ES-2018-5287434,01/04/18,05/04/18,Standard Class,SA-20830,Sue Ann Reed,Consumer,Newcastle upon Tyne,England,United Kingdom,North,OFF-AR-10003651,Office Supplies,Art,"Sanford Pens, Easy-Erase",34.11,3,0,7.83
 71,ES-2018-5287434,01/04/18,05/04/18,Standard Class,SA-20830,Sue Ann Reed,Consumer,Newcastle upon Tyne,England,United Kingdom,North,FUR-BO-10004129,Furniture,Bookcases,"Sauder Classic Bookcase, Pine",2624.04,6,0,446.04
 72,ES-2018-5287434,01/04/18,05/04/18,Standard Class,SA-20830,Sue Ann Reed,Consumer,Newcastle upon Tyne,England,United Kingdom,North,OFF-ST-10001758,Office Supplies,Storage,"Rogers Lockers, Blue",423.24,2,0,29.58
@@ -429,7 +429,7 @@
 428,ES-2020-3340197,21/08/20,26/08/20,Second Class,RB-19570,Rob Beeghly,Consumer,Rudge,England,United Kingdom,North,OFF-AR-10000980,Office Supplies,Art,"Sanford Pencil Sharpener, Water Color",26.1,1,0,6.78
 429,ES-2020-3688439,13/03/20,15/03/20,First Class,JL-15850,John Lucas,Consumer,Northampton,England,United Kingdom,North,OFF-AR-10002113,Office Supplies,Art,"Boston Highlighters, Easy-Erase",57.42,3,0,12.6
 430,ES-2020-3688439,13/03/20,15/03/20,First Class,JL-15850,John Lucas,Consumer,Northampton,England,United Kingdom,North,OFF-AR-10000659,Office Supplies,Art,"BIC Pencil Sharpener, Fluorescent",242.16,8,0,82.32
-431,ES-2019-2074353,30/12/19,02/01/20,First Class,Co-12640,Corey-Lock,Consumer,Marseille,Provence-Alpes-Côte d'Azur,France,Central,OFF-ST-10002539,Office Supplies,Storage,"Fellowes Shelving, Single Width",364.581,7,0.1,64.701
+431,ES-2019-2074353,30/12/19,02/01/20,First Class,CL-12640,Corey Lock,Consumer,Marseille,Provence-Alpes-Côte d'Azur,France,Central,OFF-ST-10002539,Office Supplies,Storage,"Fellowes Shelving, Single Width",364.581,7,0.1,64.701
 432,ES-2020-1486678,09/08/20,12/08/20,Second Class,SC-20680,Steve Carroll,Home Office,Champigny-sur-Marne,Ile-de-France,France,Central,OFF-AR-10001626,Office Supplies,Art,"BIC Pens, Blue",57.12,4,0,6.24
 331,ES-2021-2815584,31/12/21,04/01/22,Standard Class,ES-14020,Erica Smith,Consumer,Bielefeld,North Rhine-Westphalia,Germany,Central,OFF-SU-10004279,Office Supplies,Supplies,"Kleencut Shears, Serrated",260.82,6,0,12.96
 434,IT-2019-5346950,05/08/19,11/08/19,Standard Class,KH-16690,Kristen Hastings,Corporate,Aulnay-sous-Bois,Ile-de-France,France,Central,FUR-CH-10002212,Furniture,Chairs,"Novimex Swivel Stool, Adjustable",150.255,1,0.1,-3.345
@@ -1581,7 +1581,7 @@
 1580,ES-2019-1017653,04/09/19,07/09/19,First Class,DJ-13420,Denny Joy,Corporate,Stuttgart,Baden-Württemberg,Germany,Central,OFF-ST-10004097,Office Supplies,Storage,"Tenex Box, Wire Frame",42.039,3,0.1,16.749
 1581,ES-2019-1017653,04/09/19,07/09/19,First Class,DJ-13420,Denny Joy,Corporate,Stuttgart,Baden-Württemberg,Germany,Central,OFF-SU-10002337,Office Supplies,Supplies,"Elite Trimmer, High Speed",83.34,2,0,4.14
 1582,ES-2019-4100273,12/09/19,17/09/19,Standard Class,YS-21880,Yana Sorensen,Corporate,Saint-Nazaire,Pays de la Loire,France,Central,TEC-AC-10003080,Technology,Accessories,"Logitech Memory Card, USB",207.18,2,0,33.12
-1583,ES-2018-4145029,15/09/18,15/09/18,Same Day,Co-12640,Corey-Lock,Consumer,Worcester,England,United Kingdom,North,OFF-AR-10003066,Office Supplies,Art,"Sanford Markers, Water Color",317.16,12,0,28.44
+1583,ES-2018-4145029,15/09/18,15/09/18,Same Day,CL-12640,Corey Lock,Consumer,Worcester,England,United Kingdom,North,OFF-AR-10003066,Office Supplies,Art,"Sanford Markers, Water Color",317.16,12,0,28.44
 246,IT-2021-1036058,18/06/21,20/06/21,Second Class,GM-14695,Greg Maxwell,Corporate,Hanover,Lower Saxony,Germany,Central,TEC-CO-10001192,Technology,Copiers,"HP Personal Copier, Digital",123.93,2,0.5,-84.33
 247,IT-2021-1036058,18/06/21,20/06/21,Second Class,GM-14695,Greg Maxwell,Corporate,Hanover,Lower Saxony,Germany,Central,OFF-AP-10000934,Office Supplies,Appliances,"Hamilton Beach Stove, Black",1950.372,9,0.6,-1121.688
 1586,ES-2021-2998043,06/01/21,10/01/21,Standard Class,BB-11545,Brenda Bowman,Corporate,Pessac,Aquitaine-Limousin-Poitou-Charentes,France,Central,OFF-LA-10002974,Office Supplies,Labels,"Avery File Folder Labels, Laser Printer Compatible",45.6,5,0,19.95
@@ -6849,7 +6849,7 @@
 6848,ES-2019-4406013,05/08/19,08/08/19,First Class,FC-14245,Frank Carlisle,Home Office,Cuneo,Piedmont,Italy,South,OFF-AR-10000715,Office Supplies,Art,"Boston Markers, Blue",52.74,2,0,21.6
 6849,ES-2020-1990428,23/12/20,30/12/20,Standard Class,JW-16075,Julia West,Consumer,Saint-Cyr-sur-Loire,Centre-Val de Loire,France,Central,OFF-ST-10004702,Office Supplies,Storage,"Eldon Box, Single Width",18.522,2,0.1,3.882
 6850,ES-2020-1990428,23/12/20,30/12/20,Standard Class,JW-16075,Julia West,Consumer,Saint-Cyr-sur-Loire,Centre-Val de Loire,France,Central,TEC-PH-10001573,Technology,Phones,"Nokia Smart Phone, with Caller ID",1629.2205,3,0.15,402.4305
-6851,ES-2021-3028437,12/12/21,18/12/21,Standard Class,Co-12640,Corey-Lock,Consumer,Paris,Ile-de-France,France,Central,OFF-AR-10000491,Office Supplies,Art,"Binney & Smith Pens, Water Color",45.36,3,0,16.29
+6851,ES-2021-3028437,12/12/21,18/12/21,Standard Class,CL-12640,Corey Lock,Consumer,Paris,Ile-de-France,France,Central,OFF-AR-10000491,Office Supplies,Art,"Binney & Smith Pens, Water Color",45.36,3,0,16.29
 6852,ES-2021-4672600,25/09/21,30/09/21,Standard Class,LA-16780,Laura Armstrong,Corporate,Huelva,Andalusía,Spain,South,OFF-EN-10000056,Office Supplies,Envelopes,"Ames Manila Envelope, Security-Tint",108.36,4,0,43.32
 6853,ES-2021-4672600,25/09/21,30/09/21,Standard Class,LA-16780,Laura Armstrong,Corporate,Huelva,Andalusía,Spain,South,OFF-ST-10002172,Office Supplies,Storage,"Fellowes Trays, Blue",103.302,2,0.1,-3.498
 6854,ES-2021-4672600,25/09/21,30/09/21,Standard Class,LA-16780,Laura Armstrong,Corporate,Huelva,Andalusía,Spain,South,OFF-PA-10003105,Office Supplies,Paper,"SanDisk Parchment Paper, Premium",66.84,4,0,12.6
@@ -7837,8 +7837,8 @@
 7836,ES-2019-2130247,01/07/19,05/07/19,Standard Class,ST-20530,Shui Tom,Consumer,Pomezia,Lazio,Italy,South,OFF-FA-10003463,Office Supplies,Fasteners,"OIC Thumb Tacks, Assorted Sizes",34.56,3,0,13.77
 7837,ES-2019-2130247,01/07/19,05/07/19,Standard Class,ST-20530,Shui Tom,Consumer,Pomezia,Lazio,Italy,South,OFF-BI-10003951,Office Supplies,Binders,"Ibico 3-Hole Punch, Economy",91.35,3,0,45.63
 7838,ES-2020-4494295,04/01/20,06/01/20,First Class,KM-16375,Katherine Murray,Home Office,Bergerac,Aquitaine-Limousin-Poitou-Charentes,France,Central,OFF-FA-10001551,Office Supplies,Fasteners,"Stockwell Thumb Tacks, 12 Pack",37.71,3,0,11.61
-7839,ES-2020-2186227,03/02/20,08/02/20,Standard Class,Co-12640,Corey-Lock,Consumer,Bordeaux,Aquitaine-Limousin-Poitou-Charentes,France,Central,OFF-SU-10002544,Office Supplies,Supplies,"Kleencut Box Cutter, Serrated",250.8,8,0,54.96
-7840,ES-2020-2186227,03/02/20,08/02/20,Standard Class,Co-12640,Corey-Lock,Consumer,Bordeaux,Aquitaine-Limousin-Poitou-Charentes,France,Central,OFF-LA-10003278,Office Supplies,Labels,"Novimex Shipping Labels, 5000 Label Set",34.11,3,0,12.24
+7839,ES-2020-2186227,03/02/20,08/02/20,Standard Class,CL-12640,Corey Lock,Consumer,Bordeaux,Aquitaine-Limousin-Poitou-Charentes,France,Central,OFF-SU-10002544,Office Supplies,Supplies,"Kleencut Box Cutter, Serrated",250.8,8,0,54.96
+7840,ES-2020-2186227,03/02/20,08/02/20,Standard Class,CL-12640,Corey Lock,Consumer,Bordeaux,Aquitaine-Limousin-Poitou-Charentes,France,Central,OFF-LA-10003278,Office Supplies,Labels,"Novimex Shipping Labels, 5000 Label Set",34.11,3,0,12.24
 7841,IT-2018-1765076,16/03/18,16/03/18,Same Day,RE-19405,Ricardo Emerson,Consumer,London,England,United Kingdom,North,OFF-AR-10000799,Office Supplies,Art,"Sanford Highlighters, Easy-Erase",28.836,2,0.1,-1.944
 7842,IT-2018-1765076,16/03/18,16/03/18,Same Day,RE-19405,Ricardo Emerson,Consumer,London,England,United Kingdom,North,OFF-FA-10004233,Office Supplies,Fasteners,"Stockwell Paper Clips, Metal",23.976,2,0.1,8.256
 7843,IT-2018-1765076,16/03/18,16/03/18,Same Day,RE-19405,Ricardo Emerson,Consumer,London,England,United Kingdom,North,OFF-AR-10003113,Office Supplies,Art,"Binney & Smith Pens, Blue",10.746,1,0.1,3.816
@@ -8687,8 +8687,8 @@
 8686,IT-2020-3642735,04/06/20,10/06/20,Standard Class,TC-21535,Tracy Collins,Home Office,Paris,Ile-de-France,France,Central,TEC-MA-10004955,Technology,Machines,"Okidata Card Printer, Durable",598.23,4,0.15,-49.29
 8687,ES-2020-4180822,10/06/20,17/06/20,Standard Class,JK-16090,Juliana Krohn,Consumer,Rome,Lazio,Italy,South,OFF-AR-10000724,Office Supplies,Art,"Boston Pens, Fluorescent",30.96,2,0,5.22
 8688,ES-2020-4180822,10/06/20,17/06/20,Standard Class,JK-16090,Juliana Krohn,Consumer,Rome,Lazio,Italy,South,TEC-CO-10000405,Technology,Copiers,"Canon Fax Machine, Digital",954.09,3,0,219.42
-8689,ES-2018-3128239,28/08/18,03/09/18,Standard Class,Co-12640,Corey-Lock,Consumer,Birmingham,England,United Kingdom,North,TEC-AC-10001100,Technology,Accessories,"Logitech Router, Bluetooth",370.98,3,0.5,-311.67
-8690,ES-2018-3128239,28/08/18,03/09/18,Standard Class,Co-12640,Corey-Lock,Consumer,Birmingham,England,United Kingdom,North,FUR-FU-10004421,Furniture,Furnishings,"Tenex Clock, Durable",18.912,2,0.8,-34.068
+8689,ES-2018-3128239,28/08/18,03/09/18,Standard Class,CL-12640,Corey Lock,Consumer,Birmingham,England,United Kingdom,North,TEC-AC-10001100,Technology,Accessories,"Logitech Router, Bluetooth",370.98,3,0.5,-311.67
+8690,ES-2018-3128239,28/08/18,03/09/18,Standard Class,CL-12640,Corey Lock,Consumer,Birmingham,England,United Kingdom,North,FUR-FU-10004421,Furniture,Furnishings,"Tenex Clock, Durable",18.912,2,0.8,-34.068
 8691,ES-2021-5795334,16/07/21,20/07/21,Standard Class,SA-20830,Sue Ann Reed,Consumer,Vienna,Vienna,Austria,Central,FUR-FU-10003325,Furniture,Furnishings,"Tenex Door Stop, Duo Pack",87.9,2,0,39.54
 8692,ES-2021-5795334,16/07/21,20/07/21,Standard Class,SA-20830,Sue Ann Reed,Consumer,Vienna,Vienna,Austria,Central,TEC-AC-10002738,Technology,Accessories,"Belkin Memory Card, Programmable",465.24,4,0,139.56
 8693,ES-2021-5795334,16/07/21,20/07/21,Standard Class,SA-20830,Sue Ann Reed,Consumer,Vienna,Vienna,Austria,Central,OFF-BI-10001119,Office Supplies,Binders,"Wilson Jones Index Tab, Clear",17.73,3,0,1.53

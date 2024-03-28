@@ -7,17 +7,17 @@ public class cleanup {
     private static final String regex = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
 
     public static void main(String[] args) {
-        // makeCustomerData();
-        // makeCountryData();
-        // makeAddressData();
-        // updateProductIDAndRegion();
-        // writeOrderDetails();
+        updateProductIDAndRegion();
+        writeOrderDetails();
+        makeCountryData();
+        makeAddressData();
+        makeCustomerData();
         makeRegionData();
     }
 
     private static void makeCountryData() {
         try {
-            Scanner read = new Scanner(new File("data-files/order-details.csv"));
+            Scanner read = new Scanner(new File("final-data-files/order-details.csv"));
             Writer write = new BufferedWriter(new FileWriter("final-data-files/countries.csv"));
 
             String name;
@@ -53,7 +53,7 @@ public class cleanup {
 
     private static void makeAddressData() {
         try {
-            Scanner read = new Scanner(new File("data-files/order-details.csv"));
+            Scanner read = new Scanner(new File("final-data-files/order-details.csv"));
             Writer write = new BufferedWriter(new FileWriter("data-files/address-unsorted.csv"));
 
             Map<String, List<String>> address = new HashMap<>();
@@ -130,7 +130,7 @@ public class cleanup {
 
     private static void makeCustomerData() {
         try {
-            Scanner read = new Scanner(new File("data-files/order-details.csv"));
+            Scanner read = new Scanner(new File("final-data-files/order-details.csv"));
             Writer write = new BufferedWriter(new FileWriter("final-data-files/customers.csv"));
 
             Map<String, List<String>> customers = new HashMap<>();
@@ -278,7 +278,7 @@ public class cleanup {
             io.printStackTrace();
         }
         try {
-            in1 = new Scanner(new File("data-files/order-details.csv"));
+            in1 = new Scanner(new File("final-data-files/order-details.csv"));
             in2 = new Scanner(new File("final-data-files/manager.csv"));
 
             out = new BufferedWriter(new FileWriter("final-data-files/region.csv"));
