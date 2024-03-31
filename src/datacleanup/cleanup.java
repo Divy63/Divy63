@@ -279,7 +279,7 @@ public class cleanup {
         }
         try {
             in1 = new Scanner(new File("data-files/us-store-managers.csv"));
-            in2 = new Scanner(new File("final-data-files/mangers.csv"));
+            in2 = new Scanner(new File("final-data-files/manager.csv"));
             in3 = new Scanner(new File("data-files/eu-store-managers.csv"));
 
             out = new BufferedWriter(new FileWriter("final-data-files/region.csv"));
@@ -296,16 +296,64 @@ public class cleanup {
                 if (tempList == null) {
                     manager.put(manID, new ArrayList<>());
                 }
+                tempList = manager.get(manID);
                 tempList.add(input[1]);
                 tempList.add(input[2]);
             }
 
             String regionName;
+            in1.nextLine();
             while (in1.hasNextLine()) {
-                regionName = in1.nextLine().split(regex)[10];
+                input = in1.nextLine().split(regex);
+                regionName = input[1];
+                String fName = input[0].split(" ")[0];
+                String lName = input[0].split(" ")[1];
+                manID = getManID(manager, fName, lName);
+                if (manID != null) {
+                    region.put(regionName, manID);
+                } else {
+                    System.out.println("Error in making region.csv file");
+                }
             }
+
+            in3.nextLine();
+            while (in3.hasNextLine()) {
+                input = in3.nextLine().split(regex);
+                regionName = input[0];
+                String fName = input[1].split(" ")[0];
+                String lName = input[1].split(" ")[1];
+                manID = getManID(manager, fName, lName);
+                if (manID != null) {
+                    region.put(regionName, manID);
+                } else {
+                    System.out.println("Error in making region.csv file");
+                }
+            }
+            
+            out = new BufferedWriter(new FileWriter("final-data-files/region.csv"));
+
+            Set<String> keySet = region.keySet();
+
+            out.write("regionID,regionName,managerID\n");
+            for (String string : keySet) {
+                out.write(regionID++ + "," + string + "," + region.get(string) + "\n");
+            }
+            out.close();
         } catch (IOException io) {
             io.printStackTrace();
         }
+    }
+
+    private static String getManID(Map<String, List<String>> managers, String fName, String lName) {
+        String manID = null;
+        Set<String> keySet = managers.keySet();
+        List<String> tempList;
+        for (String s : keySet) {
+            tempList = managers.get(s);
+            if (tempList.contains(lName) && tempList.contains(fName)) {
+                manID = s;
+            }
+        }
+        return manID;
     }
 }
