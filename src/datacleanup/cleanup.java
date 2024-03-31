@@ -278,14 +278,31 @@ public class cleanup {
             io.printStackTrace();
         }
         try {
-            in1 = new Scanner(new File("final-data-files/order-details.csv"));
-            in2 = new Scanner(new File("final-data-files/manager.csv"));
+            in1 = new Scanner(new File("data-files/us-store-managers.csv"));
+            in2 = new Scanner(new File("final-data-files/mangers.csv"));
+            in3 = new Scanner(new File("data-files/eu-store-managers.csv"));
 
             out = new BufferedWriter(new FileWriter("final-data-files/region.csv"));
             Map<String, String> region = new HashMap<>();
-            in1.nextLine();
+            Map<String, List<String>> manager = new HashMap<>();
+            List<String> tempList = new ArrayList<>();
+            String inputLine, manID;
+            String[] input;
+            in2.nextLine();
+            while (in2.hasNextLine()) {
+                input = in2.nextLine().split(regex);
+                manID = input[0];
+                tempList = manager.get(manID);
+                if (tempList == null) {
+                    manager.put(manID, new ArrayList<>());
+                }
+                tempList.add(input[1]);
+                tempList.add(input[2]);
+            }
+
+            String regionName;
             while (in1.hasNextLine()) {
-                break;
+                regionName = in1.nextLine().split(regex)[10];
             }
         } catch (IOException io) {
             io.printStackTrace();
