@@ -18,3 +18,7 @@ buildClean:
 cleanup: buildClean
 	java -cp $(BIN_DIR) datacleanup.cleanup
 	java -cp $(BIN_DIR) datacleanup.product
+
+update:
+	javac -d $(BIN_DIR) $(SRC_DIR)/datacleanup/update.java
+	java -cp $(BIN_DIR) datacleanup.update

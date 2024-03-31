@@ -1,1661 +1,1661 @@
 addressID,city,state,country
-1,Henderson,Kentucky,United States
-2,Los Angeles,California,United States
-3,Fort Lauderdale,Florida,United States
-4,Concord,North Carolina,United States
-5,Seattle,Washington,United States
-6,Fort Worth,Texas,United States
-7,Madison,Wisconsin,United States
-8,West Jordan,Utah,United States
-9,San Francisco,California,United States
-10,Fremont,Nebraska,United States
-11,Philadelphia,Pennsylvania,United States
-12,Orem,Utah,United States
-13,Houston,Texas,United States
-14,Richardson,Texas,United States
-15,Naperville,Illinois,United States
-16,Melbourne,Florida,United States
-17,Eagan,Minnesota,United States
-18,Westland,Michigan,United States
-19,Dover,Delaware,United States
-20,New Albany,Indiana,United States
-21,New York City,New York,United States
-22,Troy,New York,United States
-23,Chicago,Illinois,United States
-24,Gilbert,Arizona,United States
-25,Springfield,Virginia,United States
-26,Jackson,Michigan,United States
-27,Memphis,Tennessee,United States
-28,Decatur,Alabama,United States
-29,Durham,North Carolina,United States
-30,Columbia,South Carolina,United States
-31,Rochester,Minnesota,United States
-32,Minneapolis,Minnesota,United States
-33,Portland,Oregon,United States
-34,Saint Paul,Minnesota,United States
-35,Aurora,Colorado,United States
-36,Charlotte,North Carolina,United States
-37,Orland Park,Illinois,United States
-38,Urbandale,Iowa,United States
-39,Columbus,Ohio,United States
-40,Bristol,Tennessee,United States
-41,Wilmington,Delaware,United States
-42,Bloomington,Illinois,United States
-43,Phoenix,Arizona,United States
-44,Roseville,California,United States
-45,Independence,Missouri,United States
-46,Pasadena,California,United States
-47,Newark,Ohio,United States
-48,Franklin,Wisconsin,United States
-49,Scottsdale,Arizona,United States
-50,San Jose,California,United States
-51,Edmond,Oklahoma,United States
-52,Carlsbad,New Mexico,United States
-53,San Antonio,Texas,United States
-54,Decatur,Illinois,United States
-55,Monroe,Louisiana,United States
-56,Fairfield,Connecticut,United States
-57,Grand Prairie,Texas,United States
-58,Redlands,California,United States
-59,Hamilton,Ohio,United States
-60,Westfield,New Jersey,United States
-61,Akron,Ohio,United States
-62,Denver,Colorado,United States
-63,Dallas,Texas,United States
-64,Franklin,Tennessee,United States
-65,Whittier,California,United States
-66,Saginaw,Michigan,United States
-67,Medina,Ohio,United States
-68,Dublin,Ohio,United States
-69,Detroit,Michigan,United States
-70,Columbia,Tennessee,United States
-71,Tampa,Florida,United States
-72,Santa Clara,California,United States
-73,Lakeville,Minnesota,United States
-74,San Diego,California,United States
-75,Pasadena,Texas,United States
-76,Brentwood,California,United States
-77,Chapel Hill,North Carolina,United States
-78,Morristown,New Jersey,United States
-79,Cincinnati,Ohio,United States
-80,Inglewood,California,United States
-81,Tamarac,Florida,United States
-82,Colorado Springs,Colorado,United States
-83,Belleville,New Jersey,United States
-84,Taylor,Michigan,United States
-85,Lakewood,New Jersey,United States
-86,Arlington,Virginia,United States
-87,Arvada,Colorado,United States
-88,Hackensack,New Jersey,United States
-89,Saint Petersburg,Florida,United States
-90,Long Beach,California,United States
-91,Hesperia,California,United States
-92,Murfreesboro,Tennessee,United States
-93,Layton,Utah,United States
-94,Austin,Texas,United States
-95,Lowell,Massachusetts,United States
-96,Columbus,Georgia,United States
-97,Manchester,Connecticut,United States
-98,Harlingen,Texas,United States
-99,Tucson,Arizona,United States
-100,Quincy,Illinois,United States
-101,Franklin,Massachusetts,United States
-102,Pembroke Pines,Florida,United States
-103,Des Moines,Washington,United States
-104,Peoria,Illinois,United States
-105,Las Vegas,Nevada,United States
-106,Warwick,Rhode Island,United States
-107,Miami,Florida,United States
-108,Wilmington,North Carolina,United States
-109,Huntington Beach,California,United States
-110,Richmond,Kentucky,United States
-111,Louisville,Colorado,United States
-112,Lawrence,Massachusetts,United States
-113,Jackson,Mississippi,United States
-114,Canton,Michigan,United States
-115,New Rochelle,New York,United States
-116,Gastonia,North Carolina,United States
-117,Jacksonville,Florida,United States
-118,Columbus,Indiana,United States
-119,Auburn,New York,United States
-120,Norman,Oklahoma,United States
-121,Concord,California,United States
-122,Park Ridge,Illinois,United States
-123,Amarillo,Texas,United States
-124,Lindenhurst,New York,United States
-125,Huntsville,Texas,United States
-126,Rochester,New York,United States
-127,Fayetteville,Arkansas,United States
-128,Costa Mesa,California,United States
-129,Parker,Colorado,United States
-130,Atlanta,Georgia,United States
-131,Gladstone,Missouri,United States
-132,Great Falls,Montana,United States
-133,Lakeland,Florida,United States
-134,Montgomery,Alabama,United States
-135,Mesa,Arizona,United States
-136,Green Bay,Wisconsin,United States
-137,Springfield,Ohio,United States
-138,Anaheim,California,United States
-139,Marysville,Washington,United States
-140,Salem,Oregon,United States
-141,Laredo,Texas,United States
-142,Grove City,Ohio,United States
-143,Dearborn,Michigan,United States
-144,Warner Robins,Georgia,United States
-145,Vallejo,California,United States
-146,Mission Viejo,California,United States
-147,Rochester Hills,Michigan,United States
-148,Plainfield,New Jersey,United States
-149,Sierra Vista,Arizona,United States
-150,Vancouver,Washington,United States
-151,Aurora,Illinois,United States
-152,Arlington,Texas,United States
-153,Louisville,Kentucky,United States
-154,Cleveland,Ohio,United States
-155,Tyler,Texas,United States
-156,Burlington,North Carolina,United States
-157,Waynesboro,Virginia,United States
-158,Chester,Pennsylvania,United States
-159,Cary,North Carolina,United States
-160,Palm Coast,Florida,United States
-161,Mount Vernon,New York,United States
-162,Hialeah,Florida,United States
-163,Oceanside,New York,United States
-164,Evanston,Illinois,United States
-165,Trenton,Michigan,United States
-166,Cottage Grove,Minnesota,United States
-167,Bossier City,Louisiana,United States
-168,Des Moines,Iowa,United States
-169,Lancaster,California,United States
-170,Richmond,Virginia,United States
-171,Asheville,North Carolina,United States
-172,Lake Elsinore,California,United States
-173,Omaha,Nebraska,United States
-174,Edmonds,Washington,United States
-175,Santa Ana,California,United States
-176,Milwaukee,Wisconsin,United States
-177,Florence,Kentucky,United States
-178,Lorain,Ohio,United States
-179,Linden,New Jersey,United States
-180,Salinas,California,United States
-181,New Brunswick,New Jersey,United States
-182,Lancaster,Pennsylvania,United States
-183,Concord,New Hampshire,United States
-184,Columbia,Maryland,United States
-185,Garland,Texas,United States
-186,Norwich,Connecticut,United States
-187,Alexandria,Virginia,United States
-188,Toledo,Ohio,United States
-189,Farmington,New Mexico,United States
-190,Riverside,California,United States
-191,Torrance,California,United States
-192,Round Rock,Texas,United States
-193,Oceanside,California,United States
-194,Boca Raton,Florida,United States
-195,Virginia Beach,Virginia,United States
-196,Murrieta,California,United States
-197,Jacksonville,North Carolina,United States
-198,Burlington,Iowa,United States
-199,Olympia,Washington,United States
-200,Washington,District of Columbia,United States
-201,Jefferson City,Missouri,United States
-202,Saint Peters,Missouri,United States
-203,Rockford,Illinois,United States
-204,Brownsville,Texas,United States
-205,Yonkers,New York,United States
-206,Oakland,California,United States
-207,Monroe,North Carolina,United States
-208,Clinton,Maryland,United States
-209,Encinitas,California,United States
-210,Roswell,Georgia,United States
-211,Jonesboro,Arkansas,United States
-212,Richmond,Indiana,United States
-213,Antioch,California,United States
-214,Homestead,Florida,United States
-215,La Porte,Indiana,United States
-216,Lansing,Michigan,United States
-217,Cuyahoga Falls,Ohio,United States
-218,Reno,Nevada,United States
-219,Harrisonburg,Virginia,United States
-220,Escondido,California,United States
-221,Royal Oak,Michigan,United States
-222,Rockville,Maryland,United States
-223,Coral Springs,Florida,United States
-224,Buffalo,New York,United States
-225,Boynton Beach,Florida,United States
-226,Gulfport,Mississippi,United States
-227,Fresno,California,United States
-228,Greenville,North Carolina,United States
-229,Long Beach,New York,United States
-230,Florence,Alabama,United States
-231,Macon,Georgia,United States
-232,Cedar Rapids,Iowa,United States
-233,Providence,Rhode Island,United States
-234,Pueblo,Colorado,United States
-235,Fairfield,California,United States
-236,Deltona,Florida,United States
-237,Murray,Kentucky,United States
-238,Middletown,Connecticut,United States
-239,Freeport,New York,United States
-240,Pico Rivera,California,United States
-241,Provo,Utah,United States
-242,Pleasant Grove,Utah,United States
-243,Smyrna,Georgia,United States
-244,Salem,Virginia,United States
-245,Parma,Ohio,United States
-246,Mobile,Alabama,United States
-247,New Bedford,Massachusetts,United States
-248,Irving,Texas,United States
-249,Vineland,New Jersey,United States
-250,Glendale,Arizona,United States
-251,Niagara Falls,New York,United States
-252,Thomasville,North Carolina,United States
-253,Westminster,California,United States
-254,Jackson,Tennessee,United States
-255,Coppell,Texas,United States
-256,Pomona,California,United States
-257,North Las Vegas,Nevada,United States
-258,Allentown,Pennsylvania,United States
-259,Newark,Delaware,United States
-260,Tempe,Arizona,United States
-261,Laguna Niguel,California,United States
-262,Bridgeton,New Jersey,United States
-263,Everett,Massachusetts,United States
-264,Watertown,New York,United States
-265,Appleton,Wisconsin,United States
-266,Bellevue,Washington,United States
-267,Allen,Texas,United States
-268,El Paso,Texas,United States
-269,Grapevine,Texas,United States
-270,Carrollton,Texas,United States
-271,Smyrna,Tennessee,United States
-272,Kent,Washington,United States
-273,Lafayette,Louisiana,United States
-274,Tigard,Oregon,United States
-275,Skokie,Illinois,United States
-276,Plano,Texas,United States
-277,Suffolk,Virginia,United States
-278,Indianapolis,Indiana,United States
-279,Bayonne,New Jersey,United States
-280,Fayetteville,North Carolina,United States
-281,Greensboro,North Carolina,United States
-282,Baltimore,Maryland,United States
-283,Kenosha,Wisconsin,United States
-284,Olathe,Kansas,United States
-285,Auburn,Washington,United States
-286,Tulsa,Oklahoma,United States
-287,Redmond,Oregon,United States
-288,Raleigh,North Carolina,United States
-289,Muskogee,Oklahoma,United States
-290,Meriden,Connecticut,United States
-291,Bowling Green,Kentucky,United States
-292,South Bend,Indiana,United States
-293,Bristol,Connecticut,United States
-294,Henderson,Nevada,United States
-295,Spokane,Washington,United States
-296,Keller,Texas,United States
-297,Fairfield,Ohio,United States
-298,Port Orange,Florida,United States
-299,Medford,Oregon,United States
-300,Charlottesville,Virginia,United States
-301,Missoula,Montana,United States
-302,Florence,South Carolina,United States
-303,Springfield,Oregon,United States
-304,Apopka,Florida,United States
-305,Reading,Pennsylvania,United States
-306,Broomfield,Colorado,United States
-307,Springfield,Missouri,United States
-308,Paterson,New Jersey,United States
-309,Oklahoma City,Oklahoma,United States
-310,Chesapeake,Virginia,United States
-311,Lubbock,Texas,United States
-312,Columbia,Missouri,United States
-313,Johnson City,Tennessee,United States
-314,Auburn,Alabama,United States
-315,San Bernardino,California,United States
-316,Leominster,Massachusetts,United States
-317,Bozeman,Montana,United States
-318,Peoria,Arizona,United States
-319,Lakewood,Ohio,United States
-320,Perth Amboy,New Jersey,United States
-321,Ontario,California,United States
-322,Rancho Cucamonga,California,United States
-323,Moorhead,Minnesota,United States
-324,Mesquite,Texas,United States
-325,Stockton,California,United States
-326,Ormond Beach,Florida,United States
-327,Sunnyvale,California,United States
-328,Dover,New Hampshire,United States
-329,York,Pennsylvania,United States
-330,College Station,Texas,United States
-331,Saint Louis,Missouri,United States
-332,Quincy,Massachusetts,United States
-333,Manteca,California,United States
-334,Kent,Ohio,United States
-335,San Angelo,Texas,United States
-336,Salt Lake City,Utah,United States
-337,Huntsville,Alabama,United States
-338,Knoxville,Tennessee,United States
-339,Little Rock,Arkansas,United States
-340,Lincoln Park,Michigan,United States
-341,Marion,Ohio,United States
-342,Littleton,Colorado,United States
-343,Burlington,Vermont,United States
-344,Bangor,Maine,United States
-345,Southaven,Mississippi,United States
-346,New Castle,Indiana,United States
-347,Midland,Michigan,United States
-348,Sioux Falls,South Dakota,United States
-349,Fort Collins,Colorado,United States
-350,Lafayette,Indiana,United States
-351,Clarksville,Tennessee,United States
-352,Sacramento,California,United States
-353,Thousand Oaks,California,United States
-354,Malden,Massachusetts,United States
-355,Holyoke,Massachusetts,United States
-356,Albuquerque,New Mexico,United States
-357,Sparks,Nevada,United States
-358,Coachella,California,United States
-359,Elmhurst,Illinois,United States
-360,Passaic,New Jersey,United States
-361,North Charleston,South Carolina,United States
-362,Newport News,Virginia,United States
-363,Jamestown,New York,United States
-364,Mishawaka,Indiana,United States
-365,Bowling Green,Ohio,United States
-366,La Quinta,California,United States
-367,Tallahassee,Florida,United States
-368,Nashville,Tennessee,United States
-369,Bellingham,Washington,United States
-370,Woodstock,Illinois,United States
-371,Haltom City,Texas,United States
-372,Wheeling,Illinois,United States
-373,Summerville,South Carolina,United States
-374,Hot Springs,Arkansas,United States
-375,Englewood,Colorado,United States
-376,Lancaster,Ohio,United States
-377,Las Cruces,New Mexico,United States
-378,Hoover,Alabama,United States
-379,Frisco,Texas,United States
-380,Vacaville,California,United States
-381,Murray,Utah,United States
-382,Waukesha,Wisconsin,United States
-383,Bakersfield,California,United States
-384,Pompano Beach,Florida,United States
-385,Troy,Ohio,United States
-386,Corpus Christi,Texas,United States
-387,Redondo Beach,California,United States
-388,Orlando,Florida,United States
-389,Orange,New Jersey,United States
-390,Lake Charles,Louisiana,United States
-391,Highland Park,Illinois,United States
-392,Hempstead,New York,United States
-393,Noblesville,Indiana,United States
-394,Apple Valley,Minnesota,United States
-395,Mount Pleasant,South Carolina,United States
-396,Sterling Heights,Michigan,United States
-397,Eau Claire,Wisconsin,United States
-398,Pharr,Texas,United States
-399,Billings,Montana,United States
-400,Gresham,Oregon,United States
-401,Chattanooga,Tennessee,United States
-402,Meridian,Idaho,United States
-403,Apple Valley,California,United States
-404,Bolingbrook,Illinois,United States
-405,Maple Grove,Minnesota,United States
-406,Woodland,California,United States
-407,Missouri City,Texas,United States
-408,Pearland,Texas,United States
-409,San Mateo,California,United States
-410,Grand Rapids,Michigan,United States
-411,Visalia,California,United States
-412,Overland Park,Kansas,United States
-413,Temecula,California,United States
-414,Yucaipa,California,United States
-415,Revere,Massachusetts,United States
-416,Conroe,Texas,United States
-417,Tinley Park,Illinois,United States
-418,Dubuque,Iowa,United States
-419,Dearborn Heights,Michigan,United States
-420,Santa Fe,New Mexico,United States
-421,Hickory,North Carolina,United States
-422,Carol Stream,Illinois,United States
-423,Saint Cloud,Minnesota,United States
-424,North Miami,Florida,United States
-425,Lawrence,Indiana,United States
-426,Plantation,Florida,United States
-427,Port Saint Lucie,Florida,United States
-428,Rock Hill,South Carolina,United States
-429,Odessa,Texas,United States
-430,West Allis,Wisconsin,United States
-431,Chula Vista,California,United States
-432,Manhattan,Kansas,United States
-433,Altoona,Pennsylvania,United States
-434,Thornton,Colorado,United States
-435,Champaign,Illinois,United States
-436,Bloomington,Indiana,United States
-437,Texarkana,Arkansas,United States
-438,Edinburg,Texas,United States
-439,Baytown,Texas,United States
-440,Greenwood,Indiana,United States
-441,Lakewood,California,United States
-442,Woonsocket,Rhode Island,United States
-443,Superior,Wisconsin,United States
-444,Bedford,Texas,United States
-445,Covington,Washington,United States
-446,Broken Arrow,Oklahoma,United States
-447,Miramar,Florida,United States
-448,Hollywood,Florida,United States
-449,Deer Park,Texas,United States
-450,Wichita,Kansas,United States
-451,Mcallen,Texas,United States
-452,Iowa City,Iowa,United States
-453,Boise,Idaho,United States
-454,Cranston,Rhode Island,United States
-455,Freeport,Illinois,United States
-456,Port Arthur,Texas,United States
-457,Citrus Heights,California,United States
-458,The Colony,Texas,United States
-459,Redmond,Washington,United States
-460,Daytona Beach,Florida,United States
-461,Bullhead City,Arizona,United States
-462,Portage,Indiana,United States
-463,Fargo,North Dakota,United States
-464,Elkhart,Indiana,United States
-465,San Gabriel,California,United States
-466,Margate,Florida,United States
-467,Sandy Springs,Georgia,United States
-468,Mentor,Ohio,United States
-469,Lawton,Oklahoma,United States
-470,Hampton,Virginia,United States
-471,Rome,New York,United States
-472,La Crosse,Wisconsin,United States
-473,Lewiston,Idaho,United States
-474,Hattiesburg,Mississippi,United States
-475,Danville,California,United States
-476,Mount Pleasant,Michigan,United States
-477,Logan,Utah,United States
-478,Waterbury,Connecticut,United States
-479,Athens,Georgia,United States
-480,Lewiston,Maine,United States
-481,Danville,Illinois,United States
-482,Avondale,Arizona,United States
-483,Marietta,Georgia,United States
-484,Yuma,Arizona,United States
-485,Wausau,Wisconsin,United States
-486,Pasco,Washington,United States
-487,Oak Park,Illinois,United States
-488,Pensacola,Florida,United States
-489,League City,Texas,United States
-490,Gaithersburg,Maryland,United States
-491,Lehi,Utah,United States
-492,Tuscaloosa,Alabama,United States
-493,Moreno Valley,California,United States
-494,Georgetown,Kentucky,United States
-495,Loveland,Colorado,United States
-496,Chandler,Arizona,United States
-497,Helena,Montana,United States
-498,Kirkwood,Missouri,United States
-499,Waco,Texas,United States
-500,Roseville,Michigan,United States
-501,Frankfort,Illinois,United States
-502,Bethlehem,Pennsylvania,United States
-503,Roseville,Minnesota,United States
-504,Grand Island,Nebraska,United States
-505,Woodbury,Minnesota,United States
-506,Oak Park,Michigan,United States
-507,Rogers,Arkansas,United States
-508,Clovis,New Mexico,United States
-509,Jupiter,Florida,United States
-510,Santa Barbara,California,United States
-511,Cedar Hill,Texas,United States
-512,Norfolk,Nebraska,United States
-513,Draper,Utah,United States
-514,Ann Arbor,Michigan,United States
-515,La Mesa,California,United States
-516,Pocatello,Idaho,United States
-517,Holland,Michigan,United States
-518,Milford,Connecticut,United States
-519,Buffalo Grove,Illinois,United States
-520,Lake Forest,California,United States
-521,Redding,California,United States
-522,Chico,California,United States
-523,Utica,New York,United States
-524,Conway,Arkansas,United States
-525,Cheyenne,Wyoming,United States
-526,Owensboro,Kentucky,United States
-527,Caldwell,Idaho,United States
-528,Kenner,Louisiana,United States
-529,Nashua,New Hampshire,United States
-530,Bartlett,Tennessee,United States
-531,Redwood City,California,United States
-532,Lebanon,Tennessee,United States
-533,Santa Maria,California,United States
-534,Des Plaines,Illinois,United States
-535,Longview,Washington,United States
-536,Hendersonville,Tennessee,United States
-537,Waterloo,Iowa,United States
-538,Cambridge,Massachusetts,United States
-539,Palatine,Illinois,United States
-540,Beverly,Massachusetts,United States
-541,Eugene,Oregon,United States
-542,Oxnard,California,United States
-543,Renton,Washington,United States
-544,Glenview,Illinois,United States
-545,Delray Beach,Florida,United States
-546,Commerce City,Colorado,United States
-547,Texas City,Texas,United States
-548,Wilson,North Carolina,United States
-549,Rio Rancho,New Mexico,United States
-550,Goldsboro,North Carolina,United States
-551,Everett,Washington,United States
-552,Montebello,California,United States
-553,El Cajon,California,United States
-554,Beaumont,Texas,United States
-555,West Palm Beach,Florida,United States
-556,Abilene,Texas,United States
-557,Normal,Illinois,United States
-558,Saint Charles,Missouri,United States
-559,Saint Charles,Illinois,United States
-560,Camarillo,California,United States
-561,Hillsboro,Oregon,United States
-562,Burbank,California,United States
-563,Modesto,California,United States
-564,Garden City,Kansas,United States
-565,Atlantic City,New Jersey,United States
-566,Longmont,Colorado,United States
-567,Davis,California,United States
-568,Wheeling,West Virginia,United States
-569,Morgan Hill,California,United States
-570,Clifton,New Jersey,United States
-571,Sheboygan,Wisconsin,United States
-572,East Point,Georgia,United States
-573,Rapid City,South Dakota,United States
-574,Andover,Massachusetts,United States
-575,Kissimmee,Florida,United States
-576,Shelton,Connecticut,United States
-577,Danbury,Connecticut,United States
-578,Marion,Iowa,United States
-579,Sanford,Florida,United States
-580,San Marcos,Texas,United States
-581,Greeley,Colorado,United States
-582,Mansfield,Texas,United States
-583,Elyria,Ohio,United States
-584,Twin Falls,Idaho,United States
-585,Coral Gables,Florida,United States
-586,Romeoville,Illinois,United States
-587,Marlborough,Massachusetts,United States
-588,Laurel,Maryland,United States
-589,Bryan,Texas,United States
-590,Pine Bluff,Arkansas,United States
-591,Aberdeen,South Dakota,United States
-592,Hagerstown,Maryland,United States
-593,East Orange,New Jersey,United States
-594,Arlington Heights,Illinois,United States
-595,Oswego,Illinois,United States
-596,Coon Rapids,Minnesota,United States
-597,San Clemente,California,United States
-598,Dublin,California,United States
-599,San Luis Obispo,California,United States
-600,Springdale,Arkansas,United States
-601,Lodi,California,United States
-602,La Porte,Texas,United States
-603,Mason,Ohio,United States
-604,Woodstock,Georgia,United States
-605,Leeds,England,United Kingdom
-606,West Bromwich,England,United Kingdom
-607,Le Bouscat,Aquitaine-Limousin-Poitou-Charentes,France
-608,Strasbourg,Alsace-Champagne-Ardenne-Lorraine,France
-609,Aachen,North Rhine-Westphalia,Germany
-610,Thiais,Ile-de-France,France
-611,Kassel,Hesse,Germany
-612,Milan,Lombardy,Italy
-613,Brandenburg,Brandenburg,Germany
-614,Heilbronn,Baden-Württemberg,Germany
-615,Barcelona,Catalonia,Spain
-616,Swindon,England,United Kingdom
-617,Puertollano,Castile-La Mancha,Spain
-618,Chaville,Ile-de-France,France
-619,Sonneberg,Thuringia,Germany
-620,Alphen aan den Rijn,South Holland,Netherlands
-621,Littlehampton,England,United Kingdom
-622,Taverny,Ile-de-France,France
-623,Mainz,Rhineland-Palatinate,Germany
-624,Nacka,Stockholm,Sweden
-625,Manchester,England,United Kingdom
-626,Viroflay,Ile-de-France,France
-627,Murcia,Murcia,Spain
-628,Karlsruhe,Baden-Württemberg,Germany
-629,Madrid,Madrid,Spain
-630,Rome,Lazio,Italy
-631,Stuttgart,Baden-Württemberg,Germany
-632,Mansfield,England,United Kingdom
-633,Newcastle upon Tyne,England,United Kingdom
-634,Paris,Ile-de-France,France
-635,Dijon,Bourgogne-Franche-Comté,France
-636,Hasselt,Limburg,Belgium
-637,Vienna,Vienna,Austria
-638,Sabadell,Catalonia,Spain
-639,Argentan,Normandy,France
-640,Stourbridge,England,United Kingdom
-641,Nuremberg,Bavaria,Germany
-642,Southend-on-Sea,England,United Kingdom
-643,Cambridge,England,United Kingdom
-644,Rugby,England,United Kingdom
-645,Bayeux,Normandy,France
-646,Saint-Genis-Laval,Auvergne-Rhône-Alpes,France
-647,Pantin,Ile-de-France,France
-648,Hamburg,Hamburg,Germany
-649,Beaune,Bourgogne-Franche-Comté,France
-650,Antibes,Provence-Alpes-Côte d'Azur,France
-651,Houilles,Ile-de-France,France
-652,Cesena,Emilia-Romagna,Italy
-653,Namur,Namur,Belgium
-654,Marano di Napoli,Campania,Italy
-655,London,England,United Kingdom
-656,Dundee,Scotland,United Kingdom
-657,Wiesbaden,Hesse,Germany
-658,Vitry-sur-Seine,Ile-de-France,France
-659,Villiers-le-Bel,Ile-de-France,France
-660,Castelldefels,Catalonia,Spain
-661,Abbeville,Hauts-de-France,France
-662,Tarragona,Catalonia,Spain
-663,Durrus,Cork,Ireland
-664,Santander,Cantabria,Spain
-665,Amadora,Lisbon,Portugal
-666,Berlin,Berlin,Germany
-667,San Fernando,Andalusía,Spain
-668,Brest,Brittany,France
-669,Trier,Rhineland-Palatinate,Germany
-670,Ulm,Baden-Württemberg,Germany
-671,Nancy,Alsace-Champagne-Ardenne-Lorraine,France
-672,Cannes,Provence-Alpes-Côte d'Azur,France
-673,Alkmaar,North Holland,Netherlands
-674,Pontault-Combault,Ile-de-France,France
-675,Sheffield,England,United Kingdom
-676,Marseille,Provence-Alpes-Côte d'Azur,France
-677,Basildon,England,United Kingdom
-678,San Sebastian,Basque Country,Spain
-679,Granada,Andalusía,Spain
-680,Barry,Wales,United Kingdom
-681,Bedford,England,United Kingdom
-682,Pessac,Aquitaine-Limousin-Poitou-Charentes,France
-683,Irun,Basque Country,Spain
-684,Mantes-la-Jolie,Ile-de-France,France
-685,Celle,Lower Saxony,Germany
-686,Bisceglie,Apulia,Italy
-687,Albertville,Auvergne-Rhône-Alpes,France
-688,Birmingham,England,United Kingdom
-689,Perpignan,Languedoc-Roussillon-Midi-Pyrénées,France
-690,Vigneux-sur-Seine,Ile-de-France,France
-691,Estepona,Andalusía,Spain
-692,Fontenay-aux-Roses,Ile-de-France,France
-693,Deuil-la-Barre,Ile-de-France,France
-694,Burgos,Castile and León,Spain
-695,Moncalieri,Piedmont,Italy
-696,Chilly-Mazarin,Ile-de-France,France
-697,Amiens,Hauts-de-France,France
-698,Chester,England,United Kingdom
-699,Sant Boi de Llobregat,Catalonia,Spain
-700,Metz,Alsace-Champagne-Ardenne-Lorraine,France
-701,Antony,Ile-de-France,France
-702,Drancy,Ile-de-France,France
-703,Arnsberg,North Rhine-Westphalia,Germany
-704,Offenbach,Hesse,Germany
-705,Cerignola,Apulia,Italy
-706,Grasse,Provence-Alpes-Côte d'Azur,France
-707,Munich,Bavaria,Germany
-708,Gateshead,England,United Kingdom
-709,Issy-les-Moulineaux,Ile-de-France,France
-710,Saint-Nazaire,Pays de la Loire,France
-711,Chemnitz,Saxony,Germany
-712,Naples,Campania,Italy
-713,Coulommiers,Ile-de-France,France
-714,Uppsala,Uppsala,Sweden
-715,Bergen op Zoom,North Brabant,Netherlands
-716,Saint-Brieuc,Brittany,France
-717,Trapani,Sicily,Italy
-718,Poole,England,United Kingdom
-719,Evry,Ile-de-France,France
-720,Aulnay-sous-Bois,Ile-de-France,France
-721,Haguenau,Alsace-Champagne-Ardenne-Lorraine,France
-722,Harrogate,England,United Kingdom
-723,Ermont,Ile-de-France,France
-724,Colmar,Alsace-Champagne-Ardenne-Lorraine,France
-725,Palma de Mallorca,Balearic Islands,Spain
-726,Capelle aan den IJssel,South Holland,Netherlands
-727,Stockholm,Stockholm,Sweden
-728,Castellammare di Stabia,Campania,Italy
-729,Belfort,Bourgogne-Franche-Comté,France
-730,Burnley,England,United Kingdom
-731,Linz,Upper Austria,Austria
-732,Salzburg,Salzburg,Austria
-733,Alicante,Valenciana,Spain
-734,Montfermeil,Ile-de-France,France
-735,Vitoria,Basque Country,Spain
-736,Sittard,Limburg,Netherlands
-737,Bergheim,North Rhine-Westphalia,Germany
-738,Bergisch Gladbach,North Rhine-Westphalia,Germany
-739,Dresden,Saxony,Germany
-740,Bielefeld,North Rhine-Westphalia,Germany
-741,Rudge,England,United Kingdom
-742,Northampton,England,United Kingdom
-743,Champigny-sur-Marne,Ile-de-France,France
-744,Avignon,Provence-Alpes-Côte d'Azur,France
-745,Bolzano,Trentino-Alto Adige,Italy
-746,Washington,England,United Kingdom
-747,Talence,Aquitaine-Limousin-Poitou-Charentes,France
-748,Palaiseau,Ile-de-France,France
-749,Pertuis,Provence-Alpes-Côte d'Azur,France
-750,Karlstad,Värmland,Sweden
-751,Dewsbury,England,United Kingdom
-752,Huddinge,Stockholm,Sweden
-753,Delft,South Holland,Netherlands
-754,Dordrecht,South Holland,Netherlands
-755,Amstelveen,North Holland,Netherlands
-756,Livry-Gargan,Ile-de-France,France
-757,Schiltigheim,Alsace-Champagne-Ardenne-Lorraine,France
-758,Ludwigsfelde,Brandenburg,Germany
-759,Levallois-Perret,Ile-de-France,France
-760,Taranto,Apulia,Italy
-761,Tours,Centre-Val de Loire,France
-762,Woking,England,United Kingdom
-763,Bezons,Ile-de-France,France
-764,Vincennes,Ile-de-France,France
-765,Sarcelles,Ile-de-France,France
-766,Huddersfield,England,United Kingdom
-767,La Crau,Provence-Alpes-Côte d'Azur,France
-768,Stafford,England,United Kingdom
-769,Moissy-Cramayel,Ile-de-France,France
-770,Seville,Andalusía,Spain
-771,Chartres,Centre-Val de Loire,France
-772,Turku,Finland Proper,Finland
-773,Leipzig,Saxony,Germany
-774,Limoges,Aquitaine-Limousin-Poitou-Charentes,France
-775,Assen,Drenthe,Netherlands
-776,Valence,Auvergne-Rhône-Alpes,France
-777,Bury,England,United Kingdom
-778,Messina,Sicily,Italy
-779,Luton,England,United Kingdom
-780,Bordeaux,Aquitaine-Limousin-Poitou-Charentes,France
-781,Great Yarmouth,England,United Kingdom
-782,Fontaine,Auvergne-Rhône-Alpes,France
-783,Parla,Madrid,Spain
-784,Villeneuve-sur-Lot,Aquitaine-Limousin-Poitou-Charentes,France
-785,Verona,Veneto,Italy
-786,Bochum,North Rhine-Westphalia,Germany
-787,Apeldoorn,Gelderland,Netherlands
-788,Glasgow,Scotland,United Kingdom
-789,Argenteuil,Ile-de-France,France
-790,Sassari,Sardinia,Italy
-791,Villeurbanne,Auvergne-Rhône-Alpes,France
-792,Bourges,Centre-Val de Loire,France
-793,Mont-de-Marsan,Aquitaine-Limousin-Poitou-Charentes,France
-794,Esbjerg,South Denmark,Denmark
-795,Nice,Provence-Alpes-Côte d'Azur,France
-796,Pforzheim,Baden-Württemberg,Germany
-797,Florence,Tuscany,Italy
-798,Matosinhos,Porto,Portugal
-799,Ravenna,Emilia-Romagna,Italy
-800,Augsburg,Bavaria,Germany
-801,Pozzuoli,Campania,Italy
-802,Sandnes,Rogaland,Norway
-803,Valencia,Valenciana,Spain
-804,Rimini,Emilia-Romagna,Italy
-805,Neubrandenburg,Mecklenburg-Vorpommern,Germany
-806,Wetzlar,Hesse,Germany
-807,Edinburgh,Scotland,United Kingdom
-808,Antwerp,Antwerp,Belgium
-809,Les Lilas,Ile-de-France,France
-810,Zurich,Zürich,Switzerland
-811,Magdeburg,Saxony-Anhalt,Germany
-812,Saint-Ouen,Ile-de-France,France
-813,Slough,England,United Kingdom
-814,Catania,Sicily,Italy
-815,Monza,Lombardy,Italy
-816,Saint-Avold,Alsace-Champagne-Ardenne-Lorraine,France
-817,Pau,Aquitaine-Limousin-Poitou-Charentes,France
-818,Espoo,Uusimaa,Finland
-819,Carlisle,England,United Kingdom
-820,Mâcon,Bourgogne-Franche-Comté,France
-821,Villach,Carinthia,Austria
-822,Harlow,England,United Kingdom
-823,Cergy,Ile-de-France,France
-824,Rotherham,England,United Kingdom
-825,Zwickau,Saxony,Germany
-826,Osny,Ile-de-France,France
-827,Odense,South Denmark,Denmark
-828,Arras,Hauts-de-France,France
-829,Gosport,England,United Kingdom
-830,Lund,Skåne,Sweden
-831,Marignane,Provence-Alpes-Côte d'Azur,France
-832,Neuilly-sur-Seine,Ile-de-France,France
-833,Leicester,England,United Kingdom
-834,Wigan,England,United Kingdom
-835,Fiumicino,Lazio,Italy
-836,Foggia,Apulia,Italy
-837,Muret,Languedoc-Roussillon-Midi-Pyrénées,France
-838,Baden-Baden,Baden-Württemberg,Germany
-839,Benidorm,Valenciana,Spain
-840,Cormeilles-en-Parisis,Ile-de-France,France
-841,Saint-Malo,Brittany,France
-842,Nanterre,Ile-de-France,France
-843,Domont,Ile-de-France,France
-844,Conflans-Sainte-Honorine,Ile-de-France,France
-845,Elda,Valenciana,Spain
-846,Meyzieu,Auvergne-Rhône-Alpes,France
-847,Aprilia,Lazio,Italy
-848,Hankerton,England,United Kingdom
-849,Molina de Segura,Murcia,Spain
-850,Jena,Thuringia,Germany
-851,Cagliari,Sardinia,Italy
-852,Cholet,Pays de la Loire,France
-853,Colchester,England,United Kingdom
-854,Aschaffenburg,Bavaria,Germany
-855,Helsinki,Uusimaa,Finland
-856,Sevran,Ile-de-France,France
-857,Maidstone,England,United Kingdom
-858,Las Rozas de Madrid,Madrid,Spain
-859,Montesson,Ile-de-France,France
-860,Bari,Apulia,Italy
-861,Avion,Hauts-de-France,France
-862,Eakring,England,United Kingdom
-863,Kiel,Schleswig-Holstein,Germany
-864,Saint-Priest,Auvergne-Rhône-Alpes,France
-865,Saint-Cloud,Ile-de-France,France
-866,Clint cum Hamlets,England,United Kingdom
-867,Hastings,England,United Kingdom
-868,Le Plessis-Robinson,Ile-de-France,France
-869,Nantes,Pays de la Loire,France
-870,Fareham,England,United Kingdom
-871,Novara,Piedmont,Italy
-872,Montargis,Centre-Val de Loire,France
-873,Montpellier,Languedoc-Roussillon-Midi-Pyrénées,France
-874,Toulouse,Languedoc-Roussillon-Midi-Pyrénées,France
-875,Saint-Denis,Ile-de-France,France
-876,Ercolano,Campania,Italy
-877,Ceuta,Ceuta,Spain
-878,Angers,Pays de la Loire,France
-879,Seraing,Liège,Belgium
-880,South Shields,England,United Kingdom
-881,Epinal,Alsace-Champagne-Ardenne-Lorraine,France
-882,Gothenburg,Västra Götaland,Sweden
-883,Molfetta,Apulia,Italy
-884,Salamanca,Castile and León,Spain
-885,Torrevieja,Valenciana,Spain
-886,Genoa,Liguria,Italy
-887,Cuxhaven,Lower Saxony,Germany
-888,Yerres,Ile-de-France,France
-889,Albacete,Castile-La Mancha,Spain
-890,Nijmegen,Gelderland,Netherlands
-891,Vicenza,Veneto,Italy
-892,Boulogne-Billancourt,Ile-de-France,France
-893,Lyon,Auvergne-Rhône-Alpes,France
-894,Stoke-on-Trent,England,United Kingdom
-895,Beauvais,Hauts-de-France,France
-896,Toledo,Castile-La Mancha,Spain
-897,Bologna,Emilia-Romagna,Italy
-898,Laval,Pays de la Loire,France
-899,Amsterdam,North Holland,Netherlands
-900,Turin,Piedmont,Italy
-901,Bonn,North Rhine-Westphalia,Germany
-902,Forbach,Alsace-Champagne-Ardenne-Lorraine,France
-903,Sesto San Giovanni,Lombardy,Italy
-904,Nottingham,England,United Kingdom
-905,Weimar,Thuringia,Germany
-906,Alcobendas,Madrid,Spain
-907,Langen,Hesse,Germany
-908,Emmen,Drenthe,Netherlands
-909,Sindelfingen,Baden-Württemberg,Germany
-910,Annecy,Auvergne-Rhône-Alpes,France
-911,Dublin,Dublin,Ireland
-912,Guyancourt,Ile-de-France,France
-913,Sagunto,Valenciana,Spain
-914,Quimper,Brittany,France
-915,Delmenhorst,Lower Saxony,Germany
-916,Erfurt,Thuringia,Germany
-917,Bremen,Bremen,Germany
-918,Carcassonne,Languedoc-Roussillon-Midi-Pyrénées,France
-919,Mickleby,England,United Kingdom
-920,York,England,United Kingdom
-921,Almelo,Overijssel,Netherlands
-922,Garforth,England,United Kingdom
-923,Aubervilliers,Ile-de-France,France
-924,Modena,Emilia-Romagna,Italy
-925,Treviso,Veneto,Italy
-926,Carpentras,Provence-Alpes-Côte d'Azur,France
-927,Badajoz,Extremadura,Spain
-928,Cognac,Aquitaine-Limousin-Poitou-Charentes,France
-929,Ludwigshafen am Rhein,Rhineland-Palatinate,Germany
-930,Emden,Lower Saxony,Germany
-931,Frankfurt,Hesse,Germany
-932,Pescara,Abruzzi,Italy
-933,Reims,Alsace-Champagne-Ardenne-Lorraine,France
-934,Lincoln,England,United Kingdom
-935,Stavanger,Rogaland,Norway
-936,Coventry,England,United Kingdom
-937,Six-Fours-les-Plages,Provence-Alpes-Côte d'Azur,France
-938,Schwerin,Mecklenburg-Vorpommern,Germany
-939,Alfortville,Ile-de-France,France
-940,Ponferrada,Castile and León,Spain
-941,Massy,Ile-de-France,France
-942,Le Chesnay,Ile-de-France,France
-943,Marbella,Andalusía,Spain
-944,Solihull,England,United Kingdom
-945,Stockport,England,United Kingdom
-946,Toulon,Provence-Alpes-Côte d'Azur,France
-947,Badalona,Catalonia,Spain
-948,Exeter,England,United Kingdom
-949,Reggio nell'Emilia,Emilia-Romagna,Italy
-950,Leeuwarden,Friesland,Netherlands
-951,Colomiers,Languedoc-Roussillon-Midi-Pyrénées,France
-952,Blackpool,England,United Kingdom
-953,Watford,England,United Kingdom
-954,Ingolstadt,Bavaria,Germany
-955,Narbonne,Languedoc-Roussillon-Midi-Pyrénées,France
-956,Clermont-Ferrand,Auvergne-Rhône-Alpes,France
-957,Firminy,Auvergne-Rhône-Alpes,France
-958,Preston,England,United Kingdom
-959,Acireale,Sicily,Italy
-960,Middlesbrough,England,United Kingdom
-961,Vesoul,Bourgogne-Franche-Comté,France
-962,Pontoise,Ile-de-France,France
-963,Palermo,Sicily,Italy
-964,Busto Arsizio,Lombardy,Italy
-965,Menton,Provence-Alpes-Côte d'Azur,France
-966,Caen,Normandy,France
-967,Crotone,Calabria,Italy
-968,Bilbao,Basque Country,Spain
-969,Plymouth,England,United Kingdom
-970,Bron,Auvergne-Rhône-Alpes,France
-971,Reutlingen,Baden-Württemberg,Germany
-972,Niort,Aquitaine-Limousin-Poitou-Charentes,France
-973,Bergen,Hordaland,Norway
-974,Garches,Ile-de-France,France
-975,Bad Waldsee,Baden-Württemberg,Germany
-976,Blois,Centre-Val de Loire,France
-977,Halle,Saxony-Anhalt,Germany
-978,Le Mans,Pays de la Loire,France
-979,Andria,Apulia,Italy
-980,Trappes,Ile-de-France,France
-981,Lorient,Brittany,France
-982,Worcester,England,United Kingdom
-983,Cardiff,Wales,United Kingdom
-984,Sarreguemines,Alsace-Champagne-Ardenne-Lorraine,France
-985,Mougins,Provence-Alpes-Côte d'Azur,France
-986,Friedrichshafen,Baden-Württemberg,Germany
-987,Borken,North Rhine-Westphalia,Germany
-988,Bottrop,North Rhine-Westphalia,Germany
-989,Kidderminster,England,United Kingdom
-990,Charleroi,Hainaut,Belgium
-991,Modica,Sicily,Italy
-992,Worms,Rhineland-Palatinate,Germany
-993,Velletri,Lazio,Italy
-994,Jerez de la Frontera,Andalusía,Spain
-995,Leuven,Flemish Brabant,Belgium
-996,Toul,Alsace-Champagne-Ardenne-Lorraine,France
-997,Utrecht,Utrecht,Netherlands
-998,Eskilstuna,Södermanland,Sweden
-999,Digne-les-Bains,Provence-Alpes-Côte d'Azur,France
-1000,Bruges,West Flanders,Belgium
-1001,Copenhagen,Hovedstaden,Denmark
-1002,Graz,Styria,Austria
-1003,Latina,Lazio,Italy
-1004,Geneva,Geneva,Switzerland
-1005,Ajaccio,Corsica,France
-1006,Tulle,Aquitaine-Limousin-Poitou-Charentes,France
-1007,Versailles,Ile-de-France,France
-1008,Berck,Hauts-de-France,France
-1009,Boulogne-sur-Mer,Hauts-de-France,France
-1010,Breda,North Brabant,Netherlands
-1011,Oslo,Oslo,Norway
-1012,Bristol,England,United Kingdom
-1013,Garbsen,Lower Saxony,Germany
-1014,Mulhouse,Alsace-Champagne-Ardenne-Lorraine,France
-1015,NUlm,Bavaria,Germany
-1016,Pistoia,Tuscany,Italy
-1017,St. Kew,England,United Kingdom
-1018,Hanover,Lower Saxony,Germany
-1019,Oxford,England,United Kingdom
-1020,Walsall,England,United Kingdom
-1021,Brescia,Lombardy,Italy
-1022,Saint-Chamond,Auvergne-Rhône-Alpes,France
-1023,Bobigny,Ile-de-France,France
-1024,Vallauris,Provence-Alpes-Côte d'Azur,France
-1025,Echirolles,Auvergne-Rhône-Alpes,France
-1026,Bar-le-Duc,Alsace-Champagne-Ardenne-Lorraine,France
-1027,Ghent,East Flanders,Belgium
-1028,Birkenhead,England,United Kingdom
-1029,Dax,Aquitaine-Limousin-Poitou-Charentes,France
-1030,El Ejido,Andalusía,Spain
-1031,Fuengirola,Andalusía,Spain
-1032,Saint-Laurent-du-Var,Provence-Alpes-Côte d'Azur,France
-1033,Castres,Languedoc-Roussillon-Midi-Pyrénées,France
-1034,Castrop-Rauxel,North Rhine-Westphalia,Germany
-1035,Winterthur,Zürich,Switzerland
-1036,Altamura,Apulia,Italy
-1037,Montreuil,Ile-de-France,France
-1038,Clamart,Ile-de-France,France
-1039,Reus,Catalonia,Spain
-1040,Innsbruck,Tyrol,Austria
-1041,Leiden,South Holland,Netherlands
-1042,Enschede,Overijssel,Netherlands
-1043,Weston-super-Mare,England,United Kingdom
-1044,La Roche-sur-Yon,Pays de la Loire,France
-1045,Norwich,England,United Kingdom
-1046,Pierrefitte-sur-Seine,Ile-de-France,France
-1047,La Seyne-sur-Mer,Provence-Alpes-Côte d'Azur,France
-1048,Prato,Tuscany,Italy
-1049,Gradignan,Aquitaine-Limousin-Poitou-Charentes,France
-1050,Oyonnax,Auvergne-Rhône-Alpes,France
-1051,Cologne,North Rhine-Westphalia,Germany
-1052,Basel,Basel-Stadt,Switzerland
-1053,Wakefield,England,United Kingdom
-1054,Noisy-le-Sec,Ile-de-France,France
-1055,Maisons-Laffitte,Ile-de-France,France
-1056,Frontignan,Languedoc-Roussillon-Midi-Pyrénées,France
-1057,Agen,Aquitaine-Limousin-Poitou-Charentes,France
-1058,Villingen-Schwenningen,Baden-Württemberg,Germany
-1059,Heidelberg,Baden-Württemberg,Germany
-1060,Eastbourne,England,United Kingdom
-1061,Talavera de la Reina,Castile-La Mancha,Spain
-1062,Tarbes,Languedoc-Roussillon-Midi-Pyrénées,France
-1063,Portsmouth,England,United Kingdom
-1064,Rotterdam,South Holland,Netherlands
-1065,Cluses,Auvergne-Rhône-Alpes,France
-1066,Battipaglia,Campania,Italy
-1067,Rostock,Mecklenburg-Vorpommern,Germany
-1068,Courbevoie,Ile-de-France,France
-1069,Blackburn,England,United Kingdom
-1070,Dudley,England,United Kingdom
-1071,Chaumont,Alsace-Champagne-Ardenne-Lorraine,France
-1072,Mitry-Mory,Ile-de-France,France
-1073,Heerlen,Limburg,Netherlands
-1074,Longjumeau,Ile-de-France,France
-1075,Aberdeen,Scotland,United Kingdom
-1076,Montauban,Languedoc-Roussillon-Midi-Pyrénées,France
-1077,Sceaux,Ile-de-France,France
-1078,Gennevilliers,Ile-de-France,France
-1079,Bagneux,Ile-de-France,France
-1080,Les Pennes-Mirabeau,Provence-Alpes-Côte d'Azur,France
-1081,Anglet,Aquitaine-Limousin-Poitou-Charentes,France
-1082,Frederiksberg,Hovedstaden,Denmark
-1083,Trento,Trentino-Alto Adige,Italy
-1084,Bastia,Corsica,France
-1085,Grenoble,Auvergne-Rhône-Alpes,France
-1086,Pamplona,Navarra,Spain
-1087,Drammen,Buskerud,Norway
-1088,Valladolid,Castile and León,Spain
-1089,Swansea,Wales,United Kingdom
-1090,Alby with Thwaite,England,United Kingdom
-1091,Villemomble,Ile-de-France,France
-1092,Perugia,Umbria,Italy
-1093,Montmorency,Ile-de-France,France
-1094,Sète,Languedoc-Roussillon-Midi-Pyrénées,France
-1095,Elx,Valenciana,Spain
-1096,Avon,Ile-de-France,France
-1097,Duddington-with-Fineshade,England,United Kingdom
-1098,Como,Lombardy,Italy
-1099,Istres,Provence-Alpes-Côte d'Azur,France
-1100,Bagnolet,Ile-de-France,France
-1101,Stevenage,England,United Kingdom
-1102,Villefontaine,Auvergne-Rhône-Alpes,France
-1103,Gloucester,England,United Kingdom
-1104,Dieppe,Normandy,France
-1105,Mantes-la-Ville,Ile-de-France,France
-1106,Venice,Veneto,Italy
-1107,Les Mureaux,Ile-de-France,France
-1108,Peterborough,England,United Kingdom
-1109,Anzio,Lazio,Italy
-1110,Schweinfurt,Bavaria,Germany
-1111,Shrewsbury,England,United Kingdom
-1112,Marsala,Sicily,Italy
-1113,Calais,Hauts-de-France,France
-1114,Legnano,Lombardy,Italy
-1115,Upplands Väsby,Stockholm,Sweden
-1116,Worthing,England,United Kingdom
-1117,La Ciotat,Provence-Alpes-Côte d'Azur,France
-1118,Sunderland,England,United Kingdom
-1119,Ipswich,England,United Kingdom
-1120,Grosseto,Tuscany,Italy
-1121,Guidonia Montecelio,Lazio,Italy
-1122,Aix-en-Provence,Provence-Alpes-Côte d'Azur,France
-1123,Redditch,England,United Kingdom
-1124,Meaux,Ile-de-France,France
-1125,Tremblay-en-France,Ile-de-France,France
-1126,Bognor Regis,England,United Kingdom
-1127,Bonneuil-sur-Marne,Ile-de-France,France
-1128,Potsdam,Brandenburg,Germany
-1129,Bergamo,Lombardy,Italy
-1130,Martigues,Provence-Alpes-Côte d'Azur,France
-1131,Thonon-les-Bains,Auvergne-Rhône-Alpes,France
-1132,Vagos,Aveiro,Portugal
-1133,Goring-on-Thames,England,United Kingdom
-1134,Roanne,Auvergne-Rhône-Alpes,France
-1135,Manresa,Catalonia,Spain
-1136,Arles,Provence-Alpes-Côte d'Azur,France
-1137,Parma,Emilia-Romagna,Italy
-1138,Brussels,Brussels,Belgium
-1139,Elbeuf,Normandy,France
-1140,Evreux,Normandy,France
-1141,Franconville,Ile-de-France,France
-1142,Carquefou,Pays de la Loire,France
-1143,Villeneuve-la-Garenne,Ile-de-France,France
-1144,Saint-Germain-en-Laye,Ile-de-France,France
-1145,Gagny,Ile-de-France,France
-1146,Sonderborg,South Denmark,Denmark
-1147,Nieuwegein,Utrecht,Netherlands
-1148,Thionville,Alsace-Champagne-Ardenne-Lorraine,France
-1149,Rosny-sous-Bois,Ile-de-France,France
-1150,Darmstadt,Hesse,Germany
-1151,Bondy,Ile-de-France,France
-1152,Detmold,North Rhine-Westphalia,Germany
-1153,Zamora,Castile and León,Spain
-1154,Ferrara,Emilia-Romagna,Italy
-1155,Knook,England,United Kingdom
-1156,Annonay,Auvergne-Rhône-Alpes,France
-1157,Dinslaken,North Rhine-Westphalia,Germany
-1158,Les Herbiers,Pays de la Loire,France
-1159,Cottbus,Brandenburg,Germany
-1160,Corbeil-Essonnes,Ile-de-France,France
-1161,Barletta,Apulia,Italy
-1162,Groningen,Groningen,Netherlands
-1163,Lons-le-Saunier,Bourgogne-Franche-Comté,France
-1164,Gap,Provence-Alpes-Côte d'Azur,France
-1165,Bruree,Limerick,Ireland
-1166,Passau,Bavaria,Germany
-1167,Dormagen,North Rhine-Westphalia,Germany
-1168,Dorsten,North Rhine-Westphalia,Germany
-1169,Coslada,Madrid,Spain
-1170,Morley,England,United Kingdom
-1171,Malakoff,Ile-de-France,France
-1172,Lisbon,Lisbon,Portugal
-1173,Livingston,Scotland,United Kingdom
-1174,Girona,Catalonia,Spain
-1175,Günzburg,Bavaria,Germany
-1176,Gera,Thuringia,Germany
-1177,La Spezia,Liguria,Italy
-1178,Whitley,England,United Kingdom
-1179,Pontivy,Brittany,France
-1180,Neuilly-sur-Marne,Ile-de-France,France
-1181,Brindisi,Apulia,Italy
-1182,Villejuif,Ile-de-France,France
-1183,Clichy-sous-Bois,Ile-de-France,France
-1184,Cheltenham,England,United Kingdom
-1185,Bry-sur-Marne,Ile-de-France,France
-1186,Cropton,England,United Kingdom
-1187,Cambrai,Hauts-de-France,France
-1188,El Prat de Llobregat,Catalonia,Spain
-1189,Paisley,Scotland,United Kingdom
-1190,Carvin,Hauts-de-France,France
-1191,Flensburg,Schleswig-Holstein,Germany
-1192,Suresnes,Ile-de-France,France
-1193,Saint-Herblain,Pays de la Loire,France
-1194,Tamworth,England,United Kingdom
-1195,Derby,England,United Kingdom
-1196,St. Gallen,St. Gallen,Switzerland
-1197,Le Pré-Saint-Gervais,Ile-de-France,France
-1198,Dortmund,North Rhine-Westphalia,Germany
-1199,Vantaa,Uusimaa,Finland
-1200,Albi,Languedoc-Roussillon-Midi-Pyrénées,France
-1201,Mijas,Andalusía,Spain
-1202,Meudon,Ile-de-France,France
-1203,Fuenlabrada,Madrid,Spain
-1204,Villenave-d'Ornon,Aquitaine-Limousin-Poitou-Charentes,France
-1205,Friedberg,Hesse,Germany
-1206,Siena,Tuscany,Italy
-1207,Roissy-en-Brie,Ile-de-France,France
-1208,Vigo,Galicia,Spain
-1209,Kristiansand,Vest-Agder,Norway
-1210,Letchworth,England,United Kingdom
-1211,Hengelo,Overijssel,Netherlands
-1212,Caserta,Campania,Italy
-1213,Rochefort,Aquitaine-Limousin-Poitou-Charentes,France
-1214,La Rochelle,Aquitaine-Limousin-Poitou-Charentes,France
-1215,Dos Hermanas,Andalusía,Spain
-1216,Piacenza,Emilia-Romagna,Italy
-1217,Freiburg,Baden-Württemberg,Germany
-1218,Pesaro,Marche,Italy
-1219,Torre del Greco,Campania,Italy
-1220,Erlangen,Bavaria,Germany
-1221,Kingston on Soar,England,United Kingdom
-1222,Bournemouth,England,United Kingdom
-1223,Roeselare,West Flanders,Belgium
-1224,Helsingborg,Skåne,Sweden
-1225,Neuilly-Plaisance,Ile-de-France,France
-1226,Liverpool,England,United Kingdom
-1227,Rosenheim,Bavaria,Germany
-1228,Clichy,Ile-de-France,France
-1229,Bourg-en-Bresse,Auvergne-Rhône-Alpes,France
-1230,Ponteareas,Galicia,Spain
-1231,Getafe,Madrid,Spain
-1232,Coudekerque-Branche,Hauts-de-France,France
-1233,Creil,Hauts-de-France,France
-1234,Lugo,Galicia,Spain
-1235,Agde,Languedoc-Roussillon-Midi-Pyrénées,France
-1236,Wallasey,England,United Kingdom
-1237,Neunkirchen,Saarland,Germany
-1238,Mannheim,Baden-Württemberg,Germany
-1239,Benevento,Campania,Italy
-1240,Denain,Hauts-de-France,France
-1241,Douai,Hauts-de-France,France
-1242,Vichy,Auvergne-Rhône-Alpes,France
-1243,Ragusa,Sicily,Italy
-1244,Chelles,Ile-de-France,France
-1245,Nuneaton,England,United Kingdom
-1246,Rennes,Brittany,France
-1247,Asti,Piedmont,Italy
-1248,Greifswald,Mecklenburg-Vorpommern,Germany
-1249,Lunel,Languedoc-Roussillon-Midi-Pyrénées,France
-1250,Halmstad,Halland,Sweden
-1251,Rueil-Malmaison,Ile-de-France,France
-1252,Lormont,Aquitaine-Limousin-Poitou-Charentes,France
-1253,Riom,Auvergne-Rhône-Alpes,France
-1254,Kettering,England,United Kingdom
-1255,Regensburg,Bavaria,Germany
-1256,San Severo,Apulia,Italy
-1257,Bracknell,England,United Kingdom
-1258,Schiedam,South Holland,Netherlands
-1259,Zeist,Utrecht,Netherlands
-1260,Vence,Provence-Alpes-Côte d'Azur,France
-1261,Duisburg,North Rhine-Westphalia,Germany
-1262,Biarritz,Aquitaine-Limousin-Poitou-Charentes,France
-1263,Neuwied,Rhineland-Palatinate,Germany
-1264,Portici,Campania,Italy
-1265,Cartagena,Murcia,Spain
-1266,Eggenstein-Leopoldshafen,Baden-Württemberg,Germany
-1267,Le Blanc-Mesnil,Ile-de-France,France
-1268,Faches-Thumesnil,Hauts-de-France,France
-1269,Dunstable,England,United Kingdom
-1270,Bath,England,United Kingdom
-1271,Vitrolles,Provence-Alpes-Côte d'Azur,France
-1272,Kotka,Kymenlaakso,Finland
-1273,Ancona,Marche,Italy
-1274,Mechelen,Antwerp,Belgium
-1275,Le Pontet,Provence-Alpes-Côte d'Azur,France
-1276,Widmerpool,England,United Kingdom
-1277,Alessandria,Piedmont,Italy
-1278,Cremona,Lombardy,Italy
-1279,Graveney with Goodnestone,England,United Kingdom
-1280,Getxo,Basque Country,Spain
-1281,Oullins,Auvergne-Rhône-Alpes,France
-1282,Noisy-le-Grand,Ile-de-France,France
-1283,Rovigo,Veneto,Italy
-1284,Arezzo,Tuscany,Italy
-1285,Barakaldo,Basque Country,Spain
-1286,Flers,Normandy,France
-1287,Mauguio,Languedoc-Roussillon-Midi-Pyrénées,France
-1288,Spijkenisse,South Holland,Netherlands
-1289,Southampton,England,United Kingdom
-1290,Chieti,Abruzzi,Italy
-1291,Goussainville,Ile-de-France,France
-1292,Genk,Limburg,Belgium
-1293,Pamiers,Languedoc-Roussillon-Midi-Pyrénées,France
-1294,East Kilbride,Scotland,United Kingdom
-1295,Torremolinos,Andalusía,Spain
-1296,Carrara,Tuscany,Italy
-1297,The Hague,South Holland,Netherlands
-1298,Halluin,Hauts-de-France,France
-1299,Hautmont,Hauts-de-France,France
-1300,Saint-Gratien,Ile-de-France,France
-1301,Potenza,Basilicata,Italy
-1302,Colombes,Ile-de-France,France
-1303,Aylesbury,England,United Kingdom
-1304,Chelmsford,England,United Kingdom
-1305,Bitonto,Apulia,Italy
-1306,Grigny,Ile-de-France,France
-1307,Klagenfurt,Carinthia,Austria
-1308,Cártama,Andalusía,Spain
-1309,Dreux,Centre-Val de Loire,France
-1310,Hazebrouck,Hauts-de-France,France
-1311,Lora del Río,Andalusía,Spain
-1312,Pomezia,Lazio,Italy
-1313,Capua,Campania,Italy
-1314,La Teste-de-Buch,Aquitaine-Limousin-Poitou-Charentes,France
-1315,Paredes,Porto,Portugal
-1316,Eindhoven,North Brabant,Netherlands
-1317,Vanves,Ile-de-France,France
-1318,Gillingham,England,United Kingdom
-1319,Fulda,Hesse,Germany
-1320,Brighton,England,United Kingdom
-1321,Limay,Ile-de-France,France
-1322,Draguignan,Provence-Alpes-Côte d'Azur,France
-1323,Givors,Auvergne-Rhône-Alpes,France
-1324,Halifax,England,United Kingdom
-1325,Oviedo,Asturias,Spain
-1326,St. Michael Penkevil,England,United Kingdom
-1327,Oldham,England,United Kingdom
-1328,Chatham,England,United Kingdom
-1329,Concarneau,Brittany,France
-1330,Lecce,Apulia,Italy
-1331,Ennigerloh,North Rhine-Westphalia,Germany
-1332,Erftstadt,North Rhine-Westphalia,Germany
-1333,Veenendaal,Utrecht,Netherlands
-1334,Norderstedt,Schleswig-Holstein,Germany
-1335,Lucca,Tuscany,Italy
-1336,Fleury-les-Aubrais,Centre-Val de Loire,France
-1337,Warrington,England,United Kingdom
-1338,Fresnes,Ile-de-France,France
-1339,Bremerhaven,Bremen,Germany
-1340,Hinckley,England,United Kingdom
-1341,Le Havre,Normandy,France
-1342,Maisons-Alfort,Ile-de-France,France
-1343,Hayange,Alsace-Champagne-Ardenne-Lorraine,France
-1344,Trieste,Friuli-Venezia Giulia,Italy
-1345,Essen,North Rhine-Westphalia,Germany
-1346,Montecatini Terme,Tuscany,Italy
-1347,Pontevedra,Galicia,Spain
-1348,Verdun,Alsace-Champagne-Ardenne-Lorraine,France
-1349,Les Ulis,Ile-de-France,France
-1350,Gonesse,Ile-de-France,France
-1351,Auxerre,Bourgogne-Franche-Comté,France
-1352,Teramo,Abruzzi,Italy
-1353,La Madeleine,Hauts-de-France,France
-1354,Laon,Hauts-de-France,France
-1355,Villiers-sur-Marne,Ile-de-France,France
-1356,Annemasse,Auvergne-Rhône-Alpes,France
-1357,Gardanne,Provence-Alpes-Côte d'Azur,France
-1358,Saint-Jean-de-la-Ruelle,Centre-Val de Loire,France
-1359,Landerneau,Brittany,France
-1360,Millau,Languedoc-Roussillon-Midi-Pyrénées,France
-1361,Solna,Stockholm,Sweden
-1362,Massa,Tuscany,Italy
-1363,Villeneuve-Saint-Georges,Ile-de-France,France
-1364,Knotting,England,United Kingdom
-1365,Trawden Forest,England,United Kingdom
-1366,Haninge,Stockholm,Sweden
-1367,Arganil,Coimbra,Portugal
-1368,Lucerne,Lucerne,Switzerland
-1369,Clontarf,Dublin,Ireland
-1370,Chesterfield,England,United Kingdom
-1371,Ludwigsburg,Baden-Württemberg,Germany
-1372,Fano,Marche,Italy
-1373,Bayonne,Aquitaine-Limousin-Poitou-Charentes,France
-1374,Wels,Upper Austria,Austria
-1375,Saint-Michel-sur-Orge,Ile-de-France,France
-1376,Sallanches,Auvergne-Rhône-Alpes,France
-1377,Maastricht,Limburg,Netherlands
-1378,Amersfoort,Utrecht,Netherlands
-1379,Deventer,Overijssel,Netherlands
-1380,Imola,Emilia-Romagna,Italy
-1381,Cavaillon,Provence-Alpes-Côte d'Azur,France
-1382,Hereford,England,United Kingdom
-1383,Majadahonda,Madrid,Spain
-1384,Crewe,England,United Kingdom
-1385,Vannes,Brittany,France
-1386,Aalen,Baden-Württemberg,Germany
-1387,Montigny-le-Bretonneux,Ile-de-France,France
-1388,Lens,Hauts-de-France,France
-1389,Guildford,England,United Kingdom
-1390,Aalst,East Flanders,Belgium
-1391,Cestas,Aquitaine-Limousin-Poitou-Charentes,France
-1392,Euskirchen,North Rhine-Westphalia,Germany
-1393,Tournai,Hainaut,Belgium
-1394,Gelsenkirchen,North Rhine-Westphalia,Germany
-1395,Bamberg,Bavaria,Germany
-1396,Manfredonia,Apulia,Italy
-1397,Quartu Sant'Elena,Sardinia,Italy
-1398,Reading,England,United Kingdom
-1399,Wolverhampton,England,United Kingdom
-1400,Berne,Bern,Switzerland
-1401,Stralsund,Mecklenburg-Vorpommern,Germany
-1402,Huelva,Andalusía,Spain
-1403,Miramas,Provence-Alpes-Côte d'Azur,France
-1404,Avellino,Campania,Italy
-1405,Lausanne,Vaud,Switzerland
-1406,Gladbeck,North Rhine-Westphalia,Germany
-1407,Grevenbroich,North Rhine-Westphalia,Germany
-1408,Terras de Bouro,Braga,Portugal
-1409,Gronau,North Rhine-Westphalia,Germany
-1410,Granollers,Catalonia,Spain
-1411,Agrigento,Sicily,Italy
-1412,Choisy-le-Roi,Ile-de-France,France
-1413,Wooler,England,United Kingdom
-1414,Sannois,Ile-de-France,France
-1415,Gummersbach,North Rhine-Westphalia,Germany
-1416,Lille,Hauts-de-France,France
-1417,Tournefeuille,Languedoc-Roussillon-Midi-Pyrénées,France
-1418,Halesowen,England,United Kingdom
-1419,Montrouge,Ile-de-France,France
-1420,Horsey,England,United Kingdom
-1421,Faenza,Emilia-Romagna,Italy
-1422,Cumbernauld,Scotland,United Kingdom
-1423,Gien,Centre-Val de Loire,France
-1424,Rillieux-la-Pape,Auvergne-Rhône-Alpes,France
-1425,Hagen,North Rhine-Westphalia,Germany
-1426,Rambouillet,Ile-de-France,France
-1427,Saint-Louis,Alsace-Champagne-Ardenne-Lorraine,France
-1428,Civitavecchia,Lazio,Italy
-1429,Gela,Sicily,Italy
-1430,Cercola,Campania,Italy
-1431,Randers,Central Jutland,Denmark
-1432,La Baule-Escoublac,Pays de la Loire,France
-1433,Offenburg,Baden-Württemberg,Germany
-1434,Halle,North Rhine-Westphalia,Germany
-1435,Doncaster,England,United Kingdom
-1436,Vertou,Pays de la Loire,France
-1437,Pisa,Tuscany,Italy
-1438,Plaisir,Ile-de-France,France
-1439,Fontenay-sous-Bois,Ile-de-France,France
-1440,Segovia,Castile and León,Spain
-1441,Fontainebleau,Ile-de-France,France
-1442,Dronfield,England,United Kingdom
-1443,Koblenz,Rhineland-Palatinate,Germany
-1444,Valdemoro,Madrid,Spain
-1445,West Leake,England,United Kingdom
-1446,Venlo,Limburg,Netherlands
-1447,Hildesheim,Lower Saxony,Germany
-1448,Villeneuve-le-Roi,Ile-de-France,France
-1449,Ivry-sur-Seine,Ile-de-France,France
-1450,Southport,England,United Kingdom
-1451,Viterbo,Lazio,Italy
-1452,Oldenburg,Lower Saxony,Germany
-1453,Athis-Mons,Ile-de-France,France
-1454,Warthill,England,United Kingdom
-1455,Hamm,North Rhine-Westphalia,Germany
-1456,Chioggia,Veneto,Italy
-1457,Cuenca,Castile-La Mancha,Spain
-1458,Arnhem,Gelderland,Netherlands
-1459,Treviglio,Lombardy,Italy
-1460,Montereau-Fault-Yonne,Ile-de-France,France
-1461,Les Pavillons-sous-Bois,Ile-de-France,France
-1462,Stains,Ile-de-France,France
-1463,Poissy,Ile-de-France,France
-1464,Chevilly-Larue,Ile-de-France,France
-1465,Bressuire,Aquitaine-Limousin-Poitou-Charentes,France
-1466,Mouscron,Hainaut,Belgium
-1467,Hattingen,North Rhine-Westphalia,Germany
-1468,Helmond,North Brabant,Netherlands
-1469,Lagny-sur-Marne,Ile-de-France,France
-1470,Ploemeur,Brittany,France
-1471,Kalundborg,Zealand,Denmark
-1472,Olivet,Centre-Val de Loire,France
-1473,Falconara Marittima,Marche,Italy
-1474,Langenhagen,Lower Saxony,Germany
-1475,Lanester,Brittany,France
-1476,Cagnes-sur-Mer,Provence-Alpes-Côte d'Azur,France
-1477,Bourgoin-Jallieu,Auvergne-Rhône-Alpes,France
-1478,Sartrouville,Ile-de-France,France
-1479,Herford,North Rhine-Westphalia,Germany
-1480,Herne,North Rhine-Westphalia,Germany
-1481,Santiago de Compostela,Galicia,Spain
-1482,Brive-la-Gaillarde,Aquitaine-Limousin-Poitou-Charentes,France
-1483,Illkirch-Graffenstaden,Alsace-Champagne-Ardenne-Lorraine,France
-1484,Kaiserslautern,Rhineland-Palatinate,Germany
-1485,Tivoli,Lazio,Italy
-1486,Herten,North Rhine-Westphalia,Germany
-1487,Hartlepool,England,United Kingdom
-1488,Den Helder,North Holland,Netherlands
-1489,Haarlem,North Holland,Netherlands
-1490,Hove,England,United Kingdom
-1491,Savona,Liguria,Italy
-1492,Castelnau-le-Lez,Languedoc-Roussillon-Midi-Pyrénées,France
-1493,Gallarate,Lombardy,Italy
-1494,Montgeron,Ile-de-France,France
-1495,Hamme,East Flanders,Belgium
-1496,Peer,Limburg,Belgium
-1497,Saumur,Pays de la Loire,France
-1498,Lorca,Murcia,Spain
-1499,Lohne,Lower Saxony,Germany
-1500,Verviers,Liège,Belgium
-1501,Zwolle,Overijssel,Netherlands
-1502,Sucy-en-Brie,Ile-de-France,France
-1503,Cosenza,Calabria,Italy
-1504,Waiblingen,Baden-Württemberg,Germany
-1505,Cuneo,Piedmont,Italy
-1506,Saint-Cyr-sur-Loire,Centre-Val de Loire,France
-1507,Saint-Dizier,Alsace-Champagne-Ardenne-Lorraine,France
-1508,Le Petit-Quevilly,Normandy,France
-1509,Chiclana de la Frontera,Andalusía,Spain
-1510,Hilden,North Rhine-Westphalia,Germany
-1511,Iserlohn,North Rhine-Westphalia,Germany
-1512,Kerpen,North Rhine-Westphalia,Germany
-1513,Auch,Languedoc-Roussillon-Midi-Pyrénées,France
-1514,Guadalajara,Castile-La Mancha,Spain
-1515,Krefeld,North Rhine-Westphalia,Germany
-1516,Naumburg,Saxony-Anhalt,Germany
-1517,Troyes,Alsace-Champagne-Ardenne-Lorraine,France
-1518,Lingolsheim,Alsace-Champagne-Ardenne-Lorraine,France
-1519,Plaisance-du-Touch,Languedoc-Roussillon-Midi-Pyrénées,France
-1520,Salon-de-Provence,Provence-Alpes-Côte d'Azur,France
-1521,Loos,Hauts-de-France,France
-1522,Lisieux,Normandy,France
-1523,Caluire-et-Cuire,Auvergne-Rhône-Alpes,France
-1524,Terneuzen,Zeeland,Netherlands
-1525,Douarnenez,Brittany,France
-1526,Carpi,Emilia-Romagna,Italy
-1527,Palencia,Castile and León,Spain
-1528,Rubí,Catalonia,Spain
-1529,Munster,Lower Saxony,Germany
-1530,Maubeuge,Hauts-de-France,France
-1531,La Celle-Saint-Cloud,Ile-de-France,France
-1532,Mons-en-Baroeul,Hauts-de-France,France
-1533,Langenfeld,North Rhine-Westphalia,Germany
-1534,Aix-les-Bains,Auvergne-Rhône-Alpes,France
-1535,Orsay,Ile-de-France,France
-1536,Landskrona,Skåne,Sweden
-1537,Puteaux,Ile-de-France,France
-1538,Hilversum,North Holland,Netherlands
-1539,Leverkusen,North Rhine-Westphalia,Germany
-1540,Nogent-sur-Oise,Hauts-de-France,France
-1541,Trani,Apulia,Italy
-1542,Vaulx-en-Velin,Auvergne-Rhône-Alpes,France
-1543,Poitiers,Aquitaine-Limousin-Poitou-Charentes,France
-1544,Louviers,Normandy,France
-1545,Lippstadt,North Rhine-Westphalia,Germany
-1546,Outreau,Hauts-de-France,France
-1547,Melun,Ile-de-France,France
-1548,Marl,North Rhine-Westphalia,Germany
-1549,Moulins,Auvergne-Rhône-Alpes,France
-1550,Chatou,Ile-de-France,France
-1551,Menden,North Rhine-Westphalia,Germany
-1552,Cachan,Ile-de-France,France
-1553,Ronchin,Hauts-de-France,France
-1554,La Chapelle-sur-Erdre,Pays de la Loire,France
-1555,Clydach,Wales,United Kingdom
-1556,Cinisello Balsamo,Lombardy,Italy
-1557,Eragny,Ile-de-France,France
-1558,Mont-Saint-Aignan,Normandy,France
-1559,Minden,North Rhine-Westphalia,Germany
-1560,Moers,North Rhine-Westphalia,Germany
-1561,Boscoreale,Campania,Italy
-1562,Rottingdean,England,United Kingdom
-1563,Barton in Fabis,England,United Kingdom
-1564,Roubaix,Hauts-de-France,France
-1565,Melilla,Melilla,Spain
-1566,Dole,Bourgogne-Franche-Comté,France
-1567,Montbrison,Auvergne-Rhône-Alpes,France
-1568,Oberhausen,North Rhine-Westphalia,Germany
-1569,Orihuela,Valenciana,Spain
-1570,Senlis,Hauts-de-France,France
-1571,Varese,Lombardy,Italy
-1572,Bergerac,Aquitaine-Limousin-Poitou-Charentes,France
-1573,Le Creusot,Bourgogne-Franche-Comté,France
-1574,Le Cannet,Provence-Alpes-Côte d'Azur,France
-1575,Saint-Pierre-des-Corps,Centre-Val de Loire,France
-1576,Kilwinning,Scotland,United Kingdom
-1577,Savigny-le-Temple,Ile-de-France,France
-1578,Oss,North Brabant,Netherlands
-1579,Bayreuth,Bavaria,Germany
-1580,Purmerend,North Holland,Netherlands
-1581,Saint-Quentin,Hauts-de-France,France
-1582,Blanquefort,Aquitaine-Limousin-Poitou-Charentes,France
-1583,El Escorial,Madrid,Spain
-1584,Darlington,England,United Kingdom
-1585,Barneveld,Gelderland,Netherlands
-1586,Rouen,Normandy,France
-1587,Vignola,Emilia-Romagna,Italy
-1588,Soissons,Hauts-de-France,France
-1589,Uithoorn,North Holland,Netherlands
-1590,Burgerbrug,North Holland,Netherlands
-1591,Allauch,Provence-Alpes-Côte d'Azur,France
-1592,Sanary-sur-Mer,Provence-Alpes-Côte d'Azur,France
-1593,Tourcoing,Hauts-de-France,France
-1594,Bebington,England,United Kingdom
-1595,Paderborn,North Rhine-Westphalia,Germany
-1596,Dartford,England,United Kingdom
-1597,Basingstoke,England,United Kingdom
-1598,Bideford,England,United Kingdom
-1599,Montceau-les-Mines,Bourgogne-Franche-Comté,France
-1600,Batalha,Leiria,Portugal
-1601,Libourne,Aquitaine-Limousin-Poitou-Charentes,France
-1602,Pulheim,North Rhine-Westphalia,Germany
-1603,Annecy-le-Vieux,Auvergne-Rhône-Alpes,France
-1604,Lannion,Brittany,France
-1605,Ratingen,North Rhine-Westphalia,Germany
-1606,Kortrijk,West Flanders,Belgium
-1607,Recklinghausen,North Rhine-Westphalia,Germany
-1608,Remscheid,North Rhine-Westphalia,Germany
-1609,Ashford,England,United Kingdom
-1610,Foligno,Umbria,Italy
-1611,Hardenberg,Overijssel,Netherlands
-1612,Issoire,Auvergne-Rhône-Alpes,France
-1613,Rheine,North Rhine-Westphalia,Germany
-1614,Roosendaal,North Brabant,Netherlands
-1615,Hamar,Hedmark,Norway
-1616,Siegen,North Rhine-Westphalia,Germany
-1617,Casoria,Campania,Italy
-1618,Marly-le-Roi,Ile-de-France,France
-1619,Solingen,North Rhine-Westphalia,Germany
-1620,Valenciennes,Hauts-de-France,France
-1621,Lattes,Languedoc-Roussillon-Midi-Pyrénées,France
-1622,Cournon-d'Auvergne,Auvergne-Rhône-Alpes,France
-1623,Villeneuve-d'Ascq,Hauts-de-France,France
-1624,Villeparisis,Ile-de-France,France
-1625,Stadtlohn,North Rhine-Westphalia,Germany
-1626,Stolberg,North Rhine-Westphalia,Germany
-1627,Tilburg,North Brabant,Netherlands
-1628,Torcy,Ile-de-France,France
-1629,Vittoria,Sicily,Italy
-1630,Schiffweiler,Saarland,Germany
-1631,Roermond,Limburg,Netherlands
-1632,Voiron,Auvergne-Rhône-Alpes,France
-1633,Slootdorp,North Holland,Netherlands
-1634,Wasquehal,Hauts-de-France,France
-1635,Afragola,Campania,Italy
-1636,Loures,Lisbon,Portugal
-1637,Odivelas,Lisbon,Portugal
-1638,Wattrelos,Hauts-de-France,France
-1639,Doetinchem,Gelderland,Netherlands
-1640,Capannori,Tuscany,Italy
-1641,Troisdorf,North Rhine-Westphalia,Germany
-1642,Acerra,Campania,Italy
-1643,Sorgues,Provence-Alpes-Côte d'Azur,France
-1644,Unna,North Rhine-Westphalia,Germany
-1645,Velbert,North Rhine-Westphalia,Germany
-1646,Wilhelmshaven,Lower Saxony,Germany
-1647,Fontenay-le-Comte,Pays de la Loire,France
-1648,Wolfsburg,Lower Saxony,Germany
-1649,Viersen,North Rhine-Westphalia,Germany
-1650,Northwich,England,United Kingdom
-1651,Willich,North Rhine-Westphalia,Germany
-1652,Witten,North Rhine-Westphalia,Germany
-1653,Briton Ferry,Wales,United Kingdom
-1654,Ris-Orangis,Ile-de-France,France
-1655,Wuppertal,North Rhine-Westphalia,Germany
-1656,Gandia,Valenciana,Spain
-1657,Vlaardingen,South Holland,Netherlands
-1658,Vigevano,Lombardy,Italy
-1659,Les Clayes-sous-Bois,Ile-de-France,France
-1660,Vernon,Normandy,France
+1,Henderson,Kentucky,USA
+2,Los Angeles,California,USA
+3,Fort Lauderdale,Florida,USA
+4,Concord,North Carolina,USA
+5,Seattle,Washington,USA
+6,Fort Worth,Texas,USA
+7,Madison,Wisconsin,USA
+8,West Jordan,Utah,USA
+9,San Francisco,California,USA
+10,Fremont,Nebraska,USA
+11,Philadelphia,Pennsylvania,USA
+12,Orem,Utah,USA
+13,Houston,Texas,USA
+14,Richardson,Texas,USA
+15,Naperville,Illinois,USA
+16,Melbourne,Florida,USA
+17,Eagan,Minnesota,USA
+18,Westland,Michigan,USA
+19,Dover,Delaware,USA
+20,New Albany,Indiana,USA
+21,New York City,New York,USA
+22,Troy,New York,USA
+23,Chicago,Illinois,USA
+24,Gilbert,Arizona,USA
+25,Springfield,Virginia,USA
+26,Jackson,Michigan,USA
+27,Memphis,Tennessee,USA
+28,Decatur,Alabama,USA
+29,Durham,North Carolina,USA
+30,Columbia,South Carolina,USA
+31,Rochester,Minnesota,USA
+32,Minneapolis,Minnesota,USA
+33,Portland,Oregon,USA
+34,Saint Paul,Minnesota,USA
+35,Aurora,Colorado,USA
+36,Charlotte,North Carolina,USA
+37,Orland Park,Illinois,USA
+38,Urbandale,Iowa,USA
+39,Columbus,Ohio,USA
+40,Bristol,Tennessee,USA
+41,Wilmington,Delaware,USA
+42,Bloomington,Illinois,USA
+43,Phoenix,Arizona,USA
+44,Roseville,California,USA
+45,Independence,Missouri,USA
+46,Pasadena,California,USA
+47,Newark,Ohio,USA
+48,Franklin,Wisconsin,USA
+49,Scottsdale,Arizona,USA
+50,San Jose,California,USA
+51,Edmond,Oklahoma,USA
+52,Carlsbad,New Mexico,USA
+53,San Antonio,Texas,USA
+54,Decatur,Illinois,USA
+55,Monroe,Louisiana,USA
+56,Fairfield,Connecticut,USA
+57,Grand Prairie,Texas,USA
+58,Redlands,California,USA
+59,Hamilton,Ohio,USA
+60,Westfield,New Jersey,USA
+61,Akron,Ohio,USA
+62,Denver,Colorado,USA
+63,Dallas,Texas,USA
+64,Franklin,Tennessee,USA
+65,Whittier,California,USA
+66,Saginaw,Michigan,USA
+67,Medina,Ohio,USA
+68,Dublin,Ohio,USA
+69,Detroit,Michigan,USA
+70,Columbia,Tennessee,USA
+71,Tampa,Florida,USA
+72,Santa Clara,California,USA
+73,Lakeville,Minnesota,USA
+74,San Diego,California,USA
+75,Pasadena,Texas,USA
+76,Brentwood,California,USA
+77,Chapel Hill,North Carolina,USA
+78,Morristown,New Jersey,USA
+79,Cincinnati,Ohio,USA
+80,Inglewood,California,USA
+81,Tamarac,Florida,USA
+82,Colorado Springs,Colorado,USA
+83,Belleville,New Jersey,USA
+84,Taylor,Michigan,USA
+85,Lakewood,New Jersey,USA
+86,Arlington,Virginia,USA
+87,Arvada,Colorado,USA
+88,Hackensack,New Jersey,USA
+89,Saint Petersburg,Florida,USA
+90,Long Beach,California,USA
+91,Hesperia,California,USA
+92,Murfreesboro,Tennessee,USA
+93,Layton,Utah,USA
+94,Austin,Texas,USA
+95,Lowell,Massachusetts,USA
+96,Columbus,Georgia,USA
+97,Manchester,Connecticut,USA
+98,Harlingen,Texas,USA
+99,Tucson,Arizona,USA
+100,Quincy,Illinois,USA
+101,Franklin,Massachusetts,USA
+102,Pembroke Pines,Florida,USA
+103,Des Moines,Washington,USA
+104,Peoria,Illinois,USA
+105,Las Vegas,Nevada,USA
+106,Warwick,Rhode Island,USA
+107,Miami,Florida,USA
+108,Wilmington,North Carolina,USA
+109,Huntington Beach,California,USA
+110,Richmond,Kentucky,USA
+111,Louisville,Colorado,USA
+112,Lawrence,Massachusetts,USA
+113,Jackson,Mississippi,USA
+114,Canton,Michigan,USA
+115,New Rochelle,New York,USA
+116,Gastonia,North Carolina,USA
+117,Jacksonville,Florida,USA
+118,Columbus,Indiana,USA
+119,Auburn,New York,USA
+120,Norman,Oklahoma,USA
+121,Concord,California,USA
+122,Park Ridge,Illinois,USA
+123,Amarillo,Texas,USA
+124,Lindenhurst,New York,USA
+125,Huntsville,Texas,USA
+126,Rochester,New York,USA
+127,Fayetteville,Arkansas,USA
+128,Costa Mesa,California,USA
+129,Parker,Colorado,USA
+130,Atlanta,Georgia,USA
+131,Gladstone,Missouri,USA
+132,Great Falls,Montana,USA
+133,Lakeland,Florida,USA
+134,Montgomery,Alabama,USA
+135,Mesa,Arizona,USA
+136,Green Bay,Wisconsin,USA
+137,Springfield,Ohio,USA
+138,Anaheim,California,USA
+139,Marysville,Washington,USA
+140,Salem,Oregon,USA
+141,Laredo,Texas,USA
+142,Grove City,Ohio,USA
+143,Dearborn,Michigan,USA
+144,Warner Robins,Georgia,USA
+145,Vallejo,California,USA
+146,Mission Viejo,California,USA
+147,Rochester Hills,Michigan,USA
+148,Plainfield,New Jersey,USA
+149,Sierra Vista,Arizona,USA
+150,Vancouver,Washington,USA
+151,Aurora,Illinois,USA
+152,Arlington,Texas,USA
+153,Louisville,Kentucky,USA
+154,Cleveland,Ohio,USA
+155,Tyler,Texas,USA
+156,Burlington,North Carolina,USA
+157,Waynesboro,Virginia,USA
+158,Chester,Pennsylvania,USA
+159,Cary,North Carolina,USA
+160,Palm Coast,Florida,USA
+161,Mount Vernon,New York,USA
+162,Hialeah,Florida,USA
+163,Oceanside,New York,USA
+164,Evanston,Illinois,USA
+165,Trenton,Michigan,USA
+166,Cottage Grove,Minnesota,USA
+167,Bossier City,Louisiana,USA
+168,Des Moines,Iowa,USA
+169,Lancaster,California,USA
+170,Richmond,Virginia,USA
+171,Asheville,North Carolina,USA
+172,Lake Elsinore,California,USA
+173,Omaha,Nebraska,USA
+174,Edmonds,Washington,USA
+175,Santa Ana,California,USA
+176,Milwaukee,Wisconsin,USA
+177,Florence,Kentucky,USA
+178,Lorain,Ohio,USA
+179,Linden,New Jersey,USA
+180,Salinas,California,USA
+181,New Brunswick,New Jersey,USA
+182,Lancaster,Pennsylvania,USA
+183,Concord,New Hampshire,USA
+184,Columbia,Maryland,USA
+185,Garland,Texas,USA
+186,Norwich,Connecticut,USA
+187,Alexandria,Virginia,USA
+188,Toledo,Ohio,USA
+189,Farmington,New Mexico,USA
+190,Riverside,California,USA
+191,Torrance,California,USA
+192,Round Rock,Texas,USA
+193,Oceanside,California,USA
+194,Boca Raton,Florida,USA
+195,Virginia Beach,Virginia,USA
+196,Murrieta,California,USA
+197,Jacksonville,North Carolina,USA
+198,Burlington,Iowa,USA
+199,Olympia,Washington,USA
+200,Washington,District of Columbia,USA
+201,Jefferson City,Missouri,USA
+202,Saint Peters,Missouri,USA
+203,Rockford,Illinois,USA
+204,Brownsville,Texas,USA
+205,Yonkers,New York,USA
+206,Oakland,California,USA
+207,Monroe,North Carolina,USA
+208,Clinton,Maryland,USA
+209,Encinitas,California,USA
+210,Roswell,Georgia,USA
+211,Jonesboro,Arkansas,USA
+212,Richmond,Indiana,USA
+213,Antioch,California,USA
+214,Homestead,Florida,USA
+215,La Porte,Indiana,USA
+216,Lansing,Michigan,USA
+217,Cuyahoga Falls,Ohio,USA
+218,Reno,Nevada,USA
+219,Harrisonburg,Virginia,USA
+220,Escondido,California,USA
+221,Royal Oak,Michigan,USA
+222,Rockville,Maryland,USA
+223,Coral Springs,Florida,USA
+224,Buffalo,New York,USA
+225,Boynton Beach,Florida,USA
+226,Gulfport,Mississippi,USA
+227,Fresno,California,USA
+228,Greenville,North Carolina,USA
+229,Long Beach,New York,USA
+230,Florence,Alabama,USA
+231,Macon,Georgia,USA
+232,Cedar Rapids,Iowa,USA
+233,Providence,Rhode Island,USA
+234,Pueblo,Colorado,USA
+235,Fairfield,California,USA
+236,Deltona,Florida,USA
+237,Murray,Kentucky,USA
+238,Middletown,Connecticut,USA
+239,Freeport,New York,USA
+240,Pico Rivera,California,USA
+241,Provo,Utah,USA
+242,Pleasant Grove,Utah,USA
+243,Smyrna,Georgia,USA
+244,Salem,Virginia,USA
+245,Parma,Ohio,USA
+246,Mobile,Alabama,USA
+247,New Bedford,Massachusetts,USA
+248,Irving,Texas,USA
+249,Vineland,New Jersey,USA
+250,Glendale,Arizona,USA
+251,Niagara Falls,New York,USA
+252,Thomasville,North Carolina,USA
+253,Westminster,California,USA
+254,Jackson,Tennessee,USA
+255,Coppell,Texas,USA
+256,Pomona,California,USA
+257,North Las Vegas,Nevada,USA
+258,Allentown,Pennsylvania,USA
+259,Newark,Delaware,USA
+260,Tempe,Arizona,USA
+261,Laguna Niguel,California,USA
+262,Bridgeton,New Jersey,USA
+263,Everett,Massachusetts,USA
+264,Watertown,New York,USA
+265,Appleton,Wisconsin,USA
+266,Bellevue,Washington,USA
+267,Allen,Texas,USA
+268,El Paso,Texas,USA
+269,Grapevine,Texas,USA
+270,Carrollton,Texas,USA
+271,Smyrna,Tennessee,USA
+272,Kent,Washington,USA
+273,Lafayette,Louisiana,USA
+274,Tigard,Oregon,USA
+275,Skokie,Illinois,USA
+276,Plano,Texas,USA
+277,Suffolk,Virginia,USA
+278,Indianapolis,Indiana,USA
+279,Bayonne,New Jersey,USA
+280,Fayetteville,North Carolina,USA
+281,Greensboro,North Carolina,USA
+282,Baltimore,Maryland,USA
+283,Kenosha,Wisconsin,USA
+284,Olathe,Kansas,USA
+285,Auburn,Washington,USA
+286,Tulsa,Oklahoma,USA
+287,Redmond,Oregon,USA
+288,Raleigh,North Carolina,USA
+289,Muskogee,Oklahoma,USA
+290,Meriden,Connecticut,USA
+291,Bowling Green,Kentucky,USA
+292,South Bend,Indiana,USA
+293,Bristol,Connecticut,USA
+294,Henderson,Nevada,USA
+295,Spokane,Washington,USA
+296,Keller,Texas,USA
+297,Fairfield,Ohio,USA
+298,Port Orange,Florida,USA
+299,Medford,Oregon,USA
+300,Charlottesville,Virginia,USA
+301,Missoula,Montana,USA
+302,Florence,South Carolina,USA
+303,Springfield,Oregon,USA
+304,Apopka,Florida,USA
+305,Reading,Pennsylvania,USA
+306,Broomfield,Colorado,USA
+307,Springfield,Missouri,USA
+308,Paterson,New Jersey,USA
+309,Oklahoma City,Oklahoma,USA
+310,Chesapeake,Virginia,USA
+311,Lubbock,Texas,USA
+312,Columbia,Missouri,USA
+313,Johnson City,Tennessee,USA
+314,Auburn,Alabama,USA
+315,San Bernardino,California,USA
+316,Leominster,Massachusetts,USA
+317,Bozeman,Montana,USA
+318,Peoria,Arizona,USA
+319,Lakewood,Ohio,USA
+320,Perth Amboy,New Jersey,USA
+321,Ontario,California,USA
+322,Rancho Cucamonga,California,USA
+323,Moorhead,Minnesota,USA
+324,Mesquite,Texas,USA
+325,Stockton,California,USA
+326,Ormond Beach,Florida,USA
+327,Sunnyvale,California,USA
+328,Dover,New Hampshire,USA
+329,York,Pennsylvania,USA
+330,College Station,Texas,USA
+331,Saint Louis,Missouri,USA
+332,Quincy,Massachusetts,USA
+333,Manteca,California,USA
+334,Kent,Ohio,USA
+335,San Angelo,Texas,USA
+336,Salt Lake City,Utah,USA
+337,Huntsville,Alabama,USA
+338,Knoxville,Tennessee,USA
+339,Little Rock,Arkansas,USA
+340,Lincoln Park,Michigan,USA
+341,Marion,Ohio,USA
+342,Littleton,Colorado,USA
+343,Burlington,Vermont,USA
+344,Bangor,Maine,USA
+345,Southaven,Mississippi,USA
+346,New Castle,Indiana,USA
+347,Midland,Michigan,USA
+348,Sioux Falls,South Dakota,USA
+349,Fort Collins,Colorado,USA
+350,Lafayette,Indiana,USA
+351,Clarksville,Tennessee,USA
+352,Sacramento,California,USA
+353,Thousand Oaks,California,USA
+354,Malden,Massachusetts,USA
+355,Holyoke,Massachusetts,USA
+356,Albuquerque,New Mexico,USA
+357,Sparks,Nevada,USA
+358,Coachella,California,USA
+359,Elmhurst,Illinois,USA
+360,Passaic,New Jersey,USA
+361,North Charleston,South Carolina,USA
+362,Newport News,Virginia,USA
+363,Jamestown,New York,USA
+364,Mishawaka,Indiana,USA
+365,Bowling Green,Ohio,USA
+366,La Quinta,California,USA
+367,Tallahassee,Florida,USA
+368,Nashville,Tennessee,USA
+369,Bellingham,Washington,USA
+370,Woodstock,Illinois,USA
+371,Haltom City,Texas,USA
+372,Wheeling,Illinois,USA
+373,Summerville,South Carolina,USA
+374,Hot Springs,Arkansas,USA
+375,Englewood,Colorado,USA
+376,Lancaster,Ohio,USA
+377,Las Cruces,New Mexico,USA
+378,Hoover,Alabama,USA
+379,Frisco,Texas,USA
+380,Vacaville,California,USA
+381,Murray,Utah,USA
+382,Waukesha,Wisconsin,USA
+383,Bakersfield,California,USA
+384,Pompano Beach,Florida,USA
+385,Troy,Ohio,USA
+386,Corpus Christi,Texas,USA
+387,Redondo Beach,California,USA
+388,Orlando,Florida,USA
+389,Orange,New Jersey,USA
+390,Lake Charles,Louisiana,USA
+391,Highland Park,Illinois,USA
+392,Hempstead,New York,USA
+393,Noblesville,Indiana,USA
+394,Apple Valley,Minnesota,USA
+395,Mount Pleasant,South Carolina,USA
+396,Sterling Heights,Michigan,USA
+397,Eau Claire,Wisconsin,USA
+398,Pharr,Texas,USA
+399,Billings,Montana,USA
+400,Gresham,Oregon,USA
+401,Chattanooga,Tennessee,USA
+402,Meridian,Idaho,USA
+403,Apple Valley,California,USA
+404,Bolingbrook,Illinois,USA
+405,Maple Grove,Minnesota,USA
+406,Woodland,California,USA
+407,Missouri City,Texas,USA
+408,Pearland,Texas,USA
+409,San Mateo,California,USA
+410,Grand Rapids,Michigan,USA
+411,Visalia,California,USA
+412,Overland Park,Kansas,USA
+413,Temecula,California,USA
+414,Yucaipa,California,USA
+415,Revere,Massachusetts,USA
+416,Conroe,Texas,USA
+417,Tinley Park,Illinois,USA
+418,Dubuque,Iowa,USA
+419,Dearborn Heights,Michigan,USA
+420,Santa Fe,New Mexico,USA
+421,Hickory,North Carolina,USA
+422,Carol Stream,Illinois,USA
+423,Saint Cloud,Minnesota,USA
+424,North Miami,Florida,USA
+425,Lawrence,Indiana,USA
+426,Plantation,Florida,USA
+427,Port Saint Lucie,Florida,USA
+428,Rock Hill,South Carolina,USA
+429,Odessa,Texas,USA
+430,West Allis,Wisconsin,USA
+431,Chula Vista,California,USA
+432,Manhattan,Kansas,USA
+433,Altoona,Pennsylvania,USA
+434,Thornton,Colorado,USA
+435,Champaign,Illinois,USA
+436,Bloomington,Indiana,USA
+437,Texarkana,Arkansas,USA
+438,Edinburg,Texas,USA
+439,Baytown,Texas,USA
+440,Greenwood,Indiana,USA
+441,Lakewood,California,USA
+442,Woonsocket,Rhode Island,USA
+443,Superior,Wisconsin,USA
+444,Bedford,Texas,USA
+445,Covington,Washington,USA
+446,Broken Arrow,Oklahoma,USA
+447,Miramar,Florida,USA
+448,Hollywood,Florida,USA
+449,Deer Park,Texas,USA
+450,Wichita,Kansas,USA
+451,Mcallen,Texas,USA
+452,Iowa City,Iowa,USA
+453,Boise,Idaho,USA
+454,Cranston,Rhode Island,USA
+455,Freeport,Illinois,USA
+456,Port Arthur,Texas,USA
+457,Citrus Heights,California,USA
+458,The Colony,Texas,USA
+459,Redmond,Washington,USA
+460,Daytona Beach,Florida,USA
+461,Bullhead City,Arizona,USA
+462,Portage,Indiana,USA
+463,Fargo,North Dakota,USA
+464,Elkhart,Indiana,USA
+465,San Gabriel,California,USA
+466,Margate,Florida,USA
+467,Sandy Springs,Georgia,USA
+468,Mentor,Ohio,USA
+469,Lawton,Oklahoma,USA
+470,Hampton,Virginia,USA
+471,Rome,New York,USA
+472,La Crosse,Wisconsin,USA
+473,Lewiston,Idaho,USA
+474,Hattiesburg,Mississippi,USA
+475,Danville,California,USA
+476,Mount Pleasant,Michigan,USA
+477,Logan,Utah,USA
+478,Waterbury,Connecticut,USA
+479,Athens,Georgia,USA
+480,Lewiston,Maine,USA
+481,Danville,Illinois,USA
+482,Avondale,Arizona,USA
+483,Marietta,Georgia,USA
+484,Yuma,Arizona,USA
+485,Wausau,Wisconsin,USA
+486,Pasco,Washington,USA
+487,Oak Park,Illinois,USA
+488,Pensacola,Florida,USA
+489,League City,Texas,USA
+490,Gaithersburg,Maryland,USA
+491,Lehi,Utah,USA
+492,Tuscaloosa,Alabama,USA
+493,Moreno Valley,California,USA
+494,Georgetown,Kentucky,USA
+495,Loveland,Colorado,USA
+496,Chandler,Arizona,USA
+497,Helena,Montana,USA
+498,Kirkwood,Missouri,USA
+499,Waco,Texas,USA
+500,Roseville,Michigan,USA
+501,Frankfort,Illinois,USA
+502,Bethlehem,Pennsylvania,USA
+503,Roseville,Minnesota,USA
+504,Grand Island,Nebraska,USA
+505,Woodbury,Minnesota,USA
+506,Oak Park,Michigan,USA
+507,Rogers,Arkansas,USA
+508,Clovis,New Mexico,USA
+509,Jupiter,Florida,USA
+510,Santa Barbara,California,USA
+511,Cedar Hill,Texas,USA
+512,Norfolk,Nebraska,USA
+513,Draper,Utah,USA
+514,Ann Arbor,Michigan,USA
+515,La Mesa,California,USA
+516,Pocatello,Idaho,USA
+517,Holland,Michigan,USA
+518,Milford,Connecticut,USA
+519,Buffalo Grove,Illinois,USA
+520,Lake Forest,California,USA
+521,Redding,California,USA
+522,Chico,California,USA
+523,Utica,New York,USA
+524,Conway,Arkansas,USA
+525,Cheyenne,Wyoming,USA
+526,Owensboro,Kentucky,USA
+527,Caldwell,Idaho,USA
+528,Kenner,Louisiana,USA
+529,Nashua,New Hampshire,USA
+530,Bartlett,Tennessee,USA
+531,Redwood City,California,USA
+532,Lebanon,Tennessee,USA
+533,Santa Maria,California,USA
+534,Des Plaines,Illinois,USA
+535,Longview,Washington,USA
+536,Hendersonville,Tennessee,USA
+537,Waterloo,Iowa,USA
+538,Cambridge,Massachusetts,USA
+539,Palatine,Illinois,USA
+540,Beverly,Massachusetts,USA
+541,Eugene,Oregon,USA
+542,Oxnard,California,USA
+543,Renton,Washington,USA
+544,Glenview,Illinois,USA
+545,Delray Beach,Florida,USA
+546,Commerce City,Colorado,USA
+547,Texas City,Texas,USA
+548,Wilson,North Carolina,USA
+549,Rio Rancho,New Mexico,USA
+550,Goldsboro,North Carolina,USA
+551,Everett,Washington,USA
+552,Montebello,California,USA
+553,El Cajon,California,USA
+554,Beaumont,Texas,USA
+555,West Palm Beach,Florida,USA
+556,Abilene,Texas,USA
+557,Normal,Illinois,USA
+558,Saint Charles,Missouri,USA
+559,Saint Charles,Illinois,USA
+560,Camarillo,California,USA
+561,Hillsboro,Oregon,USA
+562,Burbank,California,USA
+563,Modesto,California,USA
+564,Garden City,Kansas,USA
+565,Atlantic City,New Jersey,USA
+566,Longmont,Colorado,USA
+567,Davis,California,USA
+568,Wheeling,West Virginia,USA
+569,Morgan Hill,California,USA
+570,Clifton,New Jersey,USA
+571,Sheboygan,Wisconsin,USA
+572,East Point,Georgia,USA
+573,Rapid City,South Dakota,USA
+574,Andover,Massachusetts,USA
+575,Kissimmee,Florida,USA
+576,Shelton,Connecticut,USA
+577,Danbury,Connecticut,USA
+578,Marion,Iowa,USA
+579,Sanford,Florida,USA
+580,San Marcos,Texas,USA
+581,Greeley,Colorado,USA
+582,Mansfield,Texas,USA
+583,Elyria,Ohio,USA
+584,Twin Falls,Idaho,USA
+585,Coral Gables,Florida,USA
+586,Romeoville,Illinois,USA
+587,Marlborough,Massachusetts,USA
+588,Laurel,Maryland,USA
+589,Bryan,Texas,USA
+590,Pine Bluff,Arkansas,USA
+591,Aberdeen,South Dakota,USA
+592,Hagerstown,Maryland,USA
+593,East Orange,New Jersey,USA
+594,Arlington Heights,Illinois,USA
+595,Oswego,Illinois,USA
+596,Coon Rapids,Minnesota,USA
+597,San Clemente,California,USA
+598,Dublin,California,USA
+599,San Luis Obispo,California,USA
+600,Springdale,Arkansas,USA
+601,Lodi,California,USA
+602,La Porte,Texas,USA
+603,Mason,Ohio,USA
+604,Woodstock,Georgia,USA
+605,Leeds,England,UNK
+606,West Bromwich,England,UNK
+607,Le Bouscat,Aquitaine-Limousin-Poitou-Charentes,FRA
+608,Strasbourg,Alsace-Champagne-Ardenne-Lorraine,FRA
+609,Aachen,North Rhine-Westphalia,GER
+610,Thiais,Ile-de-France,FRA
+611,Kassel,Hesse,GER
+612,Milan,Lombardy,ITA
+613,Brandenburg,Brandenburg,GER
+614,Heilbronn,Baden-Württemberg,GER
+615,Barcelona,Catalonia,SPA
+616,Swindon,England,UNK
+617,Puertollano,Castile-La Mancha,SPA
+618,Chaville,Ile-de-France,FRA
+619,Sonneberg,Thuringia,GER
+620,Alphen aan den Rijn,South Holland,NET
+621,Littlehampton,England,UNK
+622,Taverny,Ile-de-France,FRA
+623,Mainz,Rhineland-Palatinate,GER
+624,Nacka,Stockholm,SWE
+625,Manchester,England,UNK
+626,Viroflay,Ile-de-France,FRA
+627,Murcia,Murcia,SPA
+628,Karlsruhe,Baden-Württemberg,GER
+629,Madrid,Madrid,SPA
+630,Rome,Lazio,ITA
+631,Stuttgart,Baden-Württemberg,GER
+632,Mansfield,England,UNK
+633,Newcastle upon Tyne,England,UNK
+634,Paris,Ile-de-France,FRA
+635,Dijon,Bourgogne-Franche-Comté,FRA
+636,Hasselt,Limburg,BEL
+637,Vienna,Vienna,AUS
+638,Sabadell,Catalonia,SPA
+639,Argentan,Normandy,FRA
+640,Stourbridge,England,UNK
+641,Nuremberg,Bavaria,GER
+642,Southend-on-Sea,England,UNK
+643,Cambridge,England,UNK
+644,Rugby,England,UNK
+645,Bayeux,Normandy,FRA
+646,Saint-Genis-Laval,Auvergne-Rhône-Alpes,FRA
+647,Pantin,Ile-de-France,FRA
+648,Hamburg,Hamburg,GER
+649,Beaune,Bourgogne-Franche-Comté,FRA
+650,Antibes,Provence-Alpes-Côte d'Azur,FRA
+651,Houilles,Ile-de-France,FRA
+652,Cesena,Emilia-Romagna,ITA
+653,Namur,Namur,BEL
+654,Marano di Napoli,Campania,ITA
+655,London,England,UNK
+656,Dundee,Scotland,UNK
+657,Wiesbaden,Hesse,GER
+658,Vitry-sur-Seine,Ile-de-France,FRA
+659,Villiers-le-Bel,Ile-de-France,FRA
+660,Castelldefels,Catalonia,SPA
+661,Abbeville,Hauts-de-France,FRA
+662,Tarragona,Catalonia,SPA
+663,Durrus,Cork,IRE
+664,Santander,Cantabria,SPA
+665,Amadora,Lisbon,POR
+666,Berlin,Berlin,GER
+667,San Fernando,Andalusía,SPA
+668,Brest,Brittany,FRA
+669,Trier,Rhineland-Palatinate,GER
+670,Ulm,Baden-Württemberg,GER
+671,Nancy,Alsace-Champagne-Ardenne-Lorraine,FRA
+672,Cannes,Provence-Alpes-Côte d'Azur,FRA
+673,Alkmaar,North Holland,NET
+674,Pontault-Combault,Ile-de-France,FRA
+675,Sheffield,England,UNK
+676,Marseille,Provence-Alpes-Côte d'Azur,FRA
+677,Basildon,England,UNK
+678,San Sebastian,Basque Country,SPA
+679,Granada,Andalusía,SPA
+680,Barry,Wales,UNK
+681,Bedford,England,UNK
+682,Pessac,Aquitaine-Limousin-Poitou-Charentes,FRA
+683,Irun,Basque Country,SPA
+684,Mantes-la-Jolie,Ile-de-France,FRA
+685,Celle,Lower Saxony,GER
+686,Bisceglie,Apulia,ITA
+687,Albertville,Auvergne-Rhône-Alpes,FRA
+688,Birmingham,England,UNK
+689,Perpignan,Languedoc-Roussillon-Midi-Pyrénées,FRA
+690,Vigneux-sur-Seine,Ile-de-France,FRA
+691,Estepona,Andalusía,SPA
+692,Fontenay-aux-Roses,Ile-de-France,FRA
+693,Deuil-la-Barre,Ile-de-France,FRA
+694,Burgos,Castile and León,SPA
+695,Moncalieri,Piedmont,ITA
+696,Chilly-Mazarin,Ile-de-France,FRA
+697,Amiens,Hauts-de-France,FRA
+698,Chester,England,UNK
+699,Sant Boi de Llobregat,Catalonia,SPA
+700,Metz,Alsace-Champagne-Ardenne-Lorraine,FRA
+701,Antony,Ile-de-France,FRA
+702,Drancy,Ile-de-France,FRA
+703,Arnsberg,North Rhine-Westphalia,GER
+704,Offenbach,Hesse,GER
+705,Cerignola,Apulia,ITA
+706,Grasse,Provence-Alpes-Côte d'Azur,FRA
+707,Munich,Bavaria,GER
+708,Gateshead,England,UNK
+709,Issy-les-Moulineaux,Ile-de-France,FRA
+710,Saint-Nazaire,Pays de la Loire,FRA
+711,Chemnitz,Saxony,GER
+712,Naples,Campania,ITA
+713,Coulommiers,Ile-de-France,FRA
+714,Uppsala,Uppsala,SWE
+715,Bergen op Zoom,North Brabant,NET
+716,Saint-Brieuc,Brittany,FRA
+717,Trapani,Sicily,ITA
+718,Poole,England,UNK
+719,Evry,Ile-de-France,FRA
+720,Aulnay-sous-Bois,Ile-de-France,FRA
+721,Haguenau,Alsace-Champagne-Ardenne-Lorraine,FRA
+722,Harrogate,England,UNK
+723,Ermont,Ile-de-France,FRA
+724,Colmar,Alsace-Champagne-Ardenne-Lorraine,FRA
+725,Palma de Mallorca,Balearic Islands,SPA
+726,Capelle aan den IJssel,South Holland,NET
+727,Stockholm,Stockholm,SWE
+728,Castellammare di Stabia,Campania,ITA
+729,Belfort,Bourgogne-Franche-Comté,FRA
+730,Burnley,England,UNK
+731,Linz,Upper Austria,AUS
+732,Salzburg,Salzburg,AUS
+733,Alicante,Valenciana,SPA
+734,Montfermeil,Ile-de-France,FRA
+735,Vitoria,Basque Country,SPA
+736,Sittard,Limburg,NET
+737,Bergheim,North Rhine-Westphalia,GER
+738,Bergisch Gladbach,North Rhine-Westphalia,GER
+739,Dresden,Saxony,GER
+740,Bielefeld,North Rhine-Westphalia,GER
+741,Rudge,England,UNK
+742,Northampton,England,UNK
+743,Champigny-sur-Marne,Ile-de-France,FRA
+744,Avignon,Provence-Alpes-Côte d'Azur,FRA
+745,Bolzano,Trentino-Alto Adige,ITA
+746,Washington,England,UNK
+747,Talence,Aquitaine-Limousin-Poitou-Charentes,FRA
+748,Palaiseau,Ile-de-France,FRA
+749,Pertuis,Provence-Alpes-Côte d'Azur,FRA
+750,Karlstad,Värmland,SWE
+751,Dewsbury,England,UNK
+752,Huddinge,Stockholm,SWE
+753,Delft,South Holland,NET
+754,Dordrecht,South Holland,NET
+755,Amstelveen,North Holland,NET
+756,Livry-Gargan,Ile-de-France,FRA
+757,Schiltigheim,Alsace-Champagne-Ardenne-Lorraine,FRA
+758,Ludwigsfelde,Brandenburg,GER
+759,Levallois-Perret,Ile-de-France,FRA
+760,Taranto,Apulia,ITA
+761,Tours,Centre-Val de Loire,FRA
+762,Woking,England,UNK
+763,Bezons,Ile-de-France,FRA
+764,Vincennes,Ile-de-France,FRA
+765,Sarcelles,Ile-de-France,FRA
+766,Huddersfield,England,UNK
+767,La Crau,Provence-Alpes-Côte d'Azur,FRA
+768,Stafford,England,UNK
+769,Moissy-Cramayel,Ile-de-France,FRA
+770,Seville,Andalusía,SPA
+771,Chartres,Centre-Val de Loire,FRA
+772,Turku,Finland Proper,FIN
+773,Leipzig,Saxony,GER
+774,Limoges,Aquitaine-Limousin-Poitou-Charentes,FRA
+775,Assen,Drenthe,NET
+776,Valence,Auvergne-Rhône-Alpes,FRA
+777,Bury,England,UNK
+778,Messina,Sicily,ITA
+779,Luton,England,UNK
+780,Bordeaux,Aquitaine-Limousin-Poitou-Charentes,FRA
+781,Great Yarmouth,England,UNK
+782,Fontaine,Auvergne-Rhône-Alpes,FRA
+783,Parla,Madrid,SPA
+784,Villeneuve-sur-Lot,Aquitaine-Limousin-Poitou-Charentes,FRA
+785,Verona,Veneto,ITA
+786,Bochum,North Rhine-Westphalia,GER
+787,Apeldoorn,Gelderland,NET
+788,Glasgow,Scotland,UNK
+789,Argenteuil,Ile-de-France,FRA
+790,Sassari,Sardinia,ITA
+791,Villeurbanne,Auvergne-Rhône-Alpes,FRA
+792,Bourges,Centre-Val de Loire,FRA
+793,Mont-de-Marsan,Aquitaine-Limousin-Poitou-Charentes,FRA
+794,Esbjerg,South Denmark,DEN
+795,Nice,Provence-Alpes-Côte d'Azur,FRA
+796,Pforzheim,Baden-Württemberg,GER
+797,Florence,Tuscany,ITA
+798,Matosinhos,Porto,POR
+799,Ravenna,Emilia-Romagna,ITA
+800,Augsburg,Bavaria,GER
+801,Pozzuoli,Campania,ITA
+802,Sandnes,Rogaland,NOR
+803,Valencia,Valenciana,SPA
+804,Rimini,Emilia-Romagna,ITA
+805,Neubrandenburg,Mecklenburg-Vorpommern,GER
+806,Wetzlar,Hesse,GER
+807,Edinburgh,Scotland,UNK
+808,Antwerp,Antwerp,BEL
+809,Les Lilas,Ile-de-France,FRA
+810,Zurich,Zürich,SWI
+811,Magdeburg,Saxony-Anhalt,GER
+812,Saint-Ouen,Ile-de-France,FRA
+813,Slough,England,UNK
+814,Catania,Sicily,ITA
+815,Monza,Lombardy,ITA
+816,Saint-Avold,Alsace-Champagne-Ardenne-Lorraine,FRA
+817,Pau,Aquitaine-Limousin-Poitou-Charentes,FRA
+818,Espoo,Uusimaa,FIN
+819,Carlisle,England,UNK
+820,Mâcon,Bourgogne-Franche-Comté,FRA
+821,Villach,Carinthia,AUS
+822,Harlow,England,UNK
+823,Cergy,Ile-de-France,FRA
+824,Rotherham,England,UNK
+825,Zwickau,Saxony,GER
+826,Osny,Ile-de-France,FRA
+827,Odense,South Denmark,DEN
+828,Arras,Hauts-de-France,FRA
+829,Gosport,England,UNK
+830,Lund,Skåne,SWE
+831,Marignane,Provence-Alpes-Côte d'Azur,FRA
+832,Neuilly-sur-Seine,Ile-de-France,FRA
+833,Leicester,England,UNK
+834,Wigan,England,UNK
+835,Fiumicino,Lazio,ITA
+836,Foggia,Apulia,ITA
+837,Muret,Languedoc-Roussillon-Midi-Pyrénées,FRA
+838,Baden-Baden,Baden-Württemberg,GER
+839,Benidorm,Valenciana,SPA
+840,Cormeilles-en-Parisis,Ile-de-France,FRA
+841,Saint-Malo,Brittany,FRA
+842,Nanterre,Ile-de-France,FRA
+843,Domont,Ile-de-France,FRA
+844,Conflans-Sainte-Honorine,Ile-de-France,FRA
+845,Elda,Valenciana,SPA
+846,Meyzieu,Auvergne-Rhône-Alpes,FRA
+847,Aprilia,Lazio,ITA
+848,Hankerton,England,UNK
+849,Molina de Segura,Murcia,SPA
+850,Jena,Thuringia,GER
+851,Cagliari,Sardinia,ITA
+852,Cholet,Pays de la Loire,FRA
+853,Colchester,England,UNK
+854,Aschaffenburg,Bavaria,GER
+855,Helsinki,Uusimaa,FIN
+856,Sevran,Ile-de-France,FRA
+857,Maidstone,England,UNK
+858,Las Rozas de Madrid,Madrid,SPA
+859,Montesson,Ile-de-France,FRA
+860,Bari,Apulia,ITA
+861,Avion,Hauts-de-France,FRA
+862,Eakring,England,UNK
+863,Kiel,Schleswig-Holstein,GER
+864,Saint-Priest,Auvergne-Rhône-Alpes,FRA
+865,Saint-Cloud,Ile-de-France,FRA
+866,Clint cum Hamlets,England,UNK
+867,Hastings,England,UNK
+868,Le Plessis-Robinson,Ile-de-France,FRA
+869,Nantes,Pays de la Loire,FRA
+870,Fareham,England,UNK
+871,Novara,Piedmont,ITA
+872,Montargis,Centre-Val de Loire,FRA
+873,Montpellier,Languedoc-Roussillon-Midi-Pyrénées,FRA
+874,Toulouse,Languedoc-Roussillon-Midi-Pyrénées,FRA
+875,Saint-Denis,Ile-de-France,FRA
+876,Ercolano,Campania,ITA
+877,Ceuta,Ceuta,SPA
+878,Angers,Pays de la Loire,FRA
+879,Seraing,Liège,BEL
+880,South Shields,England,UNK
+881,Epinal,Alsace-Champagne-Ardenne-Lorraine,FRA
+882,Gothenburg,Västra Götaland,SWE
+883,Molfetta,Apulia,ITA
+884,Salamanca,Castile and León,SPA
+885,Torrevieja,Valenciana,SPA
+886,Genoa,Liguria,ITA
+887,Cuxhaven,Lower Saxony,GER
+888,Yerres,Ile-de-France,FRA
+889,Albacete,Castile-La Mancha,SPA
+890,Nijmegen,Gelderland,NET
+891,Vicenza,Veneto,ITA
+892,Boulogne-Billancourt,Ile-de-France,FRA
+893,Lyon,Auvergne-Rhône-Alpes,FRA
+894,Stoke-on-Trent,England,UNK
+895,Beauvais,Hauts-de-France,FRA
+896,Toledo,Castile-La Mancha,SPA
+897,Bologna,Emilia-Romagna,ITA
+898,Laval,Pays de la Loire,FRA
+899,Amsterdam,North Holland,NET
+900,Turin,Piedmont,ITA
+901,Bonn,North Rhine-Westphalia,GER
+902,Forbach,Alsace-Champagne-Ardenne-Lorraine,FRA
+903,Sesto San Giovanni,Lombardy,ITA
+904,Nottingham,England,UNK
+905,Weimar,Thuringia,GER
+906,Alcobendas,Madrid,SPA
+907,Langen,Hesse,GER
+908,Emmen,Drenthe,NET
+909,Sindelfingen,Baden-Württemberg,GER
+910,Annecy,Auvergne-Rhône-Alpes,FRA
+911,Dublin,Dublin,IRE
+912,Guyancourt,Ile-de-France,FRA
+913,Sagunto,Valenciana,SPA
+914,Quimper,Brittany,FRA
+915,Delmenhorst,Lower Saxony,GER
+916,Erfurt,Thuringia,GER
+917,Bremen,Bremen,GER
+918,Carcassonne,Languedoc-Roussillon-Midi-Pyrénées,FRA
+919,Mickleby,England,UNK
+920,York,England,UNK
+921,Almelo,Overijssel,NET
+922,Garforth,England,UNK
+923,Aubervilliers,Ile-de-France,FRA
+924,Modena,Emilia-Romagna,ITA
+925,Treviso,Veneto,ITA
+926,Carpentras,Provence-Alpes-Côte d'Azur,FRA
+927,Badajoz,Extremadura,SPA
+928,Cognac,Aquitaine-Limousin-Poitou-Charentes,FRA
+929,Ludwigshafen am Rhein,Rhineland-Palatinate,GER
+930,Emden,Lower Saxony,GER
+931,Frankfurt,Hesse,GER
+932,Pescara,Abruzzi,ITA
+933,Reims,Alsace-Champagne-Ardenne-Lorraine,FRA
+934,Lincoln,England,UNK
+935,Stavanger,Rogaland,NOR
+936,Coventry,England,UNK
+937,Six-Fours-les-Plages,Provence-Alpes-Côte d'Azur,FRA
+938,Schwerin,Mecklenburg-Vorpommern,GER
+939,Alfortville,Ile-de-France,FRA
+940,Ponferrada,Castile and León,SPA
+941,Massy,Ile-de-France,FRA
+942,Le Chesnay,Ile-de-France,FRA
+943,Marbella,Andalusía,SPA
+944,Solihull,England,UNK
+945,Stockport,England,UNK
+946,Toulon,Provence-Alpes-Côte d'Azur,FRA
+947,Badalona,Catalonia,SPA
+948,Exeter,England,UNK
+949,Reggio nell'Emilia,Emilia-Romagna,ITA
+950,Leeuwarden,Friesland,NET
+951,Colomiers,Languedoc-Roussillon-Midi-Pyrénées,FRA
+952,Blackpool,England,UNK
+953,Watford,England,UNK
+954,Ingolstadt,Bavaria,GER
+955,Narbonne,Languedoc-Roussillon-Midi-Pyrénées,FRA
+956,Clermont-Ferrand,Auvergne-Rhône-Alpes,FRA
+957,Firminy,Auvergne-Rhône-Alpes,FRA
+958,Preston,England,UNK
+959,Acireale,Sicily,ITA
+960,Middlesbrough,England,UNK
+961,Vesoul,Bourgogne-Franche-Comté,FRA
+962,Pontoise,Ile-de-France,FRA
+963,Palermo,Sicily,ITA
+964,Busto Arsizio,Lombardy,ITA
+965,Menton,Provence-Alpes-Côte d'Azur,FRA
+966,Caen,Normandy,FRA
+967,Crotone,Calabria,ITA
+968,Bilbao,Basque Country,SPA
+969,Plymouth,England,UNK
+970,Bron,Auvergne-Rhône-Alpes,FRA
+971,Reutlingen,Baden-Württemberg,GER
+972,Niort,Aquitaine-Limousin-Poitou-Charentes,FRA
+973,Bergen,Hordaland,NOR
+974,Garches,Ile-de-France,FRA
+975,Bad Waldsee,Baden-Württemberg,GER
+976,Blois,Centre-Val de Loire,FRA
+977,Halle,Saxony-Anhalt,GER
+978,Le Mans,Pays de la Loire,FRA
+979,Andria,Apulia,ITA
+980,Trappes,Ile-de-France,FRA
+981,Lorient,Brittany,FRA
+982,Worcester,England,UNK
+983,Cardiff,Wales,UNK
+984,Sarreguemines,Alsace-Champagne-Ardenne-Lorraine,FRA
+985,Mougins,Provence-Alpes-Côte d'Azur,FRA
+986,Friedrichshafen,Baden-Württemberg,GER
+987,Borken,North Rhine-Westphalia,GER
+988,Bottrop,North Rhine-Westphalia,GER
+989,Kidderminster,England,UNK
+990,Charleroi,Hainaut,BEL
+991,Modica,Sicily,ITA
+992,Worms,Rhineland-Palatinate,GER
+993,Velletri,Lazio,ITA
+994,Jerez de la Frontera,Andalusía,SPA
+995,Leuven,Flemish Brabant,BEL
+996,Toul,Alsace-Champagne-Ardenne-Lorraine,FRA
+997,Utrecht,Utrecht,NET
+998,Eskilstuna,Södermanland,SWE
+999,Digne-les-Bains,Provence-Alpes-Côte d'Azur,FRA
+1000,Bruges,West Flanders,BEL
+1001,Copenhagen,Hovedstaden,DEN
+1002,Graz,Styria,AUS
+1003,Latina,Lazio,ITA
+1004,Geneva,Geneva,SWI
+1005,Ajaccio,Corsica,FRA
+1006,Tulle,Aquitaine-Limousin-Poitou-Charentes,FRA
+1007,Versailles,Ile-de-France,FRA
+1008,Berck,Hauts-de-France,FRA
+1009,Boulogne-sur-Mer,Hauts-de-France,FRA
+1010,Breda,North Brabant,NET
+1011,Oslo,Oslo,NOR
+1012,Bristol,England,UNK
+1013,Garbsen,Lower Saxony,GER
+1014,Mulhouse,Alsace-Champagne-Ardenne-Lorraine,FRA
+1015,NUlm,Bavaria,GER
+1016,Pistoia,Tuscany,ITA
+1017,St. Kew,England,UNK
+1018,Hanover,Lower Saxony,GER
+1019,Oxford,England,UNK
+1020,Walsall,England,UNK
+1021,Brescia,Lombardy,ITA
+1022,Saint-Chamond,Auvergne-Rhône-Alpes,FRA
+1023,Bobigny,Ile-de-France,FRA
+1024,Vallauris,Provence-Alpes-Côte d'Azur,FRA
+1025,Echirolles,Auvergne-Rhône-Alpes,FRA
+1026,Bar-le-Duc,Alsace-Champagne-Ardenne-Lorraine,FRA
+1027,Ghent,East Flanders,BEL
+1028,Birkenhead,England,UNK
+1029,Dax,Aquitaine-Limousin-Poitou-Charentes,FRA
+1030,El Ejido,Andalusía,SPA
+1031,Fuengirola,Andalusía,SPA
+1032,Saint-Laurent-du-Var,Provence-Alpes-Côte d'Azur,FRA
+1033,Castres,Languedoc-Roussillon-Midi-Pyrénées,FRA
+1034,Castrop-Rauxel,North Rhine-Westphalia,GER
+1035,Winterthur,Zürich,SWI
+1036,Altamura,Apulia,ITA
+1037,Montreuil,Ile-de-France,FRA
+1038,Clamart,Ile-de-France,FRA
+1039,Reus,Catalonia,SPA
+1040,Innsbruck,Tyrol,AUS
+1041,Leiden,South Holland,NET
+1042,Enschede,Overijssel,NET
+1043,Weston-super-Mare,England,UNK
+1044,La Roche-sur-Yon,Pays de la Loire,FRA
+1045,Norwich,England,UNK
+1046,Pierrefitte-sur-Seine,Ile-de-France,FRA
+1047,La Seyne-sur-Mer,Provence-Alpes-Côte d'Azur,FRA
+1048,Prato,Tuscany,ITA
+1049,Gradignan,Aquitaine-Limousin-Poitou-Charentes,FRA
+1050,Oyonnax,Auvergne-Rhône-Alpes,FRA
+1051,Cologne,North Rhine-Westphalia,GER
+1052,Basel,Basel-Stadt,SWI
+1053,Wakefield,England,UNK
+1054,Noisy-le-Sec,Ile-de-France,FRA
+1055,Maisons-Laffitte,Ile-de-France,FRA
+1056,Frontignan,Languedoc-Roussillon-Midi-Pyrénées,FRA
+1057,Agen,Aquitaine-Limousin-Poitou-Charentes,FRA
+1058,Villingen-Schwenningen,Baden-Württemberg,GER
+1059,Heidelberg,Baden-Württemberg,GER
+1060,Eastbourne,England,UNK
+1061,Talavera de la Reina,Castile-La Mancha,SPA
+1062,Tarbes,Languedoc-Roussillon-Midi-Pyrénées,FRA
+1063,Portsmouth,England,UNK
+1064,Rotterdam,South Holland,NET
+1065,Cluses,Auvergne-Rhône-Alpes,FRA
+1066,Battipaglia,Campania,ITA
+1067,Rostock,Mecklenburg-Vorpommern,GER
+1068,Courbevoie,Ile-de-France,FRA
+1069,Blackburn,England,UNK
+1070,Dudley,England,UNK
+1071,Chaumont,Alsace-Champagne-Ardenne-Lorraine,FRA
+1072,Mitry-Mory,Ile-de-France,FRA
+1073,Heerlen,Limburg,NET
+1074,Longjumeau,Ile-de-France,FRA
+1075,Aberdeen,Scotland,UNK
+1076,Montauban,Languedoc-Roussillon-Midi-Pyrénées,FRA
+1077,Sceaux,Ile-de-France,FRA
+1078,Gennevilliers,Ile-de-France,FRA
+1079,Bagneux,Ile-de-France,FRA
+1080,Les Pennes-Mirabeau,Provence-Alpes-Côte d'Azur,FRA
+1081,Anglet,Aquitaine-Limousin-Poitou-Charentes,FRA
+1082,Frederiksberg,Hovedstaden,DEN
+1083,Trento,Trentino-Alto Adige,ITA
+1084,Bastia,Corsica,FRA
+1085,Grenoble,Auvergne-Rhône-Alpes,FRA
+1086,Pamplona,Navarra,SPA
+1087,Drammen,Buskerud,NOR
+1088,Valladolid,Castile and León,SPA
+1089,Swansea,Wales,UNK
+1090,Alby with Thwaite,England,UNK
+1091,Villemomble,Ile-de-France,FRA
+1092,Perugia,Umbria,ITA
+1093,Montmorency,Ile-de-France,FRA
+1094,Sète,Languedoc-Roussillon-Midi-Pyrénées,FRA
+1095,Elx,Valenciana,SPA
+1096,Avon,Ile-de-France,FRA
+1097,Duddington-with-Fineshade,England,UNK
+1098,Como,Lombardy,ITA
+1099,Istres,Provence-Alpes-Côte d'Azur,FRA
+1100,Bagnolet,Ile-de-France,FRA
+1101,Stevenage,England,UNK
+1102,Villefontaine,Auvergne-Rhône-Alpes,FRA
+1103,Gloucester,England,UNK
+1104,Dieppe,Normandy,FRA
+1105,Mantes-la-Ville,Ile-de-France,FRA
+1106,Venice,Veneto,ITA
+1107,Les Mureaux,Ile-de-France,FRA
+1108,Peterborough,England,UNK
+1109,Anzio,Lazio,ITA
+1110,Schweinfurt,Bavaria,GER
+1111,Shrewsbury,England,UNK
+1112,Marsala,Sicily,ITA
+1113,Calais,Hauts-de-France,FRA
+1114,Legnano,Lombardy,ITA
+1115,Upplands Väsby,Stockholm,SWE
+1116,Worthing,England,UNK
+1117,La Ciotat,Provence-Alpes-Côte d'Azur,FRA
+1118,Sunderland,England,UNK
+1119,Ipswich,England,UNK
+1120,Grosseto,Tuscany,ITA
+1121,Guidonia Montecelio,Lazio,ITA
+1122,Aix-en-Provence,Provence-Alpes-Côte d'Azur,FRA
+1123,Redditch,England,UNK
+1124,Meaux,Ile-de-France,FRA
+1125,Tremblay-en-France,Ile-de-France,FRA
+1126,Bognor Regis,England,UNK
+1127,Bonneuil-sur-Marne,Ile-de-France,FRA
+1128,Potsdam,Brandenburg,GER
+1129,Bergamo,Lombardy,ITA
+1130,Martigues,Provence-Alpes-Côte d'Azur,FRA
+1131,Thonon-les-Bains,Auvergne-Rhône-Alpes,FRA
+1132,Vagos,Aveiro,POR
+1133,Goring-on-Thames,England,UNK
+1134,Roanne,Auvergne-Rhône-Alpes,FRA
+1135,Manresa,Catalonia,SPA
+1136,Arles,Provence-Alpes-Côte d'Azur,FRA
+1137,Parma,Emilia-Romagna,ITA
+1138,Brussels,Brussels,BEL
+1139,Elbeuf,Normandy,FRA
+1140,Evreux,Normandy,FRA
+1141,Franconville,Ile-de-France,FRA
+1142,Carquefou,Pays de la Loire,FRA
+1143,Villeneuve-la-Garenne,Ile-de-France,FRA
+1144,Saint-Germain-en-Laye,Ile-de-France,FRA
+1145,Gagny,Ile-de-France,FRA
+1146,Sonderborg,South Denmark,DEN
+1147,Nieuwegein,Utrecht,NET
+1148,Thionville,Alsace-Champagne-Ardenne-Lorraine,FRA
+1149,Rosny-sous-Bois,Ile-de-France,FRA
+1150,Darmstadt,Hesse,GER
+1151,Bondy,Ile-de-France,FRA
+1152,Detmold,North Rhine-Westphalia,GER
+1153,Zamora,Castile and León,SPA
+1154,Ferrara,Emilia-Romagna,ITA
+1155,Knook,England,UNK
+1156,Annonay,Auvergne-Rhône-Alpes,FRA
+1157,Dinslaken,North Rhine-Westphalia,GER
+1158,Les Herbiers,Pays de la Loire,FRA
+1159,Cottbus,Brandenburg,GER
+1160,Corbeil-Essonnes,Ile-de-France,FRA
+1161,Barletta,Apulia,ITA
+1162,Groningen,Groningen,NET
+1163,Lons-le-Saunier,Bourgogne-Franche-Comté,FRA
+1164,Gap,Provence-Alpes-Côte d'Azur,FRA
+1165,Bruree,Limerick,IRE
+1166,Passau,Bavaria,GER
+1167,Dormagen,North Rhine-Westphalia,GER
+1168,Dorsten,North Rhine-Westphalia,GER
+1169,Coslada,Madrid,SPA
+1170,Morley,England,UNK
+1171,Malakoff,Ile-de-France,FRA
+1172,Lisbon,Lisbon,POR
+1173,Livingston,Scotland,UNK
+1174,Girona,Catalonia,SPA
+1175,Günzburg,Bavaria,GER
+1176,Gera,Thuringia,GER
+1177,La Spezia,Liguria,ITA
+1178,Whitley,England,UNK
+1179,Pontivy,Brittany,FRA
+1180,Neuilly-sur-Marne,Ile-de-France,FRA
+1181,Brindisi,Apulia,ITA
+1182,Villejuif,Ile-de-France,FRA
+1183,Clichy-sous-Bois,Ile-de-France,FRA
+1184,Cheltenham,England,UNK
+1185,Bry-sur-Marne,Ile-de-France,FRA
+1186,Cropton,England,UNK
+1187,Cambrai,Hauts-de-France,FRA
+1188,El Prat de Llobregat,Catalonia,SPA
+1189,Paisley,Scotland,UNK
+1190,Carvin,Hauts-de-France,FRA
+1191,Flensburg,Schleswig-Holstein,GER
+1192,Suresnes,Ile-de-France,FRA
+1193,Saint-Herblain,Pays de la Loire,FRA
+1194,Tamworth,England,UNK
+1195,Derby,England,UNK
+1196,St. Gallen,St. Gallen,SWI
+1197,Le Pré-Saint-Gervais,Ile-de-France,FRA
+1198,Dortmund,North Rhine-Westphalia,GER
+1199,Vantaa,Uusimaa,FIN
+1200,Albi,Languedoc-Roussillon-Midi-Pyrénées,FRA
+1201,Mijas,Andalusía,SPA
+1202,Meudon,Ile-de-France,FRA
+1203,Fuenlabrada,Madrid,SPA
+1204,Villenave-d'Ornon,Aquitaine-Limousin-Poitou-Charentes,FRA
+1205,Friedberg,Hesse,GER
+1206,Siena,Tuscany,ITA
+1207,Roissy-en-Brie,Ile-de-France,FRA
+1208,Vigo,Galicia,SPA
+1209,Kristiansand,Vest-Agder,NOR
+1210,Letchworth,England,UNK
+1211,Hengelo,Overijssel,NET
+1212,Caserta,Campania,ITA
+1213,Rochefort,Aquitaine-Limousin-Poitou-Charentes,FRA
+1214,La Rochelle,Aquitaine-Limousin-Poitou-Charentes,FRA
+1215,Dos Hermanas,Andalusía,SPA
+1216,Piacenza,Emilia-Romagna,ITA
+1217,Freiburg,Baden-Württemberg,GER
+1218,Pesaro,Marche,ITA
+1219,Torre del Greco,Campania,ITA
+1220,Erlangen,Bavaria,GER
+1221,Kingston on Soar,England,UNK
+1222,Bournemouth,England,UNK
+1223,Roeselare,West Flanders,BEL
+1224,Helsingborg,Skåne,SWE
+1225,Neuilly-Plaisance,Ile-de-France,FRA
+1226,Liverpool,England,UNK
+1227,Rosenheim,Bavaria,GER
+1228,Clichy,Ile-de-France,FRA
+1229,Bourg-en-Bresse,Auvergne-Rhône-Alpes,FRA
+1230,Ponteareas,Galicia,SPA
+1231,Getafe,Madrid,SPA
+1232,Coudekerque-Branche,Hauts-de-France,FRA
+1233,Creil,Hauts-de-France,FRA
+1234,Lugo,Galicia,SPA
+1235,Agde,Languedoc-Roussillon-Midi-Pyrénées,FRA
+1236,Wallasey,England,UNK
+1237,Neunkirchen,Saarland,GER
+1238,Mannheim,Baden-Württemberg,GER
+1239,Benevento,Campania,ITA
+1240,Denain,Hauts-de-France,FRA
+1241,Douai,Hauts-de-France,FRA
+1242,Vichy,Auvergne-Rhône-Alpes,FRA
+1243,Ragusa,Sicily,ITA
+1244,Chelles,Ile-de-France,FRA
+1245,Nuneaton,England,UNK
+1246,Rennes,Brittany,FRA
+1247,Asti,Piedmont,ITA
+1248,Greifswald,Mecklenburg-Vorpommern,GER
+1249,Lunel,Languedoc-Roussillon-Midi-Pyrénées,FRA
+1250,Halmstad,Halland,SWE
+1251,Rueil-Malmaison,Ile-de-France,FRA
+1252,Lormont,Aquitaine-Limousin-Poitou-Charentes,FRA
+1253,Riom,Auvergne-Rhône-Alpes,FRA
+1254,Kettering,England,UNK
+1255,Regensburg,Bavaria,GER
+1256,San Severo,Apulia,ITA
+1257,Bracknell,England,UNK
+1258,Schiedam,South Holland,NET
+1259,Zeist,Utrecht,NET
+1260,Vence,Provence-Alpes-Côte d'Azur,FRA
+1261,Duisburg,North Rhine-Westphalia,GER
+1262,Biarritz,Aquitaine-Limousin-Poitou-Charentes,FRA
+1263,Neuwied,Rhineland-Palatinate,GER
+1264,Portici,Campania,ITA
+1265,Cartagena,Murcia,SPA
+1266,Eggenstein-Leopoldshafen,Baden-Württemberg,GER
+1267,Le Blanc-Mesnil,Ile-de-France,FRA
+1268,Faches-Thumesnil,Hauts-de-France,FRA
+1269,Dunstable,England,UNK
+1270,Bath,England,UNK
+1271,Vitrolles,Provence-Alpes-Côte d'Azur,FRA
+1272,Kotka,Kymenlaakso,FIN
+1273,Ancona,Marche,ITA
+1274,Mechelen,Antwerp,BEL
+1275,Le Pontet,Provence-Alpes-Côte d'Azur,FRA
+1276,Widmerpool,England,UNK
+1277,Alessandria,Piedmont,ITA
+1278,Cremona,Lombardy,ITA
+1279,Graveney with Goodnestone,England,UNK
+1280,Getxo,Basque Country,SPA
+1281,Oullins,Auvergne-Rhône-Alpes,FRA
+1282,Noisy-le-Grand,Ile-de-France,FRA
+1283,Rovigo,Veneto,ITA
+1284,Arezzo,Tuscany,ITA
+1285,Barakaldo,Basque Country,SPA
+1286,Flers,Normandy,FRA
+1287,Mauguio,Languedoc-Roussillon-Midi-Pyrénées,FRA
+1288,Spijkenisse,South Holland,NET
+1289,Southampton,England,UNK
+1290,Chieti,Abruzzi,ITA
+1291,Goussainville,Ile-de-France,FRA
+1292,Genk,Limburg,BEL
+1293,Pamiers,Languedoc-Roussillon-Midi-Pyrénées,FRA
+1294,East Kilbride,Scotland,UNK
+1295,Torremolinos,Andalusía,SPA
+1296,Carrara,Tuscany,ITA
+1297,The Hague,South Holland,NET
+1298,Halluin,Hauts-de-France,FRA
+1299,Hautmont,Hauts-de-France,FRA
+1300,Saint-Gratien,Ile-de-France,FRA
+1301,Potenza,Basilicata,ITA
+1302,Colombes,Ile-de-France,FRA
+1303,Aylesbury,England,UNK
+1304,Chelmsford,England,UNK
+1305,Bitonto,Apulia,ITA
+1306,Grigny,Ile-de-France,FRA
+1307,Klagenfurt,Carinthia,AUS
+1308,Cártama,Andalusía,SPA
+1309,Dreux,Centre-Val de Loire,FRA
+1310,Hazebrouck,Hauts-de-France,FRA
+1311,Lora del Río,Andalusía,SPA
+1312,Pomezia,Lazio,ITA
+1313,Capua,Campania,ITA
+1314,La Teste-de-Buch,Aquitaine-Limousin-Poitou-Charentes,FRA
+1315,Paredes,Porto,POR
+1316,Eindhoven,North Brabant,NET
+1317,Vanves,Ile-de-France,FRA
+1318,Gillingham,England,UNK
+1319,Fulda,Hesse,GER
+1320,Brighton,England,UNK
+1321,Limay,Ile-de-France,FRA
+1322,Draguignan,Provence-Alpes-Côte d'Azur,FRA
+1323,Givors,Auvergne-Rhône-Alpes,FRA
+1324,Halifax,England,UNK
+1325,Oviedo,Asturias,SPA
+1326,St. Michael Penkevil,England,UNK
+1327,Oldham,England,UNK
+1328,Chatham,England,UNK
+1329,Concarneau,Brittany,FRA
+1330,Lecce,Apulia,ITA
+1331,Ennigerloh,North Rhine-Westphalia,GER
+1332,Erftstadt,North Rhine-Westphalia,GER
+1333,Veenendaal,Utrecht,NET
+1334,Norderstedt,Schleswig-Holstein,GER
+1335,Lucca,Tuscany,ITA
+1336,Fleury-les-Aubrais,Centre-Val de Loire,FRA
+1337,Warrington,England,UNK
+1338,Fresnes,Ile-de-France,FRA
+1339,Bremerhaven,Bremen,GER
+1340,Hinckley,England,UNK
+1341,Le Havre,Normandy,FRA
+1342,Maisons-Alfort,Ile-de-France,FRA
+1343,Hayange,Alsace-Champagne-Ardenne-Lorraine,FRA
+1344,Trieste,Friuli-Venezia Giulia,ITA
+1345,Essen,North Rhine-Westphalia,GER
+1346,Montecatini Terme,Tuscany,ITA
+1347,Pontevedra,Galicia,SPA
+1348,Verdun,Alsace-Champagne-Ardenne-Lorraine,FRA
+1349,Les Ulis,Ile-de-France,FRA
+1350,Gonesse,Ile-de-France,FRA
+1351,Auxerre,Bourgogne-Franche-Comté,FRA
+1352,Teramo,Abruzzi,ITA
+1353,La Madeleine,Hauts-de-France,FRA
+1354,Laon,Hauts-de-France,FRA
+1355,Villiers-sur-Marne,Ile-de-France,FRA
+1356,Annemasse,Auvergne-Rhône-Alpes,FRA
+1357,Gardanne,Provence-Alpes-Côte d'Azur,FRA
+1358,Saint-Jean-de-la-Ruelle,Centre-Val de Loire,FRA
+1359,Landerneau,Brittany,FRA
+1360,Millau,Languedoc-Roussillon-Midi-Pyrénées,FRA
+1361,Solna,Stockholm,SWE
+1362,Massa,Tuscany,ITA
+1363,Villeneuve-Saint-Georges,Ile-de-France,FRA
+1364,Knotting,England,UNK
+1365,Trawden Forest,England,UNK
+1366,Haninge,Stockholm,SWE
+1367,Arganil,Coimbra,POR
+1368,Lucerne,Lucerne,SWI
+1369,Clontarf,Dublin,IRE
+1370,Chesterfield,England,UNK
+1371,Ludwigsburg,Baden-Württemberg,GER
+1372,Fano,Marche,ITA
+1373,Bayonne,Aquitaine-Limousin-Poitou-Charentes,FRA
+1374,Wels,Upper Austria,AUS
+1375,Saint-Michel-sur-Orge,Ile-de-France,FRA
+1376,Sallanches,Auvergne-Rhône-Alpes,FRA
+1377,Maastricht,Limburg,NET
+1378,Amersfoort,Utrecht,NET
+1379,Deventer,Overijssel,NET
+1380,Imola,Emilia-Romagna,ITA
+1381,Cavaillon,Provence-Alpes-Côte d'Azur,FRA
+1382,Hereford,England,UNK
+1383,Majadahonda,Madrid,SPA
+1384,Crewe,England,UNK
+1385,Vannes,Brittany,FRA
+1386,Aalen,Baden-Württemberg,GER
+1387,Montigny-le-Bretonneux,Ile-de-France,FRA
+1388,Lens,Hauts-de-France,FRA
+1389,Guildford,England,UNK
+1390,Aalst,East Flanders,BEL
+1391,Cestas,Aquitaine-Limousin-Poitou-Charentes,FRA
+1392,Euskirchen,North Rhine-Westphalia,GER
+1393,Tournai,Hainaut,BEL
+1394,Gelsenkirchen,North Rhine-Westphalia,GER
+1395,Bamberg,Bavaria,GER
+1396,Manfredonia,Apulia,ITA
+1397,Quartu Sant'Elena,Sardinia,ITA
+1398,Reading,England,UNK
+1399,Wolverhampton,England,UNK
+1400,Berne,Bern,SWI
+1401,Stralsund,Mecklenburg-Vorpommern,GER
+1402,Huelva,Andalusía,SPA
+1403,Miramas,Provence-Alpes-Côte d'Azur,FRA
+1404,Avellino,Campania,ITA
+1405,Lausanne,Vaud,SWI
+1406,Gladbeck,North Rhine-Westphalia,GER
+1407,Grevenbroich,North Rhine-Westphalia,GER
+1408,Terras de Bouro,Braga,POR
+1409,Gronau,North Rhine-Westphalia,GER
+1410,Granollers,Catalonia,SPA
+1411,Agrigento,Sicily,ITA
+1412,Choisy-le-Roi,Ile-de-France,FRA
+1413,Wooler,England,UNK
+1414,Sannois,Ile-de-France,FRA
+1415,Gummersbach,North Rhine-Westphalia,GER
+1416,Lille,Hauts-de-France,FRA
+1417,Tournefeuille,Languedoc-Roussillon-Midi-Pyrénées,FRA
+1418,Halesowen,England,UNK
+1419,Montrouge,Ile-de-France,FRA
+1420,Horsey,England,UNK
+1421,Faenza,Emilia-Romagna,ITA
+1422,Cumbernauld,Scotland,UNK
+1423,Gien,Centre-Val de Loire,FRA
+1424,Rillieux-la-Pape,Auvergne-Rhône-Alpes,FRA
+1425,Hagen,North Rhine-Westphalia,GER
+1426,Rambouillet,Ile-de-France,FRA
+1427,Saint-Louis,Alsace-Champagne-Ardenne-Lorraine,FRA
+1428,Civitavecchia,Lazio,ITA
+1429,Gela,Sicily,ITA
+1430,Cercola,Campania,ITA
+1431,Randers,Central Jutland,DEN
+1432,La Baule-Escoublac,Pays de la Loire,FRA
+1433,Offenburg,Baden-Württemberg,GER
+1434,Halle,North Rhine-Westphalia,GER
+1435,Doncaster,England,UNK
+1436,Vertou,Pays de la Loire,FRA
+1437,Pisa,Tuscany,ITA
+1438,Plaisir,Ile-de-France,FRA
+1439,Fontenay-sous-Bois,Ile-de-France,FRA
+1440,Segovia,Castile and León,SPA
+1441,Fontainebleau,Ile-de-France,FRA
+1442,Dronfield,England,UNK
+1443,Koblenz,Rhineland-Palatinate,GER
+1444,Valdemoro,Madrid,SPA
+1445,West Leake,England,UNK
+1446,Venlo,Limburg,NET
+1447,Hildesheim,Lower Saxony,GER
+1448,Villeneuve-le-Roi,Ile-de-France,FRA
+1449,Ivry-sur-Seine,Ile-de-France,FRA
+1450,Southport,England,UNK
+1451,Viterbo,Lazio,ITA
+1452,Oldenburg,Lower Saxony,GER
+1453,Athis-Mons,Ile-de-France,FRA
+1454,Warthill,England,UNK
+1455,Hamm,North Rhine-Westphalia,GER
+1456,Chioggia,Veneto,ITA
+1457,Cuenca,Castile-La Mancha,SPA
+1458,Arnhem,Gelderland,NET
+1459,Treviglio,Lombardy,ITA
+1460,Montereau-Fault-Yonne,Ile-de-France,FRA
+1461,Les Pavillons-sous-Bois,Ile-de-France,FRA
+1462,Stains,Ile-de-France,FRA
+1463,Poissy,Ile-de-France,FRA
+1464,Chevilly-Larue,Ile-de-France,FRA
+1465,Bressuire,Aquitaine-Limousin-Poitou-Charentes,FRA
+1466,Mouscron,Hainaut,BEL
+1467,Hattingen,North Rhine-Westphalia,GER
+1468,Helmond,North Brabant,NET
+1469,Lagny-sur-Marne,Ile-de-France,FRA
+1470,Ploemeur,Brittany,FRA
+1471,Kalundborg,Zealand,DEN
+1472,Olivet,Centre-Val de Loire,FRA
+1473,Falconara Marittima,Marche,ITA
+1474,Langenhagen,Lower Saxony,GER
+1475,Lanester,Brittany,FRA
+1476,Cagnes-sur-Mer,Provence-Alpes-Côte d'Azur,FRA
+1477,Bourgoin-Jallieu,Auvergne-Rhône-Alpes,FRA
+1478,Sartrouville,Ile-de-France,FRA
+1479,Herford,North Rhine-Westphalia,GER
+1480,Herne,North Rhine-Westphalia,GER
+1481,Santiago de Compostela,Galicia,SPA
+1482,Brive-la-Gaillarde,Aquitaine-Limousin-Poitou-Charentes,FRA
+1483,Illkirch-Graffenstaden,Alsace-Champagne-Ardenne-Lorraine,FRA
+1484,Kaiserslautern,Rhineland-Palatinate,GER
+1485,Tivoli,Lazio,ITA
+1486,Herten,North Rhine-Westphalia,GER
+1487,Hartlepool,England,UNK
+1488,Den Helder,North Holland,NET
+1489,Haarlem,North Holland,NET
+1490,Hove,England,UNK
+1491,Savona,Liguria,ITA
+1492,Castelnau-le-Lez,Languedoc-Roussillon-Midi-Pyrénées,FRA
+1493,Gallarate,Lombardy,ITA
+1494,Montgeron,Ile-de-France,FRA
+1495,Hamme,East Flanders,BEL
+1496,Peer,Limburg,BEL
+1497,Saumur,Pays de la Loire,FRA
+1498,Lorca,Murcia,SPA
+1499,Lohne,Lower Saxony,GER
+1500,Verviers,Liège,BEL
+1501,Zwolle,Overijssel,NET
+1502,Sucy-en-Brie,Ile-de-France,FRA
+1503,Cosenza,Calabria,ITA
+1504,Waiblingen,Baden-Württemberg,GER
+1505,Cuneo,Piedmont,ITA
+1506,Saint-Cyr-sur-Loire,Centre-Val de Loire,FRA
+1507,Saint-Dizier,Alsace-Champagne-Ardenne-Lorraine,FRA
+1508,Le Petit-Quevilly,Normandy,FRA
+1509,Chiclana de la Frontera,Andalusía,SPA
+1510,Hilden,North Rhine-Westphalia,GER
+1511,Iserlohn,North Rhine-Westphalia,GER
+1512,Kerpen,North Rhine-Westphalia,GER
+1513,Auch,Languedoc-Roussillon-Midi-Pyrénées,FRA
+1514,Guadalajara,Castile-La Mancha,SPA
+1515,Krefeld,North Rhine-Westphalia,GER
+1516,Naumburg,Saxony-Anhalt,GER
+1517,Troyes,Alsace-Champagne-Ardenne-Lorraine,FRA
+1518,Lingolsheim,Alsace-Champagne-Ardenne-Lorraine,FRA
+1519,Plaisance-du-Touch,Languedoc-Roussillon-Midi-Pyrénées,FRA
+1520,Salon-de-Provence,Provence-Alpes-Côte d'Azur,FRA
+1521,Loos,Hauts-de-France,FRA
+1522,Lisieux,Normandy,FRA
+1523,Caluire-et-Cuire,Auvergne-Rhône-Alpes,FRA
+1524,Terneuzen,Zeeland,NET
+1525,Douarnenez,Brittany,FRA
+1526,Carpi,Emilia-Romagna,ITA
+1527,Palencia,Castile and León,SPA
+1528,Rubí,Catalonia,SPA
+1529,Munster,Lower Saxony,GER
+1530,Maubeuge,Hauts-de-France,FRA
+1531,La Celle-Saint-Cloud,Ile-de-France,FRA
+1532,Mons-en-Baroeul,Hauts-de-France,FRA
+1533,Langenfeld,North Rhine-Westphalia,GER
+1534,Aix-les-Bains,Auvergne-Rhône-Alpes,FRA
+1535,Orsay,Ile-de-France,FRA
+1536,Landskrona,Skåne,SWE
+1537,Puteaux,Ile-de-France,FRA
+1538,Hilversum,North Holland,NET
+1539,Leverkusen,North Rhine-Westphalia,GER
+1540,Nogent-sur-Oise,Hauts-de-France,FRA
+1541,Trani,Apulia,ITA
+1542,Vaulx-en-Velin,Auvergne-Rhône-Alpes,FRA
+1543,Poitiers,Aquitaine-Limousin-Poitou-Charentes,FRA
+1544,Louviers,Normandy,FRA
+1545,Lippstadt,North Rhine-Westphalia,GER
+1546,Outreau,Hauts-de-France,FRA
+1547,Melun,Ile-de-France,FRA
+1548,Marl,North Rhine-Westphalia,GER
+1549,Moulins,Auvergne-Rhône-Alpes,FRA
+1550,Chatou,Ile-de-France,FRA
+1551,Menden,North Rhine-Westphalia,GER
+1552,Cachan,Ile-de-France,FRA
+1553,Ronchin,Hauts-de-France,FRA
+1554,La Chapelle-sur-Erdre,Pays de la Loire,FRA
+1555,Clydach,Wales,UNK
+1556,Cinisello Balsamo,Lombardy,ITA
+1557,Eragny,Ile-de-France,FRA
+1558,Mont-Saint-Aignan,Normandy,FRA
+1559,Minden,North Rhine-Westphalia,GER
+1560,Moers,North Rhine-Westphalia,GER
+1561,Boscoreale,Campania,ITA
+1562,Rottingdean,England,UNK
+1563,Barton in Fabis,England,UNK
+1564,Roubaix,Hauts-de-France,FRA
+1565,Melilla,Melilla,SPA
+1566,Dole,Bourgogne-Franche-Comté,FRA
+1567,Montbrison,Auvergne-Rhône-Alpes,FRA
+1568,Oberhausen,North Rhine-Westphalia,GER
+1569,Orihuela,Valenciana,SPA
+1570,Senlis,Hauts-de-France,FRA
+1571,Varese,Lombardy,ITA
+1572,Bergerac,Aquitaine-Limousin-Poitou-Charentes,FRA
+1573,Le Creusot,Bourgogne-Franche-Comté,FRA
+1574,Le Cannet,Provence-Alpes-Côte d'Azur,FRA
+1575,Saint-Pierre-des-Corps,Centre-Val de Loire,FRA
+1576,Kilwinning,Scotland,UNK
+1577,Savigny-le-Temple,Ile-de-France,FRA
+1578,Oss,North Brabant,NET
+1579,Bayreuth,Bavaria,GER
+1580,Purmerend,North Holland,NET
+1581,Saint-Quentin,Hauts-de-France,FRA
+1582,Blanquefort,Aquitaine-Limousin-Poitou-Charentes,FRA
+1583,El Escorial,Madrid,SPA
+1584,Darlington,England,UNK
+1585,Barneveld,Gelderland,NET
+1586,Rouen,Normandy,FRA
+1587,Vignola,Emilia-Romagna,ITA
+1588,Soissons,Hauts-de-France,FRA
+1589,Uithoorn,North Holland,NET
+1590,Burgerbrug,North Holland,NET
+1591,Allauch,Provence-Alpes-Côte d'Azur,FRA
+1592,Sanary-sur-Mer,Provence-Alpes-Côte d'Azur,FRA
+1593,Tourcoing,Hauts-de-France,FRA
+1594,Bebington,England,UNK
+1595,Paderborn,North Rhine-Westphalia,GER
+1596,Dartford,England,UNK
+1597,Basingstoke,England,UNK
+1598,Bideford,England,UNK
+1599,Montceau-les-Mines,Bourgogne-Franche-Comté,FRA
+1600,Batalha,Leiria,POR
+1601,Libourne,Aquitaine-Limousin-Poitou-Charentes,FRA
+1602,Pulheim,North Rhine-Westphalia,GER
+1603,Annecy-le-Vieux,Auvergne-Rhône-Alpes,FRA
+1604,Lannion,Brittany,FRA
+1605,Ratingen,North Rhine-Westphalia,GER
+1606,Kortrijk,West Flanders,BEL
+1607,Recklinghausen,North Rhine-Westphalia,GER
+1608,Remscheid,North Rhine-Westphalia,GER
+1609,Ashford,England,UNK
+1610,Foligno,Umbria,ITA
+1611,Hardenberg,Overijssel,NET
+1612,Issoire,Auvergne-Rhône-Alpes,FRA
+1613,Rheine,North Rhine-Westphalia,GER
+1614,Roosendaal,North Brabant,NET
+1615,Hamar,Hedmark,NOR
+1616,Siegen,North Rhine-Westphalia,GER
+1617,Casoria,Campania,ITA
+1618,Marly-le-Roi,Ile-de-France,FRA
+1619,Solingen,North Rhine-Westphalia,GER
+1620,Valenciennes,Hauts-de-France,FRA
+1621,Lattes,Languedoc-Roussillon-Midi-Pyrénées,FRA
+1622,Cournon-d'Auvergne,Auvergne-Rhône-Alpes,FRA
+1623,Villeneuve-d'Ascq,Hauts-de-France,FRA
+1624,Villeparisis,Ile-de-France,FRA
+1625,Stadtlohn,North Rhine-Westphalia,GER
+1626,Stolberg,North Rhine-Westphalia,GER
+1627,Tilburg,North Brabant,NET
+1628,Torcy,Ile-de-France,FRA
+1629,Vittoria,Sicily,ITA
+1630,Schiffweiler,Saarland,GER
+1631,Roermond,Limburg,NET
+1632,Voiron,Auvergne-Rhône-Alpes,FRA
+1633,Slootdorp,North Holland,NET
+1634,Wasquehal,Hauts-de-France,FRA
+1635,Afragola,Campania,ITA
+1636,Loures,Lisbon,POR
+1637,Odivelas,Lisbon,POR
+1638,Wattrelos,Hauts-de-France,FRA
+1639,Doetinchem,Gelderland,NET
+1640,Capannori,Tuscany,ITA
+1641,Troisdorf,North Rhine-Westphalia,GER
+1642,Acerra,Campania,ITA
+1643,Sorgues,Provence-Alpes-Côte d'Azur,FRA
+1644,Unna,North Rhine-Westphalia,GER
+1645,Velbert,North Rhine-Westphalia,GER
+1646,Wilhelmshaven,Lower Saxony,GER
+1647,Fontenay-le-Comte,Pays de la Loire,FRA
+1648,Wolfsburg,Lower Saxony,GER
+1649,Viersen,North Rhine-Westphalia,GER
+1650,Northwich,England,UNK
+1651,Willich,North Rhine-Westphalia,GER
+1652,Witten,North Rhine-Westphalia,GER
+1653,Briton Ferry,Wales,UNK
+1654,Ris-Orangis,Ile-de-France,FRA
+1655,Wuppertal,North Rhine-Westphalia,GER
+1656,Gandia,Valenciana,SPA
+1657,Vlaardingen,South Holland,NET
+1658,Vigevano,Lombardy,ITA
+1659,Les Clayes-sous-Bois,Ile-de-France,FRA
+1660,Vernon,Normandy,FRA
