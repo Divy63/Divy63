@@ -115,6 +115,8 @@ public class App {
                 db.showCategories();
             } else if (parts[0].equals("sSubCategories")) {
                 db.showSubCategories();
+            } else if (parts[0].equals("sRegions")) {
+                db.showRegions();
             }
 
             else {
@@ -137,6 +139,8 @@ public class App {
                 "\tgcID <part of the name of customer> - Gets the Name of all the customer with 'part of the name of the customer' int their name");
         System.out.println(
                 "\tsc - Show all the Countries along with their Country Code");
+        System.out.println(
+                "\tsRegions - Show all the Regions");
         System.out.println(
                 "\tscategories - Show all the Categories");
         System.out.println(

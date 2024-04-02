@@ -463,7 +463,70 @@ public class Database {
         }
     }
 
+    public void showRegions() {
+        try {// try
+             // SQL QUERY
+            String query = "SELECT regionID,name from Region";
+
+            PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
+
+            ResultSet result = pstmt.executeQuery();// executing query
+            System.out.println("Searching the database for Regions");
+            System.out.println(
+                    "------------------------------------------------");
+            System.out.println("List of available regions:");
+            int n = 1;
+            // Printing the results of query
+            while (result.next()) {
+                System.out.print(n + ") ");
+                System.out.println(
+                        "Region Name" + result.getString("name") + ", Region Code: "
+                                + result.getString("regionID"));
+
+                n++;
+            }
+            result.close();
+            pstmt.close();
+
+            System.out.println("Query executed!");
+        } catch (SQLException sql) {// catch block
+            sql.printStackTrace(System.out);
+        }
+    }
+
     public void returnedByRegion(String regionName) {
+        try {// try
+             // SQL QUERY
+            String query = "SELECT DISTINCT p.name AS prod_name\r\n" + //
+                    "FROM Products p\r\n" + //
+                    "JOIN OrderDetails od ON p.prodID = od.prodID\r\n" + //
+                    "JOIN Order o ON od.orderID = o.orderID\r\n" + //
+                    "JOIN Store s ON o.storeID=s.storeID\r\n" + //
+                    "JOIN Region r ON s.regionID=r.regionID \r\n" + //
+                    "WHERE r.name='?' and o.isReturned=1;\r\n";
+
+            PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
+            pstmt.setString(1, regionName);
+            ResultSet result = pstmt.executeQuery();// executing query
+            System.out.println(
+                    "\nSearching database for returned products in region \"" + regionName + "\" :");
+            System.out
+                    .println(
+                            "-------------------------------------------------------------------------------------------");
+            System.out.println("Products returned in region\"" + regionName + "\": ");
+            int n = 1;
+            while (result.next()) {
+                System.out
+                        .println("\t" + n + ")" + result.getString("prod_name"));
+                n++;
+            }
+            result.close();
+            pstmt.close();
+
+            System.out.println("Query executed!");
+        } catch (SQLException sql) {// catch block
+            sql.printStackTrace(System.out);
+        }
         System.out.println("Returned by Region not implemented yet!!!");
     }
 
