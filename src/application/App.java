@@ -100,10 +100,16 @@ public class App {
                     System.out.println("Require an argument for this command");
                 }
             } else if (parts[0].equals("exceed")) {
-                db.exceed7();
+                if (parts.length >= 2) {
+                    db.exceedXShipMode(Integer.parseInt(parts[3]));
+                } else {
+                    System.out.println("Require an argument for this command");
+                }
             } else if (parts[0].equals("lra")) {
                 if (parts.length >= 2) {
                     db.largestReturnedAmount(Integer.parseInt(parts[1]));
+                } else {
+                    System.out.println("Require an argument for this command");
                 }
             } else if (parts[0].equals("sc")) {
                 db.showCountries();
@@ -111,6 +117,8 @@ public class App {
             } else if (parts[0].equals("gcID")) {
                 if (parts.length >= 2) {
                     db.showPeople(parts[2]);
+                } else {
+                    System.out.println("Require an argument for this command");
                 }
 
             } else if (parts[0].equals("scategories")) {

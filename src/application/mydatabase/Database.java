@@ -562,7 +562,40 @@ public class Database {
         }
     }
 
-    public void exceed7() {
+    public void exceedXShipMode(int x) {
+        try {// try
+             // SQL QUERY
+            String query = "SELECT o.shipMode as ship_mode, AVG(julianday(o.shipDate) - julianday(o.orderDate)) AS avg_days_to_ship,o.orderID as orderID\r\n"
+                    + //
+                    "FROM Order o\r\n" + //
+                    "JOIN OrderDetails od ON o.orderID = od.orderID \r\n" +
+                    "GROUP BY o.shipMode, od.orderID\r\n" +
+                    "HAVING SUM(od.quantity) > 7;";
+
+            PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
+            pstmt.setInt(1, x);
+            ResultSet result = pstmt.executeQuery();// executing query
+            System.out.println(
+                    "Searching the database for ship modes of order  quantities greater than " + x + " :");
+            System.out.println(
+                    "----------------------------------------------------------------------------------------------");
+            System.out.println("Ship Modes of  orders with quantity greater than " + x + ": ");
+            // Printing the results of query
+            int n = 1;
+            while (result.next()) {
+                System.out.println(
+                        "\t" + n + ") " + result.getString("orderID") + " - "
+                                + "Ship Mode: " + result.getString("ship_mode") + ", Average Shipping Time: "
+                                + result.getString("avg_days_to_ship"));
+                n++;
+            }
+            result.close();
+            pstmt.close();
+
+            System.out.println("Query executed!");
+        } catch (SQLException sql) {// catch block
+            sql.printStackTrace(System.out);
+        }
         System.out.println("exceed 7 is not implemented yet!!!");
     }
 
