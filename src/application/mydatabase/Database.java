@@ -112,6 +112,37 @@ public class Database {
         }
     }
 
+    public void showSubCategories() {
+        try {// try
+             // SQL QUERY
+            String query = "SELECT subCatID,name from SubCategory";
+
+            PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
+
+            ResultSet result = pstmt.executeQuery();// executing query
+            System.out.println("Searching the database for categories");
+            System.out.println(
+                    "------------------------------------------------");
+            System.out.println("List of available sub-categories with their IDs:");
+            int n = 1;
+            // Printing the results of query
+            while (result.next()) {
+                System.out.print(n + ") ");
+                System.out.println(
+                        "Sub-Category Name: " + result.getString("name") + ", Sub-Category ID: "
+                                + result.getString("subCatID"));
+
+                n++;
+            }
+            result.close();
+            pstmt.close();
+
+            System.out.println("Query executed!");
+        } catch (SQLException sql) {// catch block
+            sql.printStackTrace(System.out);
+        }
+    }
+
     public void storeProfitByCountry(int countryLimit) {
         try {// try
              // SQL QUERY
@@ -360,10 +391,43 @@ public class Database {
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
-        System.out.println("salesSummaryByCategory not implemented yet!!!");
     }
 
     public void subCategoryInventory() {
+        try {// try
+             // SQL QUERY
+            String query = "SELECT c.name as category, sb.name as subcategory, count(prodID) AS num_products, SUM(od.quantity) AS total_quantity_sold\r\n"
+                    + //
+                    "FROM products p\r\n" + //
+                    "JOIN SubCategory sb ON p.subCatID = sb.subCatID\r\n" + //
+                    "JOIN Category c ON sb.catID = c.catID\r\n" + //
+                    "JOIN OrderDetails od ON p.prodID = od.prodID\r\n" + //
+                    "JOIN Order o ON od.orderID = o.orderID\r\n" + //
+                    "GROUP BY sb.subCatID, od.orderID, c.name, sb.name\r\n" + //
+                    "HAVING o.isReturned = 0\r\n" + //
+                    "ORDER BY c.name, num_products desc;";
+
+            PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
+
+            ResultSet result = pstmt.executeQuery();// executing query
+            System.out.println("\nSearching database for distinct products in each sub category :");
+            System.out
+                    .println("--------------------------------------------------------------------------------------");
+            int n = 1;
+            while (result.next()) {
+                System.out
+                        .println("\t" + n + ") Number of Products:" + result.getInt("num_products") + ", Sub-Category: "
+                                + result.getString("subcategory") + ", Category: "
+                                + result.getInt("category"));
+                n++;
+            }
+            result.close();
+            pstmt.close();
+
+            System.out.println("Query executed!");
+        } catch (SQLException sql) {// catch block
+            sql.printStackTrace(System.out);
+        }
         System.out.println("subCategoryInventory not implemented yet!!");
     }
 

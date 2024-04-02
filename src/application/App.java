@@ -111,8 +111,10 @@ public class App {
                     db.showPeople(parts[2]);
                 }
 
-            }else if(parts[0].equals("scategories")){
+            } else if (parts[0].equals("scategories")) {
                 db.showCategories();
+            } else if (parts[0].equals("sSubCategories")) {
+                db.showSubCategories();
             }
 
             else {
