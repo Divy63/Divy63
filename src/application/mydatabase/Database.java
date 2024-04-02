@@ -428,11 +428,39 @@ public class Database {
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
-        System.out.println("subCategoryInventory not implemented yet!!");
     }
 
     public void returnedProducts(String customerID) {
-        System.out.println("Returned products not implemented yet!!!");
+        try {// try
+             // SQL QUERY
+            String query = "SELECT DISTINCT p.name AS prod_name\r\n" + //
+                    "FROM Products p\r\n" + //
+                    "JOIN OrderDetails od ON p.prodID = od.prodID\r\n" + //
+                    "JOIN Order o ON od.orderID = o.orderID\r\n" + //
+                    "JOIN Customer c ON o.custID=o.custID WHERE c.custID='?' and o.isReturned=1;\r\n";
+
+            PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
+            pstmt.setString(1, customerID);
+            ResultSet result = pstmt.executeQuery();// executing query
+            System.out.println(
+                    "\nSearching database for returned products of customer with customer ID \"" + customerID + "\" :");
+            System.out
+                    .println(
+                            "-------------------------------------------------------------------------------------------");
+            System.out.println("Products returned by customer with customer ID \"" + customerID + "\": ");
+            int n = 1;
+            while (result.next()) {
+                System.out
+                        .println("\t" + n + ")" + result.getString("prod_name"));
+                n++;
+            }
+            result.close();
+            pstmt.close();
+
+            System.out.println("Query executed!");
+        } catch (SQLException sql) {// catch block
+            sql.printStackTrace(System.out);
+        }
     }
 
     public void returnedByRegion(String regionName) {
