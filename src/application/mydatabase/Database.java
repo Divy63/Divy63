@@ -18,34 +18,35 @@ public class Database {
 
     }
 
-    public void showPeople(String partOfName){
+    public void showPeople(String partOfName) {
         try {// try
-            // SQL QUERY
-           String query = "SELECT c.fname as First, c.lnamed as Last, c.custID as custID FROM Customer c WHERE First LIKE ? OR Last LIKE ?;";
+             // SQL QUERY
+            String query = "SELECT c.fname as First, c.lnamed as Last, c.custID as custID FROM Customer c WHERE First LIKE ? OR Last LIKE ?;";
 
-           PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
-            pstmt.setString(1,partOfName);
+            PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
+            pstmt.setString(1, partOfName);
             pstmt.setString(2, partOfName);
-           ResultSet result = pstmt.executeQuery();// executing query
-           System.out.println("Searching the database for people with \""+partOfName+"\" in their name");
-           System.out.println(
-                   "------------------------------------------------------------------------------");
-           System.out.println("List of available people:");
-           int n = 1;
-           // Printing the results of query
-           while (result.next()) {
-               System.out.print(n + ") ");
-               System.out.println(
-                      "CustomerID: "+result.getString("custID") +", Name: " + result.getString("First") + result.getString("Last"));
-               n++;
-           }
-           result.close();
-           pstmt.close();
+            ResultSet result = pstmt.executeQuery();// executing query
+            System.out.println("Searching the database for people with \"" + partOfName + "\" in their name");
+            System.out.println(
+                    "------------------------------------------------------------------------------");
+            System.out.println("List of available people:");
+            int n = 1;
+            // Printing the results of query
+            while (result.next()) {
+                System.out.print(n + ") ");
+                System.out.println(
+                        "CustomerID: " + result.getString("custID") + ", Name: " + result.getString("First")
+                                + result.getString("Last"));
+                n++;
+            }
+            result.close();
+            pstmt.close();
 
-           System.out.println("Query executed!");
-       } catch (SQLException sql) {// catch block
-           sql.printStackTrace(System.out);
-       }
+            System.out.println("Query executed!");
+        } catch (SQLException sql) {// catch block
+            sql.printStackTrace(System.out);
+        }
 
     }
 
@@ -164,6 +165,7 @@ public class Database {
             System.out.println(
                     "-------------------------------------------------------------------------------------------------");
             System.out.println("Country:  " + result.getString("country_name"));
+            int n = 1;
             // Printing the results of query
             while (result.next()) {
                 System.out.print(n + ")");
@@ -256,17 +258,47 @@ public class Database {
     }
 
     public void shippingDetails(String orderID) {
-        // System.out.println("shippingDetails not implemented yet!!");
-        // delete the hard coded, I ran java code get the values.
-        System.out.println("\nSearching database for order with ID \'" + orderID + "\'");
-        System.out.println("--------------------------------------------------------------------------------------");
-        System.out.println("Shipping Mode - Standard Class");
-        System.out.println("Products:");
-        System.out.println("\t1) Digium D40 VoIP phone");
-        System.out.println("\t2) Prismacolor Color Pencil Set");
-        System.out.println("\t3) Tennsco Industrial Shelving");
-        System.out.println("\t4) Xerox 1914");
-        System.out.println();
+        try {// try
+             // SQL QUERY
+            String query = "SELECT p.name as name, p.price as price, o.shipMode as shipMode\r\n" + //
+                    "FROM Product p\r\n" + //
+                    "INNER JOIN OrderDetails c ON p.prodID = c.prodID \r\n" + //
+                    "INNER JOIN Order o ON c.orderID = o.orderID \r\n" + //
+                    "WHERE o.orderID = ?;\r\n" + //
+                    "";
+
+            PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
+            pstmt.setString(1, orderID);
+
+            ResultSet result = pstmt.executeQuery();// executing query
+            System.out.println("\nSearching database for order with ID \'" + orderID + "\'");
+            System.out
+                    .println("--------------------------------------------------------------------------------------");
+            System.out.println("Shipping Mode -" + result.getString("shipMode"));
+            int n = 1;
+            while (result.next()) {
+                System.out.println("\t" + n + ") " + result.getString("name"));
+                n++;
+            }
+            result.close();
+            pstmt.close();
+
+            System.out.println("Query executed!");
+        } catch (SQLException sql) {// catch block
+            sql.printStackTrace(System.out);
+        }
+        // // System.out.println("shippingDetails not implemented yet!!");
+        // // delete the hard coded, I ran java code get the values.
+        // System.out.println("\nSearching database for order with ID \'" + orderID +
+        // "\'");
+        // System.out.println("--------------------------------------------------------------------------------------");
+        // System.out.println("Shipping Mode - Standard Class");
+        // System.out.println("Products:");
+        // System.out.println("\t1) Digium D40 VoIP phone");
+        // System.out.println("\t2) Prismacolor Color Pencil Set");
+        // System.out.println("\t3) Tennsco Industrial Shelving");
+        // System.out.println("\t4) Xerox 1914");
+        // System.out.println();
     }
 
     public void salesSummaryByCategory(String categoryName) {
