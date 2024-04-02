@@ -18,6 +18,68 @@ public class Database {
 
     }
 
+    public void showPeople(String partOfName){
+        try {// try
+            // SQL QUERY
+           String query = "SELECT c.fname as First, c.lnamed as Last, c.custID as custID FROM Customer c WHERE First LIKE ? OR Last LIKE ?;";
+
+           PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
+            pstmt.setString(1,partOfName);
+            pstmt.setString(2, partOfName);
+           ResultSet result = pstmt.executeQuery();// executing query
+           System.out.println("Searching the database for people with \""+partOfName+"\" in their name");
+           System.out.println(
+                   "------------------------------------------------------------------------------");
+           System.out.println("List of available people:");
+           int n = 1;
+           // Printing the results of query
+           while (result.next()) {
+               System.out.print(n + ") ");
+               System.out.println(
+                      "CustomerID: "+result.getString("custID") +", Name: " + result.getString("First") + result.getString("Last"));
+               n++;
+           }
+           result.close();
+           pstmt.close();
+
+           System.out.println("Query executed!");
+       } catch (SQLException sql) {// catch block
+           sql.printStackTrace(System.out);
+       }
+
+    }
+
+    public void showCountries() {
+        try {// try
+             // SQL QUERY
+            String query = "SELECT countryCode,name from Country";
+
+            PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
+
+            ResultSet result = pstmt.executeQuery();// executing query
+            System.out.println("Searching the database for countries");
+            System.out.println(
+                    "------------------------------------------------");
+            System.out.println("List of available countries:");
+            int n = 1;
+            // Printing the results of query
+            while (result.next()) {
+                System.out.print(n + ") ");
+                System.out.println(
+                        "Country Name" + result.getString("name") + ", Country Code: "
+                                + result.getString("name"));
+
+                n++;
+            }
+            result.close();
+            pstmt.close();
+
+            System.out.println("Query executed!");
+        } catch (SQLException sql) {// catch block
+            sql.printStackTrace(System.out);
+        }
+    }
+
     public void storeProfitByCountry(int countryLimit) {
         try {// try
              // SQL QUERY
@@ -30,10 +92,10 @@ public class Database {
                     "JOIN OrderDetails od ON o.orderID = od.orderID\r\n" + //
                     "GROUP BY c.countryCode\r\n" + //
                     "ORDER BY num_stores DESC\r\n" + //
-                    "LIMIT ? ;";
+                    "TOP ? ;";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
-            pstmt.setString(1, countryLimit);
+            pstmt.setInt(1, countryLimit);
 
             ResultSet result = pstmt.executeQuery();// executing query
             System.out.println("Searching the database");
@@ -89,7 +151,7 @@ public class Database {
                     "WHERE c_inner.catID = c.catID AND con_inner.countryCode = con.countryCode\r\n" + //
                     "GROUP BY c_inner.catID, s_inner.storeID\r\n" + //
                     "\tORDER BY count(p.prodID) DESC\r\n" + //
-                    "\tLIMIT 1 )\r\n" + //
+                    "\tTOP 1 )\r\n" + //
                     "ORDER BY c.name, total_products DESC;\r\n" + //
                     "";
 
@@ -125,39 +187,71 @@ public class Database {
 
     public void returnedItemCount(String customerID) {
         try {// try
-            // SQL QUERY
-           String query = "SELECT COUNT(*) AS returned_items_count, c.fname as First,c.lname as Last\r\n" + //
-                              "FROM Customer c\r\n" + //
-                              "JOIN Orders o ON c.custID = o.custID\r\n" + //
-                              "WHERE c.custID = '?'\r\n" + //
-                              "AND o.isReturned = 1;\r\n" + //
-                              "";
+             // SQL QUERY
+            String query = "SELECT COUNT(*) AS returned_items_count, c.fname as First,c.lname as Last\r\n" + //
+                    "FROM Customer c\r\n" + //
+                    "JOIN Orders o ON c.custID = o.custID\r\n" + //
+                    "WHERE c.custID = '?'\r\n" + //
+                    "AND o.isReturned = 1;";
 
-           PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
-           pstmt.setString(1, customerID);
+            PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
+            pstmt.setString(1, customerID);
 
-           ResultSet result = pstmt.executeQuery();// executing query
-           System.out.println(
-                "\nSearching database for number of items returned by customer with id \'" + customerID + "\'");
-        System.out.println("--------------------------------------------------------------------------------------");
-        System.out.println(result.getString(Last)+",  "+result.getString(First)+": "+result.getInt(returnedItemCount(customerID)));
-    
-           result.close();
-           pstmt.close();
+            ResultSet result = pstmt.executeQuery();// executing query
+            System.out.println(
+                    "\nSearching database for number of items returned by customer with id \'" + customerID + "\'");
+            System.out
+                    .println("--------------------------------------------------------------------------------------");
+            System.out.println(result.getString("Last") + ",  " + result.getString("First") + ": "
+                    + result.getString("returned_item_count"));
 
-           System.out.println("Query executed!");
-       } catch (SQLException sql) {// catch block
-           sql.printStackTrace(System.out);
-       }
+            result.close();
+            pstmt.close();
+
+            System.out.println("Query executed!");
+        } catch (SQLException sql) {// catch block
+            sql.printStackTrace(System.out);
+        }
         // // System.out.println("returnedItemCount not implemented yet!!");
         // // delete the hard coded, I ran java code get the values.
         // System.out.println(
-        //         "\nSearching database for number of items returned by customer with id \'" + customerID + "\'");
+        // "\nSearching database for number of items returned by customer with id \'" +
+        // customerID + "\'");
         // System.out.println("--------------------------------------------------------------------------------------");
         // System.out.println("Nat, Gilpin - 11\n");
     }
 
-    public void discountedProducts(String categoryName) {
+    public void discountedProducts(String categoryName, int discount) {
+        try {// try
+             // SQL QUERY
+            String query = "SELECT p.name as product_name, p.price as price, p.discount as discounts\r\n" + //
+                    "FROM Product p\r\n" + //
+                    "INNER JOIN Category c ON p.categoryID = c.id  \r\n" + //
+                    "WHERE p.discount > ? \r\n" + //
+                    "AND c.name = '?';";
+
+            PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
+            pstmt.setString(2, categoryName);
+            pstmt.setInt(1, discount);
+
+            ResultSet result = pstmt.executeQuery();// executing query
+            System.out.println(
+                    "\nSearching database discounted items in category" + categoryName
+                            + " with discount greater than or equal to " + discount + ": ");
+            System.out.println(
+                    "----------------------------------------------------------------------------------------------------------------");
+            int n = 1;
+            while (result.next()) {
+                System.out.println(n + ") " + "Product Name: " + result.getString("product_name") + ", Price:"
+                        + result.getInt("price") + ", " + result.getInt("discounts") + "% off.");
+            }
+            result.close();
+            pstmt.close();
+
+            System.out.println("Query executed!");
+        } catch (SQLException sql) {// catch block
+            sql.printStackTrace(System.out);
+        }
         System.out.println("discountedProducts not implemented yet !!!");
     }
 
