@@ -124,12 +124,37 @@ public class Database {
     }
 
     public void returnedItemCount(String customerID) {
-        // System.out.println("returnedItemCount not implemented yet!!");
-        // delete the hard coded, I ran java code get the values.
-        System.out.println(
+        try {// try
+            // SQL QUERY
+           String query = "SELECT COUNT(*) AS returned_items_count, c.fname as First,c.lname as Last\r\n" + //
+                              "FROM Customer c\r\n" + //
+                              "JOIN Orders o ON c.custID = o.custID\r\n" + //
+                              "WHERE c.custID = '?'\r\n" + //
+                              "AND o.isReturned = 1;\r\n" + //
+                              "";
+
+           PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
+           pstmt.setString(1, customerID);
+
+           ResultSet result = pstmt.executeQuery();// executing query
+           System.out.println(
                 "\nSearching database for number of items returned by customer with id \'" + customerID + "\'");
         System.out.println("--------------------------------------------------------------------------------------");
-        System.out.println("Nat, Gilpin - 11\n");
+        System.out.println(result.getString(Last)+",  "+result.getString(First)+": "+result.getInt(returnedItemCount(customerID)));
+    
+           result.close();
+           pstmt.close();
+
+           System.out.println("Query executed!");
+       } catch (SQLException sql) {// catch block
+           sql.printStackTrace(System.out);
+       }
+        // // System.out.println("returnedItemCount not implemented yet!!");
+        // // delete the hard coded, I ran java code get the values.
+        // System.out.println(
+        //         "\nSearching database for number of items returned by customer with id \'" + customerID + "\'");
+        // System.out.println("--------------------------------------------------------------------------------------");
+        // System.out.println("Nat, Gilpin - 11\n");
     }
 
     public void discountedProducts(String categoryName) {
