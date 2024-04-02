@@ -377,7 +377,7 @@ public class cleanup {
 
             // Adding title to the first line
             String firstLine = odScanner.nextLine();
-            firstLine += ",Product Price";
+            firstLine += ",prod_price";
             fileData.add(firstLine);
 
             // Going through all lines in the file and getting dicounte price
@@ -389,9 +389,11 @@ public class cleanup {
                 double discount = Double.parseDouble(temp[17]);
                 int quantity = Integer.parseInt(temp[16]);  
                 
-                    double eachPrice = getDiscountedPrice(price, discount, quantity);                    data += ',' + eachPrice;
+                double eachPrice = getDiscountedPrice(price, discount, quantity);
+                
+                data += "," + eachPrice;
+                
 
-                    data += ',' + eachPrice;
                 fileData.add(data);
             }
             odScanner.close();
@@ -403,7 +405,7 @@ public class cleanup {
          * Writing the updated lines back in the file
          */
         try {
-            Writer out = new BufferedWriter(new FileWriter("final-data-files/new-order-details.csv"));
+            Writer out = new BufferedWriter(new FileWriter("final-data-files/order-details.csv"));
             for (String d : fileData) {
                 out.write(d + "\n");
             }
