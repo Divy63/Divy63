@@ -18,6 +18,10 @@ public class Database {
 
     }
 
+    public void initializeDatabase(){
+        
+    }
+
     public void showPeople(String partOfName) {
         try {// try
              // SQL QUERY
