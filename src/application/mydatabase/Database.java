@@ -531,6 +531,35 @@ public class Database {
     }
 
     public void averagePrice(String categoryID) {
+        try {// try
+             // SQL QUERY
+            String query = "SELECT AVG(p.price) AS averagePrice,c.name as name\r\n" + //
+                    "FROM Product p\r\n" + //
+                    "JOIN SubCategory s ON p.subCatID=s.subCatID\r\n" + //
+                    "JOIN Category c ON s.catID = c.catID\r\n" + //
+                    "WHERE c.catID = CID;\r\n";
+
+            PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
+
+            ResultSet result = pstmt.executeQuery();// executing query
+            System.out.println(
+                    "Searching the database for Avergae Price of Products in category \"" + categoryID + "\" :");
+            System.out.println(
+                    "----------------------------------------------------------------------------------------------");
+            System.out.println("Average price of product for category \"" + categoryID + "\" :");
+            // Printing the results of query
+            while (result.next()) {
+                System.out.println(
+                        "Category:" + result.getString("name") + " - "
+                                + result.getString("averagePrice"));
+            }
+            result.close();
+            pstmt.close();
+
+            System.out.println("Query executed!");
+        } catch (SQLException sql) {// catch block
+            sql.printStackTrace(System.out);
+        }
         System.out.println("averagePrice not implemented for this Category!!!");
     }
 
