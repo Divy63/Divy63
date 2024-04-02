@@ -115,7 +115,7 @@ public class Database {
     public void showSubCategories() {
         try {// try
              // SQL QUERY
-            String query = "SELECT subCatID,name from SubCategory";
+            String query = "SELECT subCatID,name,c.name as category from SubCategory NATURAL JOIN Category c";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
@@ -129,8 +129,8 @@ public class Database {
             while (result.next()) {
                 System.out.print(n + ") ");
                 System.out.println(
-                        "Sub-Category Name: " + result.getString("name") + ", Sub-Category ID: "
-                                + result.getString("subCatID"));
+                        "Sub-Category ID: " + result.getString("subCatID") + ", Sub-Category Name: "
+                                + result.getString("name") + ", Category Name: " + result.getString("category"));
 
                 n++;
             }

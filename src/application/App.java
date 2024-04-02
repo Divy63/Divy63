@@ -74,7 +74,7 @@ public class App {
             }
 
             else if (parts[0].equals("ss")) {
-                db.salesSummaryByCategory(parts[1]);
+                db.salesSummaryByCategory();
             }
 
             else if (parts[0].equals("subcp")) {
@@ -139,6 +139,8 @@ public class App {
                 "\tsc - Show all the Countries along with their Country Code");
         System.out.println(
                 "\tscategories - Show all the Categories");
+        System.out.println(
+                "\tsSubCategories - Show all the Sub-Categories along with their Category");
         System.out.println(
                 "\tspc <country limit> - Stores and Profit by Country");
         System.out.println(
