@@ -560,15 +560,55 @@ public class Database {
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
-        System.out.println("averagePrice not implemented for this Category!!!");
     }
 
     public void exceed7() {
         System.out.println("exceed 7 is not implemented yet!!!");
     }
 
-    public void largestReturnedAmount() {
-        System.out.println("largestreturnedAmount is not implemented yet!!!");
+    public void largestReturnedAmount(int x) {
+        try {// try
+             // SQL QUERY
+            String query = "SELECT con.name as country_name, a.city, a.state, cust.fName, cust.lName, MAX(od_sales.order_total) AS max_total\r\n"
+                    + //
+                    "FROM Country con\r\n" + //
+                    "LEFT JOIN Address a ON a.countryCode = con.countryCode\r\n" + //
+                    "JOIN Store s ON a.addressID = s.addressID\r\n" + //
+                    "JOIN Orders o ON s.storeID = o.storeID\r\n" + //
+                    "JOIN Customer cust ON o.custID = cust.custID\r\n" + //
+                    "JOIN (\r\n" + //
+                    "SELECT od.orderID, SUM(od.sales) as order_total\r\n" + //
+                    "\tFROM OrderDetails od\r\n" + //
+                    "\tGROUP BY od.orderID \r\n" + //
+                    ") AS od_sales ON o.orderID = od_sales.OrderID\r\n" + //
+                    "WHERE o.isReturned = 1\r\n" + //
+                    "GROUP BY con.name, o.orderID, cust.fName, cust.lName, a.city, a.state\r\n" + //
+                    "TOP ?\r\n" + //
+                    "";
+
+            PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
+            pstmt.setInt(1, x);
+            ResultSet result = pstmt.executeQuery();// executing query
+            System.out.println(
+                    "Searching the database for order with largest total for each country which were returned");
+            System.out.println(
+                    "----------------------------------------------------------------------------------------------");
+            System.out.println("Largest order total by country which were returned are: ");
+            // Printing the results of query
+            int n = 1;
+            while (result.next()) {
+                System.out.println(
+                        "\t" + n + ") " + result.getString("country_name") + " - "
+                                + result.getString("max_total"));
+                n++;
+            }
+            result.close();
+            pstmt.close();
+
+            System.out.println("Query executed!");
+        } catch (SQLException sql) {// catch block
+            sql.printStackTrace(System.out);
+        }
     }
 
 }

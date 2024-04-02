@@ -102,7 +102,9 @@ public class App {
             } else if (parts[0].equals("exceed")) {
                 db.exceed7();
             } else if (parts[0].equals("lra")) {
-                db.largestReturnedAmount();
+                if (parts.length >= 2) {
+                    db.largestReturnedAmount(Integer.parseInt(parts[1]));
+                }
             } else if (parts[0].equals("sc")) {
                 db.showCountries();
 
