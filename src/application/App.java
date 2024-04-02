@@ -106,11 +106,13 @@ public class App {
             } else if (parts[0].equals("sc")) {
                 db.showCountries();
 
-            }else if(parts[0].equals("gcID")){
-                if(parts.length >= 2){
+            } else if (parts[0].equals("gcID")) {
+                if (parts.length >= 2) {
                     db.showPeople(parts[2]);
                 }
 
+            }else if(parts[0].equals("scategories")){
+                db.showCategories();
             }
 
             else {
@@ -134,6 +136,8 @@ public class App {
         System.out.println(
                 "\tsc - Show all the Countries along with their Country Code");
         System.out.println(
+                "\tscategories - Show all the Categories");
+        System.out.println(
                 "\tspc <country limit> - Stores and Profit by Country");
         System.out.println(
                 "\ttopproducts <country code> - Top Product Holders by Category");
@@ -144,7 +148,7 @@ public class App {
         System.out.println(
                 "\tsd <orderID> - Shipping Details for Ordered Products");
         System.out.println(
-                "\tss <category name> - Category Sales Summary");
+                "\tss - Category Sales Summary");
         System.out.println(
                 "\tsubcp - Sub-Category Product Inventory and Sales Overview");
         System.out.println(

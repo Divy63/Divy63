@@ -81,6 +81,37 @@ public class Database {
         }
     }
 
+    public void showCategories() {
+        try {// try
+             // SQL QUERY
+            String query = "SELECT catID,name from Category";
+
+            PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
+
+            ResultSet result = pstmt.executeQuery();// executing query
+            System.out.println("Searching the database for categories");
+            System.out.println(
+                    "------------------------------------------------");
+            System.out.println("List of available categories with their  IDs:");
+            int n = 1;
+            // Printing the results of query
+            while (result.next()) {
+                System.out.print(n + ") ");
+                System.out.println(
+                        "Category Name: " + result.getString("name") + ", Category ID: "
+                                + result.getString("catID"));
+
+                n++;
+            }
+            result.close();
+            pstmt.close();
+
+            System.out.println("Query executed!");
+        } catch (SQLException sql) {// catch block
+            sql.printStackTrace(System.out);
+        }
+    }
+
     public void storeProfitByCountry(int countryLimit) {
         try {// try
              // SQL QUERY
@@ -254,7 +285,6 @@ public class Database {
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
-        System.out.println("discountedProducts not implemented yet !!!");
     }
 
     public void shippingDetails(String orderID) {
@@ -301,7 +331,35 @@ public class Database {
         // System.out.println();
     }
 
-    public void salesSummaryByCategory(String categoryName) {
+    public void salesSummaryByCategory() {
+        try {// try
+             // SQL QUERY
+            String query = "SELECT Category.name AS category_name,SUM(OrderDetails.sales) AS total_sales\r\n" + //
+                    "FROM Category\r\n" + //
+                    "JOIN SubCategory ON Category.catID = SubCategory.catID\r\n" + //
+                    "JOIN Product ON SubCategory.subCatID = Product.subCatID\r\n" + //
+                    "JOIN OrderDetails ON Product.prodID = OrderDetails.prodID\r\n" + //
+                    "GROUP BY Category.name;";
+
+            PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
+
+            ResultSet result = pstmt.executeQuery();// executing query
+            System.out.println("\nSearching database for total sales of each category :");
+            System.out
+                    .println("--------------------------------------------------------------------------------------");
+            int n = 1;
+            while (result.next()) {
+                System.out.println("\t" + n + ") " + result.getString("category_name") + ", Total Sale: "
+                        + result.getInt("total_sales"));
+                n++;
+            }
+            result.close();
+            pstmt.close();
+
+            System.out.println("Query executed!");
+        } catch (SQLException sql) {// catch block
+            sql.printStackTrace(System.out);
+        }
         System.out.println("salesSummaryByCategory not implemented yet!!!");
     }
 
