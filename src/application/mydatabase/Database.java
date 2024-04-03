@@ -12,6 +12,7 @@ import java.util.Properties;
 
 public class Database {
     private Connection connection;
+    private static final String regex = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
 
     public Database() {
 
