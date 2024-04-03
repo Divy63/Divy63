@@ -50,16 +50,5 @@ public class update {
         }
     }
     
-    private static void updateProductInOrderDetals() {
-        try{
-            Scanner readOrders = new Scanner(new File(ORDER_DETAILS));
-            Scanner readProducts = new Scanner(new File(PRODUCTS));
-
-
-            Map<String, String> products = new HashMap<>();
-
-        } catch (IOException io) {
-            io.printStackTrace();
-        }
-    }
+    // private static void update
 }

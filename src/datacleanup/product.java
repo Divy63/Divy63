@@ -16,11 +16,11 @@ public class product {
         try {
             Scanner s = new Scanner(new File("final-data-files/order-details.csv"));
             Writer w = new BufferedWriter(new FileWriter("final-data-files/products.csv"));
-            String write = String.format("productID,name,sub-category,category\n");
+            String write = String.format("productID,name,sub-category,category,price\n");
             Map<String, List<String>> product = new HashMap<>();
             List<String> temp;
             String[] input;
-            String id, cat, sub_cat, name;
+            String id, cat, sub_cat, name,price;
             s.nextLine();
             w.write(write);
             while (s.hasNextLine()) {
@@ -29,6 +29,7 @@ public class product {
                 cat = input[12];
                 sub_cat = input[13];
                 name = input[14];
+                price = input[19];
 
                 if (product.get(id) == null) {
                     product.put(id, new ArrayList<String>());
@@ -36,6 +37,7 @@ public class product {
                     temp.add(0, name);
                     temp.add(1, sub_cat);
                     temp.add(2, cat);
+                    temp.add(3, price);
                 }
             }
 
@@ -45,7 +47,7 @@ public class product {
 
             for (String temp_id : sortedKeys) {
                 temp = product.get(temp_id);
-                write = String.format("%s,%s,%s,%s\n", temp_id, temp.get(0), temp.get(1), temp.get(2));
+                write = String.format("%s,%s,%s,%s,%s\n", temp_id, temp.get(0), temp.get(1), temp.get(2), temp.get(3));
                 w.write(write);
             }
             w.close();

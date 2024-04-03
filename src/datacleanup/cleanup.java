@@ -14,6 +14,7 @@ public class cleanup {
         makeAddressData();
         makeCustomerData();
         makeRegionData();
+        makeStoreFile();
     }
 
     private static void makeCountryData() {
@@ -361,9 +362,9 @@ public class cleanup {
     /**
      * Method that finds discouinted total price of the order
      */
-    private static double getDiscountedPrice(double price, double discount, int quantity) {
-        double eachPrice = price/((1-discount)*quantity);
-        return eachPrice;
+    private static String getDiscountedPrice(double price, double discount, int quantity) {
+        double eachPrice = price / ((1 - discount) * quantity);
+        return String.format("%.2f", eachPrice);
     }
 
     /**
@@ -387,12 +388,11 @@ public class cleanup {
                 String[] temp = data.split(regex);
                 double price = Double.parseDouble(temp[15]);
                 double discount = Double.parseDouble(temp[17]);
-                int quantity = Integer.parseInt(temp[16]);  
-                
-                double eachPrice = getDiscountedPrice(price, discount, quantity);
-                
+                int quantity = Integer.parseInt(temp[16]);
+
+                String eachPrice = getDiscountedPrice(price, discount, quantity);
+
                 data += "," + eachPrice;
-                
 
                 fileData.add(data);
             }
@@ -413,6 +413,59 @@ public class cleanup {
             out.close();
         } catch (IOException ioe) {
             System.out.println(ioe);
+        }
+    }
+
+    private static void makeStoreFile() {
+        try {
+            Scanner in = new Scanner(new File("final-data-files/address.csv"));
+            Scanner in2 = new Scanner(new File("final-data-files/region.csv"));
+            List<String> region = new ArrayList<>();
+            List<String> address = new ArrayList<>();
+            String inputLine;
+            String[] input;
+            List<String> temp;
+
+            while (in2.hasNextLine()) {
+                input = in2.nextLine().split(regex);
+                region.add(input[0]);
+                region.add(input[1]);
+            }
+
+            while (in.hasNextLine()) {
+                input = in.nextLine().split(regex);
+                address.add(input[0]);
+                address.add(input[1] + "," + input[2] + "," + input[3]);
+            }
+
+            in.close();
+            in2.close();
+
+            in = new Scanner(new File("final-data-files/order-details.csv"));
+
+            List<String> stores = new ArrayList<>();
+            int storeID = 1000;
+            Writer out = new BufferedWriter(new FileWriter("final-data-files/stores.csv"));
+            out.write("storeID,addressID,regionID\n");
+
+            in.nextLine();
+            while (in.hasNextLine()) {
+                input = in.nextLine().split(regex);
+                inputLine = input[7] + "," + input[8] + "," + input[9];
+                if (!stores.contains(inputLine)) {
+                    stores.add(inputLine);
+                    String storeStr = Integer.toString(storeID++) + ","
+                            + address.get(address.indexOf(inputLine) - 1) + ","
+                            + region.get(region.indexOf(input[10]) - 1);
+
+                    out.write(storeStr + "\n");
+                }
+            }
+
+            in.close();
+            out.close();
+        } catch (IOException io) {
+            io.printStackTrace();
         }
     }
 
