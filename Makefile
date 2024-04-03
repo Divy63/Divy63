@@ -17,8 +17,6 @@ buildClean:
 
 createfiles: buildClean
 	java -cp $(BIN_DIR) datacleanup.cleanup
-	java -cp $(BIN_DIR) datacleanup.product
-	java -cp $(BIN_DIR) datacleanup.update
 
 clean:
 	rm -rf $(BIN_DIR)
