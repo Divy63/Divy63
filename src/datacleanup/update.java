@@ -10,45 +10,82 @@ public class update {
     private static final String PRODUCTS = "final-data-files/products.csv";
 
     public static void main(String[] args) {
-        updateAddress();
+        // updateAddressData();
+        // updateProducts();
     }
-    
-    private static void updateAddress() {
-        try{
+
+    private static void updateAddressData() {
+        try {
             Scanner in = new Scanner(new File("final-data-files/countries.csv"));
-            Scanner in2 = new Scanner(new File("final-data-files/address.csv"));
-            Map<String, List<String>> address = new HashMap<>();
-            List<String> regions = new ArrayList<>();
-            List<String> country = new ArrayList<>();
+            Map<String, String> country = new HashMap<>();
             String[] input;
-            String id, countryName;
             in.nextLine();
-            while (in.hasNextLine()){
+
+            while (in.hasNextLine()) {
                 input = in.nextLine().split(regex);
-                country.add(input[0]);
-                country.add(input[1]);
-            }
-            in2.nextLine();
-            while (in2.hasNextLine()) {
-                input = in2.nextLine().split(regex);
-                countryName = input[3];
-                int index = country.indexOf(countryName);
-                regions.add(input[0] + "," + input[1] + "," + input[2] + "," + country.get(index - 1) + "\n");
+                if (country.get(input[1]) == null) {
+                    country.put(input[1], input[0]);
+                }
             }
             in.close();
-            in2.close();
+
+            List<String> address = new ArrayList<>();
+            in = new Scanner(new File("final-data-files/address.csv"));
+
+            in.nextLine();
+            while (in.hasNextLine()) {
+                input = in.nextLine().split(regex);
+                address.add(input[0] + "," + input[1] + "," + input[2] + "," + country.get(input[3]));
+            }
+            in.close();
 
             Writer out = new BufferedWriter(new FileWriter("final-data-files/address.csv"));
-
-            out.write("addressID,city,state,country\n");
-            for (String string : regions) {
-                out.write(string);
+            out.write("addressID,city,state,countryCode\n");
+            for (String string : address) {
+                out.write(string + "\n");
             }
             out.close();
         } catch (IOException io) {
             io.printStackTrace();
         }
     }
-    
-    // private static void update
+
+    private static void updateProducts() {
+        try {
+            Scanner in = new Scanner(new File("final-data-files/sub-category.csv"));
+            Map<String, String> subCat = new HashMap<>();
+            String temp;
+            String[] input;
+
+            in.nextLine();
+            while (in.hasNextLine()) {
+                input = in.nextLine().split(regex);
+                if (subCat.get(input[1]) == null) {
+                    subCat.put(input[1], input[0]);
+                }
+            }
+            in.close();
+
+            in = new Scanner(new File("final-data-files/products.csv"));
+            List<String> products = new ArrayList<>();
+
+            in.nextLine();
+            while (in.hasNextLine()) {
+                input = in.nextLine().split(regex);
+                products.add(input[0] + "," + input[1] + "," + input[4] + "," + subCat.get(input[2]));
+            }
+            in.close();
+
+            Writer out = new BufferedWriter(new FileWriter("final-data-files/products.csv"));
+
+            out.write("prodID,name,price,subCatID\n");
+            for (String string : products) {
+                out.write(string + "\n");
+            }
+            out.close();
+
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+    }
 }

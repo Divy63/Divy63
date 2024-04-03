@@ -424,7 +424,6 @@ public class cleanup {
             List<String> address = new ArrayList<>();
             String inputLine;
             String[] input;
-            List<String> temp;
 
             while (in2.hasNextLine()) {
                 input = in2.nextLine().split(regex);

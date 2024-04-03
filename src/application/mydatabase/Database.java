@@ -1,25 +1,27 @@
 package application.mydatabase;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Database {
-    // private Connection connection;
+    private Connection connection;
 
     public Database() {
-        // try {
-        // String url = "jdbc:sqlite:library.db";
-        // // create a connection to the database
-        // connection = DriverManager.getConnection(url);
-        // } catch (SQLException e) {
-        // e.printStackTrace(System.out);
-        // }
+        try {
+            String url = "jdbc:sqlite:library.db";
+            // create a connection to the database
+            connection = DriverManager.getConnection(url);
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        }
 
     }
 
-    public void initializeDatabase(){
-        
+    public void initializeDatabase() {
+
     }
 
     public void showPeople(String partOfName) {
