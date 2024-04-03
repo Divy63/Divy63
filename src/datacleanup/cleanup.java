@@ -9,6 +9,7 @@ public class cleanup {
     public static void main(String[] args) {
         updateProductIDAndRegion();
         writeOrderDetails();
+        updatePriceInOrderDetails();
         makeCountryData();
         makeAddressData();
         makeCustomerData();
@@ -329,7 +330,7 @@ public class cleanup {
                     System.out.println("Error in making region.csv file");
                 }
             }
-            
+
             out = new BufferedWriter(new FileWriter("final-data-files/region.csv"));
 
             Set<String> keySet = region.keySet();
@@ -356,4 +357,63 @@ public class cleanup {
         }
         return manID;
     }
+
+    /**
+     * Method that finds discouinted total price of the order
+     */
+    private static double getDiscountedPrice(double price, double discount, int quantity) {
+        double eachPrice = price/((1-discount)*quantity);
+        return eachPrice;
+    }
+
+    /**
+     * Method that updates the reads a csv file and finds out discounted price of
+     * each product and stores it in the file
+     */
+    private static void updatePriceInOrderDetails() {
+        ArrayList<String> fileData = new ArrayList<>();
+        try {
+            Scanner odScanner = new Scanner(new FileReader("final-data-files/order-details.csv"));
+
+            // Adding title to the first line
+            String firstLine = odScanner.nextLine();
+            firstLine += ",prod_price";
+            fileData.add(firstLine);
+
+            // Going through all lines in the file and getting dicounte price
+            // and adding that price in the string
+            while (odScanner.hasNextLine()) {
+                String data = odScanner.nextLine();
+                String[] temp = data.split(regex);
+                double price = Double.parseDouble(temp[15]);
+                double discount = Double.parseDouble(temp[17]);
+                int quantity = Integer.parseInt(temp[16]);  
+                
+                double eachPrice = getDiscountedPrice(price, discount, quantity);
+                
+                data += "," + eachPrice;
+                
+
+                fileData.add(data);
+            }
+            odScanner.close();
+        } catch (FileNotFoundException foe) {
+            System.out.println("File Not Found");
+        }
+
+        /**
+         * Writing the updated lines back in the file
+         */
+        try {
+            Writer out = new BufferedWriter(new FileWriter("final-data-files/order-details.csv"));
+            for (String d : fileData) {
+                out.write(d + "\n");
+            }
+
+            out.close();
+        } catch (IOException ioe) {
+            System.out.println(ioe);
+        }
+    }
+
 }
