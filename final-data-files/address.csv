@@ -1,4 +1,4 @@
-addressID,city,state,country
+addressID,city,state,countryCode
 1,Henderson,Kentucky,USA
 2,Los Angeles,California,USA
 3,Fort Lauderdale,Florida,USA

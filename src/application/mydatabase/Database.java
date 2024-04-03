@@ -1,5 +1,7 @@
 package application.mydatabase;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,6 +14,7 @@ public class Database {
     private Connection connection;
 
     public Database() {
+
 
         Properties prop = new Properties();
         String cfgFileName = "auth.cfg";
@@ -32,7 +35,6 @@ public class Database {
         String password = (prop.getProperty("password"));
 
         try {
-
             // TODO: uranium connection (VPN or campus)
             String url = "jdbc:sqlserver://uranium.cs.umanitoba.ca:1433;"
                 + "database=cs3380;"
@@ -45,13 +47,15 @@ public class Database {
 
             // TODO: this.initializeDatabase();
             // TODO: this.readInputData();
+
         } catch (SQLException e) {
             e.printStackTrace(System.out);
         }
-
     }
+    
 
     public void initializeDatabase() {
+
         // TODO: create statements here
         try {
             this.connection.createStatement().executeUpdate("CREATE TABLE");
