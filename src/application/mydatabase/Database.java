@@ -51,7 +51,7 @@ public class Database {
 
     }
 
-    public void initializeDatabase() {
+    private void initializeDatabase() {
         // TODO: create statements here
         try {
             this.connection.createStatement().executeUpdate("CREATE TABLE");
@@ -60,9 +60,16 @@ public class Database {
         }
     }
 
-    public void readInputData(String filename) {
+    private void readInputData(String filename) {
         // TODO: read csv data and populate database
-
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(""));
+            br.readLine();
+        } catch (IOException ioer) {
+            ioer.printStackTrace();
+        } catch (SQLException sqler) {
+            sqler.printStackTrace(System.out);
+        }
     }
 
     public void showPeople(String partOfName) {
