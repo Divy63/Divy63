@@ -16,6 +16,7 @@ public class cleanup {
         makeRegionData();
         makeStoreFile();
         makeOrderFile();
+        makeInventoryFile();
     }
 
     private static void makeCountryData() {
@@ -521,6 +522,34 @@ public class cleanup {
         String[] dateArr = date.split("/");
 
         return "20" + dateArr[2] + "-" + dateArr[1] + "-" + dateArr[0];
+    }
+
+    private static void makeInventoryFile() {
+        try {
+            Scanner in = new Scanner(new File("final-data-files/order-details.csv"));
+            Set<String> inventory = new HashSet<>();
+            String[] input;
+            String invStr;
+
+            in.nextLine();
+            while (in.hasNextLine()) {
+                input = in.nextLine().split(regex);
+                invStr = String.format("%s,%s", input[11], input[20]);
+                inventory.add(invStr);
+            }
+            in.close();
+
+            Writer out = new BufferedWriter(new FileWriter("final-data-files/inventory.csv"));
+            out.write("prodID,storeID\n");
+            Iterator<String> it = inventory.iterator();
+            
+            while (it.hasNext()) {
+                out.write(it.next() + "\n");
+            }
+            out.close();
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
     }
 
 }
