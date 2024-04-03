@@ -2,25 +2,71 @@ package application.mydatabase;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class Database {
     private Connection connection;
 
     public Database() {
+
+
+        Properties prop = new Properties();
+        String cfgFileName = "auth.cfg";
+
         try {
-            String url = "jdbc:sqlite:library.db";
+            FileInputStream configFile = new FileInputStream(cfgFileName);
+            prop.load(configFile);
+            configFile.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred: config file not found.");
+            System.exit(1);
+        } catch (IOException e) {
+            System.out.println("An error occurred: could not read config file.");
+            System.exit(1);
+        }
+
+        String username = (prop.getProperty("username"));
+        String password = (prop.getProperty("password"));
+
+        try {
+
+            // TODO: uranium connection (VPN or campus)
+            String url = "jdbc:sqlserver://uranium.cs.umanitoba.ca:1433;"
+                + "database=cs3380;"
+                + "user=" + username + ";"
+                + "password= " + password + ";"
+                + "encrypt=false;trustServerCertificate=false;loginTimeout=30;";
+
             // create a connection to the database
-            connection = DriverManager.getConnection(url);
+            this.connection = DriverManager.getConnection(url);
+
+            // TODO: this.initializeDatabase();
+            // TODO: this.readInputData();
+
         } catch (SQLException e) {
             e.printStackTrace(System.out);
         }
-
     }
+    
 
     public void initializeDatabase() {
+
+        // TODO: create statements here
+        try {
+            this.connection.createStatement().executeUpdate("CREATE TABLE");
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        }
+    }
+
+    public void readInputData(String filename) {
+        // TODO: read csv data and populate database
 
     }
 
