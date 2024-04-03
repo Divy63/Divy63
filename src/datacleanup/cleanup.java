@@ -519,7 +519,6 @@ public class cleanup {
 
     private static String changeDateFormat(String date) {
         String newDate;
-        
         return newDate;
     }
 
