@@ -15,6 +15,7 @@ public class cleanup {
         makeCustomerData();
         makeRegionData();
         makeStoreFile();
+        makeOrderFile();
     }
 
     private static void makeCountryData() {
@@ -422,7 +423,9 @@ public class cleanup {
             Scanner in2 = new Scanner(new File("final-data-files/region.csv"));
             List<String> region = new ArrayList<>();
             List<String> address = new ArrayList<>();
-            String inputLine;
+            List<String> orderDetails = new ArrayList<>();
+
+            String addressStr, inputLine;
             String[] input;
 
             while (in2.hasNextLine()) {
@@ -449,23 +452,75 @@ public class cleanup {
 
             in.nextLine();
             while (in.hasNextLine()) {
-                input = in.nextLine().split(regex);
-                inputLine = input[7] + "," + input[8] + "," + input[9];
-                if (!stores.contains(inputLine)) {
-                    stores.add(inputLine);
+                inputLine = in.nextLine();
+                input = inputLine.split(regex);
+                addressStr = input[7] + "," + input[8] + "," + input[9];
+                if (!stores.contains(addressStr)) {
+                    stores.add(addressStr);
+                    stores.add(Integer.toString(storeID));
                     String storeStr = Integer.toString(storeID++) + ","
-                            + address.get(address.indexOf(inputLine) - 1) + ","
+                            + address.get(address.indexOf(addressStr) - 1) + ","
                             + region.get(region.indexOf(input[10]) - 1);
 
                     out.write(storeStr + "\n");
                 }
+                orderDetails.add(inputLine + "," + stores.get(stores.indexOf(addressStr) + 1));
             }
 
             in.close();
             out.close();
+
+            out = new BufferedWriter(new FileWriter("final-data-files/order-details.csv"));
+            out.write(
+                    "orderID,orderDate,shipDate,shipMode,custID,Customer Name,Segment,City,State,Country/Region,Region,Product ID,Category,Sub-Category,Product Name,Sales,Quantity,Discount,Profit,prod_price,storeID\n");
+            for (String string : orderDetails) {
+                out.write(string + "\n");
+            }
+            out.close();
         } catch (IOException io) {
             io.printStackTrace();
         }
+    }
+
+    private static void makeOrderFile() {
+        try {
+            Scanner in = new Scanner(new File("final-data-files/order-details.csv"));
+            Map<String, String> orders = new HashMap<>();
+            List<String> tempList = new ArrayList<>();
+            String[] input;
+
+            in.nextLine();
+            while (in.hasNextLine()) {
+                input = in.nextLine().split(regex);
+                if (orders.get(input[0]) == null) {
+                    orders.put(input[0], input[0] + "," + input[1] + "," + input[2]
+                            + "," + input[3] + "," + input[6]
+                            + "," + input[4] + "," + input[20]);
+                }
+            }
+            in.close();
+
+            Writer out = new BufferedWriter(new FileWriter("final-data-files/orders.csv"));
+            out.write("orderID,orderDate,shipData,shipMode,segment,custID,storeID\n");
+
+            Set<String> keys = orders.keySet();
+            List<String> sortedKeys = new ArrayList<>(keys);
+            Collections.sort(sortedKeys);
+
+            for (String string : sortedKeys) {
+                out.write(orders.get(string) + "\n");
+            }
+            out.close();
+
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+    }
+
+    private static String changeDateFormat(String date) {
+        String newDate;
+        
+        return newDate;
     }
 
 }

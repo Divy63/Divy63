@@ -10,8 +10,8 @@ public class update {
     private static final String PRODUCTS = "final-data-files/products.csv";
 
     public static void main(String[] args) {
-        // updateAddressData();
-        // updateProducts();
+        updateAddressData();
+        updateProducts();
     }
 
     private static void updateAddressData() {
