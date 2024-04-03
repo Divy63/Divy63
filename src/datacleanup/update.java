@@ -9,14 +9,14 @@ public class update {
     private static final String ORDER_DETAILS = "data-files/order-details.csv";
     private static final String PRODUCTS = "final-data-files/products.csv";
 
-    public static void main(String[] args) {
+    public void run() {
         updateAddressData();
         updateProducts();
         updateOrderDetails();
         updateReturnedOrders();
     }
 
-    private static void updateOrderDetails() {
+    private void updateOrderDetails() {
         try {
             Scanner in = new Scanner(new File("final-data-files/order-details.csv"));
             List<String> od = new ArrayList<>();
@@ -46,7 +46,7 @@ public class update {
         }
     }
 
-    private static void updateAddressData() {
+    private void updateAddressData() {
         try {
             Scanner in = new Scanner(new File("final-data-files/countries.csv"));
             Map<String, String> country = new HashMap<>();
@@ -82,7 +82,7 @@ public class update {
         }
     }
 
-    private static void updateProducts() {
+    private void updateProducts() {
         try {
             Scanner in = new Scanner(new File("final-data-files/sub-category.csv"));
             Map<String, String> subCat = new HashMap<>();
@@ -121,7 +121,7 @@ public class update {
         }
     }
 
-    private static void updateReturnedOrders() {
+    private void updateReturnedOrders() {
         try{
             Scanner in = new Scanner(new File("final-data-files/orders.csv"));
             Scanner in2 = new Scanner(new File("data-files/eu-store-returns.csv"));

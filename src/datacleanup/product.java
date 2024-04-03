@@ -6,13 +6,13 @@ import java.io.*;
 public class product {
     final static String regex = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
 
-    public static void main(String[] args) {
+    public void run() {
         makeProductFile();
         makeCatFile();
         makeSubCatFile();
     }
     
-    private static void makeProductFile() {
+    private void makeProductFile() {
         try {
             Scanner s = new Scanner(new File("final-data-files/order-details.csv"));
             Writer w = new BufferedWriter(new FileWriter("final-data-files/products.csv"));
@@ -57,7 +57,7 @@ public class product {
         }
     }
 
-    private static void makeCatFile() {
+    private void makeCatFile() {
         try {
             Scanner s = new Scanner(new File("final-data-files/order-details.csv"));
             Writer w = new BufferedWriter(new FileWriter("final-data-files/category.csv"));
@@ -85,7 +85,7 @@ public class product {
         }
     }
     
-    private static void makeSubCatFile() {
+    private void makeSubCatFile() {
         try {
             Map<String, String> category = new HashMap<>();
             category.put("Furniture", "3");

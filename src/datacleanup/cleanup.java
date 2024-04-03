@@ -1,12 +1,35 @@
 package datacleanup;
 
 import java.util.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.io.*;
 
 public class cleanup {
     private static final String regex = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
 
     public static void main(String[] args) {
+        System.out.println("\nGenerating seperate .csv files for database\n");
+        long start = System.currentTimeMillis(), end;
+        try {
+            makeDirectory("final-data-files");
+            run();
+            product pr = new product();
+            pr.run();
+            update up = new update();
+            up.run();
+            System.out.println("All required files created in \'final-data-files\' directory :)\n");
+            end = System.currentTimeMillis();
+        } catch (IOException io) {
+            System.out.println("Error while creating directory for storing data files ;(\n");
+            System.exit(1);
+            end = System.currentTimeMillis();
+        }
+        // System.out.println("Time take: " + (end - start)/ 1000 + " seconds");
+    }
+    
+    private static void run() {
         updateProductIDAndRegion();
         writeOrderDetails();
         updatePriceInOrderDetails();
@@ -17,6 +40,11 @@ public class cleanup {
         makeStoreFile();
         makeOrderFile();
         makeInventoryFile();
+    }
+
+    private static void makeDirectory(String dirPath) throws IOException{
+        Path dir = Paths.get(dirPath);
+            Files.createDirectories(dir);
     }
 
     private static void makeCountryData() {
@@ -542,7 +570,7 @@ public class cleanup {
             Writer out = new BufferedWriter(new FileWriter("final-data-files/inventory.csv"));
             out.write("prodID,storeID\n");
             Iterator<String> it = inventory.iterator();
-            
+
             while (it.hasNext()) {
                 out.write(it.next() + "\n");
             }
