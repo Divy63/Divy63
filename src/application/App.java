@@ -3,12 +3,18 @@ package application;
 import application.mydatabase.Database;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        Database db = new Database();
-        simulate(db);
+        try{
+            Database db = new Database();
+            simulate(db);
+        } catch (SQLException se) {
+            System.out.println("Suitable Driver not found to establish connection with database");
+            System.exit(1);
+        }
     }
 
     private static void simulate(Database db) {

@@ -14,11 +14,10 @@ public class Database {
     private Connection connection;
     private static final String regex = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
 
-    public Database() {
-
+    public Database() throws SQLException {
 
         Properties prop = new Properties();
-        String cfgFileName = "auth.cfg";
+        String cfgFileName = "src/application/mydatabase/auth.cfg";
 
         try {
             FileInputStream configFile = new FileInputStream(cfgFileName);
@@ -35,25 +34,21 @@ public class Database {
         String username = (prop.getProperty("username"));
         String password = (prop.getProperty("password"));
 
-        try {
-            // TODO: uranium connection (VPN or campus)
-            String url = "jdbc:sqlserver://uranium.cs.umanitoba.ca:1433;"
+        // TODO: uranium connection (VPN or campus)
+        String url = "jdbc:sqlserver://uranium.cs.umanitoba.ca:1433;"
                 + "database=cs3380;"
                 + "user=" + username + ";"
                 + "password= " + password + ";"
                 + "encrypt=false;trustServerCertificate=false;loginTimeout=30;";
 
-            // create a connection to the database
-            this.connection = DriverManager.getConnection(url);
+        // create a connection to the database
+        this.connection = DriverManager.getConnection(url);
+        System.out.println("Connection established successfully");
+        // TODO: this.initializeDatabase();
+        // TODO: this.readInputData();
 
-            // TODO: this.initializeDatabase();
-            // TODO: this.readInputData();
-
-        } catch (SQLException e) {
-            e.printStackTrace(System.out);
-        }
+        // e.printStackTrace(System.out);
     }
-    
 
     public void initializeDatabase() {
 
