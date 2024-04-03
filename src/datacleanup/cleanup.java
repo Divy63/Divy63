@@ -493,7 +493,7 @@ public class cleanup {
             while (in.hasNextLine()) {
                 input = in.nextLine().split(regex);
                 if (orders.get(input[0]) == null) {
-                    orders.put(input[0], input[0] + "," + input[1] + "," + input[2]
+                    orders.put(input[0], input[0] + "," + changeDateFormat(input[1]) + "," + changeDateFormat(input[2])
                             + "," + input[3] + "," + input[6]
                             + "," + input[4] + "," + input[20]);
                 }
@@ -518,8 +518,9 @@ public class cleanup {
     }
 
     private static String changeDateFormat(String date) {
-        String newDate;
-        return newDate;
+        String[] dateArr = date.split("/");
+
+        return "20" + dateArr[2] + "-" + dateArr[1] + "-" + dateArr[0];
     }
 
 }
