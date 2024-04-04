@@ -143,7 +143,7 @@ public class Database {
     }
 
     private void insertIntoCustomer() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/customers.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -162,7 +162,7 @@ public class Database {
     }
 
     private void insertIntoProduct() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/products.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -179,7 +179,7 @@ public class Database {
     }
 
     private void insertIntoSubCat() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/sub-category.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -190,12 +190,12 @@ public class Database {
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
             sql = String.format("insert into customer values(%s, %s, %s)",
-                                inputArr[0], inputArr[1], inputArr[2]);
+                    inputArr[0], inputArr[1], inputArr[2]);
         }
     }
 
     private void insertIntoCat() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/category.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -206,12 +206,12 @@ public class Database {
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
             sql = String.format("insert into customer values(%s, %s, %s)",
-                                inputArr[0], inputArr[1], inputArr[2]);
+                    inputArr[0], inputArr[1], inputArr[2]);
         }
     }
 
     private void insertIntoStore() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/stores.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -222,12 +222,12 @@ public class Database {
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
             sql = String.format("insert into customer values(%s, %s, %s)",
-                                inputArr[0], inputArr[1], inputArr[2]);
+                    inputArr[0], inputArr[1], inputArr[2]);
         }
     }
 
     private void insertIntoRegion() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/region.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -238,12 +238,12 @@ public class Database {
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
             sql = String.format("insert into customer values(%s, %s, %s)",
-                                inputArr[0], inputArr[1], inputArr[2]);
+                    inputArr[0], inputArr[1], inputArr[2]);
         }
     }
 
     private void insertIntoManager() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/manager.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -254,12 +254,12 @@ public class Database {
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
             sql = String.format("insert into customer values(%s, %s, %s)",
-                                inputArr[0], inputArr[1], inputArr[2]);
+                    inputArr[0], inputArr[1], inputArr[2]);
         }
     }
 
     private void insertIntoCountry() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/countries.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -270,12 +270,12 @@ public class Database {
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
             sql = String.format("insert into customer values(%s, %s, %s)",
-                                inputArr[0], inputArr[1], inputArr[2]);
+                    inputArr[0], inputArr[1], inputArr[2]);
         }
     }
 
     private void insertIntoAddress() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/address.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -286,12 +286,12 @@ public class Database {
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
             sql = String.format("insert into customer values(%s, %s, %s)",
-                                inputArr[0], inputArr[1], inputArr[2]);
+                    inputArr[0], inputArr[1], inputArr[2]);
         }
     }
 
     private void insertIntoOrder() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/orders.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -302,12 +302,12 @@ public class Database {
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
             sql = String.format("insert into customer values(%s, %s, %s)",
-                                inputArr[0], inputArr[1], inputArr[2]);
+                    inputArr[0], inputArr[1], inputArr[2]);
         }
     }
 
     private void insertIntoOrderDetails() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/order-details.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -317,13 +317,18 @@ public class Database {
 
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
-            sql = String.format("insert into customer values(%s, %s, %s)",
-                                inputArr[0], inputArr[1], inputArr[2]);
+            sql = String.format("insert into customer values(%s, %s,%d, %d,%d,%d",
+                    inputArr[0], inputArr[1], Long.parseLong(inputArr[2]), Long.parseLong(inputArr[3]),
+                    Long.parseLong(inputArr[4]),
+                    Long.parseLong(inputArr[5]));
+            pstmt = connection.prepareStatement(sql);
+            pstmt.executeUpdate();
         }
+        br.close();
     }
 
     private void insertIntoInventory() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/inventory.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -333,9 +338,13 @@ public class Database {
 
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
-            sql = String.format("insert into customer values(%s, %s, %s)",
-                                inputArr[0], inputArr[1], inputArr[2]);
+            sql = String.format("insert into customer values(%s, %d)",
+                    inputArr[0], Integer.parseInt(inputArr[1]));
+            pstmt = connection.prepareStatement(sql);
+            pstmt.executeUpdate();
         }
+        br.close();
+
     }
 
     public void dropAllTables() {
