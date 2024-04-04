@@ -145,7 +145,7 @@ public class Database {
     }
 
     private void insertIntoCustomer() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/customers.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -164,7 +164,7 @@ public class Database {
     }
 
     private void insertIntoProduct() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/products.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -181,7 +181,7 @@ public class Database {
     }
 
     private void insertIntoSubCat() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/sub-category.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -197,7 +197,7 @@ public class Database {
     }
 
     private void insertIntoCat() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/category.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -213,7 +213,7 @@ public class Database {
     }
 
     private void insertIntoStore() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/stores.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -229,7 +229,7 @@ public class Database {
     }
 
     private void insertIntoRegion() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/region.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -245,7 +245,7 @@ public class Database {
     }
 
     private void insertIntoManager() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/manager.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -261,7 +261,7 @@ public class Database {
     }
 
     private void insertIntoCountry() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/countries.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -277,7 +277,7 @@ public class Database {
     }
 
     private void insertIntoAddress() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/address.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -293,7 +293,7 @@ public class Database {
     }
 
     private void insertIntoOrder() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/orders.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -309,7 +309,7 @@ public class Database {
     }
 
     private void insertIntoOrderDetails() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/order-details.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
@@ -330,7 +330,7 @@ public class Database {
     }
 
     private void insertIntoInventory() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(""));
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/inventory.csv"));
         PreparedStatement pstmt;
         String inputLine;
         String sql;
