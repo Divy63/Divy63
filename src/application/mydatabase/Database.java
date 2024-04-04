@@ -1,5 +1,8 @@
 package application.mydatabase;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.Connection;
@@ -76,7 +79,7 @@ public class Database {
 
     private void createAllTables() throws SQLException {
         this.connection.createStatement().executeUpdate("CREATE TABLE Customer("
-                + "custID VARCHAR(8) PRIMARY KEY,"
+                + "custID VARCHAR(24) PRIMARY KEY,"
                 + "fname TEXT NOT NULL,"
                 + "lname TEXT NOT NULL)");
 
@@ -91,14 +94,14 @@ public class Database {
                 + "managerID INTEGER REFERENCES Manager(managerID))");
 
         this.connection.createStatement().executeUpdate("CREATE TABLE Country("
-                + "countryCode VARCHAR(3) PRIMARY KEY,"
+                + "countryCode VARCHAR(24) PRIMARY KEY,"
                 + "name TEXT NOT NULL)");
 
         this.connection.createStatement().executeUpdate("CREATE TABLE Address("
                 + "addressID INTEGER PRIMARY KEY,"
                 + "city TEXT NOT NULL,"
                 + "state TEXT NOT NULL,"
-                + "countryCode VARCHAR(3) REFERENCES Country(countryCode))");
+                + "countryCode VARCHAR(24) REFERENCES Country(countryCode))");
 
         this.connection.createStatement().executeUpdate("CREATE TABLE Store("
                 + "storeID INTEGER PRIMARY KEY,"
@@ -106,40 +109,42 @@ public class Database {
                 + "regionID INTEGER REFERENCES Region(regionID))");
 
         this.connection.createStatement().executeUpdate("CREATE TABLE \"order\"("
-                + "orderID VARCHAR(11) PRIMARY KEY,"
-                + "shipDate DATE NOT NULL,"
-                + "shipMode VARCHAR(20) NOT NULL,"
+                + "orderID VARCHAR(24) PRIMARY KEY,"
                 + "orderDate DATE NOT NULL,"
-                + "isReturned INT,"
-                + "storeID INTEGER FOREIGN KEY REFERENCES Store(storeID));");
+                + "shipDate DATE NOT NULL,"
+                + "shipMode VARCHAR(24) NOT NULL,"
+                + "segement TEXT,"
+                + "custID VARCHAR(24) FOREIGN KEY REFERENCES customer(custID),"
+                + "storeID INTEGER FOREIGN KEY REFERENCES Store(storeID),"
+                + "isReturned INT)");
 
         this.connection.createStatement().executeUpdate("CREATE TABLE Category("
                 + "catID INTEGER PRIMARY KEY,"
                 + "name TEXT)");
 
         this.connection.createStatement().executeUpdate("CREATE TABLE SubCategory("
-                + "subCatID VARCHAR(7) PRIMARY KEY,"
+                + "subCatID VARCHAR(24) PRIMARY KEY,"
                 + "name TEXT,"
                 + "catID INTEGER REFERENCES Category(catID))");
 
         System.out.println("creating products");
         this.connection.createStatement().executeUpdate("CREATE TABLE Product("
-                + "prodID VARCHAR(18) PRIMARY KEY,"
+                + "prodID VARCHAR(24) PRIMARY KEY,"
                 + "name TEXT,"
-                + "price BIGINT NOT NULL,"
-                + "subCatID VARCHAR(7) REFERENCES SubCategory(subCatID))");
+                + "price FLOAT NOT NULL,"
+                + "subCatID VARCHAR(24) REFERENCES SubCategory(subCatID))");
 
         this.connection.createStatement().executeUpdate("CREATE TABLE OrderDetails("
-                + "orderID VARCHAR(11) FOREIGN KEY REFERENCES \"order\"(orderID) NOT NULL, "
-                + "prodID VARCHAR(18) FOREIGN KEY REFERENCES Product(prodID) NOT NULL,"
-                + "sales BIGINT  NOT NULL,"
+                + "orderID VARCHAR(24) FOREIGN KEY REFERENCES \"order\"(orderID) NOT NULL, "
+                + "prodID VARCHAR(24) FOREIGN KEY REFERENCES Product(prodID) NOT NULL,"
+                + "sales FLOAT  NOT NULL,"
                 + "quantity INT  NOT NULL,"
-                + "discount BIGINT DEFAULT 0,"
-                + "profit BIGINT,"
+                + "discount FLOAT DEFAULT 0,"
+                + "profit FLOAT,"
                 + "PRIMARY KEY(orderID,prodID));");
         this.connection.createStatement().executeUpdate("CREATE TABLE Inventory("
                 + "storeID INTEGER FOREIGN KEY REFERENCES store(storeID),"
-                + "prodID VARCHAR(18) FOREIGN KEY REFERENCES Product(prodID)"
+                + "prodID VARCHAR(24) FOREIGN KEY REFERENCES Product(prodID)"
                 + "PRIMARY KEY(storeID,prodID));");
     }
 
@@ -206,7 +211,7 @@ public class Database {
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
                 sql = String.format("insert into product values(\'%s\', \'%s\', %d, \'%s\')",
-                        inputArr[0], inputArr[1], Long.parseLong(inputArr[2]), inputArr[3]);
+                        inputArr[0], inputArr[1], Double.parseDouble(inputArr[2]), inputArr[3]);
                 pstmt = connection.prepareStatement(sql);
                 pstmt.executeUpdate();
             }
@@ -409,23 +414,43 @@ public class Database {
             String inputLine;
             String sql;
             String[] inputArr;
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date shipDate, orderDate;
+            java.sql.Date sShipDate, sOrderDate;
+
 
             br.readLine(); // leaving the headers
 
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
+                orderDate = format.parse(inputArr[1]);
+                shipDate = format.parse(inputArr[2]);
+
                 sql = String.format("insert into \"order\" values(\'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', %d, %d)",
                         inputArr[0], inputArr[1], inputArr[2], inputArr[3], inputArr[4], inputArr[5],
                         Integer.parseInt(inputArr[6]), Integer.parseInt(inputArr[7]));
-
+                
+                sql = String.format("insert into \"order\" values(?, ?, ?, ?, ?, ?, ?, ?)");
                 pstmt = connection.prepareStatement(sql);
+                pstmt.setString(1, inputArr[0]);
+                pstmt.setDate(2, java.sql.Date.valueOf(inputArr[1]));
+                pstmt.setDate(3, java.sql.Date.valueOf(inputArr[2]));
+                pstmt.setString(4, inputArr[3]);
+                pstmt.setString(5, inputArr[4]);
+                pstmt.setString(6, inputArr[5]);
+                pstmt.setInt(7, Integer.parseInt(inputArr[6]));
+                pstmt.setInt(8, Integer.parseInt(inputArr[7]));
+
                 pstmt.executeUpdate();
             }
             br.close();
         } catch (IOException io) {
             throw new IOException("orders.csv file not found");
         } catch (SQLException se) {
+            se.printStackTrace();
             throw new SQLException("Error occured while inserting into order table");
+        } catch (ParseException pe) {
+            pe.printStackTrace();
         }
     }
 
@@ -440,10 +465,10 @@ public class Database {
 
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
-            sql = String.format("insert into customer values(\'%s\', \'%s\',%d, %d,%d,%d",
-                    inputArr[0], inputArr[1], Long.parseLong(inputArr[2]), Long.parseLong(inputArr[3]),
-                    Long.parseLong(inputArr[4]),
-                    Long.parseLong(inputArr[5]));
+            sql = String.format("insert into customer values(\'%s\', \'%s\', %f, %d, %f, %f",
+                    inputArr[0], inputArr[1], Double.parseDouble(inputArr[2]), Integer.parseInt(inputArr[3]),
+                    Double.parseDouble(inputArr[4]),
+                    Double.parseDouble(inputArr[5]));
             pstmt = connection.prepareStatement(sql);
             pstmt.executeUpdate();
         }
