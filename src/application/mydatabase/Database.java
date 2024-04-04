@@ -67,6 +67,8 @@ public class Database {
         } catch (SQLException e) {
             dropAllTables();
             System.out.println("Error occured while initializing the database\n\nDROPING ALL OF THE DATABASE");
+        } catch (IOException fnf) {
+            System.out.println(fnf.getMessage());
         }
     }
 
