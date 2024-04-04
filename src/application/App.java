@@ -2,13 +2,25 @@ package application;
 
 import application.mydatabase.Database;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        Database db = new Database();
-        simulate(db);
+        try{
+            Database db = new Database();
+            simulate(db);
+        } catch (SQLException se) {
+            System.out.println("Suitable Driver not found to establish connection with database");
+            System.exit(1);
+        } catch (FileNotFoundException fnf) {
+            System.out.println(fnf.getMessage());
+            System.exit(1);
+        } catch (IOException io) {
+            System.out.println(io.getMessage());
+        }
     }
 
     private static void simulate(Database db) {
@@ -127,8 +139,9 @@ public class App {
                 db.showSubCategories();
             } else if (parts[0].equals("sRegions")) {
                 db.showRegions();
+            } else if (parts[0].equals("i")) {
+                db.initializeDatabase();
             }
-
             else {
                 System.out.println("Enter 'm' for Menu, else Enter your choice:");
             }
@@ -146,7 +159,7 @@ public class App {
      */
     private static void displayMenu() {
         System.out.println(
-                "\tgcID <part of the name of customer> - Gets the Name of all the customer with 'part of the name of the customer' in their name");
+                "\tgcID <part of the name of customer> - Gets the Name of all the customer with 'part of the name of the customer' int their name");
         System.out.println(
                 "\tsc - Show all the Countries along with their Country Code");
         System.out.println(
@@ -158,7 +171,7 @@ public class App {
         System.out.println(
                 "\tspc <country limit> - Stores and Profit by Country");
         System.out.println(
-                "\ttopproducts <country code> - Top Product Holders by Country");
+                "\ttopproducts <country code> - Top Product Holders by Category");
         System.out.println(
                 "\trc <customerID>  - Customer Returned Item Count Analysis");
         System.out.println(
@@ -185,3 +198,5 @@ public class App {
 
     }
 }
+
+>>>>>>> ae5e34c5ca1179744bc3efa10f81a055bbe767b3

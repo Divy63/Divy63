@@ -86,7 +86,6 @@ public class update {
         try {
             Scanner in = new Scanner(new File("final-data-files/sub-category.csv"));
             Map<String, String> subCat = new HashMap<>();
-            String temp;
             String[] input;
 
             in.nextLine();

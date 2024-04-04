@@ -1,5 +1,7 @@
 package application.mydatabase;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.io.FileInputStream;
@@ -14,7 +16,7 @@ public class Database {
     private Connection connection;
     private static final String regex = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
 
-    public Database() throws SQLException {
+    public Database() throws SQLException, FileNotFoundException, IOException {
 
         Properties prop = new Properties();
         String cfgFileName = "src/application/mydatabase/auth.cfg";
@@ -24,11 +26,13 @@ public class Database {
             prop.load(configFile);
             configFile.close();
         } catch (FileNotFoundException e) {
-            System.out.println("An error occurred: config file not found.");
-            System.exit(1);
+            // System.out.println("An error occurred: config file not found.");
+            throw new FileNotFoundException("An error occurred: config file not found.");
+            // System.exit(1);
         } catch (IOException e) {
-            System.out.println("An error occurred: could not read config file.");
-            System.exit(1);
+            // System.out.println("An error occurred: could not read config file.");
+            throw new IOException("An error occurred: could not read config file.");
+            // System.exit(1);
         }
 
         String username = (prop.getProperty("username"));
@@ -36,86 +40,461 @@ public class Database {
 
         // TODO: uranium connection (VPN or campus)
         String url = "jdbc:sqlserver://uranium.cs.umanitoba.ca:1433;"
-            + "database=cs3380;"
-            + "user=" + username + ";"
-            + "password= " + password + ";"
-            + "encrypt=false;trustServerCertificate=false;loginTimeout=30;";
+                + "database=cs3380;"
+                + "user=" + username + ";"
+                + "password= " + password + ";"
+                + "encrypt=false;trustServerCertificate=false;loginTimeout=30;";
 
         // create a connection to the database
-        this.connection = DriverManager.getConnection(url);
+        try {
+            this.connection = DriverManager.getConnection(url);
+        } catch (SQLException se) {
+            throw new SQLException("Failed to establish connection to database");
+        }
         System.out.println("Connection established successfully");
 
         // TODO: this.initializeDatabase();
         // TODO: this.readInputData();
-
     }
 
     public void initializeDatabase() {
 
-        try {
-            // TODO: check if tables exist first or not, DROP TABLE if it exists
-            this.connection.createStatement().executeUpdate("CREATE TABLE customer("
-                                                            +"custID VARCHAR(8) PRIMARY KEY,"
-                                                            +"fname TEXT NOT NULL,"
-                                                            +"lname TEXT NOT NULL)");
-            this.connection.createStatement().executeUpdate("CREATE TABLE product("
-                                                            +"prodID VARCHAR(18) PRIMARY KEY,"
-                                                            +"name TEXT,"
-                                                            +"subCatID VARCHAR(7) REFERENCES subcategory(subCatID))");
-            this.connection.createStatement().executeUpdate("CREATE TABLE subcategory("
-                                                            +"subCatID VARCHAR(7) PRIMARY KEY,"
-                                                            +"catID INTEGER REFERENCES category(catID),"
-                                                            +"name TEXT)");
-            this.connection.createStatement().executeUpdate("CREATE TABLE category("
-                                                            +"catID INTEGER PRIMARY KEY autoincrement,"
-                                                            +"name TEXT)");
-            this.connection.createStatement().executeUpdate("CREATE TABLE store("
-                                                            +"storeID INTEGER PRIMARY KEY autoincrement,"
-                                                            +"addressID INTEGER REFERENCES address(addressID),"
-                                                            +"regionID INTEGER REFERENCES region(regionID))");
-            this.connection.createStatement().executeUpdate("CREATE TABLE region("
-                                                            +"regionID INTEGER PRIMARY KEY autoincrement,"
-                                                            +"regionName TEXT,"
-                                                            +"managerID INTEGER REFERENCES manager(managerID))");
-            this.connection.createStatement().executeUpdate("CREATE TABLE manager("
-                                                            +"managerID INTEGER PRIMARY KEY autoincrement,"
-                                                            +"fname TEXT NOT NULL,"
-                                                            +"lname TEXT NOT NULL)");
-            this.connection.createStatement().executeUpdate("CREATE TABLE country("
-                                                            +"countryCode VARCHAR(3) PRIMARY KEY,"
-                                                            +"name TEXT NOT NULL)");
-            this.connection.createStatement().executeUpdate("CREATE TABLE address("
-                                                            +"addressID INTEGER PRIMARY KEY autoincrement,"
-                                                            +"city TEXT NOT NULL,"
-                                                            +"state TEXT NOT NULL,"
-                                                            +"countryCode VARCHAR(3) REFERENCES country(countryCode))");
+        dropAllTables();
 
+        try {
+            createAllTables();
+            readInputData();
         } catch (SQLException e) {
-            e.printStackTrace(System.out);
+            // dropAllTables();
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            System.out.println("Error occured while initializing the database\n\nDROPING ALL OF THE DATABASE");
+        } catch (IOException fnf) {
+            System.out.println(fnf.getMessage());
         }
     }
 
-    private void readInputData(String filename) {
+    private void createAllTables() throws SQLException {
+        this.connection.createStatement().executeUpdate("CREATE TABLE customer("
+                + "custID VARCHAR(8) PRIMARY KEY,"
+                + "fname TEXT NOT NULL,"
+                + "lname TEXT NOT NULL)");
 
+        this.connection.createStatement().executeUpdate("CREATE TABLE product("
+                + "prodID VARCHAR(18) PRIMARY KEY,"
+                + "name TEXT,"
+                + "price BIGINT NOT NULL,"
+                + "subCatID VARCHAR(7) REFERENCES subcategory(subCatID))");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE subcategory("
+                + "subCatID VARCHAR(7) PRIMARY KEY,"
+                + "name TEXT,"
+                + "catID INTEGER REFERENCES category(catID))");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE category("
+                + "catID INTEGER PRIMARY KEY,"
+                + "name TEXT)");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE store("
+                + "storeID INTEGER PRIMARY KEY,"
+                + "addressID INTEGER REFERENCES address(addressID),"
+                + "regionID INTEGER REFERENCES region(regionID))");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE region("
+                + "regionID INTEGER PRIMARY KEY,"
+                + "regionName TEXT,"
+                + "managerID INTEGER REFERENCES manager(managerID))");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE manager("
+                + "managerID INTEGER PRIMARY KEY,"
+                + "fname TEXT NOT NULL,"
+                + "lname TEXT NOT NULL)");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE country("
+                + "countryCode VARCHAR(3) PRIMARY KEY,"
+                + "name TEXT NOT NULL)");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE address("
+                + "addressID INTEGER PRIMARY KEY,"
+                + "city TEXT NOT NULL,"
+                + "state TEXT NOT NULL,"
+                + "countryCode VARCHAR(3) REFERENCES country(countryCode))");
+        this.connection.createStatement().executeUpdate("CREATE TABLE \"order\"("
+                + "\"order\"ID VARCHAR(11) PRIMARY KEY,"
+                + "shipDate DATE NOT NULL,"
+                + "shipMode VARCHAR(20) NOT NULL,"
+                + "orderDate DATE NOT NULL,"
+                + "isReturned INT,"
+                + "storeID INTEGER FOREIGN KEY REFERENCES store(storeID));");
+        this.connection.createStatement().executeQuery("CREATE TABLE orderdetails("
+                + "orderID VARCHAR(11) FOREIGN KEY REFERENCES \"order\"(orderID) NOT NULL, "
+                + "prodID VARCHAR(18) FOREIGN KEY REFERENCES product(prodID) NOT NULL,"
+                + "sales BIGINT  NOT NULL,"
+                + "quantity INT  NOT NULL,"
+                + "discount BIGINT DEFAULT 0,"
+                + "profit BIGINT,"
+                + "PRIMARY KEY(orderID,prodID));");
+        this.connection.createStatement().executeQuery("CREATE TABLE inventory("
+                + "storeID INTEGER FOREIGN KEY store(storeID),"
+                + "prodID VARCHAR(18) FOREIGN KEY REFERENCES product(prodID)"
+                + "PRIMARY KEY(storeID,prodID));");
+    }
+
+    private void readInputData() throws SQLException, IOException {
+
+        insertIntoCustomer();
+        insertIntoManager();
+        insertIntoCountry();
+        insertIntoAddress();
+        insertIntoStore();
+        insertIntoOrder();
+        insertIntoCat();
+        insertIntoSubCat();
+        insertIntoProduct();
+        insertIntoInventory();
+        insertIntoOrderDetails();
+        insertIntoRegion();
+
+    }
+
+    private void insertIntoCustomer() throws SQLException, IOException {
         try {
-            // TODO: loop for all data-files
-            File dataDirectory = new File("final-data-files/");
-            File[] directoryList = dataDirectory.listFiles();
-            for (File dataFile : directoryList) {
-                if (dataFile.isFile()) {
-                    BufferedReader br = new BufferedReader(new FileReader(dataFile.getAbsolutePath()));
-                    String currLine = br.readLine();
-                    String[] headers = currLine.split(",");
-                    // TODO: preparedStatement based on the type of headers found
-                    br.close();
+            BufferedReader br = new BufferedReader(new FileReader("final-data-files/customers.csv"));
+            PreparedStatement pstmt;
+            String inputLine;
+            String sql;
+            String[] inputArr;
 
-                }
+            br.readLine(); // leaving the headers
+
+            while ((inputLine = br.readLine()) != null) {
+                inputArr = inputLine.split(regex);
+                sql = String.format("insert into customer values(%s, %s, %s)",
+                        inputArr[0], inputArr[1], inputArr[2]);
+                pstmt = connection.prepareStatement(sql);
+                pstmt.executeUpdate();
             }
+            br.close();
+        } catch (IOException io) {
+            throw new IOException("customers.csv file not found");
+        } catch (SQLException se) {
+            throw new SQLException("Error occured while inserting into customer table");
+        }
+    }
 
-        } catch (IOException ioer) {
-            ioer.printStackTrace();
-        } catch (SQLException sqler) {
-            sqler.printStackTrace(System.out);
+    private void insertIntoProduct() throws SQLException, IOException {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("final-data-files/products.csv"));
+            PreparedStatement pstmt;
+            String inputLine;
+            String sql;
+            String[] inputArr;
+
+            br.readLine(); // leaving the headers
+
+            while ((inputLine = br.readLine()) != null) {
+                inputArr = inputLine.split(regex);
+                sql = String.format("insert into product values(%s, %s, %d, %s)",
+                        inputArr[0], inputArr[1], Long.parseLong(inputArr[2]), inputArr[3]);
+                pstmt = connection.prepareStatement(sql);
+                pstmt.executeUpdate();
+            }
+            br.close();
+        } catch (IOException io) {
+            throw new IOException("products.csv file not found");
+        } catch (SQLException se) {
+            throw new SQLException("Error occured while inserting into product table");
+        }
+    }
+
+    private void insertIntoSubCat() throws SQLException, IOException {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("final-data-files/sub-category.csv"));
+            PreparedStatement pstmt;
+            String inputLine;
+            String sql;
+            String[] inputArr;
+
+            br.readLine(); // leaving the headers
+
+            while ((inputLine = br.readLine()) != null) {
+                inputArr = inputLine.split(regex);
+                sql = String.format("insert into subcategory values(%s, %s, %d)",
+                        inputArr[0], inputArr[1], Integer.parseInt(inputArr[2]));
+                pstmt = connection.prepareStatement(sql);
+                pstmt.executeUpdate();
+            }
+            br.close();
+        } catch (IOException io) {
+            throw new IOException("sub-category.csv file not found");
+        } catch (SQLException se) {
+            throw new SQLException("Error occured while inserting into subcategory table");
+        }
+    }
+
+    private void insertIntoCat() throws SQLException, IOException {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("final-data-files/category.csv"));
+            PreparedStatement pstmt;
+            String inputLine;
+            String sql;
+            String[] inputArr;
+
+            br.readLine(); // leaving the headers
+
+            while ((inputLine = br.readLine()) != null) {
+                inputArr = inputLine.split(regex);
+                sql = String.format("insert into category values(%d, %s)",
+                        Integer.parseInt(inputArr[0]), inputArr[1]);
+                pstmt = connection.prepareStatement(sql);
+                pstmt.executeUpdate();
+            }
+            br.close();
+        } catch (IOException io) {
+            throw new IOException("category.csv file not found");
+        } catch (SQLException se) {
+            throw new SQLException("Error occured while inserting into category table");
+        }
+    }
+
+    private void insertIntoStore() throws SQLException, IOException {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("final-data-files/stores.csv"));
+            PreparedStatement pstmt;
+            String inputLine;
+            String sql;
+            String[] inputArr;
+
+            br.readLine(); // leaving the headers
+
+            while ((inputLine = br.readLine()) != null) {
+                inputArr = inputLine.split(regex);
+                sql = String.format("insert into store values(%d, %d, %d)",
+                        Integer.parseInt(inputArr[0]), Integer.parseInt(inputArr[1]), Integer.parseInt(inputArr[2]));
+
+                pstmt = connection.prepareStatement(sql);
+                pstmt.executeUpdate();
+            }
+            br.close();
+        } catch (IOException io) {
+            throw new IOException("stores.csv file not found");
+        } catch (SQLException se) {
+            throw new SQLException("Error occured while inserting into stores table");
+        }
+    }
+
+    private void insertIntoRegion() throws SQLException, IOException {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("final-data-files/region.csv"));
+            PreparedStatement pstmt;
+            String inputLine;
+            String sql;
+            String[] inputArr;
+
+            br.readLine(); // leaving the headers
+
+            while ((inputLine = br.readLine()) != null) {
+                inputArr = inputLine.split(regex);
+                sql = String.format("insert into region values(%d, %s, %d)",
+                        Integer.parseInt(inputArr[0]), inputArr[1], Integer.parseInt(inputArr[2]));
+                pstmt = connection.prepareStatement(sql);
+                pstmt.executeUpdate();
+            }
+            br.close();
+        } catch (IOException io) {
+            throw new IOException("region.csv file not found");
+        } catch (SQLException se) {
+            throw new SQLException("Error occured while inserting into region table");
+        }
+    }
+
+    private void insertIntoManager() throws SQLException, IOException {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("final-data-files/manager.csv"));
+            PreparedStatement pstmt;
+            String inputLine;
+            String sql;
+            String[] inputArr;
+
+            br.readLine(); // leaving the headers
+
+            while ((inputLine = br.readLine()) != null) {
+                inputArr = inputLine.split(regex);
+                sql = String.format("insert into manager values(%d, %s, %s)",
+                        Integer.parseInt(inputArr[0]), inputArr[1], inputArr[2]);
+
+                pstmt = connection.prepareStatement(sql);
+                pstmt.executeUpdate();
+            }
+            br.close();
+        } catch (IOException io) {
+            throw new IOException("manager.csv.csv file not found");
+        } catch (SQLException se) {
+            throw new SQLException("Error occured while inserting into manager table");
+        }
+    }
+
+    private void insertIntoCountry() throws SQLException, IOException {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("final-data-files/countries.csv"));
+            PreparedStatement pstmt;
+            String inputLine;
+            String sql;
+            String[] inputArr;
+
+            br.readLine(); // leaving the headers
+
+            while ((inputLine = br.readLine()) != null) {
+                inputArr = inputLine.split(regex);
+                sql = String.format("insert into country values(%s, %s)",
+                        inputArr[0], inputArr[1]);
+
+                pstmt = connection.prepareStatement(sql);
+                pstmt.executeUpdate();
+            }
+            br.close();
+        } catch (IOException io) {
+            throw new IOException("countries.csv file not found");
+        } catch (SQLException se) {
+            throw new SQLException("Error occured while inserting into country table");
+        }
+    }
+
+    private void insertIntoAddress() throws SQLException, IOException {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("final-data-files/address.csv"));
+            PreparedStatement pstmt;
+            String inputLine;
+            String sql;
+            String[] inputArr;
+
+            br.readLine(); // leaving the headers
+
+            while ((inputLine = br.readLine()) != null) {
+                inputArr = inputLine.split(regex);
+                sql = String.format("insert into address values(%d, %s, %s, %s)",
+                        Integer.parseInt(inputArr[0]), inputArr[1], inputArr[2], inputArr[3]);
+                pstmt = connection.prepareStatement(sql);
+                pstmt.executeUpdate();
+            }
+            br.close();
+        } catch (IOException io) {
+            throw new IOException("address.csv file not found");
+        } catch (SQLException se) {
+            throw new SQLException("Error occured while inserting into address table");
+        }
+    }
+
+    private void insertIntoOrder() throws SQLException, IOException {
+        try {
+
+            BufferedReader br = new BufferedReader(new FileReader("final-data-files/orders.csv"));
+            PreparedStatement pstmt;
+            String inputLine;
+            String sql;
+            String[] inputArr;
+
+            br.readLine(); // leaving the headers
+
+            while ((inputLine = br.readLine()) != null) {
+                inputArr = inputLine.split(regex);
+                sql = String.format("insert into \"order\" values(%s, %s, %s, %s, %s, %s, %d, %d)",
+                        inputArr[0], inputArr[1], inputArr[2], inputArr[3], inputArr[4], inputArr[5],
+                        Integer.parseInt(inputArr[6]), Integer.parseInt(inputArr[7]));
+                        
+                pstmt = connection.prepareStatement(sql);
+                pstmt.executeUpdate();
+            }
+            br.close();
+        } catch (IOException io) {
+            throw new IOException("orders.csv file not found");
+        } catch (SQLException se) {
+            throw new SQLException("Error occured while inserting into order table");
+        }
+    }
+
+    private void insertIntoOrderDetails() throws SQLException, IOException {
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/order-details.csv"));
+        PreparedStatement pstmt;
+        String inputLine;
+        String sql;
+        String[] inputArr;
+
+        br.readLine(); // leaving the headers
+
+        while ((inputLine = br.readLine()) != null) {
+            inputArr = inputLine.split(regex);
+            sql = String.format("insert into customer values(%s, %s,%d, %d,%d,%d",
+                    inputArr[0], inputArr[1], Long.parseLong(inputArr[2]), Long.parseLong(inputArr[3]),
+                    Long.parseLong(inputArr[4]),
+                    Long.parseLong(inputArr[5]));
+            pstmt = connection.prepareStatement(sql);
+            pstmt.executeUpdate();
+        }
+        br.close();
+    }
+
+    private void insertIntoInventory() throws SQLException, IOException {
+        BufferedReader br = new BufferedReader(new FileReader("final-data-files/inventory.csv"));
+        PreparedStatement pstmt;
+        String inputLine;
+        String sql;
+        String[] inputArr;
+
+        br.readLine(); // leaving the headers
+
+        while ((inputLine = br.readLine()) != null) {
+            inputArr = inputLine.split(regex);
+            sql = String.format("insert into customer values(%s, %d)",
+                    inputArr[0], Integer.parseInt(inputArr[1]));
+            pstmt = connection.prepareStatement(sql);
+            pstmt.executeUpdate();
+        }
+        br.close();
+
+    }
+
+    public void dropAllTables() {
+        try {
+            PreparedStatement pstmt = connection.prepareStatement("DROP TABLE IF EXISTS customer;");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS product;");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS address;");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS store;");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS country;");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS \"order\";");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS orderdetails;");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS inventory;");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS subcategory;");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS category;");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS region;");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS manager;");
+            pstmt.executeUpdate();
+
+        } catch (SQLException se) {
+            System.out.println("Error while deleting the database");
+            se.printStackTrace();
         }
     }
 
@@ -267,7 +646,7 @@ public class Database {
                     "FROM Store s\r\n" + //
                     "JOIN Address a ON s.addressID = a.addressID\r\n" + //
                     "JOIN Country c ON a.countryCode = c.countryCode\r\n" + //
-                    "JOIN Order o ON s.storeID = o.storeID\r\n" + //
+                    "JOIN \"order\" o ON s.storeID = o.storeID\r\n" + //
                     "JOIN OrderDetails od ON o.orderID = od.orderID\r\n" + //
                     "GROUP BY c.countryCode\r\n" + //
                     "ORDER BY num_stores DESC\r\n" + //
@@ -378,7 +757,7 @@ public class Database {
              // SQL QUERY
             String query = "SELECT COUNT(*) AS returned_items_count, c.fname as First,c.lname as Last\r\n" + //
                     "FROM Customer c\r\n" + //
-                    "JOIN Orders o ON c.custID = o.custID\r\n" + //
+                    "JOIN \"order\" o ON c.custID = o.custID\r\n" + //
                     "WHERE c.custID = '?'\r\n" + //
                     "AND o.isReturned = 1;";
 
@@ -456,7 +835,7 @@ public class Database {
             String query = "SELECT p.name as name, p.price as price, o.shipMode as shipMode\r\n" + //
                     "FROM Product p\r\n" + //
                     "INNER JOIN OrderDetails c ON p.prodID = c.prodID \r\n" + //
-                    "INNER JOIN Order o ON c.orderID = o.orderID \r\n" + //
+                    "INNER JOIN \"order\" o ON c.orderID = o.orderID \r\n" + //
                     "WHERE o.orderID = ?;\r\n" + //
                     "";
 
@@ -542,7 +921,7 @@ public class Database {
                     "JOIN SubCategory sb ON p.subCatID = sb.subCatID\r\n" + //
                     "JOIN Category c ON sb.catID = c.catID\r\n" + //
                     "JOIN OrderDetails od ON p.prodID = od.prodID\r\n" + //
-                    "JOIN Order o ON od.orderID = o.orderID\r\n" + //
+                    "JOIN \"order\" o ON od.orderID = o.orderID\r\n" + //
                     "GROUP BY sb.subCatID, od.orderID, c.name, sb.name\r\n" + //
                     "HAVING o.isReturned = 0\r\n" + //
                     "ORDER BY c.name, num_products desc;";
@@ -580,7 +959,7 @@ public class Database {
             String query = "SELECT DISTINCT p.name AS prod_name\r\n" + //
                     "FROM Products p\r\n" + //
                     "JOIN OrderDetails od ON p.prodID = od.prodID\r\n" + //
-                    "JOIN Order o ON od.orderID = o.orderID\r\n" + //
+                    "JOIN \"order\" o ON od.orderID = o.orderID\r\n" + //
                     "JOIN Customer c ON o.custID=o.custID WHERE c.custID='?' and o.isReturned=1;\r\n";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
@@ -650,7 +1029,7 @@ public class Database {
             String query = "SELECT DISTINCT p.name AS prod_name\r\n" + //
                     "FROM Products p\r\n" + //
                     "JOIN OrderDetails od ON p.prodID = od.prodID\r\n" + //
-                    "JOIN Order o ON od.orderID = o.orderID\r\n" + //
+                    "JOIN \"order\" o ON od.orderID = o.orderID\r\n" + //
                     "JOIN Store s ON o.storeID=s.storeID\r\n" + //
                     "JOIN Region r ON s.regionID=r.regionID \r\n" + //
                     "WHERE r.name='?' and o.isReturned=1;\r\n";
@@ -721,7 +1100,7 @@ public class Database {
              // SQL QUERY
             String query = "SELECT o.shipMode as ship_mode, AVG(julianday(o.shipDate) - julianday(o.orderDate)) AS avg_days_to_ship,o.orderID as orderID\r\n"
                     + //
-                    "FROM Order o\r\n" + //
+                    "FROM \"order\" o\r\n" + //
                     "JOIN OrderDetails od ON o.orderID = od.orderID \r\n" +
                     "GROUP BY o.shipMode, od.orderID\r\n" +
                     "HAVING SUM(od.quantity) > 7;";
@@ -761,7 +1140,7 @@ public class Database {
                     "FROM Country con\r\n" + //
                     "LEFT JOIN Address a ON a.countryCode = con.countryCode\r\n" + //
                     "JOIN Store s ON a.addressID = s.addressID\r\n" + //
-                    "JOIN Orders o ON s.storeID = o.storeID\r\n" + //
+                    "JOIN \"order\" o ON s.storeID = o.storeID\r\n" + //
                     "JOIN Customer cust ON o.custID = cust.custID\r\n" + //
                     "JOIN (\r\n" + //
                     "SELECT od.orderID, SUM(od.sales) as order_total\r\n" + //
@@ -799,3 +1178,16 @@ public class Database {
     }
 
 }
+
+// try{
+
+// }catch(
+
+// IOException io)
+// {
+// throw new IOException("customer.csv file not found");
+// }catch(
+// SQLException se)
+// {
+// throw new SQLException("Error occured while inserting into customer table");
+// }
