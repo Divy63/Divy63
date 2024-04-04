@@ -129,7 +129,7 @@ public class Database {
                 + "price BIGINT NOT NULL,"
                 + "subCatID VARCHAR(7) REFERENCES SubCategory(subCatID))");
 
-        this.connection.createStatement().executeQuery("CREATE TABLE OrderDetails("
+        this.connection.createStatement().executeUpdate("CREATE TABLE OrderDetails("
                 + "orderID VARCHAR(11) FOREIGN KEY REFERENCES \"order\"(orderID) NOT NULL, "
                 + "prodID VARCHAR(18) FOREIGN KEY REFERENCES Product(prodID) NOT NULL,"
                 + "sales BIGINT  NOT NULL,"
@@ -137,8 +137,8 @@ public class Database {
                 + "discount BIGINT DEFAULT 0,"
                 + "profit BIGINT,"
                 + "PRIMARY KEY(orderID,prodID));");
-        this.connection.createStatement().executeQuery("CREATE TABLE Inventory("
-                + "storeID INTEGER FOREIGN KEY store(storeID),"
+        this.connection.createStatement().executeUpdate("CREATE TABLE Inventory("
+                + "storeID INTEGER REFERENCES FOREIGN KEY store(storeID),"
                 + "prodID VARCHAR(18) FOREIGN KEY REFERENCES Product(prodID)"
                 + "PRIMARY KEY(storeID,prodID));");
     }
@@ -499,7 +499,7 @@ public class Database {
 
             pstmt = connection.prepareStatement("DROP TABLE IF EXISTS Manager;");
             pstmt.executeUpdate();
-            
+
             pstmt = connection.prepareStatement("DROP TABLE IF EXISTS Customer;");
             pstmt.executeUpdate();
 
