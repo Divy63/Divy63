@@ -73,7 +73,7 @@ public class Database {
         this.connection.createStatement().executeUpdate("CREATE TABLE product("
                 + "prodID VARCHAR(18) PRIMARY KEY,"
                 + "name TEXT,"
-                + "price DECIMAL NOT NULL,"
+                + "price BIGINT NOT NULL,"
                 + "subCatID VARCHAR(7) REFERENCES subcategory(subCatID))");
 
         this.connection.createStatement().executeUpdate("CREATE TABLE subcategory("
@@ -119,10 +119,10 @@ public class Database {
          this.connection.createStatement().executeQuery("CREATE TABLE orderdetails("
                     + "orderID VARCHAR(11) FOREIGN KEY REFERENCES order(orderID) NOT NULL, "
                     + "prodID VARCHAR(18) FOREIGN KEY REFERENCES product(prodID) NOT NULL,"
-                    + "sales DECIMAL  NOT NULL,"
+                    + "sales BIGINT  NOT NULL,"
                     + "quantity INT  NOT NULL,"
-                    + "discount DECIMAL DEFAULT 0,"
-                    + "profit DECIMAL"
+                    + "discount BIGINT DEFAULT 0,"
+                    + "profit BIGINT"
                     + "PRIMARY KEY(orderID,prodID));");
             this.connection.createStatement().executeQuery("CREATE TABLE inventory("
                     + "storeID INTEGER FOREIGN KEY store(storeID),"
@@ -172,7 +172,7 @@ public class Database {
 
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
-            sql = String.format("insert into product values(%s, %s, %s)",
+            sql = String.format("insert into product values(%s, %s, %d, %s)",
                     inputArr[0], inputArr[1], inputArr[2]);
         }
         br.close();
