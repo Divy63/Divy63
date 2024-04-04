@@ -168,7 +168,7 @@ public class Database {
         insertIntoCat();
         insertIntoSubCat();
         insertIntoProduct();
-        insertIntoInventory();
+        // insertIntoInventory();
         insertIntoOrderDetails();
 
     }
@@ -489,7 +489,7 @@ public class Database {
 
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
-            sql = String.format("insert into orderdetails values(\'%s\', \'%s\', %f, %d, %f, %f",
+            sql = String.format("insert into orderdetails values(\'%s\', \'%s\', %f, %d, %f, %f)",
                     inputArr[0], inputArr[1], Double.parseDouble(inputArr[2]), Integer.parseInt(inputArr[3]),
                     Double.parseDouble(inputArr[4]),
                     Double.parseDouble(inputArr[5]));
