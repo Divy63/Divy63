@@ -11,10 +11,10 @@ import java.util.Properties;
 public class Database {
     private Connection connection;
 
-    public Database() {
+    public Database() throws SQLException {
 
         Properties prop = new Properties();
-        String cfgFileName = "auth.cfg";
+        String cfgFileName = "src/application/mydatabase/auth.cfg";
 
         try {
             FileInputStream configFile = new FileInputStream(cfgFileName);
@@ -31,40 +31,78 @@ public class Database {
         String username = (prop.getProperty("username"));
         String password = (prop.getProperty("password"));
 
-        try {
+        // TODO: uranium connection (VPN or campus)
+        String url = "jdbc:sqlserver://uranium.cs.umanitoba.ca:1433;"
+            + "database=cs3380;"
+            + "user=" + username + ";"
+            + "password= " + password + ";"
+            + "encrypt=false;trustServerCertificate=false;loginTimeout=30;";
 
-            // TODO: uranium connection (VPN or campus)
-            String url = "jdbc:sqlserver://uranium.cs.umanitoba.ca:1433;"
-                + "database=cs3380;"
-                + "user=" + username + ";"
-                + "password= " + password + ";"
-                + "encrypt=false;trustServerCertificate=false;loginTimeout=30;";
+        // create a connection to the database
+        this.connection = DriverManager.getConnection(url);
+        System.out.println("Connection established successfully");
 
-            // create a connection to the database
-            this.connection = DriverManager.getConnection(url);
-
-            // TODO: this.initializeDatabase();
-            // TODO: this.readInputData();
-        } catch (SQLException e) {
-            e.printStackTrace(System.out);
-        }
+        // TODO: this.initializeDatabase();
+        // TODO: this.readInputData();
 
     }
 
     private void initializeDatabase() {
-        // TODO: create statements here
+
         try {
-            this.connection.createStatement().executeUpdate("CREATE TABLE");
+
+            this.connection.createStatement().executeUpdate("CREATE TABLE customer("
+                                                            +"custID VARCHAR(8) PRIMARY KEY,"
+                                                            +"fname TEXT NOT NULL,"
+                                                            +"lname TEXT NOT NULL)");
+            this.connection.createStatement().executeUpdate("CREATE TABLE product("
+                                                            +"prodID VARCHAR(18) PRIMARY KEY,"
+                                                            +"name TEXT,"
+                                                            +"subCatID VARCHAR(7) REFERENCES subcategory(subCatID))");
+            this.connection.createStatement().executeUpdate("CREATE TABLE subcategory("
+                                                            +"subCatID VARCHAR(7) PRIMARY KEY,"
+                                                            +"catID INTEGER REFERENCES category(catID),"
+                                                            +"name TEXT)");
+            this.connection.createStatement().executeUpdate("CREATE TABLE category("
+                                                            +"catID INTEGER PRIMARY KEY autoincrement,"
+                                                            +"name TEXT)");
+            this.connection.createStatement().executeUpdate("CREATE TABLE store("
+                                                            +"storeID INTEGER PRIMARY KEY autoincrement,"
+                                                            +"addressID INTEGER REFERENCES address(addressID),"
+                                                            +"regionID INTEGER REFERENCES region(regionID))");
+            this.connection.createStatement().executeUpdate("CREATE TABLE region("
+                                                            +"regionID INTEGER PRIMARY KEY autoincrement,"
+                                                            +"regionName TEXT,"
+                                                            +"managerID INTEGER REFERENCES manager(managerID))");
+            this.connection.createStatement().executeUpdate("CREATE TABLE manager("
+                                                            +"managerID INTEGER PRIMARY KEY autoincrement,"
+                                                            +"fname TEXT NOT NULL,"
+                                                            +"lname TEXT NOT NULL)");
+            this.connection.createStatement().executeUpdate("CREATE TABLE country("
+                                                            +"countryCode VARCHAR(3) PRIMARY KEY,"
+                                                            +"name TEXT NOT NULL)");
+            this.connection.createStatement().executeUpdate("CREATE TABLE address("
+                                                            +"addressID INTEGER PRIMARY KEY autoincrement,"
+                                                            +"city TEXT NOT NULL,"
+                                                            +"state TEXT NOT NULL,"
+                                                            +"countryCode VARCHAR(3) REFERENCES country(countryCode))");
+
         } catch (SQLException e) {
             e.printStackTrace(System.out);
         }
     }
 
     private void readInputData(String filename) {
-        // TODO: read csv data and populate database
+
         try {
+            // TODO: while loop for all data-files
             BufferedReader br = new BufferedReader(new FileReader(""));
             br.readLine();
+
+            // TODO: read lines, prepare statements
+
+            br.close();
+
         } catch (IOException ioer) {
             ioer.printStackTrace();
         } catch (SQLException sqler) {
