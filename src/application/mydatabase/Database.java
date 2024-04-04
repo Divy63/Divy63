@@ -70,11 +70,11 @@ public class Database {
 
             this.connection.createStatement().executeUpdate("CREATE TABLE subcategory("
                     + "subCatID VARCHAR(7) PRIMARY KEY,"
-                    + "catID INTEGER REFERENCES category(catID),"
-                    + "name TEXT)");
+                    + "name TEXT,"
+                    + "catID INTEGER REFERENCES category(catID))");
 
             this.connection.createStatement().executeUpdate("CREATE TABLE category("
-                    + "catID INTEGER PRIMARY KEY autoincrement,"
+                    + "catID INTEGER PRIMARY KEY,"
                     + "name TEXT)");
 
             this.connection.createStatement().executeUpdate("CREATE TABLE store("
@@ -83,12 +83,12 @@ public class Database {
                     + "regionID INTEGER REFERENCES region(regionID))");
 
             this.connection.createStatement().executeUpdate("CREATE TABLE region("
-                    + "regionID INTEGER PRIMARY KEY autoincrement,"
+                    + "regionID INTEGER PRIMARY KEY,"
                     + "regionName TEXT,"
                     + "managerID INTEGER REFERENCES manager(managerID))");
 
             this.connection.createStatement().executeUpdate("CREATE TABLE manager("
-                    + "managerID INTEGER PRIMARY KEY autoincrement,"
+                    + "managerID INTEGER PRIMARY KEY,"
                     + "fname TEXT NOT NULL,"
                     + "lname TEXT NOT NULL)");
 
@@ -97,7 +97,7 @@ public class Database {
                     + "name TEXT NOT NULL)");
 
             this.connection.createStatement().executeUpdate("CREATE TABLE address("
-                    + "addressID INTEGER PRIMARY KEY autoincrement,"
+                    + "addressID INTEGER PRIMARY KEY,"
                     + "city TEXT NOT NULL,"
                     + "state TEXT NOT NULL,"
                     + "countryCode VARCHAR(3) REFERENCES country(countryCode))");
