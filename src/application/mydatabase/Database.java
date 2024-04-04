@@ -36,10 +36,10 @@ public class Database {
 
         // TODO: uranium connection (VPN or campus)
         String url = "jdbc:sqlserver://uranium.cs.umanitoba.ca:1433;"
-            + "database=cs3380;"
-            + "user=" + username + ";"
-            + "password= " + password + ";"
-            + "encrypt=false;trustServerCertificate=false;loginTimeout=30;";
+                + "database=cs3380;"
+                + "user=" + username + ";"
+                + "password= " + password + ";"
+                + "encrypt=false;trustServerCertificate=false;loginTimeout=30;";
 
         // create a connection to the database
         this.connection = DriverManager.getConnection(url);
@@ -54,40 +54,59 @@ public class Database {
         try {
 
             this.connection.createStatement().executeUpdate("CREATE TABLE customer("
-                                                            +"custID VARCHAR(8) PRIMARY KEY,"
-                                                            +"fname TEXT NOT NULL,"
-                                                            +"lname TEXT NOT NULL)");
+                    + "custID VARCHAR(8) PRIMARY KEY,"
+                    + "fname TEXT NOT NULL,"
+                    + "lname TEXT NOT NULL)");
             this.connection.createStatement().executeUpdate("CREATE TABLE product("
-                                                            +"prodID VARCHAR(18) PRIMARY KEY,"
-                                                            +"name TEXT,"
-                                                            +"subCatID VARCHAR(7) REFERENCES subcategory(subCatID))");
+                    + "prodID VARCHAR(18) PRIMARY KEY,"
+                    + "name TEXT,"
+                    + "subCatID VARCHAR(7) FOREIGN KEY REFERENCES subcategory(subCatID))");
             this.connection.createStatement().executeUpdate("CREATE TABLE subcategory("
-                                                            +"subCatID VARCHAR(7) PRIMARY KEY,"
-                                                            +"catID INTEGER REFERENCES category(catID),"
-                                                            +"name TEXT)");
+                    + "subCatID VARCHAR(7) PRIMARY KEY,"
+                    + "catID INTEGER FOREIGN KEY REFERENCES category(catID),"
+                    + "name TEXT)");
             this.connection.createStatement().executeUpdate("CREATE TABLE category("
-                                                            +"catID INTEGER PRIMARY KEY autoincrement,"
-                                                            +"name TEXT)");
+                    + "catID INTEGER PRIMARY KEY autoincrement,"
+                    + "name TEXT);");
             this.connection.createStatement().executeUpdate("CREATE TABLE store("
-                                                            +"storeID INTEGER PRIMARY KEY autoincrement,"
-                                                            +"addressID INTEGER REFERENCES address(addressID),"
-                                                            +"regionID INTEGER REFERENCES region(regionID))");
+                    + "storeID INTEGER PRIMARY KEY autoincrement,"
+                    + "addressID INTEGER FOREIGN KEY REFERENCES address(addressID),"
+                    + "regionID INTEGER FOREIGN KEY REFERENCES region(regionID));");
             this.connection.createStatement().executeUpdate("CREATE TABLE region("
-                                                            +"regionID INTEGER PRIMARY KEY autoincrement,"
-                                                            +"regionName TEXT,"
-                                                            +"managerID INTEGER REFERENCES manager(managerID))");
+                    + "regionID INTEGER PRIMARY KEY autoincrement,"
+                    + "regionName TEXT,"
+                    + "managerID INTEGER FOREIGN KEY REFERENCES manager(managerID));");
             this.connection.createStatement().executeUpdate("CREATE TABLE manager("
-                                                            +"managerID INTEGER PRIMARY KEY autoincrement,"
-                                                            +"fname TEXT NOT NULL,"
-                                                            +"lname TEXT NOT NULL)");
+                    + "managerID INTEGER PRIMARY KEY autoincrement,"
+                    + "fname TEXT NOT NULL,"
+                    + "lname TEXT NOT NULL);");
             this.connection.createStatement().executeUpdate("CREATE TABLE country("
-                                                            +"countryCode VARCHAR(3) PRIMARY KEY,"
-                                                            +"name TEXT NOT NULL)");
+                    + "countryCode VARCHAR(3) PRIMARY KEY,"
+                    + "name TEXT NOT NULL);");
             this.connection.createStatement().executeUpdate("CREATE TABLE address("
-                                                            +"addressID INTEGER PRIMARY KEY autoincrement,"
-                                                            +"city TEXT NOT NULL,"
-                                                            +"state TEXT NOT NULL,"
-                                                            +"countryCode VARCHAR(3) REFERENCES country(countryCode))");
+                    + "addressID INTEGER PRIMARY KEY autoincrement,"
+                    + "city TEXT NOT NULL,"
+                    + "state TEXT NOT NULL,"
+                    + "countryCode VARCHAR(3) FOREIGN KEY REFERENCES country(countryCode));");
+            this.connection.createStatement().executeUpdate("CREATE TABLE order("
+                    + "orderID VARCHAR(11) PRIMARY KEY,"
+                    + "shipDate DATE NOT NULL,"
+                    + "shipMode VARCHAR(20) NOT NULL,"
+                    + "orderDate DATE NOT NULL,"
+                    + "isReturned BIT"
+                    + "storeID INTEGER FOREIGN KEY REFERENCES store(storeID));");
+            this.connection.createStatement().executeQuery("CREATE TABLE orderdetails("
+                    + "orderID VARCHAR(11) FOREIGN KEY REFERENCES order(orderID) NOT NULL, "
+                    + "prodID VARCHAR(18) FOREIGN KEY REFERENCES product(prodID) NOT NULL,"
+                    + "sales DECIMAL  NOT NULL,"
+                    + "quantity INT  NOT NULL,"
+                    + "discount DECIMAL DEFAULT 0,"
+                    + "profit DECIMAL"
+                    + "PRIMARY KEY(orderID,prodID));");
+            this.connection.createStatement().executeQuery("CREATE TABLE inventory("
+                    + "storeID INTEGER FOREIGN KEY store(storeID),"
+                    + "prodID VARCHAR(18) FOREIGN KEY REFERENCES product(prodID)"
+                    + "PRIMARY KEY(storeID,podID));");
 
         } catch (SQLException e) {
             e.printStackTrace(System.out);
@@ -115,7 +134,7 @@ public class Database {
     public void showPeople(String partOfName) {
         try {// try
              // SQL QUERY
-            String query = "SELECT c.fname as First, c.lnamed as Last, c.custID as custID FROM Customer c WHERE First LIKE ? OR Last LIKE ?;";
+            String query = "SELECT c.fname as First, c.lnamed as Last, c.custID as custID FROM Customer c WHERE First LIKE ? OR Last Like ?;";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setString(1, partOfName);
