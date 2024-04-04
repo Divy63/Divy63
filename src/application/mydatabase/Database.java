@@ -249,9 +249,12 @@ public class Database {
 
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
-            sql = String.format("insert into customer values(%s, %s, %s)",
-                    inputArr[0], inputArr[1], inputArr[2]);
+            sql = String.format("insert into region values(%d, %s, %d)",
+                    Integer.parseInt(inputArr[0]), inputArr[1], Integer.parseInt(inputArr[2]));
+            pstmt = connection.prepareStatement(sql);
+            pstmt.executeUpdate();
         }
+        br.close();
     }
 
     private void insertIntoManager() throws SQLException, IOException {
@@ -265,9 +268,13 @@ public class Database {
 
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
-            sql = String.format("insert into customer values(%s, %s, %s)",
-                    inputArr[0], inputArr[1], inputArr[2]);
+            sql = String.format("insert into manager values(%d, %s, %s)",
+                    Integer.parseInt(inputArr[0]), inputArr[1], inputArr[2]);
+
+            pstmt = connection.prepareStatement(sql);
+            pstmt.executeUpdate();
         }
+        br.close();
     }
 
     private void insertIntoCountry() throws SQLException, IOException {
@@ -281,9 +288,13 @@ public class Database {
 
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
-            sql = String.format("insert into customer values(%s, %s, %s)",
-                    inputArr[0], inputArr[1], inputArr[2]);
+            sql = String.format("insert into country values(%s, %s)",
+                    inputArr[0], inputArr[1]);
+
+            pstmt = connection.prepareStatement(sql);
+            pstmt.executeUpdate();
         }
+        br.close();
     }
 
     private void insertIntoAddress() throws SQLException, IOException {
@@ -297,8 +308,8 @@ public class Database {
 
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
-            sql = String.format("insert into customer values(%s, %s, %s)",
-                    inputArr[0], inputArr[1], inputArr[2]);
+            sql = String.format("insert into address values(%d, %s, %s, %s)",
+                    Integer.parseInt(inputArr[0]), inputArr[1], inputArr[2], inputArr[3]);
         }
     }
 
