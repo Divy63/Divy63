@@ -56,75 +56,75 @@ public class Database {
         dropAllTables();
 
         try {
-
-            this.connection.createStatement().executeUpdate("CREATE TABLE customer("
-                    + "custID VARCHAR(8) PRIMARY KEY,"
-                    + "fname TEXT NOT NULL,"
-                    + "lname TEXT NOT NULL)");
-
-            this.connection.createStatement().executeUpdate("CREATE TABLE product("
-                    + "prodID VARCHAR(18) PRIMARY KEY,"
-                    + "name TEXT,"
-                    + "price REAL NOT NULL,"
-                    + "subCatID VARCHAR(7) REFERENCES subcategory(subCatID))");
-
-            this.connection.createStatement().executeUpdate("CREATE TABLE subcategory("
-                    + "subCatID VARCHAR(7) PRIMARY KEY,"
-                    + "name TEXT,"
-                    + "catID INTEGER REFERENCES category(catID))");
-
-            this.connection.createStatement().executeUpdate("CREATE TABLE category("
-                    + "catID INTEGER PRIMARY KEY,"
-                    + "name TEXT)");
-
-            this.connection.createStatement().executeUpdate("CREATE TABLE store("
-                    + "storeID INTEGER PRIMARY KEY autoincrement,"
-                    + "addressID INTEGER REFERENCES address(addressID),"
-                    + "regionID INTEGER REFERENCES region(regionID))");
-
-            this.connection.createStatement().executeUpdate("CREATE TABLE region("
-                    + "regionID INTEGER PRIMARY KEY,"
-                    + "regionName TEXT,"
-                    + "managerID INTEGER REFERENCES manager(managerID))");
-
-            this.connection.createStatement().executeUpdate("CREATE TABLE manager("
-                    + "managerID INTEGER PRIMARY KEY,"
-                    + "fname TEXT NOT NULL,"
-                    + "lname TEXT NOT NULL)");
-
-            this.connection.createStatement().executeUpdate("CREATE TABLE country("
-                    + "countryCode VARCHAR(3) PRIMARY KEY,"
-                    + "name TEXT NOT NULL)");
-
-            this.connection.createStatement().executeUpdate("CREATE TABLE address("
-                    + "addressID INTEGER PRIMARY KEY,"
-                    + "city TEXT NOT NULL,"
-                    + "state TEXT NOT NULL,"
-                    + "countryCode VARCHAR(3) REFERENCES country(countryCode))");
-
-            
-
+            createAllTables();
+            readInputData();
         } catch (SQLException e) {
-            e.printStackTrace(System.out);
+            System.out.println("Error occured while initializing the database\n\nDROPING ALL OF THE DATABASE");
+            dropAllTables();
         }
     }
+    
+    private void createAllTables() throws SQLException{
+        this.connection.createStatement().executeUpdate("CREATE TABLE customer("
+                + "custID VARCHAR(8) PRIMARY KEY,"
+                + "fname TEXT NOT NULL,"
+                + "lname TEXT NOT NULL)");
 
-    private void readInputData(String filename) {
+        this.connection.createStatement().executeUpdate("CREATE TABLE product("
+                + "prodID VARCHAR(18) PRIMARY KEY,"
+                + "name TEXT,"
+                + "price REAL NOT NULL,"
+                + "subCatID VARCHAR(7) REFERENCES subcategory(subCatID))");
 
-        try {
+        this.connection.createStatement().executeUpdate("CREATE TABLE subcategory("
+                + "subCatID VARCHAR(7) PRIMARY KEY,"
+                + "name TEXT,"
+                + "catID INTEGER REFERENCES category(catID))");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE category("
+                + "catID INTEGER PRIMARY KEY,"
+                + "name TEXT)");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE store("
+                + "storeID INTEGER PRIMARY KEY autoincrement,"
+                + "addressID INTEGER REFERENCES address(addressID),"
+                + "regionID INTEGER REFERENCES region(regionID))");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE region("
+                + "regionID INTEGER PRIMARY KEY,"
+                + "regionName TEXT,"
+                + "managerID INTEGER REFERENCES manager(managerID))");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE manager("
+                + "managerID INTEGER PRIMARY KEY,"
+                + "fname TEXT NOT NULL,"
+                + "lname TEXT NOT NULL)");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE country("
+                + "countryCode VARCHAR(3) PRIMARY KEY,"
+                + "name TEXT NOT NULL)");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE address("
+                + "addressID INTEGER PRIMARY KEY,"
+                + "city TEXT NOT NULL,"
+                + "state TEXT NOT NULL,"
+                + "countryCode VARCHAR(3) REFERENCES country(countryCode))");
+    }
+
+    private void readInputData(String filename) throws SQLException, IOException {
+
             // TODO: while loop for all data-files
-            BufferedReader br = new BufferedReader(new FileReader(""));
-            br.readLine();
+            // BufferedReader br = new BufferedReader(new FileReader(""));
+            // br.readLine();
 
-            // TODO: read lines, prepare statements
+            // // TODO: read lines, prepare statements
 
-            br.close();
+            // br.close();
 
-        } catch (IOException ioer) {
-            ioer.printStackTrace();
-        } catch (SQLException sqler) {
-            sqler.printStackTrace(System.out);
-        }
+    }
+    
+    private void insertIntoCustomer() throws SQLException, IOException {
+        
     }
 
     public void dropAllTables() {
