@@ -168,7 +168,7 @@ public class Database {
         insertIntoCat();
         insertIntoSubCat();
         insertIntoProduct();
-        // insertIntoInventory();
+        insertIntoInventory();
         insertIntoOrderDetails();
 
     }
