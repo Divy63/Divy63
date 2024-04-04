@@ -1,5 +1,7 @@
 package application.mydatabase;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -10,8 +12,10 @@ import java.util.Properties;
 
 public class Database {
     private Connection connection;
+    private static final String regex = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
 
     public Database() throws SQLException {
+
 
         Properties prop = new Properties();
         String cfgFileName = "src/application/mydatabase/auth.cfg";
@@ -31,6 +35,7 @@ public class Database {
         String username = (prop.getProperty("username"));
         String password = (prop.getProperty("password"));
 
+<<<<<<< HEAD
         // TODO: uranium connection (VPN or campus)
         String url = "jdbc:sqlserver://uranium.cs.umanitoba.ca:1433;"
             + "database=cs3380;"
@@ -45,10 +50,36 @@ public class Database {
         // TODO: this.initializeDatabase();
         // TODO: this.readInputData();
 
-    }
+=======
+        try {
+            // TODO: uranium connection (VPN or campus)
+            String url = "jdbc:sqlserver://uranium.cs.umanitoba.ca:1433;"
+                + "database=cs3380;"
+                + "user=" + username + ";"
+                + "password= " + password + ";"
+                + "encrypt=false;trustServerCertificate=false;loginTimeout=30;";
 
+            // create a connection to the database
+            this.connection = DriverManager.getConnection(url);
+
+            // TODO: this.initializeDatabase();
+            // TODO: this.readInputData();
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        }
+>>>>>>> main
+    }
+    
+
+<<<<<<< HEAD
     private void initializeDatabase() {
 
+=======
+    public void initializeDatabase() {
+
+        // TODO: create statements here
+>>>>>>> main
         try {
 
             this.connection.createStatement().executeUpdate("CREATE TABLE customer("

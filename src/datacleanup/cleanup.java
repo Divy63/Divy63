@@ -1,12 +1,35 @@
 package datacleanup;
 
 import java.util.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.io.*;
 
 public class cleanup {
     private static final String regex = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
 
     public static void main(String[] args) {
+        System.out.println("\nGenerating seperate .csv files for database\n");
+        long start = System.currentTimeMillis(), end;
+        try {
+            makeDirectory("final-data-files");
+            run();
+            product pr = new product();
+            pr.run();
+            update up = new update();
+            up.run();
+            System.out.println("All required files created in \'final-data-files\' directory :)\n");
+            end = System.currentTimeMillis();
+        } catch (IOException io) {
+            System.out.println("Error while creating directory for storing data files ;(\n");
+            System.exit(1);
+            end = System.currentTimeMillis();
+        }
+        // System.out.println("Time take: " + (end - start)/ 1000 + " seconds");
+    }
+    
+    private static void run() {
         updateProductIDAndRegion();
         writeOrderDetails();
         updatePriceInOrderDetails();
@@ -15,6 +38,13 @@ public class cleanup {
         makeCustomerData();
         makeRegionData();
         makeStoreFile();
+        makeOrderFile();
+        makeInventoryFile();
+    }
+
+    private static void makeDirectory(String dirPath) throws IOException{
+        Path dir = Paths.get(dirPath);
+            Files.createDirectories(dir);
     }
 
     private static void makeCountryData() {
@@ -422,9 +452,10 @@ public class cleanup {
             Scanner in2 = new Scanner(new File("final-data-files/region.csv"));
             List<String> region = new ArrayList<>();
             List<String> address = new ArrayList<>();
-            String inputLine;
+            List<String> orderDetails = new ArrayList<>();
+
+            String addressStr, inputLine;
             String[] input;
-            List<String> temp;
 
             while (in2.hasNextLine()) {
                 input = in2.nextLine().split(regex);
@@ -450,19 +481,99 @@ public class cleanup {
 
             in.nextLine();
             while (in.hasNextLine()) {
-                input = in.nextLine().split(regex);
-                inputLine = input[7] + "," + input[8] + "," + input[9];
-                if (!stores.contains(inputLine)) {
-                    stores.add(inputLine);
+                inputLine = in.nextLine();
+                input = inputLine.split(regex);
+                addressStr = input[7] + "," + input[8] + "," + input[9];
+                if (!stores.contains(addressStr)) {
+                    stores.add(addressStr);
+                    stores.add(Integer.toString(storeID));
                     String storeStr = Integer.toString(storeID++) + ","
-                            + address.get(address.indexOf(inputLine) - 1) + ","
+                            + address.get(address.indexOf(addressStr) - 1) + ","
                             + region.get(region.indexOf(input[10]) - 1);
 
                     out.write(storeStr + "\n");
                 }
+                orderDetails.add(inputLine + "," + stores.get(stores.indexOf(addressStr) + 1));
             }
 
             in.close();
+            out.close();
+
+            out = new BufferedWriter(new FileWriter("final-data-files/order-details.csv"));
+            out.write(
+                    "orderID,orderDate,shipDate,shipMode,custID,Customer Name,Segment,City,State,Country/Region,Region,Product ID,Category,Sub-Category,Product Name,Sales,Quantity,Discount,Profit,prod_price,storeID\n");
+            for (String string : orderDetails) {
+                out.write(string + "\n");
+            }
+            out.close();
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+    }
+
+    private static void makeOrderFile() {
+        try {
+            Scanner in = new Scanner(new File("final-data-files/order-details.csv"));
+            Map<String, String> orders = new HashMap<>();
+            List<String> tempList = new ArrayList<>();
+            String[] input;
+
+            in.nextLine();
+            while (in.hasNextLine()) {
+                input = in.nextLine().split(regex);
+                if (orders.get(input[0]) == null) {
+                    orders.put(input[0], input[0] + "," + changeDateFormat(input[1]) + "," + changeDateFormat(input[2])
+                            + "," + input[3] + "," + input[6]
+                            + "," + input[4] + "," + input[20]);
+                }
+            }
+            in.close();
+
+            Writer out = new BufferedWriter(new FileWriter("final-data-files/orders.csv"));
+            out.write("orderID,orderDate,shipData,shipMode,segment,custID,storeID\n");
+
+            Set<String> keys = orders.keySet();
+            List<String> sortedKeys = new ArrayList<>(keys);
+            Collections.sort(sortedKeys);
+
+            for (String string : sortedKeys) {
+                out.write(orders.get(string) + "\n");
+            }
+            out.close();
+
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+    }
+
+    private static String changeDateFormat(String date) {
+        String[] dateArr = date.split("/");
+
+        return "20" + dateArr[2] + "-" + dateArr[1] + "-" + dateArr[0];
+    }
+
+    private static void makeInventoryFile() {
+        try {
+            Scanner in = new Scanner(new File("final-data-files/order-details.csv"));
+            Set<String> inventory = new HashSet<>();
+            String[] input;
+            String invStr;
+
+            in.nextLine();
+            while (in.hasNextLine()) {
+                input = in.nextLine().split(regex);
+                invStr = String.format("%s,%s", input[11], input[20]);
+                inventory.add(invStr);
+            }
+            in.close();
+
+            Writer out = new BufferedWriter(new FileWriter("final-data-files/inventory.csv"));
+            out.write("prodID,storeID\n");
+            Iterator<String> it = inventory.iterator();
+
+            while (it.hasNext()) {
+                out.write(it.next() + "\n");
+            }
             out.close();
         } catch (IOException io) {
             io.printStackTrace();
