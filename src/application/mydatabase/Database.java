@@ -63,8 +63,8 @@ public class Database {
             dropAllTables();
         }
     }
-    
-    private void createAllTables() throws SQLException{
+
+    private void createAllTables() throws SQLException {
         this.connection.createStatement().executeUpdate("CREATE TABLE customer("
                 + "custID VARCHAR(8) PRIMARY KEY,"
                 + "fname TEXT NOT NULL,"
@@ -73,7 +73,7 @@ public class Database {
         this.connection.createStatement().executeUpdate("CREATE TABLE product("
                 + "prodID VARCHAR(18) PRIMARY KEY,"
                 + "name TEXT,"
-                + "price REAL NOT NULL,"
+                + "price DECIMAL NOT NULL,"
                 + "subCatID VARCHAR(7) REFERENCES subcategory(subCatID))");
 
         this.connection.createStatement().executeUpdate("CREATE TABLE subcategory("
@@ -113,18 +113,210 @@ public class Database {
 
     private void readInputData(String filename) throws SQLException, IOException {
 
-            // TODO: while loop for all data-files
-            // BufferedReader br = new BufferedReader(new FileReader(""));
-            // br.readLine();
+        // TODO: while loop for all data-files
+        // BufferedReader br = new BufferedReader(new FileReader(""));
+        // br.readLine();
 
-            // // TODO: read lines, prepare statements
+        // // TODO: read lines, prepare statements
 
-            // br.close();
+        // br.close();
 
     }
-    
+
     private void insertIntoCustomer() throws SQLException, IOException {
-        
+        BufferedReader br = new BufferedReader(new FileReader(""));
+        PreparedStatement pstmt;
+        String inputLine;
+        String sql;
+        String[] inputArr;
+
+        br.readLine(); // leaving the headers
+
+        while ((inputLine = br.readLine()) != null) {
+            inputArr = inputLine.split(regex);
+            sql = String.format("insert into customer values(%s, %s, %s)",
+                    inputArr[0], inputArr[1], inputArr[2]);
+            pstmt = connection.prepareStatement(sql);
+            pstmt.executeUpdate();
+        }
+        br.close();
+    }
+
+    private void insertIntoProduct() throws SQLException, IOException {
+        BufferedReader br = new BufferedReader(new FileReader(""));
+        PreparedStatement pstmt;
+        String inputLine;
+        String sql;
+        String[] inputArr;
+
+        br.readLine(); // leaving the headers
+
+        while ((inputLine = br.readLine()) != null) {
+            inputArr = inputLine.split(regex);
+            sql = String.format("insert into product values(%s, %s, %s)",
+                    inputArr[0], inputArr[1], inputArr[2]);
+        }
+        br.close();
+    }
+
+    private void insertIntoSubCat() throws SQLException, IOException {
+        BufferedReader br = new BufferedReader(new FileReader(""));
+        PreparedStatement pstmt;
+        String inputLine;
+        String sql;
+        String[] inputArr;
+
+        br.readLine(); // leaving the headers
+
+        while ((inputLine = br.readLine()) != null) {
+            inputArr = inputLine.split(regex);
+            sql = String.format("insert into customer values(%s, %s, %s)",
+                                inputArr[0], inputArr[1], inputArr[2]);
+        }
+    }
+
+    private void insertIntoCat() throws SQLException, IOException {
+        BufferedReader br = new BufferedReader(new FileReader(""));
+        PreparedStatement pstmt;
+        String inputLine;
+        String sql;
+        String[] inputArr;
+
+        br.readLine(); // leaving the headers
+
+        while ((inputLine = br.readLine()) != null) {
+            inputArr = inputLine.split(regex);
+            sql = String.format("insert into customer values(%s, %s, %s)",
+                                inputArr[0], inputArr[1], inputArr[2]);
+        }
+    }
+
+    private void insertIntoStore() throws SQLException, IOException {
+        BufferedReader br = new BufferedReader(new FileReader(""));
+        PreparedStatement pstmt;
+        String inputLine;
+        String sql;
+        String[] inputArr;
+
+        br.readLine(); // leaving the headers
+
+        while ((inputLine = br.readLine()) != null) {
+            inputArr = inputLine.split(regex);
+            sql = String.format("insert into customer values(%s, %s, %s)",
+                                inputArr[0], inputArr[1], inputArr[2]);
+        }
+    }
+
+    private void insertIntoRegion() throws SQLException, IOException {
+        BufferedReader br = new BufferedReader(new FileReader(""));
+        PreparedStatement pstmt;
+        String inputLine;
+        String sql;
+        String[] inputArr;
+
+        br.readLine(); // leaving the headers
+
+        while ((inputLine = br.readLine()) != null) {
+            inputArr = inputLine.split(regex);
+            sql = String.format("insert into customer values(%s, %s, %s)",
+                                inputArr[0], inputArr[1], inputArr[2]);
+        }
+    }
+
+    private void insertIntoManager() throws SQLException, IOException {
+        BufferedReader br = new BufferedReader(new FileReader(""));
+        PreparedStatement pstmt;
+        String inputLine;
+        String sql;
+        String[] inputArr;
+
+        br.readLine(); // leaving the headers
+
+        while ((inputLine = br.readLine()) != null) {
+            inputArr = inputLine.split(regex);
+            sql = String.format("insert into customer values(%s, %s, %s)",
+                                inputArr[0], inputArr[1], inputArr[2]);
+        }
+    }
+
+    private void insertIntoCountry() throws SQLException, IOException {
+        BufferedReader br = new BufferedReader(new FileReader(""));
+        PreparedStatement pstmt;
+        String inputLine;
+        String sql;
+        String[] inputArr;
+
+        br.readLine(); // leaving the headers
+
+        while ((inputLine = br.readLine()) != null) {
+            inputArr = inputLine.split(regex);
+            sql = String.format("insert into customer values(%s, %s, %s)",
+                                inputArr[0], inputArr[1], inputArr[2]);
+        }
+    }
+
+    private void insertIntoAddress() throws SQLException, IOException {
+        BufferedReader br = new BufferedReader(new FileReader(""));
+        PreparedStatement pstmt;
+        String inputLine;
+        String sql;
+        String[] inputArr;
+
+        br.readLine(); // leaving the headers
+
+        while ((inputLine = br.readLine()) != null) {
+            inputArr = inputLine.split(regex);
+            sql = String.format("insert into customer values(%s, %s, %s)",
+                                inputArr[0], inputArr[1], inputArr[2]);
+        }
+    }
+
+    private void insertIntoOrder() throws SQLException, IOException {
+        BufferedReader br = new BufferedReader(new FileReader(""));
+        PreparedStatement pstmt;
+        String inputLine;
+        String sql;
+        String[] inputArr;
+
+        br.readLine(); // leaving the headers
+
+        while ((inputLine = br.readLine()) != null) {
+            inputArr = inputLine.split(regex);
+            sql = String.format("insert into customer values(%s, %s, %s)",
+                                inputArr[0], inputArr[1], inputArr[2]);
+        }
+    }
+
+    private void insertIntoOrderDetails() throws SQLException, IOException {
+        BufferedReader br = new BufferedReader(new FileReader(""));
+        PreparedStatement pstmt;
+        String inputLine;
+        String sql;
+        String[] inputArr;
+
+        br.readLine(); // leaving the headers
+
+        while ((inputLine = br.readLine()) != null) {
+            inputArr = inputLine.split(regex);
+            sql = String.format("insert into customer values(%s, %s, %s)",
+                                inputArr[0], inputArr[1], inputArr[2]);
+        }
+    }
+
+    private void insertIntoInventory() throws SQLException, IOException {
+        BufferedReader br = new BufferedReader(new FileReader(""));
+        PreparedStatement pstmt;
+        String inputLine;
+        String sql;
+        String[] inputArr;
+
+        br.readLine(); // leaving the headers
+
+        while ((inputLine = br.readLine()) != null) {
+            inputArr = inputLine.split(regex);
+            sql = String.format("insert into customer values(%s, %s, %s)",
+                                inputArr[0], inputArr[1], inputArr[2]);
+        }
     }
 
     public void dropAllTables() {
