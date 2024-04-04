@@ -396,7 +396,7 @@ public class Database {
                 sql = "insert into address values (?, ?, ?, ?)";
                 pstmt = connection.prepareStatement(sql);
                 pstmt.setInt(1, Integer.parseInt(inputArr[0]));
-                pstmt.setString(0, sql);(2, inputArr[1]);
+                pstmt.setString(2, inputArr[1]);
                 pstmt.setString(3, inputArr[2]);
                 pstmt.setString(4, inputArr[3]);
                 pstmt.executeUpdate();
