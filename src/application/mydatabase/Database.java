@@ -198,6 +198,7 @@ public class Database {
                 pstmt.executeUpdate();
             }
             br.close();
+            System.out.println("Customer table created");
         } catch (IOException io) {
             throw new IOException("customers.csv file not found");
         } catch (SQLException se) {
@@ -218,12 +219,13 @@ public class Database {
 
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
-                sql = String.format("insert into product values(\'%s\', \'%s\', %d, \'%s\')",
+                sql = String.format("insert into product values(\'%s\', \'%s\', %f, \'%s\')",
                         inputArr[0], inputArr[1], Double.parseDouble(inputArr[2]), inputArr[3]);
                 pstmt = connection.prepareStatement(sql);
                 pstmt.executeUpdate();
             }
             br.close();
+            System.out.println("Product table created");
         } catch (IOException io) {
             throw new IOException("products.csv file not found");
         } catch (SQLException se) {
@@ -249,6 +251,7 @@ public class Database {
                 pstmt.executeUpdate();
             }
             br.close();
+            System.out.println("Subcategory table created");
         } catch (IOException io) {
             throw new IOException("sub-category.csv file not found");
         } catch (SQLException se) {
@@ -274,6 +277,7 @@ public class Database {
                 pstmt.executeUpdate();
             }
             br.close();
+            System.out.println("Category table created");
         } catch (IOException io) {
             throw new IOException("category.csv file not found");
         } catch (SQLException se) {
@@ -300,6 +304,7 @@ public class Database {
                 pstmt.executeUpdate();
             }
             br.close();
+            System.out.println("Store table created");
         } catch (IOException io) {
             throw new IOException("stores.csv file not found");
         } catch (SQLException se) {
@@ -325,6 +330,7 @@ public class Database {
                 pstmt.executeUpdate();
             }
             br.close();
+            System.out.println("Region table created");
         } catch (IOException io) {
             throw new IOException("region.csv file not found");
         } catch (SQLException se) {
@@ -351,6 +357,7 @@ public class Database {
                 pstmt.executeUpdate();
             }
             br.close();
+            System.out.println("Manager table created");
         } catch (IOException io) {
             throw new IOException("manager.csv.csv file not found");
         } catch (SQLException se) {
@@ -377,6 +384,7 @@ public class Database {
                 pstmt.executeUpdate();
             }
             br.close();
+            System.out.println("Country table created");
         } catch (IOException io) {
             throw new IOException("countries.csv file not found");
         } catch (SQLException se) {
@@ -407,6 +415,7 @@ public class Database {
                 pstmt.executeUpdate();
             }
             br.close();
+            System.out.println("Address table created");
         } catch (IOException io) {
             throw new IOException("address.csv file not found");
         } catch (SQLException se) {
@@ -452,6 +461,7 @@ public class Database {
                 pstmt.executeUpdate();
             }
             br.close();
+            System.out.println("Order details created");
         } catch (IOException io) {
             throw new IOException("orders.csv file not found");
         } catch (SQLException se) {
@@ -481,6 +491,7 @@ public class Database {
             pstmt.executeUpdate();
         }
         br.close();
+        System.out.println("Order Details created");
     }
 
     private void insertIntoInventory() throws SQLException, IOException {
@@ -500,7 +511,7 @@ public class Database {
             pstmt.executeUpdate();
         }
         br.close();
-
+        System.out.println("Inventory table created");
     }
 
     public void dropAllTables() {
