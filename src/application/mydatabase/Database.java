@@ -86,7 +86,7 @@ public class Database {
                 + "name TEXT)");
 
         this.connection.createStatement().executeUpdate("CREATE TABLE store("
-                + "storeID INTEGER PRIMARY KEY autoincrement,"
+                + "storeID INTEGER PRIMARY KEY,"
                 + "addressID INTEGER REFERENCES address(addressID),"
                 + "regionID INTEGER REFERENCES region(regionID))");
 
@@ -110,24 +110,24 @@ public class Database {
                 + "state TEXT NOT NULL,"
                 + "countryCode VARCHAR(3) REFERENCES country(countryCode))");
         this.connection.createStatement().executeUpdate("CREATE TABLE order("
-                    + "orderID VARCHAR(11) PRIMARY KEY,"
-                    + "shipDate DATE NOT NULL,"
-                    + "shipMode VARCHAR(20) NOT NULL,"
-                    + "orderDate DATE NOT NULL,"
-                    + "isReturned BIT"
-                    + "storeID INTEGER FOREIGN KEY REFERENCES store(storeID));");
-         this.connection.createStatement().executeQuery("CREATE TABLE orderdetails("
-                    + "orderID VARCHAR(11) FOREIGN KEY REFERENCES order(orderID) NOT NULL, "
-                    + "prodID VARCHAR(18) FOREIGN KEY REFERENCES product(prodID) NOT NULL,"
-                    + "sales BIGINT  NOT NULL,"
-                    + "quantity INT  NOT NULL,"
-                    + "discount BIGINT DEFAULT 0,"
-                    + "profit BIGINT"
-                    + "PRIMARY KEY(orderID,prodID));");
-            this.connection.createStatement().executeQuery("CREATE TABLE inventory("
-                    + "storeID INTEGER FOREIGN KEY store(storeID),"
-                    + "prodID VARCHAR(18) FOREIGN KEY REFERENCES product(prodID)"
-                    + "PRIMARY KEY(storeID,podID));");
+                + "orderID VARCHAR(11) PRIMARY KEY,"
+                + "shipDate DATE NOT NULL,"
+                + "shipMode VARCHAR(20) NOT NULL,"
+                + "orderDate DATE NOT NULL,"
+                + "isReturned BIT"
+                + "storeID INTEGER FOREIGN KEY REFERENCES store(storeID));");
+        this.connection.createStatement().executeQuery("CREATE TABLE orderdetails("
+                + "orderID VARCHAR(11) FOREIGN KEY REFERENCES order(orderID) NOT NULL, "
+                + "prodID VARCHAR(18) FOREIGN KEY REFERENCES product(prodID) NOT NULL,"
+                + "sales BIGINT  NOT NULL,"
+                + "quantity INT  NOT NULL,"
+                + "discount BIGINT DEFAULT 0,"
+                + "profit BIGINT"
+                + "PRIMARY KEY(orderID,prodID));");
+        this.connection.createStatement().executeQuery("CREATE TABLE inventory("
+                + "storeID INTEGER FOREIGN KEY store(storeID),"
+                + "prodID VARCHAR(18) FOREIGN KEY REFERENCES product(prodID)"
+                + "PRIMARY KEY(storeID,prodID));");
     }
 
     private void readInputData(String filename) throws SQLException, IOException {
@@ -173,7 +173,9 @@ public class Database {
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
             sql = String.format("insert into product values(%s, %s, %d, %s)",
-                    inputArr[0], inputArr[1], inputArr[2]);
+                    inputArr[0], inputArr[1], Long.parseLong(inputArr[2]), inputArr[3]);
+            pstmt = connection.prepareStatement(sql);
+            pstmt.executeUpdate();
         }
         br.close();
     }
@@ -189,9 +191,12 @@ public class Database {
 
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
-            sql = String.format("insert into customer values(%s, %s, %s)",
-                                inputArr[0], inputArr[1], inputArr[2]);
+            sql = String.format("insert into subcategory values(%s, %s, %d)",
+                    inputArr[0], inputArr[1], Integer.parseInt(inputArr[2]));
+            pstmt = connection.prepareStatement(sql);
+            pstmt.executeUpdate();
         }
+        br.close();
     }
 
     private void insertIntoCat() throws SQLException, IOException {
@@ -205,9 +210,12 @@ public class Database {
 
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
-            sql = String.format("insert into customer values(%s, %s, %s)",
-                                inputArr[0], inputArr[1], inputArr[2]);
+            sql = String.format("insert into category values(%d, %s)",
+                    Integer.parseInt(inputArr[0]), inputArr[1]);
+            pstmt = connection.prepareStatement(sql);
+            pstmt.executeUpdate();
         }
+        br.close();
     }
 
     private void insertIntoStore() throws SQLException, IOException {
@@ -221,9 +229,13 @@ public class Database {
 
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
-            sql = String.format("insert into customer values(%s, %s, %s)",
-                                inputArr[0], inputArr[1], inputArr[2]);
+            sql = String.format("insert into store values(%d, %d, %d)",
+                    Integer.parseInt(inputArr[0]), Integer.parseInt(inputArr[1]), Integer.parseInt(inputArr[2]));
+
+            pstmt = connection.prepareStatement(sql);
+            pstmt.executeUpdate();
         }
+        br.close();
     }
 
     private void insertIntoRegion() throws SQLException, IOException {
@@ -238,7 +250,7 @@ public class Database {
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
             sql = String.format("insert into customer values(%s, %s, %s)",
-                                inputArr[0], inputArr[1], inputArr[2]);
+                    inputArr[0], inputArr[1], inputArr[2]);
         }
     }
 
@@ -254,7 +266,7 @@ public class Database {
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
             sql = String.format("insert into customer values(%s, %s, %s)",
-                                inputArr[0], inputArr[1], inputArr[2]);
+                    inputArr[0], inputArr[1], inputArr[2]);
         }
     }
 
@@ -270,7 +282,7 @@ public class Database {
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
             sql = String.format("insert into customer values(%s, %s, %s)",
-                                inputArr[0], inputArr[1], inputArr[2]);
+                    inputArr[0], inputArr[1], inputArr[2]);
         }
     }
 
@@ -286,7 +298,7 @@ public class Database {
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
             sql = String.format("insert into customer values(%s, %s, %s)",
-                                inputArr[0], inputArr[1], inputArr[2]);
+                    inputArr[0], inputArr[1], inputArr[2]);
         }
     }
 
@@ -302,7 +314,7 @@ public class Database {
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
             sql = String.format("insert into customer values(%s, %s, %s)",
-                                inputArr[0], inputArr[1], inputArr[2]);
+                    inputArr[0], inputArr[1], inputArr[2]);
         }
     }
 
@@ -318,7 +330,7 @@ public class Database {
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
             sql = String.format("insert into customer values(%s, %s, %s)",
-                                inputArr[0], inputArr[1], inputArr[2]);
+                    inputArr[0], inputArr[1], inputArr[2]);
         }
     }
 
@@ -334,7 +346,7 @@ public class Database {
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
             sql = String.format("insert into customer values(%s, %s, %s)",
-                                inputArr[0], inputArr[1], inputArr[2]);
+                    inputArr[0], inputArr[1], inputArr[2]);
         }
     }
 
