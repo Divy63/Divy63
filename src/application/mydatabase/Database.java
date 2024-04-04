@@ -122,7 +122,7 @@ public class Database {
                 + "shipDate DATE NOT NULL,"
                 + "shipMode VARCHAR(20) NOT NULL,"
                 + "orderDate DATE NOT NULL,"
-                + "isReturned BIT"
+                + "isReturned INT,"
                 + "storeID INTEGER FOREIGN KEY REFERENCES store(storeID));");
         this.connection.createStatement().executeQuery("CREATE TABLE orderdetails("
                 + "orderID VARCHAR(11) FOREIGN KEY REFERENCES order(orderID) NOT NULL, "
@@ -130,7 +130,7 @@ public class Database {
                 + "sales BIGINT  NOT NULL,"
                 + "quantity INT  NOT NULL,"
                 + "discount BIGINT DEFAULT 0,"
-                + "profit BIGINT"
+                + "profit BIGINT,"
                 + "PRIMARY KEY(orderID,prodID));");
         this.connection.createStatement().executeQuery("CREATE TABLE inventory("
                 + "storeID INTEGER FOREIGN KEY store(storeID),"
@@ -170,9 +170,9 @@ public class Database {
             String inputLine;
             String sql;
             String[] inputArr;
-    
+
             br.readLine(); // leaving the headers
-    
+
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
                 sql = String.format("insert into customer values(%s, %s, %s)",
@@ -195,9 +195,9 @@ public class Database {
             String inputLine;
             String sql;
             String[] inputArr;
-    
+
             br.readLine(); // leaving the headers
-    
+
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
                 sql = String.format("insert into product values(%s, %s, %d, %s)",
@@ -220,9 +220,9 @@ public class Database {
             String inputLine;
             String sql;
             String[] inputArr;
-    
+
             br.readLine(); // leaving the headers
-    
+
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
                 sql = String.format("insert into subcategory values(%s, %s, %d)",
@@ -245,9 +245,9 @@ public class Database {
             String inputLine;
             String sql;
             String[] inputArr;
-    
+
             br.readLine(); // leaving the headers
-    
+
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
                 sql = String.format("insert into category values(%d, %s)",
@@ -270,14 +270,14 @@ public class Database {
             String inputLine;
             String sql;
             String[] inputArr;
-    
+
             br.readLine(); // leaving the headers
-    
+
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
                 sql = String.format("insert into store values(%d, %d, %d)",
                         Integer.parseInt(inputArr[0]), Integer.parseInt(inputArr[1]), Integer.parseInt(inputArr[2]));
-    
+
                 pstmt = connection.prepareStatement(sql);
                 pstmt.executeUpdate();
             }
@@ -296,9 +296,9 @@ public class Database {
             String inputLine;
             String sql;
             String[] inputArr;
-    
+
             br.readLine(); // leaving the headers
-    
+
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
                 sql = String.format("insert into region values(%d, %s, %d)",
@@ -321,14 +321,14 @@ public class Database {
             String inputLine;
             String sql;
             String[] inputArr;
-    
+
             br.readLine(); // leaving the headers
-    
+
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
                 sql = String.format("insert into manager values(%d, %s, %s)",
                         Integer.parseInt(inputArr[0]), inputArr[1], inputArr[2]);
-    
+
                 pstmt = connection.prepareStatement(sql);
                 pstmt.executeUpdate();
             }
@@ -347,14 +347,14 @@ public class Database {
             String inputLine;
             String sql;
             String[] inputArr;
-    
+
             br.readLine(); // leaving the headers
-    
+
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
                 sql = String.format("insert into country values(%s, %s)",
                         inputArr[0], inputArr[1]);
-    
+
                 pstmt = connection.prepareStatement(sql);
                 pstmt.executeUpdate();
             }
@@ -373,9 +373,9 @@ public class Database {
             String inputLine;
             String sql;
             String[] inputArr;
-    
+
             br.readLine(); // leaving the headers
-    
+
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
                 sql = String.format("insert into address values(%d, %s, %s, %s)",
@@ -392,18 +392,30 @@ public class Database {
     }
 
     private void insertIntoOrder() throws SQLException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader("final-data-files/orders.csv"));
-        PreparedStatement pstmt;
-        String inputLine;
-        String sql;
-        String[] inputArr;
+        try {
 
-        br.readLine(); // leaving the headers
+            BufferedReader br = new BufferedReader(new FileReader("final-data-files/orders.csv"));
+            PreparedStatement pstmt;
+            String inputLine;
+            String sql;
+            String[] inputArr;
 
-        while ((inputLine = br.readLine()) != null) {
-            inputArr = inputLine.split(regex);
-            sql = String.format("insert into customer values(%s, %s, %s)",
-                    inputArr[0], inputArr[1], inputArr[2]);
+            br.readLine(); // leaving the headers
+
+            while ((inputLine = br.readLine()) != null) {
+                inputArr = inputLine.split(regex);
+                sql = String.format("insert into order values(%s, %s, %s, %s, %s, %s, %d, %d)",
+                        inputArr[0], inputArr[1], inputArr[2], inputArr[3], inputArr[4], inputArr[5],
+                        Integer.parseInt(inputArr[6]), Integer.parseInt(inputArr[7]));
+                        
+                pstmt = connection.prepareStatement(sql);
+                pstmt.executeUpdate();
+            }
+            br.close();
+        } catch (IOException io) {
+            throw new IOException("orders.csv file not found");
+        } catch (SQLException se) {
+            throw new SQLException("Error occured while inserting into order table");
         }
     }
 
@@ -1125,9 +1137,9 @@ public class Database {
 
 // IOException io)
 // {
-//     throw new IOException("customer.csv file not found");
+// throw new IOException("customer.csv file not found");
 // }catch(
 // SQLException se)
 // {
-//             throw new SQLException("Error occured while inserting into customer table");
-//         }
+// throw new SQLException("Error occured while inserting into customer table");
+// }
