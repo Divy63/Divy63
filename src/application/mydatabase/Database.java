@@ -34,7 +34,6 @@ public class Database {
         String username = (prop.getProperty("username"));
         String password = (prop.getProperty("password"));
 
-
         // TODO: uranium connection (VPN or campus)
         String url = "jdbc:sqlserver://uranium.cs.umanitoba.ca:1433;"
             + "database=cs3380;"
@@ -54,7 +53,7 @@ public class Database {
     public void initializeDatabase() {
 
         try {
-
+            // TODO: check if tables exist first or not, DROP TABLE if it exists
             this.connection.createStatement().executeUpdate("CREATE TABLE customer("
                                                             +"custID VARCHAR(8) PRIMARY KEY,"
                                                             +"fname TEXT NOT NULL,"
@@ -99,13 +98,19 @@ public class Database {
     private void readInputData(String filename) {
 
         try {
-            // TODO: while loop for all data-files
-            BufferedReader br = new BufferedReader(new FileReader(""));
-            br.readLine();
+            // TODO: loop for all data-files
+            File dataDirectory = new File("final-data-files/");
+            File[] directoryList = dataDirectory.listFiles();
+            for (File dataFile : directoryList) {
+                if (dataFile.isFile()) {
+                    BufferedReader br = new BufferedReader(new FileReader(dataFile.getAbsolutePath()));
+                    String currLine = br.readLine();
+                    String[] headers = currLine.split(",");
+                    // TODO: preparedStatement based on the type of headers found
+                    br.close();
 
-            // TODO: read lines, prepare statements
-
-            br.close();
+                }
+            }
 
         } catch (IOException ioer) {
             ioer.printStackTrace();
@@ -114,6 +119,9 @@ public class Database {
         }
     }
 
+    //
+    // tgcID command: gets the name of all customers that contain a given substring (partOfName)
+    //
     public void showPeople(String partOfName) {
         try {// try
              // SQL QUERY
@@ -146,6 +154,9 @@ public class Database {
 
     }
 
+    //
+    // tsc command - shows all countries along with their country code
+    //
     public void showCountries() {
         try {// try
              // SQL QUERY
@@ -177,6 +188,9 @@ public class Database {
         }
     }
 
+    //
+    // tscategories command: shows all Categories
+    //
     public void showCategories() {
         try {// try
              // SQL QUERY
@@ -208,6 +222,9 @@ public class Database {
         }
     }
 
+    //
+    // tsSubCategories command - shows all Subcategories along with their Category
+    //
     public void showSubCategories() {
         try {// try
              // SQL QUERY
@@ -239,6 +256,9 @@ public class Database {
         }
     }
 
+    //
+    // tspc command - returns Stores and Profit by given Country
+    //
     public void storeProfitByCountry(int countryLimit) {
         try {// try
              // SQL QUERY
@@ -284,6 +304,10 @@ public class Database {
         }
     }
 
+    //
+    // ttopproducts <countryCode>
+    // - returns top product holders by country
+    //
     public void topProducts(String countryCode) {
         try {// try
              // SQL QUERY
@@ -345,6 +369,10 @@ public class Database {
         }
     }
 
+    //
+    // trc <customerID>
+    // - returns number of items returned by a customer (given by customerID)
+    //
     public void returnedItemCount(String customerID) {
         try {// try
              // SQL QUERY
@@ -381,6 +409,10 @@ public class Database {
         // System.out.println("Nat, Gilpin - 11\n");
     }
 
+    //
+    // tdp <category name> <min. discount>
+    // - returns discounted products in a specific category, user provides category name and minimum discount
+    //
     public void discountedProducts(String categoryName, int discount) {
         try {// try
              // SQL QUERY
@@ -414,6 +446,10 @@ public class Database {
         }
     }
 
+    //
+    // tsd <orderID>
+    // - returns shipping details for the given orderID
+    //
     public void shippingDetails(String orderID) {
         try {// try
              // SQL QUERY
@@ -458,6 +494,10 @@ public class Database {
         // System.out.println();
     }
 
+    //
+    // tss
+    // - returns a summary of sales per category
+    //
     public void salesSummaryByCategory() {
         try {// try
              // SQL QUERY
@@ -489,6 +529,10 @@ public class Database {
         }
     }
 
+    //
+    // tsubcp
+    // - provides an overview of product inventory and sales for all subcategories
+    //
     public void subCategoryInventory() {
         try {// try
              // SQL QUERY
@@ -526,6 +570,10 @@ public class Database {
         }
     }
 
+    //
+    // trp <custID>
+    // - returns products that have been returned by a given customer ID
+    //
     public void returnedProducts(String customerID) {
         try {// try
              // SQL QUERY
@@ -559,6 +607,8 @@ public class Database {
         }
     }
 
+    //
+    //
     public void showRegions() {
         try {// try
              // SQL QUERY
@@ -590,6 +640,10 @@ public class Database {
         }
     }
 
+    //
+    // trpr <region>
+    // - returns products returned by a given region
+    //
     public void returnedByRegion(String regionName) {
         try {// try
              // SQL QUERY
@@ -626,6 +680,10 @@ public class Database {
         System.out.println("Returned by Region not implemented yet!!!");
     }
 
+    //
+    // tavgp <categoryID>
+    // - returns the average price of products in a given specified Category
+    //
     public void averagePrice(String categoryID) {
         try {// try
              // SQL QUERY
@@ -639,7 +697,7 @@ public class Database {
 
             ResultSet result = pstmt.executeQuery();// executing query
             System.out.println(
-                    "Searching the database for Avergae Price of Products in category \"" + categoryID + "\" :");
+                    "Searching the database for Average Price of Products in category \"" + categoryID + "\" :");
             System.out.println(
                     "----------------------------------------------------------------------------------------------");
             System.out.println("Average price of product for category \"" + categoryID + "\" :");
