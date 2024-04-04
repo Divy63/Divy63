@@ -2,6 +2,7 @@ package application;
 
 import application.mydatabase.Database;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -14,6 +15,11 @@ public class App {
         } catch (SQLException se) {
             System.out.println("Suitable Driver not found to establish connection with database");
             System.exit(1);
+        } catch (FileNotFoundException fnf) {
+            System.out.println(fnf.getMessage());
+            System.exit(1);
+        } catch (IOException io) {
+            System.out.println(io.getMessage());
         }
     }
 
@@ -133,8 +139,9 @@ public class App {
                 db.showSubCategories();
             } else if (parts[0].equals("sRegions")) {
                 db.showRegions();
+            } else if (parts[0].equals("i")) {
+                db.initializeDatabase();
             }
-
             else {
                 System.out.println("Enter 'm' for Menu, else Enter your choice:");
             }

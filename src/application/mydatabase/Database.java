@@ -65,7 +65,9 @@ public class Database {
             createAllTables();
             readInputData();
         } catch (SQLException e) {
-            dropAllTables();
+            // dropAllTables();
+            System.out.println(e.getMessage());
+            e.printStackTrace();
             System.out.println("Error occured while initializing the database\n\nDROPING ALL OF THE DATABASE");
         } catch (IOException fnf) {
             System.out.println(fnf.getMessage());
@@ -73,68 +75,71 @@ public class Database {
     }
 
     private void createAllTables() throws SQLException {
-        this.connection.createStatement().executeUpdate("CREATE TABLE customer("
+        this.connection.createStatement().executeUpdate("CREATE TABLE Customer("
                 + "custID VARCHAR(8) PRIMARY KEY,"
                 + "fname TEXT NOT NULL,"
                 + "lname TEXT NOT NULL)");
 
-        this.connection.createStatement().executeUpdate("CREATE TABLE product("
-                + "prodID VARCHAR(18) PRIMARY KEY,"
-                + "name TEXT,"
-                + "price BIGINT NOT NULL,"
-                + "subCatID VARCHAR(7) REFERENCES subcategory(subCatID))");
-
-        this.connection.createStatement().executeUpdate("CREATE TABLE subcategory("
-                + "subCatID VARCHAR(7) PRIMARY KEY,"
-                + "name TEXT,"
-                + "catID INTEGER REFERENCES category(catID))");
-
-        this.connection.createStatement().executeUpdate("CREATE TABLE category("
-                + "catID INTEGER PRIMARY KEY,"
-                + "name TEXT)");
-
-        this.connection.createStatement().executeUpdate("CREATE TABLE store("
-                + "storeID INTEGER PRIMARY KEY,"
-                + "addressID INTEGER REFERENCES address(addressID),"
-                + "regionID INTEGER REFERENCES region(regionID))");
-
-        this.connection.createStatement().executeUpdate("CREATE TABLE region("
-                + "regionID INTEGER PRIMARY KEY,"
-                + "regionName TEXT,"
-                + "managerID INTEGER REFERENCES manager(managerID))");
-
-        this.connection.createStatement().executeUpdate("CREATE TABLE manager("
+        this.connection.createStatement().executeUpdate("CREATE TABLE Manager("
                 + "managerID INTEGER PRIMARY KEY,"
                 + "fname TEXT NOT NULL,"
                 + "lname TEXT NOT NULL)");
 
-        this.connection.createStatement().executeUpdate("CREATE TABLE country("
+        this.connection.createStatement().executeUpdate("CREATE TABLE Region("
+                + "regionID INTEGER PRIMARY KEY,"
+                + "regionName TEXT,"
+                + "managerID INTEGER REFERENCES Manager(managerID))");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE Country("
                 + "countryCode VARCHAR(3) PRIMARY KEY,"
                 + "name TEXT NOT NULL)");
 
-        this.connection.createStatement().executeUpdate("CREATE TABLE address("
+        this.connection.createStatement().executeUpdate("CREATE TABLE Address("
                 + "addressID INTEGER PRIMARY KEY,"
                 + "city TEXT NOT NULL,"
                 + "state TEXT NOT NULL,"
-                + "countryCode VARCHAR(3) REFERENCES country(countryCode))");
-        this.connection.createStatement().executeUpdate("CREATE TABLE order("
+                + "countryCode VARCHAR(3) REFERENCES Country(countryCode))");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE Store("
+                + "storeID INTEGER PRIMARY KEY,"
+                + "addressID INTEGER REFERENCES Address(addressID),"
+                + "regionID INTEGER REFERENCES Region(regionID))");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE \"order\"("
                 + "orderID VARCHAR(11) PRIMARY KEY,"
                 + "shipDate DATE NOT NULL,"
                 + "shipMode VARCHAR(20) NOT NULL,"
                 + "orderDate DATE NOT NULL,"
                 + "isReturned INT,"
-                + "storeID INTEGER FOREIGN KEY REFERENCES store(storeID));");
-        this.connection.createStatement().executeQuery("CREATE TABLE orderdetails("
-                + "orderID VARCHAR(11) FOREIGN KEY REFERENCES order(orderID) NOT NULL, "
-                + "prodID VARCHAR(18) FOREIGN KEY REFERENCES product(prodID) NOT NULL,"
+                + "storeID INTEGER FOREIGN KEY REFERENCES Store(storeID));");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE Category("
+                + "catID INTEGER PRIMARY KEY,"
+                + "name TEXT)");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE SubCategory("
+                + "subCatID VARCHAR(7) PRIMARY KEY,"
+                + "name TEXT,"
+                + "catID INTEGER REFERENCES Category(catID))");
+
+        System.out.println("creating products");
+        this.connection.createStatement().executeUpdate("CREATE TABLE Product("
+                + "prodID VARCHAR(18) PRIMARY KEY,"
+                + "name TEXT,"
+                + "price BIGINT NOT NULL,"
+                + "subCatID VARCHAR(7) REFERENCES SubCategory(subCatID))");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE OrderDetails("
+                + "orderID VARCHAR(11) FOREIGN KEY REFERENCES \"order\"(orderID) NOT NULL, "
+                + "prodID VARCHAR(18) FOREIGN KEY REFERENCES Product(prodID) NOT NULL,"
                 + "sales BIGINT  NOT NULL,"
                 + "quantity INT  NOT NULL,"
                 + "discount BIGINT DEFAULT 0,"
                 + "profit BIGINT,"
                 + "PRIMARY KEY(orderID,prodID));");
-        this.connection.createStatement().executeQuery("CREATE TABLE inventory("
-                + "storeID INTEGER FOREIGN KEY store(storeID),"
-                + "prodID VARCHAR(18) FOREIGN KEY REFERENCES product(prodID)"
+        this.connection.createStatement().executeUpdate("CREATE TABLE Inventory("
+                + "storeID INTEGER FOREIGN KEY REFERENCES store(storeID),"
+                + "prodID VARCHAR(18) FOREIGN KEY REFERENCES Product(prodID)"
                 + "PRIMARY KEY(storeID,prodID));");
     }
 
@@ -150,6 +155,7 @@ public class Database {
 
         insertIntoCustomer();
         insertIntoManager();
+        insertIntoRegion();
         insertIntoCountry();
         insertIntoAddress();
         insertIntoStore();
@@ -159,7 +165,6 @@ public class Database {
         insertIntoProduct();
         insertIntoInventory();
         insertIntoOrderDetails();
-        insertIntoRegion();
 
     }
 
@@ -175,15 +180,23 @@ public class Database {
 
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
-                sql = String.format("insert into customer values(%s, %s, %s)",
+                
+                sql = String.format(
+                        "insert into customer values (\"%s\", \"%s\", \"%s\")",
                         inputArr[0], inputArr[1], inputArr[2]);
+
+                sql = "insert into customer values (?, ?, ?)";
                 pstmt = connection.prepareStatement(sql);
+                pstmt.setString(1, inputArr[0]);
+                pstmt.setString(2, inputArr[1]);
+                pstmt.setString(3, inputArr[2]);
                 pstmt.executeUpdate();
             }
             br.close();
         } catch (IOException io) {
             throw new IOException("customers.csv file not found");
         } catch (SQLException se) {
+            se.printStackTrace();
             throw new SQLException("Error occured while inserting into customer table");
         }
     }
@@ -200,7 +213,7 @@ public class Database {
 
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
-                sql = String.format("insert into product values(%s, %s, %d, %s)",
+                sql = String.format("insert into product values(\'%s\', \'%s\', %d, \'%s\')",
                         inputArr[0], inputArr[1], Long.parseLong(inputArr[2]), inputArr[3]);
                 pstmt = connection.prepareStatement(sql);
                 pstmt.executeUpdate();
@@ -225,7 +238,7 @@ public class Database {
 
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
-                sql = String.format("insert into subcategory values(%s, %s, %d)",
+                sql = String.format("insert into subcategory values(\'%s\', \'%s\', %d)",
                         inputArr[0], inputArr[1], Integer.parseInt(inputArr[2]));
                 pstmt = connection.prepareStatement(sql);
                 pstmt.executeUpdate();
@@ -250,7 +263,7 @@ public class Database {
 
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
-                sql = String.format("insert into category values(%d, %s)",
+                sql = String.format("insert into category values(%d, \'%s\')",
                         Integer.parseInt(inputArr[0]), inputArr[1]);
                 pstmt = connection.prepareStatement(sql);
                 pstmt.executeUpdate();
@@ -301,7 +314,7 @@ public class Database {
 
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
-                sql = String.format("insert into region values(%d, %s, %d)",
+                sql = String.format("insert into region values(%d, \'%s\', %d)",
                         Integer.parseInt(inputArr[0]), inputArr[1], Integer.parseInt(inputArr[2]));
                 pstmt = connection.prepareStatement(sql);
                 pstmt.executeUpdate();
@@ -326,7 +339,7 @@ public class Database {
 
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
-                sql = String.format("insert into manager values(%d, %s, %s)",
+                sql = String.format("insert into manager values(%d, \'%s\', \'%s\')",
                         Integer.parseInt(inputArr[0]), inputArr[1], inputArr[2]);
 
                 pstmt = connection.prepareStatement(sql);
@@ -352,7 +365,7 @@ public class Database {
 
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
-                sql = String.format("insert into country values(%s, %s)",
+                sql = String.format("insert into country values(\'%s\', \'%s\')",
                         inputArr[0], inputArr[1]);
 
                 pstmt = connection.prepareStatement(sql);
@@ -378,9 +391,14 @@ public class Database {
 
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
-                sql = String.format("insert into address values(%d, %s, %s, %s)",
+                sql = String.format("insert into address values(%d, \'%s\', \'%s\', \'%s\')",
                         Integer.parseInt(inputArr[0]), inputArr[1], inputArr[2], inputArr[3]);
+                sql = "insert into address values (?, ?, ?, ?)";
                 pstmt = connection.prepareStatement(sql);
+                pstmt.setInt(1, Integer.parseInt(inputArr[0]));
+                pstmt.setString(2, inputArr[1]);
+                pstmt.setString(3, inputArr[2]);
+                pstmt.setString(4, inputArr[3]);
                 pstmt.executeUpdate();
             }
             br.close();
@@ -404,10 +422,10 @@ public class Database {
 
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
-                sql = String.format("insert into order values(%s, %s, %s, %s, %s, %s, %d, %d)",
+                sql = String.format("insert into \"order\" values(\'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', %d, %d)",
                         inputArr[0], inputArr[1], inputArr[2], inputArr[3], inputArr[4], inputArr[5],
                         Integer.parseInt(inputArr[6]), Integer.parseInt(inputArr[7]));
-                        
+
                 pstmt = connection.prepareStatement(sql);
                 pstmt.executeUpdate();
             }
@@ -430,7 +448,7 @@ public class Database {
 
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
-            sql = String.format("insert into customer values(%s, %s,%d, %d,%d,%d",
+            sql = String.format("insert into customer values(\'%s\', \'%s\',%d, %d,%d,%d",
                     inputArr[0], inputArr[1], Long.parseLong(inputArr[2]), Long.parseLong(inputArr[3]),
                     Long.parseLong(inputArr[4]),
                     Long.parseLong(inputArr[5]));
@@ -451,7 +469,7 @@ public class Database {
 
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
-            sql = String.format("insert into customer values(%s, %d)",
+            sql = String.format("insert into customer values(\'%s\', %d)",
                     inputArr[0], Integer.parseInt(inputArr[1]));
             pstmt = connection.prepareStatement(sql);
             pstmt.executeUpdate();
@@ -462,44 +480,45 @@ public class Database {
 
     public void dropAllTables() {
         try {
-            PreparedStatement pstmt = connection.prepareStatement("DROP TABLE IF EXISTS customer;");
+            PreparedStatement pstmt = connection.prepareStatement("DROP TABLE IF EXISTS OrderDetails;");
             pstmt.executeUpdate();
 
-            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS product;");
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS Inventory;");
             pstmt.executeUpdate();
 
-            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS address;");
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS Product;");
             pstmt.executeUpdate();
 
-            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS store;");
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS SubCategory;");
             pstmt.executeUpdate();
 
-            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS country;");
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS Category;");
             pstmt.executeUpdate();
 
-            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS order;");
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS \"order\";");
             pstmt.executeUpdate();
 
-            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS orderdetails;");
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS Store;");
             pstmt.executeUpdate();
 
-            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS inventory;");
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS Address;");
             pstmt.executeUpdate();
 
-            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS subcategory;");
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS Country;");
             pstmt.executeUpdate();
 
-            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS category;");
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS Region;");
             pstmt.executeUpdate();
 
-            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS region;");
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS Manager;");
             pstmt.executeUpdate();
 
-            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS manager;");
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS Customer;");
             pstmt.executeUpdate();
 
         } catch (SQLException se) {
             System.out.println("Error while deleting the database");
+            se.printStackTrace();
         }
     }
 
@@ -636,7 +655,7 @@ public class Database {
                     "FROM Store s\r\n" + //
                     "JOIN Address a ON s.addressID = a.addressID\r\n" + //
                     "JOIN Country c ON a.countryCode = c.countryCode\r\n" + //
-                    "JOIN Order o ON s.storeID = o.storeID\r\n" + //
+                    "JOIN \"order\" o ON s.storeID = o.storeID\r\n" + //
                     "JOIN OrderDetails od ON o.orderID = od.orderID\r\n" + //
                     "GROUP BY c.countryCode\r\n" + //
                     "ORDER BY num_stores DESC\r\n" + //
@@ -739,7 +758,7 @@ public class Database {
              // SQL QUERY
             String query = "SELECT COUNT(*) AS returned_items_count, c.fname as First,c.lname as Last\r\n" + //
                     "FROM Customer c\r\n" + //
-                    "JOIN Orders o ON c.custID = o.custID\r\n" + //
+                    "JOIN \"order\" o ON c.custID = o.custID\r\n" + //
                     "WHERE c.custID = '?'\r\n" + //
                     "AND o.isReturned = 1;";
 
@@ -809,7 +828,7 @@ public class Database {
             String query = "SELECT p.name as name, p.price as price, o.shipMode as shipMode\r\n" + //
                     "FROM Product p\r\n" + //
                     "INNER JOIN OrderDetails c ON p.prodID = c.prodID \r\n" + //
-                    "INNER JOIN Order o ON c.orderID = o.orderID \r\n" + //
+                    "INNER JOIN \"order\" o ON c.orderID = o.orderID \r\n" + //
                     "WHERE o.orderID = ?;\r\n" + //
                     "";
 
@@ -887,7 +906,7 @@ public class Database {
                     "JOIN SubCategory sb ON p.subCatID = sb.subCatID\r\n" + //
                     "JOIN Category c ON sb.catID = c.catID\r\n" + //
                     "JOIN OrderDetails od ON p.prodID = od.prodID\r\n" + //
-                    "JOIN Order o ON od.orderID = o.orderID\r\n" + //
+                    "JOIN \"order\" o ON od.orderID = o.orderID\r\n" + //
                     "GROUP BY sb.subCatID, od.orderID, c.name, sb.name\r\n" + //
                     "HAVING o.isReturned = 0\r\n" + //
                     "ORDER BY c.name, num_products desc;";
@@ -921,7 +940,7 @@ public class Database {
             String query = "SELECT DISTINCT p.name AS prod_name\r\n" + //
                     "FROM Products p\r\n" + //
                     "JOIN OrderDetails od ON p.prodID = od.prodID\r\n" + //
-                    "JOIN Order o ON od.orderID = o.orderID\r\n" + //
+                    "JOIN \"order\" o ON od.orderID = o.orderID\r\n" + //
                     "JOIN Customer c ON o.custID=o.custID WHERE c.custID='?' and o.isReturned=1;\r\n";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
@@ -985,7 +1004,7 @@ public class Database {
             String query = "SELECT DISTINCT p.name AS prod_name\r\n" + //
                     "FROM Products p\r\n" + //
                     "JOIN OrderDetails od ON p.prodID = od.prodID\r\n" + //
-                    "JOIN Order o ON od.orderID = o.orderID\r\n" + //
+                    "JOIN \"order\" o ON od.orderID = o.orderID\r\n" + //
                     "JOIN Store s ON o.storeID=s.storeID\r\n" + //
                     "JOIN Region r ON s.regionID=r.regionID \r\n" + //
                     "WHERE r.name='?' and o.isReturned=1;\r\n";
@@ -1052,7 +1071,7 @@ public class Database {
              // SQL QUERY
             String query = "SELECT o.shipMode as ship_mode, AVG(julianday(o.shipDate) - julianday(o.orderDate)) AS avg_days_to_ship,o.orderID as orderID\r\n"
                     + //
-                    "FROM Order o\r\n" + //
+                    "FROM \"order\" o\r\n" + //
                     "JOIN OrderDetails od ON o.orderID = od.orderID \r\n" +
                     "GROUP BY o.shipMode, od.orderID\r\n" +
                     "HAVING SUM(od.quantity) > 7;";
@@ -1092,7 +1111,7 @@ public class Database {
                     "FROM Country con\r\n" + //
                     "LEFT JOIN Address a ON a.countryCode = con.countryCode\r\n" + //
                     "JOIN Store s ON a.addressID = s.addressID\r\n" + //
-                    "JOIN Orders o ON s.storeID = o.storeID\r\n" + //
+                    "JOIN \"order\" o ON s.storeID = o.storeID\r\n" + //
                     "JOIN Customer cust ON o.custID = cust.custID\r\n" + //
                     "JOIN (\r\n" + //
                     "SELECT od.orderID, SUM(od.sales) as order_total\r\n" + //
