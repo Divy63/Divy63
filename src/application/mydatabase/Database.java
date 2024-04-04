@@ -109,6 +109,25 @@ public class Database {
                 + "city TEXT NOT NULL,"
                 + "state TEXT NOT NULL,"
                 + "countryCode VARCHAR(3) REFERENCES country(countryCode))");
+        this.connection.createStatement().executeUpdate("CREATE TABLE order("
+                    + "orderID VARCHAR(11) PRIMARY KEY,"
+                    + "shipDate DATE NOT NULL,"
+                    + "shipMode VARCHAR(20) NOT NULL,"
+                    + "orderDate DATE NOT NULL,"
+                    + "isReturned BIT"
+                    + "storeID INTEGER FOREIGN KEY REFERENCES store(storeID));");
+         this.connection.createStatement().executeQuery("CREATE TABLE orderdetails("
+                    + "orderID VARCHAR(11) FOREIGN KEY REFERENCES order(orderID) NOT NULL, "
+                    + "prodID VARCHAR(18) FOREIGN KEY REFERENCES product(prodID) NOT NULL,"
+                    + "sales DECIMAL  NOT NULL,"
+                    + "quantity INT  NOT NULL,"
+                    + "discount DECIMAL DEFAULT 0,"
+                    + "profit DECIMAL"
+                    + "PRIMARY KEY(orderID,prodID));");
+            this.connection.createStatement().executeQuery("CREATE TABLE inventory("
+                    + "storeID INTEGER FOREIGN KEY store(storeID),"
+                    + "prodID VARCHAR(18) FOREIGN KEY REFERENCES product(prodID)"
+                    + "PRIMARY KEY(storeID,podID));");
     }
 
     private void readInputData(String filename) throws SQLException, IOException {
