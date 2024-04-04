@@ -75,46 +75,46 @@ public class Database {
     }
 
     private void createAllTables() throws SQLException {
-        this.connection.createStatement().executeUpdate("CREATE TABLE customer("
+        this.connection.createStatement().executeUpdate("CREATE TABLE Customer("
                 + "custID VARCHAR(8) PRIMARY KEY,"
                 + "fname TEXT NOT NULL,"
                 + "lname TEXT NOT NULL)");
 
-        this.connection.createStatement().executeUpdate("CREATE TABLE product("
+        this.connection.createStatement().executeUpdate("CREATE TABLE Product("
                 + "prodID VARCHAR(18) PRIMARY KEY,"
                 + "name TEXT,"
                 + "price BIGINT NOT NULL,"
                 + "subCatID VARCHAR(7) REFERENCES subcategory(subCatID))");
 
-        this.connection.createStatement().executeUpdate("CREATE TABLE subcategory("
+        this.connection.createStatement().executeUpdate("CREATE TABLE SubCategory("
                 + "subCatID VARCHAR(7) PRIMARY KEY,"
                 + "name TEXT,"
                 + "catID INTEGER REFERENCES category(catID))");
 
-        this.connection.createStatement().executeUpdate("CREATE TABLE category("
+        this.connection.createStatement().executeUpdate("CREATE TABLE Category("
                 + "catID INTEGER PRIMARY KEY,"
                 + "name TEXT)");
 
-        this.connection.createStatement().executeUpdate("CREATE TABLE store("
+        this.connection.createStatement().executeUpdate("CREATE TABLE Store("
                 + "storeID INTEGER PRIMARY KEY,"
                 + "addressID INTEGER REFERENCES address(addressID),"
                 + "regionID INTEGER REFERENCES region(regionID))");
 
-        this.connection.createStatement().executeUpdate("CREATE TABLE region("
+        this.connection.createStatement().executeUpdate("CREATE TABLE Region("
                 + "regionID INTEGER PRIMARY KEY,"
                 + "regionName TEXT,"
                 + "managerID INTEGER REFERENCES manager(managerID))");
 
-        this.connection.createStatement().executeUpdate("CREATE TABLE manager("
+        this.connection.createStatement().executeUpdate("CREATE TABLE Manager("
                 + "managerID INTEGER PRIMARY KEY,"
                 + "fname TEXT NOT NULL,"
                 + "lname TEXT NOT NULL)");
 
-        this.connection.createStatement().executeUpdate("CREATE TABLE country("
+        this.connection.createStatement().executeUpdate("CREATE TABLE Country("
                 + "countryCode VARCHAR(3) PRIMARY KEY,"
                 + "name TEXT NOT NULL)");
 
-        this.connection.createStatement().executeUpdate("CREATE TABLE address("
+        this.connection.createStatement().executeUpdate("CREATE TABLE Address("
                 + "addressID INTEGER PRIMARY KEY,"
                 + "city TEXT NOT NULL,"
                 + "state TEXT NOT NULL,"
@@ -126,7 +126,7 @@ public class Database {
                 + "orderDate DATE NOT NULL,"
                 + "isReturned INT,"
                 + "storeID INTEGER FOREIGN KEY REFERENCES store(storeID));");
-        this.connection.createStatement().executeQuery("CREATE TABLE orderdetails("
+        this.connection.createStatement().executeQuery("CREATE TABLE OrderDetails("
                 + "orderID VARCHAR(11) FOREIGN KEY REFERENCES \"order\"(orderID) NOT NULL, "
                 + "prodID VARCHAR(18) FOREIGN KEY REFERENCES product(prodID) NOT NULL,"
                 + "sales BIGINT  NOT NULL,"
@@ -134,7 +134,7 @@ public class Database {
                 + "discount BIGINT DEFAULT 0,"
                 + "profit BIGINT,"
                 + "PRIMARY KEY(orderID,prodID));");
-        this.connection.createStatement().executeQuery("CREATE TABLE inventory("
+        this.connection.createStatement().executeQuery("CREATE TABLE Inventory("
                 + "storeID INTEGER FOREIGN KEY store(storeID),"
                 + "prodID VARCHAR(18) FOREIGN KEY REFERENCES product(prodID)"
                 + "PRIMARY KEY(storeID,prodID));");
@@ -464,40 +464,40 @@ public class Database {
 
     public void dropAllTables() {
         try {
-            PreparedStatement pstmt = connection.prepareStatement("DROP TABLE IF EXISTS customer;");
+            PreparedStatement pstmt = connection.prepareStatement("DROP TABLE IF EXISTS Customer;");
             pstmt.executeUpdate();
 
-            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS product;");
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS Product;");
             pstmt.executeUpdate();
 
-            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS address;");
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS Address;");
             pstmt.executeUpdate();
 
-            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS store;");
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS Store;");
             pstmt.executeUpdate();
 
-            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS country;");
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS Country;");
             pstmt.executeUpdate();
 
             pstmt = connection.prepareStatement("DROP TABLE IF EXISTS \"order\";");
             pstmt.executeUpdate();
 
-            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS orderdetails;");
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS OrderDetails;");
             pstmt.executeUpdate();
 
-            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS inventory;");
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS Inventory;");
             pstmt.executeUpdate();
 
-            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS subcategory;");
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS SubCategory;");
             pstmt.executeUpdate();
 
-            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS category;");
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS Category;");
             pstmt.executeUpdate();
 
-            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS region;");
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS Region;");
             pstmt.executeUpdate();
 
-            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS manager;");
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS Manager;");
             pstmt.executeUpdate();
 
         } catch (SQLException se) {
