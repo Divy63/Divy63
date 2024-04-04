@@ -141,7 +141,7 @@ public class Database {
                 + "quantity INT  NOT NULL,"
                 + "discount FLOAT DEFAULT 0,"
                 + "profit FLOAT,"
-                + "PRIMARY KEY(orderID,prodID));");
+                + "PRIMARY KEY(orderID,prodID,quantity));");
         this.connection.createStatement().executeUpdate("CREATE TABLE Inventory("
                 + "prodID VARCHAR(24) FOREIGN KEY REFERENCES Product(prodID),"
                 + "storeID INTEGER FOREIGN KEY REFERENCES store(storeID),"
