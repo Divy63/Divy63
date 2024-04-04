@@ -143,8 +143,8 @@ public class Database {
                 + "profit FLOAT,"
                 + "PRIMARY KEY(orderID,prodID));");
         this.connection.createStatement().executeUpdate("CREATE TABLE Inventory("
+                + "prodID VARCHAR(24) FOREIGN KEY REFERENCES Product(prodID),"
                 + "storeID INTEGER FOREIGN KEY REFERENCES store(storeID),"
-                + "prodID VARCHAR(24) FOREIGN KEY REFERENCES Product(prodID)"
                 + "PRIMARY KEY(storeID,prodID));");
     }
 
@@ -185,7 +185,7 @@ public class Database {
 
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
-                
+
                 sql = String.format(
                         "insert into customer values (\"%s\", \"%s\", \"%s\")",
                         inputArr[0], inputArr[1], inputArr[2]);
@@ -221,11 +221,17 @@ public class Database {
                 inputArr = inputLine.split(regex);
                 sql = String.format("insert into product values(\'%s\', \'%s\', %f, \'%s\')",
                         inputArr[0], inputArr[1], Double.parseDouble(inputArr[2]), inputArr[3]);
+                sql = String.format("insert into product values (?, ?, ?, ?)");
                 pstmt = connection.prepareStatement(sql);
+                pstmt.setString(1, inputArr[0]);
+                pstmt.setString(2, inputArr[1]);
+                pstmt.setDouble(3, Double.parseDouble(inputArr[2]));
+                pstmt.setString(4, inputArr[3]);
                 pstmt.executeUpdate();
             }
             br.close();
             System.out.println("Product table created");
+
         } catch (IOException io) {
             throw new IOException("products.csv file not found");
         } catch (SQLException se) {
@@ -435,7 +441,6 @@ public class Database {
             Date shipDate, orderDate;
             java.sql.Date sShipDate, sOrderDate;
 
-
             br.readLine(); // leaving the headers
 
             while ((inputLine = br.readLine()) != null) {
@@ -443,10 +448,11 @@ public class Database {
                 orderDate = format.parse(inputArr[1]);
                 shipDate = format.parse(inputArr[2]);
 
-                sql = String.format("insert into \"order\" values(\'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', %d, %d)",
+                sql = String.format(
+                        "insert into \"order\" values(\'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', %d, %d)",
                         inputArr[0], inputArr[1], inputArr[2], inputArr[3], inputArr[4], inputArr[5],
                         Integer.parseInt(inputArr[6]), Integer.parseInt(inputArr[7]));
-                
+
                 sql = String.format("insert into \"order\" values(?, ?, ?, ?, ?, ?, ?, ?)");
                 pstmt = connection.prepareStatement(sql);
                 pstmt.setString(1, inputArr[0]);
@@ -483,7 +489,7 @@ public class Database {
 
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
-            sql = String.format("insert into customer values(\'%s\', \'%s\', %f, %d, %f, %f",
+            sql = String.format("insert into orderdetails values(\'%s\', \'%s\', %f, %d, %f, %f",
                     inputArr[0], inputArr[1], Double.parseDouble(inputArr[2]), Integer.parseInt(inputArr[3]),
                     Double.parseDouble(inputArr[4]),
                     Double.parseDouble(inputArr[5]));
@@ -505,7 +511,7 @@ public class Database {
 
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
-            sql = String.format("insert into customer values(\'%s\', %d)",
+            sql = String.format("insert into inventory values(\'%s\', %d)",
                     inputArr[0], Integer.parseInt(inputArr[1]));
             pstmt = connection.prepareStatement(sql);
             pstmt.executeUpdate();
