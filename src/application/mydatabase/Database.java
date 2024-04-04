@@ -1,5 +1,7 @@
 package application.mydatabase;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.io.FileInputStream;
@@ -51,51 +53,70 @@ public class Database {
 
     public void initializeDatabase() {
 
-        try {
+        dropAllTables();
 
-            this.connection.createStatement().executeUpdate("CREATE TABLE customer("
-                    + "custID VARCHAR(8) PRIMARY KEY,"
-                    + "fname TEXT NOT NULL,"
-                    + "lname TEXT NOT NULL)");
-            this.connection.createStatement().executeUpdate("CREATE TABLE product("
-                    + "prodID VARCHAR(18) PRIMARY KEY,"
-                    + "name TEXT,"
-                    + "subCatID VARCHAR(7) FOREIGN KEY REFERENCES subcategory(subCatID))");
-            this.connection.createStatement().executeUpdate("CREATE TABLE subcategory("
-                    + "subCatID VARCHAR(7) PRIMARY KEY,"
-                    + "catID INTEGER FOREIGN KEY REFERENCES category(catID),"
-                    + "name TEXT)");
-            this.connection.createStatement().executeUpdate("CREATE TABLE category("
-                    + "catID INTEGER PRIMARY KEY autoincrement,"
-                    + "name TEXT);");
-            this.connection.createStatement().executeUpdate("CREATE TABLE store("
-                    + "storeID INTEGER PRIMARY KEY autoincrement,"
-                    + "addressID INTEGER FOREIGN KEY REFERENCES address(addressID),"
-                    + "regionID INTEGER FOREIGN KEY REFERENCES region(regionID));");
-            this.connection.createStatement().executeUpdate("CREATE TABLE region("
-                    + "regionID INTEGER PRIMARY KEY autoincrement,"
-                    + "regionName TEXT,"
-                    + "managerID INTEGER FOREIGN KEY REFERENCES manager(managerID));");
-            this.connection.createStatement().executeUpdate("CREATE TABLE manager("
-                    + "managerID INTEGER PRIMARY KEY autoincrement,"
-                    + "fname TEXT NOT NULL,"
-                    + "lname TEXT NOT NULL);");
-            this.connection.createStatement().executeUpdate("CREATE TABLE country("
-                    + "countryCode VARCHAR(3) PRIMARY KEY,"
-                    + "name TEXT NOT NULL);");
-            this.connection.createStatement().executeUpdate("CREATE TABLE address("
-                    + "addressID INTEGER PRIMARY KEY autoincrement,"
-                    + "city TEXT NOT NULL,"
-                    + "state TEXT NOT NULL,"
-                    + "countryCode VARCHAR(3) FOREIGN KEY REFERENCES country(countryCode));");
-            this.connection.createStatement().executeUpdate("CREATE TABLE order("
+        try {
+            createAllTables();
+            readInputData();
+        } catch (SQLException e) {
+            System.out.println("Error occured while initializing the database\n\nDROPING ALL OF THE DATABASE");
+            dropAllTables();
+        }
+    }
+    
+    private void createAllTables() throws SQLException{
+        this.connection.createStatement().executeUpdate("CREATE TABLE customer("
+                + "custID VARCHAR(8) PRIMARY KEY,"
+                + "fname TEXT NOT NULL,"
+                + "lname TEXT NOT NULL)");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE product("
+                + "prodID VARCHAR(18) PRIMARY KEY,"
+                + "name TEXT,"
+                + "price REAL NOT NULL,"
+                + "subCatID VARCHAR(7) REFERENCES subcategory(subCatID))");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE subcategory("
+                + "subCatID VARCHAR(7) PRIMARY KEY,"
+                + "name TEXT,"
+                + "catID INTEGER REFERENCES category(catID))");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE category("
+                + "catID INTEGER PRIMARY KEY,"
+                + "name TEXT)");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE store("
+                + "storeID INTEGER PRIMARY KEY autoincrement,"
+                + "addressID INTEGER REFERENCES address(addressID),"
+                + "regionID INTEGER REFERENCES region(regionID))");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE region("
+                + "regionID INTEGER PRIMARY KEY,"
+                + "regionName TEXT,"
+                + "managerID INTEGER REFERENCES manager(managerID))");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE manager("
+                + "managerID INTEGER PRIMARY KEY,"
+                + "fname TEXT NOT NULL,"
+                + "lname TEXT NOT NULL)");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE country("
+                + "countryCode VARCHAR(3) PRIMARY KEY,"
+                + "name TEXT NOT NULL)");
+
+        this.connection.createStatement().executeUpdate("CREATE TABLE address("
+                + "addressID INTEGER PRIMARY KEY,"
+                + "city TEXT NOT NULL,"
+                + "state TEXT NOT NULL,"
+                + "countryCode VARCHAR(3) REFERENCES country(countryCode))");
+        this.connection.createStatement().executeUpdate("CREATE TABLE order("
                     + "orderID VARCHAR(11) PRIMARY KEY,"
                     + "shipDate DATE NOT NULL,"
                     + "shipMode VARCHAR(20) NOT NULL,"
                     + "orderDate DATE NOT NULL,"
                     + "isReturned BIT"
                     + "storeID INTEGER FOREIGN KEY REFERENCES store(storeID));");
-            this.connection.createStatement().executeQuery("CREATE TABLE orderdetails("
+         this.connection.createStatement().executeQuery("CREATE TABLE orderdetails("
                     + "orderID VARCHAR(11) FOREIGN KEY REFERENCES order(orderID) NOT NULL, "
                     + "prodID VARCHAR(18) FOREIGN KEY REFERENCES product(prodID) NOT NULL,"
                     + "sales DECIMAL  NOT NULL,"
@@ -107,34 +128,71 @@ public class Database {
                     + "storeID INTEGER FOREIGN KEY store(storeID),"
                     + "prodID VARCHAR(18) FOREIGN KEY REFERENCES product(prodID)"
                     + "PRIMARY KEY(storeID,podID));");
-
-        } catch (SQLException e) {
-            e.printStackTrace(System.out);
-        }
     }
 
-    private void readInputData(String filename) {
+    private void readInputData(String filename) throws SQLException, IOException {
 
-        try {
             // TODO: while loop for all data-files
-            BufferedReader br = new BufferedReader(new FileReader(""));
-            br.readLine();
+            // BufferedReader br = new BufferedReader(new FileReader(""));
+            // br.readLine();
 
-            // TODO: read lines, prepare statements
+            // // TODO: read lines, prepare statements
 
-            br.close();
+            // br.close();
 
-        } catch (IOException ioer) {
-            ioer.printStackTrace();
-        } catch (SQLException sqler) {
-            sqler.printStackTrace(System.out);
+    }
+    
+    private void insertIntoCustomer() throws SQLException, IOException {
+        
+    }
+
+    public void dropAllTables() {
+        try {
+            PreparedStatement pstmt = connection.prepareStatement("DROP TABLE IF EXISTS customer;");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS product;");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS address;");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS store;");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS country;");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS order;");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS orderdetails;");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS inventory;");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS subcategory;");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS category;");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS region;");
+            pstmt.executeUpdate();
+
+            pstmt = connection.prepareStatement("DROP TABLE IF EXISTS manager;");
+            pstmt.executeUpdate();
+
+        } catch (SQLException se) {
+            System.out.println("Error while deleting the database");
         }
     }
 
     public void showPeople(String partOfName) {
         try {// try
              // SQL QUERY
-            String query = "SELECT c.fname as First, c.lnamed as Last, c.custID as custID FROM Customer c WHERE First LIKE ? OR Last Like ?;";
+            String query = "SELECT c.fname as First, c.lnamed as Last, c.custID as custID FROM Customer c WHERE First LIKE ? OR Last LIKE ?;";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setString(1, partOfName);
