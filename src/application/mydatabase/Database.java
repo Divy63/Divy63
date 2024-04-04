@@ -34,7 +34,6 @@ public class Database {
         String username = (prop.getProperty("username"));
         String password = (prop.getProperty("password"));
 
-
         // TODO: uranium connection (VPN or campus)
         String url = "jdbc:sqlserver://uranium.cs.umanitoba.ca:1433;"
             + "database=cs3380;"
@@ -48,7 +47,6 @@ public class Database {
 
         // TODO: this.initializeDatabase();
         // TODO: this.readInputData();
-
     }
 
     public void initializeDatabase() {
