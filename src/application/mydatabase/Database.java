@@ -80,27 +80,27 @@ public class Database {
     private void createAllTables() throws SQLException {
         this.connection.createStatement().executeUpdate("CREATE TABLE Customer("
                 + "custID VARCHAR(24) PRIMARY KEY,"
-                + "fname TEXT NOT NULL,"
-                + "lname TEXT NOT NULL)");
+                + "fname VARCHAR(MAX) NOT NULL,"
+                + "lname VARCHAR(MAX) NOT NULL)");
 
         this.connection.createStatement().executeUpdate("CREATE TABLE Manager("
                 + "managerID INTEGER PRIMARY KEY,"
-                + "fname TEXT NOT NULL,"
-                + "lname TEXT NOT NULL)");
+                + "fname VARCHAR(MAX) NOT NULL,"
+                + "lname VARCHAR(MAX) NOT NULL)");
 
         this.connection.createStatement().executeUpdate("CREATE TABLE Region("
                 + "regionID INTEGER PRIMARY KEY,"
-                + "regionName TEXT,"
+                + "regionName VARCHAR(MAX),"
                 + "managerID INTEGER REFERENCES Manager(managerID))");
 
         this.connection.createStatement().executeUpdate("CREATE TABLE Country("
                 + "countryCode VARCHAR(24) PRIMARY KEY,"
-                + "name TEXT NOT NULL)");
+                + "name VARCHAR(MAX) NOT NULL)");
 
         this.connection.createStatement().executeUpdate("CREATE TABLE Address("
                 + "addressID INTEGER PRIMARY KEY,"
-                + "city TEXT NOT NULL,"
-                + "state TEXT NOT NULL,"
+                + "city VARCHAR(MAX) NOT NULL,"
+                + "state VARCHAR(MAX) NOT NULL,"
                 + "countryCode VARCHAR(24) REFERENCES Country(countryCode))");
 
         this.connection.createStatement().executeUpdate("CREATE TABLE Store("
@@ -113,35 +113,35 @@ public class Database {
                 + "orderDate DATE NOT NULL,"
                 + "shipDate DATE NOT NULL,"
                 + "shipMode VARCHAR(24) NOT NULL,"
-                + "segement TEXT,"
+                + "segement VARCHAR(MAX),"
                 + "custID VARCHAR(24) FOREIGN KEY REFERENCES customer(custID),"
                 + "storeID INTEGER FOREIGN KEY REFERENCES Store(storeID),"
                 + "isReturned INT)");
 
         this.connection.createStatement().executeUpdate("CREATE TABLE Category("
                 + "catID INTEGER PRIMARY KEY,"
-                + "name TEXT)");
+                + "name VARCHAR(MAX))");
 
         this.connection.createStatement().executeUpdate("CREATE TABLE SubCategory("
                 + "subCatID VARCHAR(24) PRIMARY KEY,"
-                + "name TEXT,"
+                + "name VARCHAR(MAX),"
                 + "catID INTEGER REFERENCES Category(catID))");
 
         System.out.println("creating products");
         this.connection.createStatement().executeUpdate("CREATE TABLE Product("
                 + "prodID VARCHAR(24) PRIMARY KEY,"
-                + "name TEXT,"
+                + "name VARCHAR(MAX),"
                 + "price FLOAT NOT NULL,"
                 + "subCatID VARCHAR(24) REFERENCES SubCategory(subCatID))");
 
         this.connection.createStatement().executeUpdate("CREATE TABLE OrderDetails("
+                + "odID INT PRIMARY KEY IDENTITY(1,1),"
                 + "orderID VARCHAR(24) FOREIGN KEY REFERENCES \"order\"(orderID) NOT NULL, "
                 + "prodID VARCHAR(24) FOREIGN KEY REFERENCES Product(prodID) NOT NULL,"
                 + "sales FLOAT  NOT NULL,"
                 + "quantity INT  NOT NULL,"
                 + "discount FLOAT DEFAULT 0,"
-                + "profit FLOAT,"
-                + "PRIMARY KEY(orderID,prodID,quantity));");
+                + "profit FLOAT);");
         this.connection.createStatement().executeUpdate("CREATE TABLE Inventory("
                 + "prodID VARCHAR(24) FOREIGN KEY REFERENCES Product(prodID),"
                 + "storeID INTEGER FOREIGN KEY REFERENCES store(storeID),"
