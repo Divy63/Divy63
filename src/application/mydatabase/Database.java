@@ -692,16 +692,12 @@ public class Database {
     public void storeProfitByCountry(int countryLimit) {
         try {// try
              // SQL QUERY
-            String query = "SELECT c.name AS country_name, COUNT (s.storeID) AS num_stores, SUM(od.profit) as profit\r\n"
-                    + //
-                    "FROM Store s\r\n" + //
-                    "JOIN Address a ON s.addressID = a.addressID\r\n" + //
-                    "JOIN Country c ON a.countryCode = c.countryCode\r\n" + //
-                    "JOIN \"order\" o ON s.storeID = o.storeID\r\n" + //
-                    "JOIN OrderDetails od ON o.orderID = od.orderID\r\n" + //
-                    "GROUP BY c.countryCode\r\n" + //
-                    "ORDER BY num_stores DESC\r\n" + //
-                    "TOP ? ;";
+            String query = "SELECT TOP ? c.name, COUNT (DISTINCT s.storeID) AS num_stores, SUM(od.profit) " +
+                    "FROM Store s inner JOIN Address a ON s.addressID = a.addressID " +
+                    "inner JOIN Country c ON a.countryCode = c.countryCode " +
+                    "inner JOIN [Order] o ON s.storeID = o.storeID " +
+                    "inner JOIN OrderDetails od ON o.orderID = od.orderID " +
+                    "GROUP BY c.name ORDER BY num_stores DESC;";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setInt(1, countryLimit);
