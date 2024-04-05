@@ -692,39 +692,38 @@ public class Database {
     public void storeProfitByCountry(int countryLimit) {
         try {// try
              // SQL QUERY
-            String query = "SELECT TOP ? c.name, COUNT (DISTINCT s.storeID) AS num_stores, SUM(od.profit) " +
+            String query = "SELECT TOP (?) c.name, COUNT(DISTINCT s.storeID) AS num_stores, SUM(od.profit) " +
                     "FROM Store s inner JOIN Address a ON s.addressID = a.addressID " +
                     "inner JOIN Country c ON a.countryCode = c.countryCode " +
                     "inner JOIN [Order] o ON s.storeID = o.storeID " +
                     "inner JOIN OrderDetails od ON o.orderID = od.orderID " +
-                    "GROUP BY c.name ORDER BY num_stores DESC;";
+                    "GROUP BY c.name ORDER BY num_stores DESC";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setInt(1, countryLimit);
 
             ResultSet result = pstmt.executeQuery();// executing query
-            System.out.println("Searching the database");
-            System.out
-                    .println("--------------------------------------------------------------------------------------");
+            System.out.println(
+                    "\nSearching the database for Profit across stores for top \'" + countryLimit + "\' country");
+            System.out.println(
+                    "--------------------------------------------------------------------------------------\n");
 
-            System.out.println("Profit made by stores in the country:");
             int n = 1;
             // Printing the results of query
             while (result.next()) {
-                System.out.print(n + ")");
+                System.out.print(n + ") ");
                 System.out.println(
-                        "Country: " + result.getString("country_name") + " \nNumber of Stores: "
-                                + result.getString("num_stores")
-                                + " \nTotal Profit: "
-                                + result.getInt("profit"));
+                        "Country: " + result.getString(1) + " \n\tNumber of Stores: "
+                                + result.getString(2)
+                                + ", Total Profit: "
+                                + result.getInt(3) + "\n");
 
-                System.out.println();
                 n++;
             }
+            System.out.println();
             result.close();
             pstmt.close();
 
-            System.out.println("Query executed!");
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
