@@ -1,0 +1,15 @@
+--  1 SELECT c.fname as First, c.lname as Last, c.custID as custID 
+-- FROM Customer c 
+-- WHERE c.fname LIKE ? OR c.lname LIKE ?;
+-- SELECT countryCode ,name from Country 
+-- -- SELECT catID,name from Category
+-- SELECT * FROM SubCategory
+-- SELECT sc.subCatID,sc.name,c.name as category from SubCategory sc INNER JOIN Category c ON sc.catID=c.catID;
+-- SELECT p.name as product_name, p.price as price, o.discount as discounts FROM OrderDetails o INNER JOIN Product p ON o.prodID=p.prodID INNER JOIN SubCategory sc ON p.subCatID = sc.subCatID INNER JOIN Category c ON sc.catID=c.catID WHERE o.discount > 0.6 AND c.name = 'Office Supplies' ;
+-- SELECT * FROM Category
+-- SELECT p.name AS name, p.price AS price, o.shipMode AS shipMode
+-- FROM Product p
+-- INNER JOIN OrderDetails od ON p.prodID = od.prodID
+-- INNER JOIN [order] o ON od.orderID = o.orderID
+-- WHERE o.orderID = 'CA-2019-105270'; -- Using parameterized query
+
