@@ -9,18 +9,17 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        try{
-            Database db = new Database();
+        String reponse;
+        Database db = new Database();
+        reponse = db.startup();
+
+        if (reponse != null) {
+            System.out.println(reponse);
+        } else {
             simulate(db);
-        } catch (SQLException se) {
-            System.out.println("Suitable Driver not found to establish connection with database");
-            System.exit(1);
-        } catch (FileNotFoundException fnf) {
-            System.out.println(fnf.getMessage());
-            System.exit(1);
-        } catch (IOException io) {
-            System.out.println(io.getMessage());
         }
+        
+        System.out.println("\nEnd of processing\n");
     }
 
     private static void simulate(Database db) {
@@ -34,14 +33,14 @@ public class App {
         String[] parts;
         // String arg = "";
 
-        while (command != null && !command.equals("e")) {
+        while (command != null && !command.equalsIgnoreCase("e")) {
             parts = command.split("\\s+");
             // if (command.indexOf(" ") > 0)
             // arg = command.substring(command.indexOf(" ")).trim();
 
-            if (parts[0].equals("m"))
+            if (parts[0].equalsIgnoreCase("m"))
                 displayMenu();
-            else if (parts[0].equals("spc")) {
+            else if (parts[0].equalsIgnoreCase("spc")) {
                 if (parts.length >= 2) {
                     try {
                         int limit = Integer.parseInt(parts[1]);
@@ -54,7 +53,7 @@ public class App {
                 }
             }
 
-            else if (parts[0].equals("topproducts")) {
+            else if (parts[0].equalsIgnoreCase("topproducts")) {
                 if (parts.length >= 2) {
                     db.topProducts(parts[1]);
                 } else {
@@ -62,7 +61,7 @@ public class App {
                 }
             }
 
-            else if (parts[0].equals("rc")) {
+            else if (parts[0].equalsIgnoreCase("rc")) {
                 if (parts.length >= 2) {
                     db.returnedItemCount(parts[1]);
                 } else {
@@ -70,7 +69,7 @@ public class App {
                 }
             }
 
-            else if (parts[0].equals("dp")) {
+            else if (parts[0].equalsIgnoreCase("dp")) {
                 if (parts.length >= 2) {
                     db.discountedProducts(parts[1], Integer.parseInt(parts[2]));
                 } else {
@@ -78,68 +77,68 @@ public class App {
                 }
             }
 
-            else if (parts[0].equals("sd")) {
+            else if (parts[0].equalsIgnoreCase("sd")) {
                 if (parts.length >= 2)
                     db.shippingDetails(parts[1]);
                 else
                     System.out.println("Require an argument for this command");
             }
 
-            else if (parts[0].equals("ss")) {
+            else if (parts[0].equalsIgnoreCase("ss")) {
                 db.salesSummaryByCategory();
             }
 
-            else if (parts[0].equals("subcp")) {
+            else if (parts[0].equalsIgnoreCase("subcp")) {
                 db.subCategoryInventory();
             }
 
-            else if (parts[0].equals("rp")) {
+            else if (parts[0].equalsIgnoreCase("rp")) {
                 if (parts.length >= 2) {
                     db.returnedProducts(parts[1]);
                 } else {
                     System.out.println("Require an argument for this command");
                 }
-            } else if (parts[0].equals("rpr")) {
+            } else if (parts[0].equalsIgnoreCase("rpr")) {
                 if (parts.length >= 2) {
                     db.returnedByRegion(parts[1]);
                 } else {
                     System.out.println("Require an argument for this command");
                 }
-            } else if (parts[0].equals("avgp")) {
+            } else if (parts[0].equalsIgnoreCase("avgp")) {
                 if (parts.length >= 2) {
                     db.averagePrice(parts[1]);
                 } else {
                     System.out.println("Require an argument for this command");
                 }
-            } else if (parts[0].equals("exceed")) {
+            } else if (parts[0].equalsIgnoreCase("exceed")) {
                 if (parts.length >= 2) {
                     db.exceedXShipMode(Integer.parseInt(parts[3]));
                 } else {
                     System.out.println("Require an argument for this command");
                 }
-            } else if (parts[0].equals("lra")) {
+            } else if (parts[0].equalsIgnoreCase("lra")) {
                 if (parts.length >= 2) {
                     db.largestReturnedAmount(Integer.parseInt(parts[1]));
                 } else {
                     System.out.println("Require an argument for this command");
                 }
-            } else if (parts[0].equals("sc")) {
+            } else if (parts[0].equalsIgnoreCase("sc")) {
                 db.showCountries();
 
-            } else if (parts[0].equals("gcID")) {
+            } else if (parts[0].equalsIgnoreCase("gcID")) {
                 if (parts.length >= 2) {
                     db.showPeople(parts[2]);
                 } else {
                     System.out.println("Require an argument for this command");
                 }
 
-            } else if (parts[0].equals("scategories")) {
+            } else if (parts[0].equalsIgnoreCase("scategories")) {
                 db.showCategories();
-            } else if (parts[0].equals("sSubCategories")) {
+            } else if (parts[0].equalsIgnoreCase("sSubCategories")) {
                 db.showSubCategories();
-            } else if (parts[0].equals("sRegions")) {
+            } else if (parts[0].equalsIgnoreCase("sRegions")) {
                 db.showRegions();
-            } else if (parts[0].equals("i")) {
+            } else if (parts[0].equalsIgnoreCase("i")) {
                 db.initializeDatabase();
             }
             else {

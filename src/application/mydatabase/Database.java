@@ -793,11 +793,11 @@ public class Database {
     public void returnedItemCount(String customerID) {
         try {// try
              // SQL QUERY
-            String query = "SELECT COUNT(*) AS returned_items_count, c.fname as First,c.lname as Last\r\n" + //
-                    "FROM Customer c\r\n" + //
-                    "JOIN \"order\" o ON c.custID = o.custID\r\n" + //
-                    "WHERE c.custID = '?'\r\n" + //
-                    "AND o.isReturned = 1;";
+            String query = "SELECT c.fname AS first_name, c.lname AS last_name, SUM(od.quantity) AS returned_items " +
+                    "FROM Customer c JOIN [Order] o ON c.custID = o.custID " +
+                    "JOIN OrderDetails od ON o.orderID = od.orderID " +
+                    "WHERE c.custID = ? AND isReturned = 1 " +
+                    "GROUP BY c.fname, c.lname";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setString(1, customerID);
@@ -806,9 +806,21 @@ public class Database {
             System.out.println(
                     "\nSearching database for number of items returned by customer with id \'" + customerID + "\'");
             System.out
-                    .println("--------------------------------------------------------------------------------------");
-            System.out.println(result.getString("Last") + ",  " + result.getString("First") + ": "
-                    + result.getString("returned_item_count"));
+                    .println("--------------------------------------------------------------------------------------\n");
+            if (result.next()) {
+                System.out.println(result.getString(1) + ",  " + result.getString(2) + ": "
+                        + result.getInt(3));
+            } else {
+                query = "SELECT fname, lname FROM customer WHERE custID = ?";
+                pstmt = connection.prepareStatement(query);
+                pstmt.setString(1, customerID);
+                result = pstmt.executeQuery();
+                if(result.next()){
+                    System.out.printf("%s, %s has not returned any items yet\n", result.getString(1), result.getString(2));
+                } else {
+                    System.out.printf("\'%s\' does not exist\n", customerID);
+                }
+            }
 
             result.close();
             pstmt.close();
