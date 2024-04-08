@@ -60,6 +60,12 @@ public class Database {
         // TODO: this.readInputData();
     }
 
+    /**
+     * Method that initializes the database on Uranium
+     * It first drop all tables and then creates them again from scratch
+     * If fail to initialize any of the tables it drops all the table and rollback
+     * 
+     */
     public void initializeDatabase() {
 
         dropAllTables();
@@ -77,6 +83,11 @@ public class Database {
         }
     }
 
+    /**
+     * Method that creates all the table according to the sql schema
+     * 
+     * @throws SQLException
+     */
     private void createAllTables() throws SQLException {
         this.connection.createStatement().executeUpdate("CREATE TABLE Customer("
                 + "custID VARCHAR(24) PRIMARY KEY,"
@@ -148,6 +159,12 @@ public class Database {
                 + "PRIMARY KEY(storeID,prodID));");
     }
 
+    /**
+     * Method that reads all csv files and inserts data into the tables we created
+     * 
+     * @throws SQLException
+     * @throws IOException
+     */
     private void readInputData() throws SQLException, IOException {
 
         // TODO: while loop for all data-files
@@ -173,6 +190,12 @@ public class Database {
 
     }
 
+    /**
+     * Method that inserts data into Customer table using a CSV file Input
+     * 
+     * @throws SQLException
+     * @throws IOException
+     */
     private void insertIntoCustomer() throws SQLException, IOException {
         try {
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/customers.csv"));
@@ -186,6 +209,7 @@ public class Database {
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
 
+                // sql string
                 sql = String.format(
                         "insert into customer values (\"%s\", \"%s\", \"%s\")",
                         inputArr[0], inputArr[1], inputArr[2]);
@@ -195,7 +219,7 @@ public class Database {
                 pstmt.setString(1, inputArr[0]);
                 pstmt.setString(2, inputArr[1]);
                 pstmt.setString(3, inputArr[2]);
-                pstmt.executeUpdate();
+                pstmt.executeUpdate();// executing statement
             }
             br.close();
             System.out.println("Customer table created");
@@ -207,6 +231,12 @@ public class Database {
         }
     }
 
+    /**
+     * Method that inserts data into Product table using a CSV file Input
+     * 
+     * @throws SQLException
+     * @throws IOException
+     */
     private void insertIntoProduct() throws SQLException, IOException {
         try {
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/products.csv"));
@@ -221,13 +251,15 @@ public class Database {
                 inputArr = inputLine.split(regex);
                 sql = String.format("insert into product values(\'%s\', \'%s\', %f, \'%s\')",
                         inputArr[0], inputArr[1], Double.parseDouble(inputArr[2]), inputArr[3]);
+
+                // sql string
                 sql = String.format("insert into product values (?, ?, ?, ?)");
                 pstmt = connection.prepareStatement(sql);
                 pstmt.setString(1, inputArr[0]);
                 pstmt.setString(2, inputArr[1]);
                 pstmt.setDouble(3, Double.parseDouble(inputArr[2]));
                 pstmt.setString(4, inputArr[3]);
-                pstmt.executeUpdate();
+                pstmt.executeUpdate();// executing sql
             }
             br.close();
             System.out.println("Product table created");
@@ -239,6 +271,12 @@ public class Database {
         }
     }
 
+    /**
+     * Method that inserts data into SubCategories table using a CSV file Input
+     * 
+     * @throws SQLException
+     * @throws IOException
+     */
     private void insertIntoSubCat() throws SQLException, IOException {
         try {
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/sub-category.csv"));
@@ -251,10 +289,11 @@ public class Database {
 
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
+                // sql string
                 sql = String.format("insert into subcategory values(\'%s\', \'%s\', %d)",
                         inputArr[0], inputArr[1], Integer.parseInt(inputArr[2]));
                 pstmt = connection.prepareStatement(sql);
-                pstmt.executeUpdate();
+                pstmt.executeUpdate();// Executing sql
             }
             br.close();
             System.out.println("Subcategory table created");
@@ -265,6 +304,12 @@ public class Database {
         }
     }
 
+    /**
+     * Method that inserts data into Category table using a CSV file Input
+     * 
+     * @throws SQLException
+     * @throws IOException
+     */
     private void insertIntoCat() throws SQLException, IOException {
         try {
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/category.csv"));
@@ -277,10 +322,11 @@ public class Database {
 
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
+                // sql string
                 sql = String.format("insert into category values(%d, \'%s\')",
                         Integer.parseInt(inputArr[0]), inputArr[1]);
                 pstmt = connection.prepareStatement(sql);
-                pstmt.executeUpdate();
+                pstmt.executeUpdate();// Executing sql
             }
             br.close();
             System.out.println("Category table created");
@@ -291,6 +337,12 @@ public class Database {
         }
     }
 
+    /**
+     * Method that inserts data into Store table using a CSV file Input
+     * 
+     * @throws SQLException
+     * @throws IOException
+     */
     private void insertIntoStore() throws SQLException, IOException {
         try {
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/stores.csv"));
@@ -303,11 +355,12 @@ public class Database {
 
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
+                // sql string
                 sql = String.format("insert into store values(%d, %d, %d)",
                         Integer.parseInt(inputArr[0]), Integer.parseInt(inputArr[1]), Integer.parseInt(inputArr[2]));
 
                 pstmt = connection.prepareStatement(sql);
-                pstmt.executeUpdate();
+                pstmt.executeUpdate();// Executing sql
             }
             br.close();
             System.out.println("Store table created");
@@ -318,6 +371,12 @@ public class Database {
         }
     }
 
+    /**
+     * Method that inserts data into Region table using a CSV file Input
+     * 
+     * @throws SQLException
+     * @throws IOException
+     */
     private void insertIntoRegion() throws SQLException, IOException {
         try {
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/region.csv"));
@@ -333,7 +392,7 @@ public class Database {
                 sql = String.format("insert into region values(%d, \'%s\', %d)",
                         Integer.parseInt(inputArr[0]), inputArr[1], Integer.parseInt(inputArr[2]));
                 pstmt = connection.prepareStatement(sql);
-                pstmt.executeUpdate();
+                pstmt.executeUpdate();// Executing sql
             }
             br.close();
             System.out.println("Region table created");
@@ -344,6 +403,12 @@ public class Database {
         }
     }
 
+    /**
+     * Method that inserts data into Manager table using a CSV file Input
+     * 
+     * @throws SQLException
+     * @throws IOException
+     */
     private void insertIntoManager() throws SQLException, IOException {
         try {
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/manager.csv"));
@@ -356,11 +421,12 @@ public class Database {
 
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
+                // sql string
                 sql = String.format("insert into manager values(%d, \'%s\', \'%s\')",
                         Integer.parseInt(inputArr[0]), inputArr[1], inputArr[2]);
 
                 pstmt = connection.prepareStatement(sql);
-                pstmt.executeUpdate();
+                pstmt.executeUpdate();// Executing sql
             }
             br.close();
             System.out.println("Manager table created");
@@ -371,6 +437,12 @@ public class Database {
         }
     }
 
+    /**
+     * Method that inserts data into Country table using a CSV file Input
+     * 
+     * @throws SQLException
+     * @throws IOException
+     */
     private void insertIntoCountry() throws SQLException, IOException {
         try {
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/countries.csv"));
@@ -383,11 +455,12 @@ public class Database {
 
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
+                // sql string
                 sql = String.format("insert into country values(\'%s\', \'%s\')",
                         inputArr[0], inputArr[1]);
 
                 pstmt = connection.prepareStatement(sql);
-                pstmt.executeUpdate();
+                pstmt.executeUpdate();// Executing sql
             }
             br.close();
             System.out.println("Country table created");
@@ -398,6 +471,12 @@ public class Database {
         }
     }
 
+    /**
+     * Method that inserts data into Address table using a CSV file Input
+     * 
+     * @throws SQLException
+     * @throws IOException
+     */
     private void insertIntoAddress() throws SQLException, IOException {
         try {
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/address.csv"));
@@ -412,13 +491,14 @@ public class Database {
                 inputArr = inputLine.split(regex);
                 sql = String.format("insert into address values(%d, \'%s\', \'%s\', \'%s\')",
                         Integer.parseInt(inputArr[0]), inputArr[1], inputArr[2], inputArr[3]);
+                // sql string
                 sql = "insert into address values (?, ?, ?, ?)";
                 pstmt = connection.prepareStatement(sql);
                 pstmt.setInt(1, Integer.parseInt(inputArr[0]));
                 pstmt.setString(2, inputArr[1]);
                 pstmt.setString(3, inputArr[2]);
                 pstmt.setString(4, inputArr[3]);
-                pstmt.executeUpdate();
+                pstmt.executeUpdate();// Executing sql
             }
             br.close();
             System.out.println("Address table created");
@@ -429,6 +509,12 @@ public class Database {
         }
     }
 
+    /**
+     * Method that inserts data into Order table using a CSV file Input
+     * 
+     * @throws SQLException
+     * @throws IOException
+     */
     private void insertIntoOrder() throws SQLException, IOException {
         try {
 
@@ -438,21 +524,17 @@ public class Database {
             String sql;
             String[] inputArr;
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            Date shipDate, orderDate;
-            java.sql.Date sShipDate, sOrderDate;
 
             br.readLine(); // leaving the headers
 
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
-                orderDate = format.parse(inputArr[1]);
-                shipDate = format.parse(inputArr[2]);
-
                 sql = String.format(
                         "insert into \"order\" values(\'%s\', \'%s\', \'%s\', \'%s\', \'%s\', \'%s\', %d, %d)",
                         inputArr[0], inputArr[1], inputArr[2], inputArr[3], inputArr[4], inputArr[5],
                         Integer.parseInt(inputArr[6]), Integer.parseInt(inputArr[7]));
 
+                // sql string
                 sql = String.format("insert into \"order\" values(?, ?, ?, ?, ?, ?, ?, ?)");
                 pstmt = connection.prepareStatement(sql);
                 pstmt.setString(1, inputArr[0]);
@@ -464,7 +546,7 @@ public class Database {
                 pstmt.setInt(7, Integer.parseInt(inputArr[6]));
                 pstmt.setInt(8, Integer.parseInt(inputArr[7]));
 
-                pstmt.executeUpdate();
+                pstmt.executeUpdate();// Executing sql
             }
             br.close();
             System.out.println("Order details created");
@@ -473,11 +555,15 @@ public class Database {
         } catch (SQLException se) {
             se.printStackTrace();
             throw new SQLException("Error occured while inserting into order table");
-        } catch (ParseException pe) {
-            pe.printStackTrace();
         }
     }
 
+    /**
+     * Method that inserts data into Order Details table using a CSV file Input
+     * 
+     * @throws SQLException
+     * @throws IOException
+     */
     private void insertIntoOrderDetails() throws SQLException, IOException {
         BufferedReader br = new BufferedReader(new FileReader("final-data-files/order-details.csv"));
         PreparedStatement pstmt;
@@ -489,17 +575,24 @@ public class Database {
 
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
+            // sql string
             sql = String.format("insert into orderdetails values(\'%s\', \'%s\', %f, %d, %f, %f)",
                     inputArr[0], inputArr[1], Double.parseDouble(inputArr[2]), Integer.parseInt(inputArr[3]),
                     Double.parseDouble(inputArr[4]),
                     Double.parseDouble(inputArr[5]));
             pstmt = connection.prepareStatement(sql);
-            pstmt.executeUpdate();
+            pstmt.executeUpdate();// Executing sql
         }
         br.close();
         System.out.println("Order Details created");
     }
 
+    /**
+     * Method that inserts data into Inventory table using a CSV file Input
+     * 
+     * @throws SQLException
+     * @throws IOException
+     */
     private void insertIntoInventory() throws SQLException, IOException {
         BufferedReader br = new BufferedReader(new FileReader("final-data-files/inventory.csv"));
         PreparedStatement pstmt;
@@ -511,15 +604,19 @@ public class Database {
 
         while ((inputLine = br.readLine()) != null) {
             inputArr = inputLine.split(regex);
+            // sql string
             sql = String.format("insert into inventory values(\'%s\', %d)",
                     inputArr[0], Integer.parseInt(inputArr[1]));
             pstmt = connection.prepareStatement(sql);
-            pstmt.executeUpdate();
+            pstmt.executeUpdate();// Executing sql
         }
         br.close();
         System.out.println("Inventory table created");
     }
 
+    /**
+     * Method that executes sql statements to drop all tables
+     */
     public void dropAllTables() {
         try {
             PreparedStatement pstmt = connection.prepareStatement("DROP TABLE IF EXISTS OrderDetails;");
@@ -564,6 +661,12 @@ public class Database {
         }
     }
 
+    /**
+     * Method that executes and displays the persons in the database
+     * having 'partOfName' in their name
+     * 
+     * @param partOfName
+     */
     public void showPeople(String partOfName) {
         try {// try
              // SQL QUERY
@@ -582,7 +685,7 @@ public class Database {
             int n = 0;
             // Printing the results of query
             while (result.next()) {
-                System.out.print("\t" + (n+1) + ") ");
+                System.out.print("\t" + (n + 1) + ") ");
                 System.out.println(
                         result.getString("First") + " " + result.getString("Last") + " - "
                                 + result.getString("Last"));
@@ -591,13 +694,16 @@ public class Database {
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n"+n+" records found.\n");
+            System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
 
     }
 
+    /**
+     * Method that gives all countries along with their country Code
+     */
     public void showCountries() {
         try {// try
              // SQL QUERY
@@ -613,7 +719,7 @@ public class Database {
             int n = 0;
             // Printing the results of query
             while (result.next()) {
-                System.out.print("\t" + (n+1) + ") ");
+                System.out.print("\t" + (n + 1) + ") ");
                 System.out.println(
                         result.getString("name") + " - "
                                 + result.getString("Code"));
@@ -622,12 +728,15 @@ public class Database {
             }
             result.close();
             pstmt.close();
-            System.out.println("\nQuery executed. \n"+n+" records found.\n");
+            System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
     }
 
+    /**
+     * Method that shows all the available categories
+     */
     public void showCategories() {
         try {// try
              // SQL QUERY
@@ -643,7 +752,7 @@ public class Database {
             int n = 0;
             // Printing the results of query
             while (result.next()) {
-                System.out.print("\t" + (n+1) + ") ");
+                System.out.print("\t" + (n + 1) + ") ");
                 System.out.println(
                         result.getString("name") + " - "
                                 + result.getString("catID"));
@@ -653,12 +762,17 @@ public class Database {
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n"+n+" records found.\n");
+            System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
     }
 
+    /**
+     * Method that provides list of subcategories of given category
+     * 
+     * @param category
+     */
     public void showSubCategories(String category) {
         try {// try
              // SQL QUERY
@@ -674,7 +788,7 @@ public class Database {
             int n = 0;
             // Printing the results of query
             while (result.next()) {
-                System.out.print("\t" + (n+1) + ") ");
+                System.out.print("\t" + (n + 1) + ") ");
                 System.out.println(
                         result.getString("name") + " - "
                                 + result.getString("subCatID"));
@@ -683,12 +797,19 @@ public class Database {
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n"+n+" records found.\n");
+            System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
     }
 
+    /**
+     * Method that will provide the data for total number of stores in a country and
+     * total profit made in that country across all stores. It returns
+     * the 'countrylimit' number of countries
+     * 
+     * @param countryLimit
+     */
     public void storeProfitByCountry(int countryLimit) {
         try {// try
              // SQL QUERY
@@ -711,7 +832,7 @@ public class Database {
             int n = 0;
             // Printing the results of query
             while (result.next()) {
-                System.out.print((n+1) + ") ");
+                System.out.print((n + 1) + ") ");
                 System.out.println(
                         "Country: " + result.getString(1) + " \n\tNumber of Stores: "
                                 + result.getString(2)
@@ -722,13 +843,19 @@ public class Database {
             }
             result.close();
             pstmt.close();
-            System.out.println("\nQuery executed. \n"+n+" records found.\n");
+            System.out.println("\nQuery executed. \n" + n + " records found.\n");
 
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
     }
 
+    /**
+     * Method that will provide stats of which store from a country
+     * holds the most amount of the product of each category given a countryCode
+     * 
+     * @param countryCode
+     */
     public void topProducts(String countryCode) {
         try {// try
              // SQL QUERY
@@ -771,7 +898,7 @@ public class Database {
             int n = 0;
             // Printing the results of query
             while (result.next()) {
-                System.out.print((n+1) + ")");
+                System.out.print((n + 1) + ")");
                 System.out.println(
                         "-> Category: " + result.getString("category_name") + " Store ID: "
                                 + result.getString("storeID")
@@ -784,12 +911,17 @@ public class Database {
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n"+n+" records found.\n");
+            System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
     }
 
+    /**
+     * Method that will give the number of items returned by the customer.
+     * 
+     * @param customerID
+     */
     public void returnedItemCount(String customerID) {
         try {// try
              // SQL QUERY
@@ -797,40 +929,42 @@ public class Database {
                     "FROM Customer c\r\n" + //
                     "JOIN [order] o ON c.custID = o.custID\r\n" + //
                     "WHERE c.custID = ?\r\n" + //
-                    "AND o.isReturned = 1\r\n"+
+                    "AND o.isReturned = 1\r\n" +
                     "GROUP BY c.fname,c.lname;";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setString(1, customerID);
 
             ResultSet result = pstmt.executeQuery();// executing query
-            int n=0;
-            while(result.next()){
-           
-            System.out.println(
-                    "\nSearching database for number of items returned by customer with id \'" + customerID + "\'");
-            System.out
-                    .println("--------------------------------------------------------------------------------------");
-            System.out.println(result.getString("First") + " " + result.getString("Last") + " : "
-                    + result.getInt("returned_item_count"));
-                    n++;
+            int n = 0;
+            while (result.next()) {
+
+                System.out.println(
+                        "\nSearching database for number of items returned by customer with id \'" + customerID + "\'");
+                System.out
+                        .println(
+                                "--------------------------------------------------------------------------------------");
+                System.out.println(result.getString("First") + " " + result.getString("Last") + " : "
+                        + result.getInt("returned_item_count"));
+                n++;
             }
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n"+n+" records found.\n");
+            System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
-        // // System.out.println("returnedItemCount not implemented yet!!");
-        // // delete the hard coded, I ran java code get the values.
-        // System.out.println(
-        // "\nSearching database for number of items returned by customer with id \'" +
-        // customerID + "\'");
-        // System.out.println("--------------------------------------------------------------------------------------");
-        // System.out.println("Nat, Gilpin - 11\n");
+
     }
 
+    /**
+     * Method that gives a list of products in a specific category
+     * which have discount greater than or equal to the given discount.
+     * 
+     * @param categoryName
+     * @param discount
+     */
     public void discountedProducts(String categoryName, Double discount) {
         try {// try
              // SQL QUERY
@@ -848,7 +982,7 @@ public class Database {
                     "----------------------------------------------------------------------------------------------------------------");
             int n = 0;
             while (result.next()) {
-                System.out.println("\t" + (n+1) + ") " + result.getString("product_name") +
+                System.out.println("\t" + (n + 1) + ") " + result.getString("product_name") +
                         String.format("%.2f", result.getDouble("price")) + ", "
                         + String.format("%.2f", result.getDouble("discounts") * 100) + " % off.");
                 n++;
@@ -856,12 +990,18 @@ public class Database {
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n"+n+" records found.\n");
+            System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
     }
 
+    /**
+     * Method that finds out list of products in the given order as well as
+     * its shipping mode given the orderID
+     * 
+     * @param orderID
+     */
     public void shippingDetails(String orderID) {
         try {// try
              // SQL QUERY
@@ -884,19 +1024,22 @@ public class Database {
                     System.out.println("Shipping Mode -" + result.getString("shipMode"));
 
                 }
-                System.out.println("\t" + (n+1) + ") " + result.getString("name"));
+                System.out.println("\t" + (n + 1) + ") " + result.getString("name"));
                 n++;
             }
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n"+n+" records found.\n");
+            System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
 
     }
 
+    /**
+     * Method that will give total sales for each category
+     */
     public void salesSummaryByCategory() {
         try {// try
              // SQL QUERY
@@ -915,19 +1058,24 @@ public class Database {
                     .println("--------------------------------------------------------------------------------------");
             int n = 0;
             while (result.next()) {
-                System.out.println("\t" + (n+1) + ") " + result.getString("category_name") + " - "
+                System.out.println("\t" + (n + 1) + ") " + result.getString("category_name") + " - "
                         + String.format("%.2f", result.getDouble("total_sales")));
                 n++;
             }
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n"+n+" records found.\n");
+            System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
     }
 
+    /**
+     * Method that will find out the total number of distinct products in each
+     * sub_category,
+     * along with the total number of products sold in that sub-category.
+     */
     public void subCategoryInventory() {
         try {// try
              // SQL QUERY
@@ -951,7 +1099,8 @@ public class Database {
             int n = 0;
             while (result.next()) {
                 System.out
-                        .println("\t" + (n+1) + ") Number of Products:" + result.getInt("num_products") + ", Sub-Category: "
+                        .println("\t" + (n + 1) + ") Number of Products:" + result.getInt("num_products")
+                                + ", Sub-Category: "
                                 + result.getString("subcategory") + ", Category: "
                                 + result.getString("category") + " Total quantity sold :"
                                 + result.getInt("total_quantity_sold"));
@@ -960,12 +1109,18 @@ public class Database {
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n"+n+" records found.\n");
+            System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
     }
 
+    /**
+     * Method that gives products returned by specified customer given the
+     * customerID
+     * 
+     * @param customerID
+     */
     public void returnedProducts(String customerID) {
         try {// try
              // SQL QUERY
@@ -988,18 +1143,22 @@ public class Database {
             int n = 0;
             while (result.next()) {
                 System.out
-                        .println("\t" + (n+1) + ")" + result.getString("prod_name"));
+                        .println("\t" + (n + 1) + ")" + result.getString("prod_name"));
                 n++;
             }
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n"+n+" records found.\n");
+            System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
     }
 
+    /**
+     * Method that prints all the regions in the database slong with their
+     * regionID
+     */
     public void showRegions() {
         try {// try
              // SQL QUERY
@@ -1015,7 +1174,7 @@ public class Database {
             int n = 0;
             // Printing the results of query
             while (result.next()) {
-                System.out.print("\t" + (n+1) + ") ");
+                System.out.print("\t" + (n + 1) + ") ");
                 System.out.println(
                         result.getString("regionName") + " - "
                                 + result.getString("regionID"));
@@ -1025,13 +1184,18 @@ public class Database {
 
             result.close();
             pstmt.close();
-            System.out.println("\nQuery executed. \n"+n+" records found.\n");
-           
+            System.out.println("\nQuery executed. \n" + n + " records found.\n");
+
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
     }
 
+    /**
+     * Method that gives list of products returned in the specified region
+     * 
+     * @param regionName
+     */
     public void returnedByRegion(String regionName) {
         try {// try
              // SQL QUERY
@@ -1052,24 +1216,29 @@ public class Database {
                     .println(
                             "-------------------------------------------------------------------------------------------");
             System.out.println("Products returned in region\"" + regionName + "\": ");
-            int n= 0;
+            int n = 0;
             while (result.next()) {
                 System.out
-                        .println("\t" + (n+1) + ")" + result.getString("prod_name"));
+                        .println("\t" + (n + 1) + ")" + result.getString("prod_name"));
                 n++;
-               
+
             }
-           
-            System.out.println("\nQuery executed. \n"+n+" records found.\n");
+
+            System.out.println("\nQuery executed. \n" + n + " records found.\n");
             result.close();
             pstmt.close();
 
-           
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
     }
 
+    /**
+     * Method that will get the average Product price in a specified Category,
+     * given the categoryID
+     * 
+     * @param categoryID
+     */
     public void averagePrice(int categoryID) {
         try {// try
              // SQL QUERY
@@ -1077,46 +1246,55 @@ public class Database {
                     "FROM Product p\r\n" + //
                     "JOIN SubCategory s ON p.subCatID=s.subCatID\r\n" + //
                     "JOIN Category c ON s.catID = c.catID\r\n" + //
-                    "WHERE c.catID = ? "+
+                    "WHERE c.catID = ? " +
                     "GROUP BY c.name ;";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
-            pstmt.setInt(1,categoryID);
+            pstmt.setInt(1, categoryID);
             ResultSet result = pstmt.executeQuery();// executing query
-            int n=0;
-            if(result.next()==true){
+            int n = 0;
+            if (result.next() == true) {
                 n++;
-            System.out.println(
-                    "\nSearching the database for Avergae Price of Products in category \"" + result.getString("name")+ " ("+categoryID+")" + "\" :");
-            System.out.println(
-                    "----------------------------------------------------------------------------------------------");
-            System.out.println("Average price of product for category \"" + categoryID + "\" :");
-            // Printing the results of query
+                System.out.println(
+                        "\nSearching the database for Avergae Price of Products in category \""
+                                + result.getString("name") + " (" + categoryID + ")" + "\" :");
+                System.out.println(
+                        "----------------------------------------------------------------------------------------------");
+                System.out.println("Average price of product for category \"" + categoryID + "\" :");
+                // Printing the results of query
                 System.out.println(
                         "Category:\n\t" + result.getString("name") + " - "
-                                + String.format("%.2f",result.getDouble("averagePrice")));
-            }else{
+                                + String.format("%.2f", result.getDouble("averagePrice")));
+            } else {
                 System.out.println(
-                    "Searching the database for Avergae Price of Products in category with categoryID \"" +categoryID + "\" :");
-            System.out.println(
-                    "----------------------------------------------------------------------------------------------");
+                        "Searching the database for Avergae Price of Products in category with categoryID \""
+                                + categoryID + "\" :");
+                System.out.println(
+                        "----------------------------------------------------------------------------------------------");
 
             }
             result.close();
             pstmt.close();
-        
 
-            System.out.println("\nQuery executed. \n"+n+" records found.\n");
+            System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
     }
 
+    /**
+     * Method that will will return the shipMode of order and its average days taken
+     * to
+     * ship the order where the order has more than x items in it.
+     * 
+     * @param x
+     */
     public void exceedXShipMode(int x) {
         try {// try
              // SQL QUERY
-            String query = "SELECT o.shipMode as ship_mode, AVG(DATEDIFF(day,1900-01-01,o.shipDate) - DATEDIFF(day,1900-01-01,o.orderDate)) AS avg_days_to_ship "+
-                    "FROM [order] o "+
+            String query = "SELECT o.shipMode as ship_mode, AVG(DATEDIFF(day,1900-01-01,o.shipDate) - DATEDIFF(day,1900-01-01,o.orderDate)) AS avg_days_to_ship "
+                    +
+                    "FROM [order] o " +
                     "JOIN OrderDetails od ON o.orderID = od.orderID " +
                     "GROUP BY o.shipMode, " +
                     "HAVING SUM(od.quantity) > ?;";
@@ -1133,29 +1311,37 @@ public class Database {
             int n = 0;
             while (result.next()) {
                 System.out.println(
-                        "\t" + (n+1) + ") " + result.getString("ship_mode") + " - "+ result.getString("avg_days_to_ship")+" days.");
+                        "\t" + (n + 1) + ") " + result.getString("ship_mode") + " - "
+                                + result.getString("avg_days_to_ship") + " days.");
                 n++;
             }
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n"+n+" records found.");
+            System.out.println("\nQuery executed. \n" + n + " records found.");
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
     }
 
+    /**
+     * Method that gives biggest order amount for each country,
+     * focusing only on orders that were returned.
+     * 
+     * @param x
+     */
     public void largestReturnedAmount(int x) {
         try {// try
              // SQL QUERY
-            String query = "SELECT TOP ? c.name AS country_name,COUNT(DISTINCT s.storeID) AS num_stores,SUM(od.profit) "+
-                            "FROM Store s "+
-                            "INNER JOIN Address a ON s.addressID=a.addressID "+
-                            "INNER JOIN Country c a ON a.countryCode=c.countryCode "+
-                            "INNER JOIN [Order] ON s.storeID=o.storeID "+
-                            "INNER JOIN OrderDetails od ON o.orderID=od.orderID "+
-                            "GROUP BY c.name "+
-                            "ORDER BY num_stores DESC;";
+            String query = "SELECT TOP ? c.name AS country_name,COUNT(DISTINCT s.storeID) AS num_stores,SUM(od.profit) "
+                    +
+                    "FROM Store s " +
+                    "INNER JOIN Address a ON s.addressID=a.addressID " +
+                    "INNER JOIN Country c a ON a.countryCode=c.countryCode " +
+                    "INNER JOIN [Order] ON s.storeID=o.storeID " +
+                    "INNER JOIN OrderDetails od ON o.orderID=od.orderID " +
+                    "GROUP BY c.name " +
+                    "ORDER BY num_stores DESC;";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setInt(1, x);
@@ -1169,14 +1355,14 @@ public class Database {
             int n = 0;
             while (result.next()) {
                 System.out.println(
-                        "\t" + (n+1) + ") " + result.getString("country_name") + " - "
+                        "\t" + (n + 1) + ") " + result.getString("country_name") + " - "
                                 + result.getString("max_total"));
                 n++;
             }
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n"+n+" records found.");
+            System.out.println("\nQuery executed. \n" + n + " records found.");
         } catch (SQLException sql) {// catch block
             sql.printStackTrace(System.out);
         }
@@ -1184,15 +1370,3 @@ public class Database {
 
 }
 
-// try{
-
-// }catch(
-
-// IOException io)
-// {
-// throw new IOException("customer.csv file not found");
-// }catch(
-// SQLException se)
-// {
-// throw new SQLException("Error occured while inserting into customer table");
-// }

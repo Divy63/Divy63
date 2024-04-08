@@ -23,6 +23,15 @@ public class App {
         }
     }
 
+    /**
+     * Method that gets the Database object and then calls other methods in this
+     * class for simulation purposes.
+     * It takes user input and calls the methods according to the user input and
+     * provides user with the data
+     * they want.
+     * 
+     * @param db
+     */
     private static void simulate(Database db) {
 
         Scanner consoleIn = new Scanner(System.in);// Scanner that takes input from console
@@ -32,16 +41,13 @@ public class App {
         System.out.print("To get started, ENTER 'm' for Menu: ");
         String command = consoleIn.nextLine();
         String[] parts;
-        // String arg = "";
 
         while (command != null && !command.equals("e")) {
             parts = command.split("\\s+");
-            // if (command.indexOf(" ") > 0)
-            // arg = command.substring(command.indexOf(" ")).trim();
 
-            if (parts[0].equals("m"))
+            if (parts[0].equals("m"))// menu
                 displayMenu();
-            else if (parts[0].equals("spc")) {
+            else if (parts[0].equals("spc")) {// Stores and Profit by Country
                 if (parts.length >= 2) {
                     try {
                         int limit = Integer.parseInt(parts[1]);
@@ -54,7 +60,7 @@ public class App {
                 }
             }
 
-            else if (parts[0].equals("topproducts")) {
+            else if (parts[0].equals("topproducts")) {// Top Product Holders by Category
                 if (parts.length >= 2) {
                     db.topProducts(parts[1]);
                 } else {
@@ -62,7 +68,7 @@ public class App {
                 }
             }
 
-            else if (parts[0].equals("rc")) {
+            else if (parts[0].equals("rc")) {// Customer Returned Item Count Analysis
                 if (parts.length >= 2) {
                     db.returnedItemCount(parts[1]);
                 } else {
@@ -70,7 +76,7 @@ public class App {
                 }
             }
 
-            else if (parts[0].equals("dp")) {
+            else if (parts[0].equals("dp")) {// Discounted Products in Specific Category
                 if (parts.length >= 4) {
                     System.out.println(parts[3]);
                     db.discountedProducts(parts[1] + " " + parts[2], Double.parseDouble(parts[3]));
@@ -81,64 +87,65 @@ public class App {
                 }
             }
 
-            else if (parts[0].equals("sd")) {
+            else if (parts[0].equals("sd")) {// Shipping Details for Ordered Products
                 if (parts.length >= 2)
                     db.shippingDetails(parts[1]);
                 else
                     System.out.println("Require an argument for this command\n");
             }
 
-            else if (parts[0].equals("ss")) {
+            else if (parts[0].equals("ss")) {// Category Sales Summary
                 db.salesSummaryByCategory();
             }
 
-            else if (parts[0].equals("subcp")) {
+            else if (parts[0].equals("subcp")) {// Sub-Category Product Inventory and Sales Overview
                 db.subCategoryInventory();
             }
 
-            else if (parts[0].equals("rp")) {
+            else if (parts[0].equals("rp")) {// Products Returned by Customer
                 if (parts.length >= 2) {
                     db.returnedProducts(parts[1]);
                 } else {
                     System.out.println("Require an argument for this command\n");
                 }
-            } else if (parts[0].equals("rpr")) {
+            } else if (parts[0].equals("rpr")) {// Product Returns by Region
                 if (parts.length >= 2) {
                     db.returnedByRegion(parts[1]);
                 } else {
                     System.out.println("Require an argument for this command\n");
                 }
-            } else if (parts[0].equals("avgp")) {
+            } else if (parts[0].equals("avgp")) {// Average Product Price in Category
                 if (parts.length >= 2) {
                     db.averagePrice(Integer.parseInt(parts[1]));
                 } else {
                     System.out.println("Require an argument for this command\n");
                 }
-            } else if (parts[0].equals("exceed")) {
+            } else if (parts[0].equals("exceed")) {// Order Shipping Mode Details for Orders Exceeding 'X' Items
                 if (parts.length >= 2) {
                     db.exceedXShipMode(Integer.parseInt(parts[1]));
                 } else {
                     System.out.println("Require an argument for this command\n");
                 }
-            } else if (parts[0].equals("lra")) {
+            } else if (parts[0].equals("lra")) {// Country-wise Largest Returned Order Amount
                 if (parts.length >= 2) {
                     db.largestReturnedAmount(Integer.parseInt(parts[1]));
                 } else {
                     System.out.println("Require an argument for this command\n");
                 }
-            } else if (parts[0].equals("sc")) {
+            } else if (parts[0].equals("sc")) {// Show all the Countries along with their Country Code
                 db.showCountries();
 
-            } else if (parts[0].equals("gcID")) {
+            } else if (parts[0].equals("gcID")) {// Gets the Name of all the customer with 'part of the name of the
+                                                 // customer' int their name
                 if (parts.length >= 2) {
                     db.showPeople(parts[1]);
                 } else {
                     System.out.println("Require an argument for this command\n");
                 }
 
-            } else if (parts[0].equals("scategories")) {
+            } else if (parts[0].equals("scategories")) {// Show all the Categories
                 db.showCategories();
-            } else if (parts[0].equals("sSubCategories")) {
+            } else if (parts[0].equals("sSubCategories")) {// Show all the Sub-Categories along with their Category
                 if (parts.length >= 3) {
                     db.showSubCategories(parts[1] + " " + parts[2]);
                 } else if (parts.length == 2) {
@@ -146,18 +153,19 @@ public class App {
                 } else {
                     System.out.println("Require an argument for this command\n");
                 }
-            } else if (parts[0].equals("sRegions")) {
+            } else if (parts[0].equals("sRegions")) {// Show all the Regions
                 db.showRegions();
-            } else if (parts[0].equals("i")) {
+            } else if (parts[0].equals("i")) {// Initialize the database
                 db.initializeDatabase();
             } else {
+                System.out.println("Command not  recognized.\n");
                 System.out.println("Enter 'm' for Menu, else Enter your choice:");
             }
-            System.out.print("Choice >> ");
+            System.out.print("Input >> ");
             command = consoleIn.nextLine();
         }
 
-        System.out.println("\nExiting Store Management database. Have a great day!\n");
+        System.out.println("\nExiting Store Management database. Have a great day!\n");// Exit
         consoleIn.close();
 
     }
@@ -200,7 +208,7 @@ public class App {
                 "\texceed <numProducts>- Order Shipping Mode Details for Orders Exceeding 7 Items");
         System.out.println(
                 "\tlra <country limit> - Country-wise Largest Returned Order Amount");
-        System.out.println("\ti - To initialize the database");
+        System.out.println("\ti - Initialize the database");
         System.out.println("\tm - Display the Menu.");
         System.out.println("\te - Exit the system.");
 
