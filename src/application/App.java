@@ -1,4 +1,17 @@
-
+/**
+ * App.java
+ *
+ * COMP 2150 SECTION A01
+ * INSTRUCTOR Heather Matheson
+ * Project Project
+ * 
+ * @author Het Patel, 7972424
+ * @author Divy Patel,7951650
+ * @author Vince Ibero, //TODO Vince needs to write student number
+ * @version 2024-04-10
+ *
+ *          REMARKS: Program that provides interface to user to get connected to the database and perform analysis on it
+ */
 package application;
 
 import application.mydatabase.Database;

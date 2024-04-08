@@ -1,3 +1,18 @@
+/**
+ * Database.java
+ *
+ * COMP 2150 SECTION A01
+ * INSTRUCTOR Heather Matheson
+ * Project Project
+ * 
+ * @author Het Patel, 7972424
+ * @author Divy Patel,7951650
+ * @author Vince Ibero, //TODO Vince needs to write student number
+ * @version 2024-04-10
+ *
+ *          REMARKS: Database class that helps connecting to database on
+ *          uranium.cs.umanitoba.ca and perform data analysis
+ */
 package application.mydatabase;
 
 import java.text.ParseException;
@@ -1369,4 +1384,3 @@ public class Database {
     }
 
 }
-
