@@ -1,3 +1,4 @@
+
 package application;
 
 import application.mydatabase.Database;
@@ -69,9 +70,12 @@ public class App {
                 }
             }
 
-            else if (parts[0].equalsIgnoreCase("dp")) {
-                if (parts.length >= 2) {
-                    db.discountedProducts(parts[1], Integer.parseInt(parts[2]));
+            else if (parts[0].equals("dp")) {
+                if (parts.length >= 4) {
+                    System.out.println(parts[3]);
+                    db.discountedProducts(parts[1] + " " + parts[2], Double.parseDouble(parts[3]));
+                } else if (parts.length == 3) {
+                    db.discountedProducts(parts[1], Double.parseDouble(parts[2]));
                 } else {
                     System.out.println("Require an argument for this command");
                 }
@@ -127,21 +131,26 @@ public class App {
 
             } else if (parts[0].equalsIgnoreCase("gcID")) {
                 if (parts.length >= 2) {
-                    db.showPeople(parts[2]);
+                    db.showPeople(parts[1]);
                 } else {
                     System.out.println("Require an argument for this command");
                 }
 
             } else if (parts[0].equalsIgnoreCase("scategories")) {
                 db.showCategories();
-            } else if (parts[0].equalsIgnoreCase("sSubCategories")) {
-                db.showSubCategories();
-            } else if (parts[0].equalsIgnoreCase("sRegions")) {
+            } else if (parts[0].equals("sSubCategories")) {
+                if (parts.length >= 3) {
+                    db.showSubCategories(parts[1] + " " + parts[2]);
+                } else if (parts.length == 2) {
+                    db.showSubCategories(parts[1]);
+                } else {
+                    System.out.println("Require an argument for this command");
+                }
+            } else if (parts[0].equals("sRegions")) {
                 db.showRegions();
             } else if (parts[0].equalsIgnoreCase("i")) {
                 db.initializeDatabase();
-            }
-            else {
+            } else {
                 System.out.println("Enter 'm' for Menu, else Enter your choice:");
             }
             System.out.print("Choice >> ");
@@ -197,4 +206,3 @@ public class App {
 
     }
 }
-

@@ -567,11 +567,13 @@ public class Database {
     public void showPeople(String partOfName) {
         try {// try
              // SQL QUERY
-            String query = "SELECT c.fname as First, c.lnamed as Last, c.custID as custID FROM Customer c WHERE First LIKE ? OR Last LIKE ?;";
+            String query = "SELECT c.fname as First, c.lname as Last, c.custID as custID " +
+                    "FROM Customer c \n" +
+                    "WHERE c.fname LIKE ? OR c.lname LIKE ?;";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
-            pstmt.setString(1, partOfName);
-            pstmt.setString(2, partOfName);
+            pstmt.setString(1, "%" + partOfName + "%");
+            pstmt.setString(2, "%" + partOfName + "%");
             ResultSet result = pstmt.executeQuery();// executing query
             System.out.println("Searching the database for people with \"" + partOfName + "\" in their name");
             System.out.println(
@@ -580,9 +582,9 @@ public class Database {
             int n = 1;
             // Printing the results of query
             while (result.next()) {
-                System.out.print(n + ") ");
+                System.out.print("\t" + n + ") ");
                 System.out.println(
-                        "CustomerID: " + result.getString("custID") + ", Name: " + result.getString("First")
+                        result.getString("First") + " " + result.getString("Last") + " - "
                                 + result.getString("Last"));
                 n++;
             }
@@ -599,7 +601,7 @@ public class Database {
     public void showCountries() {
         try {// try
              // SQL QUERY
-            String query = "SELECT countryCode,name from Country";
+            String query = "SELECT countryCode AS Code,name from Country";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
@@ -611,10 +613,10 @@ public class Database {
             int n = 1;
             // Printing the results of query
             while (result.next()) {
-                System.out.print(n + ") ");
+                System.out.print("\t" + n + ") ");
                 System.out.println(
-                        "Country Name" + result.getString("name") + ", Country Code: "
-                                + result.getString("name"));
+                        result.getString("name") + " - "
+                                + result.getString("Code"));
 
                 n++;
             }
@@ -642,9 +644,9 @@ public class Database {
             int n = 1;
             // Printing the results of query
             while (result.next()) {
-                System.out.print(n + ") ");
+                System.out.print("\t" + n + ") ");
                 System.out.println(
-                        "Category Name: " + result.getString("name") + ", Category ID: "
+                        result.getString("name") + " - "
                                 + result.getString("catID"));
 
                 n++;
@@ -658,13 +660,13 @@ public class Database {
         }
     }
 
-    public void showSubCategories() {
+    public void showSubCategories(String category) {
         try {// try
              // SQL QUERY
-            String query = "SELECT subCatID,name,c.name as category from SubCategory NATURAL JOIN Category c";
+            String query = "SELECT sc.subCatID,sc.name from SubCategory sc INNER JOIN Category c ON sc.catID=c.catID WHERE c.name=?";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
-
+            pstmt.setString(1, category);
             ResultSet result = pstmt.executeQuery();// executing query
             System.out.println("Searching the database for categories");
             System.out.println(
@@ -673,11 +675,10 @@ public class Database {
             int n = 1;
             // Printing the results of query
             while (result.next()) {
-                System.out.print(n + ") ");
+                System.out.print("\t" + n + ") ");
                 System.out.println(
-                        "Sub-Category ID: " + result.getString("subCatID") + ", Sub-Category Name: "
-                                + result.getString("name") + ", Category Name: " + result.getString("category"));
-
+                        result.getString("name") + " - "
+                                + result.getString("subCatID"));
                 n++;
             }
             result.close();
@@ -838,29 +839,27 @@ public class Database {
         // System.out.println("Nat, Gilpin - 11\n");
     }
 
-    public void discountedProducts(String categoryName, int discount) {
+    public void discountedProducts(String categoryName, Double discount) {
         try {// try
              // SQL QUERY
-            String query = "SELECT p.name as product_name, p.price as price, p.discount as discounts\r\n" + //
-                    "FROM Product p\r\n" + //
-                    "INNER JOIN Category c ON p.categoryID = c.id  \r\n" + //
-                    "WHERE p.discount > ? \r\n" + //
-                    "AND c.name = '?';";
+            String query = "SELECT p.name as product_name, p.price as price, o.discount as discounts FROM OrderDetails o INNER JOIN Product p ON o.prodID=p.prodID INNER JOIN SubCategory sc ON p.subCatID = sc.subCatID INNER JOIN Category c ON sc.catID=c.catID WHERE o.discount > ? AND c.name = ? ;";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
-            pstmt.setString(2, categoryName);
-            pstmt.setInt(1, discount);
 
+            pstmt.setDouble(1, discount / 100);
+            pstmt.setString(2, categoryName);
             ResultSet result = pstmt.executeQuery();// executing query
             System.out.println(
-                    "\nSearching database discounted items in category" + categoryName
-                            + " with discount greater than or equal to " + discount + ": ");
+                    "\nSearching database discounted items in category \"" + categoryName
+                            + "\" with discount greater than or equal to " + discount + " % : ");
             System.out.println(
                     "----------------------------------------------------------------------------------------------------------------");
             int n = 1;
             while (result.next()) {
-                System.out.println(n + ") " + "Product Name: " + result.getString("product_name") + ", Price:"
-                        + result.getInt("price") + ", " + result.getInt("discounts") + "% off.");
+                System.out.println("\t" + n + ") " + result.getString("product_name") +
+                        String.format("%.2f", result.getDouble("price")) + ", "
+                        + String.format("%.2f", result.getDouble("discounts") * 100) + " % off.");
+                n++;
             }
             result.close();
             pstmt.close();
@@ -874,12 +873,11 @@ public class Database {
     public void shippingDetails(String orderID) {
         try {// try
              // SQL QUERY
-            String query = "SELECT p.name as name, p.price as price, o.shipMode as shipMode\r\n" + //
-                    "FROM Product p\r\n" + //
-                    "INNER JOIN OrderDetails c ON p.prodID = c.prodID \r\n" + //
-                    "INNER JOIN \"order\" o ON c.orderID = o.orderID \r\n" + //
-                    "WHERE o.orderID = ?;\r\n" + //
-                    "";
+            String query = "SELECT p.name AS name, p.price AS price, o.shipMode AS shipMode " +
+                    "FROM Product p " +
+                    "INNER JOIN OrderDetails od ON p.prodID = od.prodID " +
+                    "INNER JOIN [order] o ON od.orderID = o.orderID " +
+                    "WHERE o.orderID = ?";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setString(1, orderID);
@@ -888,9 +886,12 @@ public class Database {
             System.out.println("\nSearching database for order with ID \'" + orderID + "\'");
             System.out
                     .println("--------------------------------------------------------------------------------------");
-            System.out.println("Shipping Mode -" + result.getString("shipMode"));
             int n = 1;
             while (result.next()) {
+                if (n == 1) {
+                    System.out.println("Shipping Mode -" + result.getString("shipMode"));
+
+                }
                 System.out.println("\t" + n + ") " + result.getString("name"));
                 n++;
             }
@@ -933,8 +934,8 @@ public class Database {
                     .println("--------------------------------------------------------------------------------------");
             int n = 1;
             while (result.next()) {
-                System.out.println("\t" + n + ") " + result.getString("category_name") + ", Total Sale: "
-                        + result.getInt("total_sales"));
+                System.out.println("\t" + n + ") " + result.getString("category_name") + " - "
+                        + String.format("%.2f", result.getDouble("total_sales")));
                 n++;
             }
             result.close();
@@ -949,15 +950,15 @@ public class Database {
     public void subCategoryInventory() {
         try {// try
              // SQL QUERY
-            String query = "SELECT c.name as category, sb.name as subcategory, count(prodID) AS num_products, SUM(od.quantity) AS total_quantity_sold\r\n"
-                    + //
-                    "FROM products p\r\n" + //
-                    "JOIN SubCategory sb ON p.subCatID = sb.subCatID\r\n" + //
-                    "JOIN Category c ON sb.catID = c.catID\r\n" + //
-                    "JOIN OrderDetails od ON p.prodID = od.prodID\r\n" + //
-                    "JOIN \"order\" o ON od.orderID = o.orderID\r\n" + //
-                    "GROUP BY sb.subCatID, od.orderID, c.name, sb.name\r\n" + //
-                    "HAVING o.isReturned = 0\r\n" + //
+            String query = "SELECT c.name as category, sb.name as subcategory, count(DISTINCT p.prodID) AS num_products, SUM(od.quantity) AS total_quantity_sold "
+                    +
+                    "FROM Product p " +
+                    "JOIN SubCategory sb ON p.subCatID = sb.subCatID " +
+                    "JOIN Category c ON sb.catID = c.catID " +
+                    "JOIN OrderDetails od ON p.prodID = od.prodID " +
+                    "JOIN [order] o ON od.orderID = o.orderID " +
+                    "WHERE o.isReturned=0 " +
+                    "GROUP BY  c.name, sb.name " +
                     "ORDER BY c.name, num_products desc;";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
@@ -971,7 +972,8 @@ public class Database {
                 System.out
                         .println("\t" + n + ") Number of Products:" + result.getInt("num_products") + ", Sub-Category: "
                                 + result.getString("subcategory") + ", Category: "
-                                + result.getInt("category"));
+                                + result.getString("category") + " Total quantity sold :"
+                                + result.getInt("total_quantity_sold"));
                 n++;
             }
             result.close();
@@ -987,12 +989,13 @@ public class Database {
         try {// try
              // SQL QUERY
             String query = "SELECT DISTINCT p.name AS prod_name\r\n" + //
-                    "FROM Products p\r\n" + //
+                    "FROM Product p\r\n" + //
                     "JOIN OrderDetails od ON p.prodID = od.prodID\r\n" + //
-                    "JOIN \"order\" o ON od.orderID = o.orderID\r\n" + //
-                    "JOIN Customer c ON o.custID=o.custID WHERE c.custID='?' and o.isReturned=1;\r\n";
+                    "JOIN [order] o ON od.orderID = o.orderID\r\n" + //
+                    "JOIN Customer c ON o.custID=c.custID WHERE c.custID = ? and o.isReturned=1;\r\n";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
+
             pstmt.setString(1, customerID);
             ResultSet result = pstmt.executeQuery();// executing query
             System.out.println(
@@ -1019,7 +1022,7 @@ public class Database {
     public void showRegions() {
         try {// try
              // SQL QUERY
-            String query = "SELECT regionID,name from Region";
+            String query = "SELECT regionID, regionName from Region";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
@@ -1031,9 +1034,9 @@ public class Database {
             int n = 1;
             // Printing the results of query
             while (result.next()) {
-                System.out.print(n + ") ");
+                System.out.print("\t" + n + ") ");
                 System.out.println(
-                        "Region Name" + result.getString("name") + ", Region Code: "
+                        result.getString("regionName") + " - "
                                 + result.getString("regionID"));
 
                 n++;
