@@ -2,7 +2,6 @@
 package application;
 
 import application.mydatabase.Database;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -51,7 +50,7 @@ public class App {
                         System.out.println("Limit must be an integer.");
                     }
                 } else {
-                    System.out.println("Require an argument for this command");
+                    System.out.println("Require an argument for this command\n");
                 }
             }
 
@@ -59,7 +58,7 @@ public class App {
                 if (parts.length >= 2) {
                     db.topProducts(parts[1]);
                 } else {
-                    System.out.println("Require an argument for this command");
+                    System.out.println("Require an argument for this command\n");
                 }
             }
 
@@ -67,7 +66,7 @@ public class App {
                 if (parts.length >= 2) {
                     db.returnedItemCount(parts[1]);
                 } else {
-                    System.out.println("Require an argument for this command");
+                    System.out.println("Require an argument for this command\n");
                 }
             }
 
@@ -78,7 +77,7 @@ public class App {
                 } else if (parts.length == 3) {
                     db.discountedProducts(parts[1], Double.parseDouble(parts[2]));
                 } else {
-                    System.out.println("Require an argument for this command");
+                    System.out.println("Require an argument for this command\n");
                 }
             }
 
@@ -86,7 +85,7 @@ public class App {
                 if (parts.length >= 2)
                     db.shippingDetails(parts[1]);
                 else
-                    System.out.println("Require an argument for this command");
+                    System.out.println("Require an argument for this command\n");
             }
 
             else if (parts[0].equals("ss")) {
@@ -101,31 +100,31 @@ public class App {
                 if (parts.length >= 2) {
                     db.returnedProducts(parts[1]);
                 } else {
-                    System.out.println("Require an argument for this command");
+                    System.out.println("Require an argument for this command\n");
                 }
             } else if (parts[0].equals("rpr")) {
                 if (parts.length >= 2) {
                     db.returnedByRegion(parts[1]);
                 } else {
-                    System.out.println("Require an argument for this command");
+                    System.out.println("Require an argument for this command\n");
                 }
             } else if (parts[0].equals("avgp")) {
                 if (parts.length >= 2) {
-                    db.averagePrice(parts[1]);
+                    db.averagePrice(Integer.parseInt(parts[1]));
                 } else {
-                    System.out.println("Require an argument for this command");
+                    System.out.println("Require an argument for this command\n");
                 }
             } else if (parts[0].equals("exceed")) {
                 if (parts.length >= 2) {
-                    db.exceedXShipMode(Integer.parseInt(parts[3]));
+                    db.exceedXShipMode(Integer.parseInt(parts[1]));
                 } else {
-                    System.out.println("Require an argument for this command");
+                    System.out.println("Require an argument for this command\n");
                 }
             } else if (parts[0].equals("lra")) {
                 if (parts.length >= 2) {
                     db.largestReturnedAmount(Integer.parseInt(parts[1]));
                 } else {
-                    System.out.println("Require an argument for this command");
+                    System.out.println("Require an argument for this command\n");
                 }
             } else if (parts[0].equals("sc")) {
                 db.showCountries();
@@ -134,7 +133,7 @@ public class App {
                 if (parts.length >= 2) {
                     db.showPeople(parts[1]);
                 } else {
-                    System.out.println("Require an argument for this command");
+                    System.out.println("Require an argument for this command\n");
                 }
 
             } else if (parts[0].equals("scategories")) {
@@ -145,7 +144,7 @@ public class App {
                 } else if (parts.length == 2) {
                     db.showSubCategories(parts[1]);
                 } else {
-                    System.out.println("Require an argument for this command");
+                    System.out.println("Require an argument for this command\n");
                 }
             } else if (parts[0].equals("sRegions")) {
                 db.showRegions();
@@ -158,7 +157,7 @@ public class App {
             command = consoleIn.nextLine();
         }
 
-        System.out.println("\nExiting Store Management interface. Have a great day!\n");
+        System.out.println("\nExiting Store Management database. Have a great day!\n");
         consoleIn.close();
 
     }
@@ -198,7 +197,7 @@ public class App {
         System.out.println(
                 "\tavgp <categoryID> - Average Product Price in Category");
         System.out.println(
-                "\texceed - Order Shipping Mode Details for Orders Exceeding 7 Items");
+                "\texceed <numProducts>- Order Shipping Mode Details for Orders Exceeding 7 Items");
         System.out.println(
                 "\tlra <country limit> - Country-wise Largest Returned Order Amount");
         System.out.println("\ti - To initialize the database");

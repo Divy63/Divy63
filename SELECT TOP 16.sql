@@ -1,5 +1,5 @@
 SELECT TOP 16
-    c.name, COUNT (DISTINCT s.storeID) AS num_stores, SUM(od.profit)
+    c.name, COUNT (DISTINCT s.storeID) AS num_stores, SUM(od.profit) 
 FROM Store s
     inner JOIN Address a ON s.addressID = a.addressID
     inner JOIN Country c ON a.countryCode = c.countryCode

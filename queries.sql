@@ -3,7 +3,9 @@
 -- WHERE c.fname LIKE ? OR c.lname LIKE ?;
 -- SELECT countryCode ,name from Country 
 -- -- SELECT catID,name from Category
-SELECT * FROM Customer
+SELECT *
+FROM Product
+WHERE prodID='US-TEC-PH-10002262';
 -- SELECT sc.subCatID,sc.name,c.name as category from SubCategory sc INNER JOIN Category c ON sc.catID=c.catID;
 -- SELECT p.name as product_name, p.price as price, o.discount as discounts FROM OrderDetails o INNER JOIN Product p ON o.prodID=p.prodID INNER JOIN SubCategory sc ON p.subCatID = sc.subCatID INNER JOIN Category c ON sc.catID=c.catID WHERE o.discount > 0.6 AND c.name = 'Office Supplies' ;
 -- SELECT * FROM Category
@@ -29,4 +31,6 @@ SELECT * FROM Customer
 -- WHERE o.isReturned=0
 -- GROUP BY  c.name, sb.name
 -- ORDER BY c.name, num_products desc;
-SELECT regionID, regionName from Region
+-- SELECT * FROM Customer
+SELECT *
+FROM Category
