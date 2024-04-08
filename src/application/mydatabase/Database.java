@@ -18,46 +18,41 @@ import java.util.Properties;
 public class Database {
     private Connection connection;
     private static final String regex = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
+    private final String cfgFilePath = "src/application/mydatabase/auth.cfg";
 
-    public Database() throws SQLException, FileNotFoundException, IOException {
+    public Database() {
+
+    }
+
+    public String startup() {
+        String response = null;
 
         Properties prop = new Properties();
-        String cfgFileName = "src/application/mydatabase/auth.cfg";
 
         try {
-            FileInputStream configFile = new FileInputStream(cfgFileName);
+            FileInputStream configFile = new FileInputStream(cfgFilePath);
             prop.load(configFile);
             configFile.close();
-        } catch (FileNotFoundException e) {
-            // System.out.println("An error occurred: config file not found.");
-            throw new FileNotFoundException("An error occurred: config file not found.");
-            // System.exit(1);
-        } catch (IOException e) {
-            // System.out.println("An error occurred: could not read config file.");
-            throw new IOException("An error occurred: could not read config file.");
-            // System.exit(1);
-        }
+            final String username = (prop.getProperty("username"));
+            final String password = (prop.getProperty("password"));
 
-        String username = (prop.getProperty("username"));
-        String password = (prop.getProperty("password"));
+            String url = "jdbc:sqlserver://uranium.cs.umanitoba.ca:1433;"
+                    + "database=cs3380;"
+                    + "user=" + username + ";"
+                    + "password= " + password + ";"
+                    + "encrypt=false;trustServerCertificate=false;loginTimeout=30;";
 
-        // TODO: uranium connection (VPN or campus)
-        String url = "jdbc:sqlserver://uranium.cs.umanitoba.ca:1433;"
-                + "database=cs3380;"
-                + "user=" + username + ";"
-                + "password= " + password + ";"
-                + "encrypt=false;trustServerCertificate=false;loginTimeout=30;";
-
-        // create a connection to the database
-        try {
             this.connection = DriverManager.getConnection(url);
+            
+        } catch (FileNotFoundException fnf) {
+            response = "\nAn error occurred: config file not found.";
+        } catch (IOException io) {
+            response = "\nAn error occurred: could not read config file.";
         } catch (SQLException se) {
-            throw new SQLException("Failed to establish connection to database");
+            response = "\nAn error occured: Failed to establish connection to database";
         }
-        System.out.println("Connection established successfully");
 
-        // TODO: this.initializeDatabase();
-        // TODO: this.readInputData();
+        return response;
     }
 
     public void initializeDatabase() {
@@ -807,7 +802,8 @@ public class Database {
             System.out.println(
                     "\nSearching database for number of items returned by customer with id \'" + customerID + "\'");
             System.out
-                    .println("--------------------------------------------------------------------------------------\n");
+                    .println(
+                            "--------------------------------------------------------------------------------------\n");
             if (result.next()) {
                 System.out.println(result.getString(1) + ",  " + result.getString(2) + ": "
                         + result.getInt(3));
@@ -816,8 +812,9 @@ public class Database {
                 pstmt = connection.prepareStatement(query);
                 pstmt.setString(1, customerID);
                 result = pstmt.executeQuery();
-                if(result.next()){
-                    System.out.printf("%s, %s has not returned any items yet\n", result.getString(1), result.getString(2));
+                if (result.next()) {
+                    System.out.printf("%s, %s has not returned any items yet\n", result.getString(1),
+                            result.getString(2));
                 } else {
                     System.out.printf("\'%s\' does not exist\n", customerID);
                 }
