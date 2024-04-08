@@ -834,18 +834,19 @@ public class Database {
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
-            pstmt.setDouble(1, discount);
+            pstmt.setDouble(1, discount / 100);
             pstmt.setString(2, categoryName);
             ResultSet result = pstmt.executeQuery();// executing query
             System.out.println(
-                    "\nSearching database discounted items in category" + categoryName
-                            + " with discount greater than or equal to " + discount + ": ");
+                    "\nSearching database discounted items in category \"" + categoryName
+                            + "\" with discount greater than or equal to " + discount + " % : ");
             System.out.println(
                     "----------------------------------------------------------------------------------------------------------------");
             int n = 1;
             while (result.next()) {
                 System.out.println("\t" + n + ") " + result.getString("product_name") +
-                        +result.getInt("price") + ", " + (result.getDouble("discounts") * 100 + "% off."));
+                        String.format("%.2f", result.getDouble("price")) + ", "
+                        + String.format("%.2f", result.getDouble("discounts") * 100) + " % off.");
                 n++;
             }
             result.close();
@@ -921,8 +922,8 @@ public class Database {
                     .println("--------------------------------------------------------------------------------------");
             int n = 1;
             while (result.next()) {
-                System.out.println("\t" + n + ") " + result.getString("category_name") + ", Total Sale: "
-                        + result.getInt("total_sales"));
+                System.out.println("\t" + n + ") " + result.getString("category_name") + " - "
+                        + String.format("%.2f", result.getDouble("total_sales")));
                 n++;
             }
             result.close();
@@ -937,15 +938,15 @@ public class Database {
     public void subCategoryInventory() {
         try {// try
              // SQL QUERY
-            String query = "SELECT c.name as category, sb.name as subcategory, count(prodID) AS num_products, SUM(od.quantity) AS total_quantity_sold\r\n"
-                    + //
-                    "FROM products p\r\n" + //
-                    "JOIN SubCategory sb ON p.subCatID = sb.subCatID\r\n" + //
-                    "JOIN Category c ON sb.catID = c.catID\r\n" + //
-                    "JOIN OrderDetails od ON p.prodID = od.prodID\r\n" + //
-                    "JOIN \"order\" o ON od.orderID = o.orderID\r\n" + //
-                    "GROUP BY sb.subCatID, od.orderID, c.name, sb.name\r\n" + //
-                    "HAVING o.isReturned = 0\r\n" + //
+            String query = "SELECT c.name as category, sb.name as subcategory, count(DISTINCT p.prodID) AS num_products, SUM(od.quantity) AS total_quantity_sold "
+                    +
+                    "FROM Product p " +
+                    "JOIN SubCategory sb ON p.subCatID = sb.subCatID " +
+                    "JOIN Category c ON sb.catID = c.catID " +
+                    "JOIN OrderDetails od ON p.prodID = od.prodID " +
+                    "JOIN [order] o ON od.orderID = o.orderID " +
+                    "WHERE o.isReturned=0 " +
+                    "GROUP BY  c.name, sb.name " +
                     "ORDER BY c.name, num_products desc;";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
@@ -959,7 +960,8 @@ public class Database {
                 System.out
                         .println("\t" + n + ") Number of Products:" + result.getInt("num_products") + ", Sub-Category: "
                                 + result.getString("subcategory") + ", Category: "
-                                + result.getInt("category"));
+                                + result.getString("category") + " Total quantity sold :"
+                                + result.getInt("total_quantity_sold"));
                 n++;
             }
             result.close();
@@ -975,12 +977,13 @@ public class Database {
         try {// try
              // SQL QUERY
             String query = "SELECT DISTINCT p.name AS prod_name\r\n" + //
-                    "FROM Products p\r\n" + //
+                    "FROM Product p\r\n" + //
                     "JOIN OrderDetails od ON p.prodID = od.prodID\r\n" + //
-                    "JOIN \"order\" o ON od.orderID = o.orderID\r\n" + //
-                    "JOIN Customer c ON o.custID=o.custID WHERE c.custID='?' and o.isReturned=1;\r\n";
+                    "JOIN [order] o ON od.orderID = o.orderID\r\n" + //
+                    "JOIN Customer c ON o.custID=c.custID WHERE c.custID = ? and o.isReturned=1;\r\n";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
+
             pstmt.setString(1, customerID);
             ResultSet result = pstmt.executeQuery();// executing query
             System.out.println(
@@ -1007,7 +1010,7 @@ public class Database {
     public void showRegions() {
         try {// try
              // SQL QUERY
-            String query = "SELECT regionID,name from Region";
+            String query = "SELECT regionID, regionName from Region";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
@@ -1019,9 +1022,9 @@ public class Database {
             int n = 1;
             // Printing the results of query
             while (result.next()) {
-                System.out.print(n + ") ");
+                System.out.print("\t" + n + ") ");
                 System.out.println(
-                        "Region Name" + result.getString("name") + ", Region Code: "
+                        result.getString("regionName") + " - "
                                 + result.getString("regionID"));
 
                 n++;
