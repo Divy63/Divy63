@@ -18,12 +18,20 @@ import java.util.Properties;
 public class Database {
     private Connection connection;
     private static final String regex = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
-    private final String cfgFilePath = "src/application/mydatabase/auth.cfg";
+    private final String cfgFilePath = "auth.cfg";
 
     public Database() {
 
     }
 
+    /**
+     * This method will establish the connection to the uranium database.
+     * If you are not on campus wifi, you must be connect to UofM VPN
+     * Driver file according to the java version is requied, auth.cfg file to the
+     * root director this project is also required
+     * 
+     * @return null on success, or an erro message if something went wrong
+     */
     public String startup() {
         String response = null;
 

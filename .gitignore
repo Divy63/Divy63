@@ -4,4 +4,4 @@ uranium.cs.umanitoba.ca
 Makefile
 .DS_Store
 submission/
-src/application/mydatabase/auth.cfg
+auth.cfg
