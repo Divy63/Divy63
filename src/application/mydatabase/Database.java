@@ -719,14 +719,14 @@ public class Database {
 
             if (output.equalsIgnoreCase("")) {
                 output = "No people containing \'" + partOfName + "\' in their name\n";
-             }
+            }
 
             result.close();
             pstmt.close();
 
         } catch (SQLException sql) {// catch block
             // sql.printStackTrace(System.out);
-            output = null;
+            output = "An Error occured: Something went wrong while searching for people";
         }
 
         return output;
@@ -736,6 +736,7 @@ public class Database {
      * Method that gives all countries along with their country Code
      */
     public String showCountries() {
+        String output = "";
         try {// try
              // SQL QUERY
             String query = "SELECT countryCode AS Code,name from Country";
@@ -743,32 +744,33 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
             ResultSet result = pstmt.executeQuery();// executing query
-            System.out.println("\nSearching the database for countries");
-            System.out.println(
-                    "------------------------------------------------");
-            System.out.println("List of available countries:");
+            
             int n = 0;
             // Printing the results of query
             while (result.next()) {
-                System.out.print("\t" + (n + 1) + ") ");
-                System.out.println(
-                        result.getString("name") + " - "
-                                + result.getString("Code"));
-
-                n++;
+                output += "\t" + (++n) + ") " + result.getString("name") + " - "
+                        + result.getString("Code") + "\n";
             }
+
+            if (output.equalsIgnoreCase("")) {
+                output = "No countries in database\n";
+            }
+
             result.close();
             pstmt.close();
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
+            System.out.println("\nQuery executed.\n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
-            sql.printStackTrace(System.out);
+            output = "An Error occured: Something went wrong while searching for countries";
         }
+
+        return output;
     }
 
     /**
      * Method that shows all the available categories
      */
     public String showCategories() {
+        String output = "";
         try {// try
              // SQL QUERY
             String query = "SELECT catID,name from Category";
@@ -776,27 +778,27 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
             ResultSet result = pstmt.executeQuery();// executing query
-            System.out.println("\nSearching the database for categories");
-            System.out.println(
-                    "------------------------------------------------");
-            System.out.println("List of available categories with their  IDs:");
+            
             int n = 0;
             // Printing the results of query
             while (result.next()) {
-                System.out.print("\t" + (n + 1) + ") ");
-                System.out.println(
-                        result.getString("name") + " - "
-                                + result.getString("catID"));
-
-                n++;
+                output += "\t" + (++n) + ") " + result.getString("name") + " - "
+                        + result.getString("catID") + "\n";
             }
+
+            if (output.equalsIgnoreCase("")) {
+                output = "No categories in database\n";
+            }
+
             result.close();
             pstmt.close();
 
             System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
-            sql.printStackTrace(System.out);
+            output = "An Error occured: Something went wrong while searching for categories";
         }
+
+        return output;
     }
 
     /**
@@ -812,10 +814,7 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setString(1, category);
             ResultSet result = pstmt.executeQuery();// executing query
-            System.out.println("\nSearching the database for categories");
-            System.out.println(
-                    "------------------------------------------------");
-            System.out.println("List of available sub-categories with their IDs:");
+            
             int n = 0;
             // Printing the results of query
             while (result.next()) {

@@ -15,9 +15,6 @@
 package application;
 
 import application.mydatabase.Database;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Scanner;
 
 public class App {
@@ -161,6 +158,10 @@ public class App {
                 System.out.println("Require an argument for this command");
             }
         } else if (parts[0].equalsIgnoreCase("sc")) {
+            System.out.println("\nSearching the database for countries");
+            System.out.println(
+                    "------------------------------------------------");
+            System.out.println("List of available countries:");
             db.showCountries();
 
         } else if (parts[0].equalsIgnoreCase("gcID")) {
@@ -176,6 +177,10 @@ public class App {
             }
 
         } else if (parts[0].equalsIgnoreCase("scategories")) {
+            System.out.println("\nSearching the database for categories");
+            System.out.println(
+                    "------------------------------------------------");
+            System.out.println("List of available categories with their  IDs:");
             db.showCategories();
         } else if (parts[0].equals("sSubCategories")) {
             if (parts.length >= 3) {
