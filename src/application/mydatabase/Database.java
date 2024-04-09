@@ -822,7 +822,7 @@ public class Database {
             while (result.next()) {
                 output += "\t" + (n + 1) + ") " +
                         result.getString("name") + " - "
-                        + result.getString("subCatID");
+                        + result.getString("subCatID")+"\n";
                 n++;
             }
 
