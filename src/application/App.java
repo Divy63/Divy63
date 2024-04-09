@@ -309,8 +309,6 @@ public class App {
 
     private static String processCommand(Database db, String cmd) {
         String[] args = cmd.split("\\s+");
-        // if (command.indexOf(" ") > 0)
-        // arg = command.substring(command.indexOf(" ")).trim();
 
         if (args[0].equalsIgnoreCase("m")) {
             displayMenu();
@@ -393,7 +391,7 @@ public class App {
             db.dropAllTables();
             return "";
         }
-        
+
         else {
             return "Invalid choice. Enter 'm' for Menu";
         }
