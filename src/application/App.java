@@ -241,7 +241,11 @@ public class App {
                     "\nSearching the database for order with largest total for each country which were returned");
             System.out.println(
                     "----------------------------------------------------------------------------------------------");
-            response = db.largestReturnedAmount(Integer.parseInt(args[1]));
+            try{
+                response = db.largestReturnedAmount(Integer.parseInt(args[1]));
+            } catch (NumberFormatException nfe) {
+                response = "Argument should be number";
+            }
         } else {
             response = "Require an argument for this command";
         }
