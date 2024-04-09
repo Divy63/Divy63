@@ -822,7 +822,7 @@ public class Database {
             while (result.next()) {
                 output += "\t" + (n + 1) + ") " +
                         result.getString("name") + " - "
-                        + result.getString("subCatID")+"\n";
+                        + result.getString("subCatID") + "\n";
                 n++;
             }
 
@@ -869,10 +869,11 @@ public class Database {
             // Printing the results of query
             while (result.next()) {
 
-                output += (++n) + ") " + "Country: " + result.getString(1) + " \n\tNumber of Stores: "
+                output += "\t" + (n + 1) + ") " + "Country: " + result.getString(1) + " \n\tNumber of Stores: "
                         + result.getString(2)
                         + ", Total Profit: "
                         + result.getInt(3) + "\n";
+                n++;
             }
 
             if (output.equalsIgnoreCase("")) {
