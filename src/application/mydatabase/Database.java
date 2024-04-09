@@ -1025,7 +1025,7 @@ public class Database {
             while (result.next()) {
                 output += "\t" + (++n) + ") " + result.getString("product_name") +
                         String.format("%.2f", result.getDouble("price")) + ", "
-                        + String.format("%.2f", result.getDouble("discounts") * 100) + " % off.";
+                        + String.format("%.2f", result.getDouble("discounts") * 100) + " % off.\n";
             }
 
             if (output.equalsIgnoreCase("")) {
