@@ -753,6 +753,7 @@ public class Database {
 
             if (output.equalsIgnoreCase("")) {
                 output = "No countries in database\n";
+
             }
 
             result.close();
@@ -778,6 +779,8 @@ public class Database {
 
             ResultSet result = pstmt.executeQuery();// executing query
 
+
+
             int n = 0;
             // Printing the results of query
             while (result.next()) {
@@ -785,8 +788,10 @@ public class Database {
                         + result.getString("catID") + "\n";
             }
 
+
             if (output.equalsIgnoreCase("")) {
                 output = "No categories in database\n";
+
             }
 
             result.close();
@@ -823,6 +828,7 @@ public class Database {
                         result.getString("name") + " - "
                                 + result.getString("subCatID"));
                 n++;
+                System.out.println();
             }
 
             if (output.equalsIgnoreCase("")) {
@@ -861,11 +867,16 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setInt(1, countryLimit);
 
+
             ResultSet result = pstmt.executeQuery();// executing query
 
+
+            ResultSet result = pstmt.executeQuery();// executing query
+            System.out.println("List of Countries with total stores and total profit:\n");
             int n = 0;
             // Printing the results of query
             while (result.next()) {
+
                 output += (++n) + ") " + "Country: " + result.getString(1) + " \n\tNumber of Stores: "
                         + result.getString(2)
                         + ", Total Profit: "
@@ -874,6 +885,7 @@ public class Database {
 
             if (output.equalsIgnoreCase("")) {
                 output = "No stores/countries in database\n";
+
             }
 
             result.close();
@@ -897,6 +909,7 @@ public class Database {
         try {// try
              // SQL QUERY
             String query = "SELECT con.name AS CountryName, c.name AS CategoryName, s.storeID, COUNT(p.prodID) AS total_products "
+
                     + "FROM Country con JOIN Address a ON con.countryCode = a.countryCode " +
                     "JOIN Store s ON a.addressID = s.addressID JOIN Inventory inv ON s.storeID = inv.storeID " +
                     "JOIN Product p ON inv.prodID = p.prodID JOIN SubCategory sb ON p.subCatID = sb.subCatID " +
@@ -910,6 +923,7 @@ public class Database {
                     "JOIN SubCategory sb_inner ON p_inner.subCatID = sb_inner.subCatID " +
                     "JOIN Category c_inner ON sb_inner.catID = c_inner.catID " +
                     "WHERE c_inner.name = c.name AND con_inner.name = con.name " +
+
                     "GROUP BY c_inner.catID, s_inner.storeID ORDER BY COUNT(p_inner.prodID) DESC ) " +
                     "ORDER BY total_products DESC, s.storeID ASC;";
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
@@ -955,8 +969,13 @@ public class Database {
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setString(1, customerID);
-
+            System.out.println(
+                    "\nSearching database for number of items returned by customer with id \'" + customerID + "\'");
+            System.out
+                    .println(
+                            "--------------------------------------------------------------------------------------");
             ResultSet result = pstmt.executeQuery();// executing query
+
 
             if (result.next()) {
                 output = result.getString(1) + ",  " + result.getString(2) + ": "
@@ -972,6 +991,7 @@ public class Database {
                 } else {
                     System.out.printf("\'%s\' does not exist\n", customerID);
                 }
+
             }
 
             result.close();
@@ -1003,6 +1023,7 @@ public class Database {
             pstmt.setDouble(1, discount / 100);
             pstmt.setString(2, categoryName);
             ResultSet result = pstmt.executeQuery();// executing query
+
 
             int n = 0;
             while (result.next()) {
@@ -1085,7 +1106,6 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
             ResultSet result = pstmt.executeQuery();// executing query
-
             int n = 0;
             while (result.next()) {
                 output += "\t" + (++n) + ") " + result.getString("category_name") + " - "
@@ -1172,6 +1192,7 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
             pstmt.setString(1, customerID);
+
             ResultSet result = pstmt.executeQuery();// executing query
 
             int n = 0;
@@ -1220,6 +1241,7 @@ public class Database {
                         + result.getString("regionID") + "\n";
 
                 n++;
+                System.out.println();
             }
             if (output.equalsIgnoreCase("")) {
                 output = String.format("No regions in the database\n");
@@ -1255,12 +1277,11 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setString(1, regionName);
             ResultSet result = pstmt.executeQuery();// executing query
-
             int n = 0;
             while (result.next()) {
                 output += "\t" + (n + 1) + ")" + result.getString("prod_name") + "\n";
                 n++;
-
+                System.out.println();
             }
             if (output.equalsIgnoreCase("")) {
                 output = String.format("No returns in this region.\n");
@@ -1299,6 +1320,7 @@ public class Database {
             int n = 0;
             if (result.next() == true) {
                 n++;
+
                 // Printing the results of query
                 output += "Category:\n\t" + result.getString("name") + " - "
                         + String.format("%.2f", result.getDouble("averagePrice")) + "\n";
@@ -1345,6 +1367,7 @@ public class Database {
                 output += "\t" + (n + 1) + ") " + result.getString("ship_mode") + " - "
                         + result.getString("avg_days_to_ship") + " days." + "\n";
                 n++;
+                System.out.println();
             }
             if (output.equalsIgnoreCase("")) {
                 output = String.format("Unable to find ship mode of orders with item greater than  %d.\n", x);
@@ -1382,6 +1405,7 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setInt(1, x);
             ResultSet result = pstmt.executeQuery();// executing query
+
 
             // Printing the results of query
             int n = 0;
