@@ -696,7 +696,7 @@ public class Database {
             System.out.println("\nSearching the database for people with \"" + partOfName + "\" in their name");
             System.out.println(
                     "------------------------------------------------------------------------------");
-            System.out.println("List of available people:");
+            System.out.println("List of available people:\n");
             int n = 0;
             // Printing the results of query
             while (result.next()) {
@@ -705,6 +705,7 @@ public class Database {
                         result.getString("First") + " " + result.getString("Last") + " - "
                                 + result.getString("Last"));
                 n++;
+                System.out.println();
             }
             result.close();
             pstmt.close();
@@ -730,7 +731,7 @@ public class Database {
             System.out.println("\nSearching the database for countries");
             System.out.println(
                     "------------------------------------------------");
-            System.out.println("List of available countries:");
+            System.out.println("List of available countries:\n");
             int n = 0;
             // Printing the results of query
             while (result.next()) {
@@ -740,6 +741,7 @@ public class Database {
                                 + result.getString("Code"));
 
                 n++;
+                System.out.println();
             }
             result.close();
             pstmt.close();
@@ -763,7 +765,7 @@ public class Database {
             System.out.println("\nSearching the database for categories");
             System.out.println(
                     "------------------------------------------------");
-            System.out.println("List of available categories with their  IDs:");
+            System.out.println("List of available categories with their  IDs:\n");
             int n = 0;
             // Printing the results of query
             while (result.next()) {
@@ -773,6 +775,7 @@ public class Database {
                                 + result.getString("catID"));
 
                 n++;
+                System.out.println();
             }
             result.close();
             pstmt.close();
@@ -799,7 +802,7 @@ public class Database {
             System.out.println("\nSearching the database for categories");
             System.out.println(
                     "------------------------------------------------");
-            System.out.println("List of available sub-categories with their IDs:");
+            System.out.println("List of available sub-categories with their IDs:\n");
             int n = 0;
             // Printing the results of query
             while (result.next()) {
@@ -808,6 +811,7 @@ public class Database {
                         result.getString("name") + " - "
                                 + result.getString("subCatID"));
                 n++;
+                System.out.println();
             }
             result.close();
             pstmt.close();
@@ -837,24 +841,25 @@ public class Database {
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setInt(1, countryLimit);
-
-            ResultSet result = pstmt.executeQuery();// executing query
             System.out.println(
                     "\nSearching the database for Profit across stores for top \'" + countryLimit + "\' country");
             System.out.println(
                     "--------------------------------------------------------------------------------------");
 
+            ResultSet result = pstmt.executeQuery();// executing query
+            System.out.println("List of Countries with total stores and total profit:\n");
             int n = 0;
             // Printing the results of query
             while (result.next()) {
-                System.out.print((n + 1) + ") ");
+                System.out.print("\t" + (n + 1) + ") ");
                 System.out.println(
-                        "Country: " + result.getString(1) + " \n\tNumber of Stores: "
+                        "Country: " + result.getString(1) + " \n\t\tNumber of Stores: "
                                 + result.getString(2)
                                 + ", Total Profit: "
-                                + result.getInt(3));
+                                + String.format("%.2f", result.getDouble(3)));
 
                 n++;
+                System.out.println();
             }
             result.close();
             pstmt.close();
@@ -874,54 +879,60 @@ public class Database {
     public void topProducts(String countryCode) {
         try {// try
              // SQL QUERY
-            String query = "SELECT con.name as country_name, c.name as category_name, s.storeID as storeID, count(p.prodID) as total_products\r\n"
-                    + //
-                    "FROM Country con\r\n" + //
-                    "JOIN Address a ON con.countryCode = a.countryCode\r\n" + //
-                    "JOIN Store s ON a.addressID = s.addressID\r\n" + //
-                    "JOIN Inventory inv ON s.storeID = inv.storeID\r\n" + //
-                    "JOIN Product p ON inv.prodID = p.prodID\r\n" + //
-                    "JOIN SubCategory sb ON p.subCatID = sb.subCatID\r\n" + //
-                    "JOIN Category c ON sb.catID = c.catID\r\n" + //
-                    "WHERE c.countryCode = ?\r\n" + //
-                    "GROUP BY c.catID, s.storeID, con.name, c.name, s.storeID\r\n" + //
-                    "HAVING s.storeID in (\r\n" + //
-                    "\tSELECT s_inner.storeID\r\n" + //
-                    "FROM Country con_inner\r\n" + //
-                    "JOIN Address a_inner ON con_inner.countryCode = con_inner.countryCode\r\n" + //
-                    "JOIN Store s_inner ON a_inner.addressID = s_inner.addressID\r\n" + //
-                    "JOIN Inventory inv_inner ON s_inner.storeID = inv_inner.storeID\r\n" + //
-                    "JOIN Product p_inner ON inv_inner.prodID = p_inner.prodID\r\n" + //
-                    "JOIN SubCategory sb_inner ON p_inner.subCatID = sb_inner.subCatID\r\n" + //
-                    "JOIN Category c_inner ON sb_inner.catID = c_inner.catID\r\n" + //
-                    "WHERE c_inner.catID = c.catID AND con_inner.countryCode = con.countryCode\r\n" + //
-                    "GROUP BY c_inner.catID, s_inner.storeID\r\n" + //
-                    "\tORDER BY count(p.prodID) DESC\r\n" + //
-                    "\tTOP 1 )\r\n" + //
-                    "ORDER BY c.name, total_products DESC;\r\n" + //
-                    "";
-
+            String query = "SELECT con.name AS CountryName, c.name AS CategoryName, s.storeID, COUNT(p.prodID) AS total_products "
+                    +
+                    "FROM Country con " +
+                    "JOIN Address a ON con.countryCode = a.countryCode " +
+                    "JOIN Store s ON a.addressID = s.addressID " +
+                    "JOIN Inventory inv ON s.storeID = inv.storeID " +
+                    "JOIN Product p ON inv.prodID = p.prodID " +
+                    "JOIN SubCategory sb ON p.subCatID = sb.subCatID " +
+                    "JOIN Category c ON sb.catID = c.catID " +
+                    "WHERE con.countryCode = ? " +
+                    "GROUP BY con.name, c.name, s.storeID " +
+                    "HAVING s.storeID IN " +
+                    "( " +
+                    "SELECT TOP 1 " +
+                    "   s_inner.storeID " +
+                    "FROM Country con_inner " +
+                    "JOIN Address a_inner ON con_inner.countryCode = a_inner.countryCode " +
+                    "JOIN Store s_inner ON a_inner.addressID = s_inner.addressID " +
+                    "JOIN Inventory inv_inner ON s_inner.storeID = inv_inner.storeID " +
+                    "JOIN Product p_inner ON inv_inner.prodID = p_inner.prodID " +
+                    "JOIN SubCategory sb_inner ON p_inner.subCatID = sb_inner.subCatID " +
+                    "JOIN Category c_inner ON sb_inner.catID = c_inner.catID " +
+                    "WHERE c_inner.name = c.name AND con_inner.name = con.name " +
+                    "GROUP BY c_inner.catID, s_inner.storeID " +
+                    "ORDER BY COUNT(p_inner.prodID) DESC " +
+                    ") " +
+                    "ORDER BY total_products DESC, s.storeID ASC; ";
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setString(1, countryCode);
 
-            ResultSet result = pstmt.executeQuery();// executing query
-            System.out.println("\nSearching the database for top most inventory holding store in " + countryCode
-                    + " for each category:");
             System.out.println(
-                    "-------------------------------------------------------------------------------------------------");
-            System.out.println("Country:  " + result.getString("country_name"));
+                    "\nSearching the database for top most inventory holding store in country with countryCode \""
+                            + countryCode
+                            + "\" for each category:");
+            System.out.println(
+                    "------------------------------------------------------------------------------------------------------------------");
+
+            ResultSet result = pstmt.executeQuery();// executing query
+            System.out.println("Top most inventory holding store by categories:\n");
+
+            // System.out.println("Country: " + result.getString("country_name"));
             int n = 0;
             // Printing the results of query
             while (result.next()) {
-                System.out.print((n + 1) + ")");
+                System.out.print(
+                        "\t" + (n + 1) + ")");
                 System.out.println(
-                        "-> Category: " + result.getString("category_name") + " Store ID: "
-                                + result.getString("storeID")
-                                + " Total Products: "
-                                + result.getInt("total_products"));
+                        result.getString(2) + ", "
+                                + result.getString(3)
+                                + " - "
+                                + result.getInt(4));
 
                 System.out.println();
-
+                n++;
             }
             result.close();
             pstmt.close();
@@ -949,19 +960,19 @@ public class Database {
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setString(1, customerID);
-
+            System.out.println(
+                    "\nSearching database for number of items returned by customer with id \'" + customerID + "\'");
+            System.out
+                    .println(
+                            "--------------------------------------------------------------------------------------");
             ResultSet result = pstmt.executeQuery();// executing query
             int n = 0;
             while (result.next()) {
 
-                System.out.println(
-                        "\nSearching database for number of items returned by customer with id \'" + customerID + "\'");
-                System.out
-                        .println(
-                                "--------------------------------------------------------------------------------------");
-                System.out.println(result.getString("First") + " " + result.getString("Last") + " : "
-                        + result.getInt("returned_item_count"));
+                System.out.println("\t" + (n + 1) + ") " + result.getString(2) + " " + result.getString(3) + " : "
+                        + result.getInt(1));
                 n++;
+                System.out.println();
             }
             result.close();
             pstmt.close();
@@ -995,12 +1006,15 @@ public class Database {
                             + "\" with discount greater than or equal to " + discount + " % : ");
             System.out.println(
                     "----------------------------------------------------------------------------------------------------------------");
+            System.out.println("List of discounted products in " + categoryName
+                    + " category where discount is greater than " + discount + " % :\n");
             int n = 0;
             while (result.next()) {
-                System.out.println("\t" + (n + 1) + ") " + result.getString("product_name") +
+                System.out.println("\t" + (n + 1) + ") " + result.getString("product_name") + "- $" +
                         String.format("%.2f", result.getDouble("price")) + ", "
                         + String.format("%.2f", result.getDouble("discounts") * 100) + " % off.");
                 n++;
+                System.out.println();
             }
             result.close();
             pstmt.close();
@@ -1036,11 +1050,12 @@ public class Database {
             int n = 0;
             while (result.next()) {
                 if (n == 0) {
-                    System.out.println("Shipping Mode -" + result.getString("shipMode"));
+                    System.out.println("Shipping Mode - " + result.getString("shipMode") + "\n");
 
                 }
                 System.out.println("\t" + (n + 1) + ") " + result.getString("name"));
                 n++;
+                System.out.println();
             }
             result.close();
             pstmt.close();
@@ -1071,11 +1086,13 @@ public class Database {
             System.out.println("\nSearching database for total sales of each category :");
             System.out
                     .println("--------------------------------------------------------------------------------------");
+            System.out.println("Total sales in each category:\n");
             int n = 0;
             while (result.next()) {
                 System.out.println("\t" + (n + 1) + ") " + result.getString("category_name") + " - "
                         + String.format("%.2f", result.getDouble("total_sales")));
                 n++;
+                System.out.println();
             }
             result.close();
             pstmt.close();
@@ -1111,15 +1128,18 @@ public class Database {
             System.out.println("\nSearching database for distinct products in each sub category :");
             System.out
                     .println("--------------------------------------------------------------------------------------");
+            System.out.println(
+                    "List of distinct  products in each sub category and the total number of products sold:\n");
             int n = 0;
             while (result.next()) {
                 System.out
-                        .println("\t" + (n + 1) + ") Number of Products:" + result.getInt("num_products")
-                                + ", Sub-Category: "
-                                + result.getString("subcategory") + ", Category: "
-                                + result.getString("category") + " Total quantity sold :"
+                        .println("\t" + (n + 1) + ") #Products:" + result.getInt("num_products")
+                                + ", "
+                                + result.getString("subcategory") + ", "
+                                + result.getString("category") + "  #Sold :"
                                 + result.getInt("total_quantity_sold"));
                 n++;
+                System.out.println();
             }
             result.close();
             pstmt.close();
@@ -1148,18 +1168,20 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
             pstmt.setString(1, customerID);
-            ResultSet result = pstmt.executeQuery();// executing query
             System.out.println(
                     "\nSearching database for returned products of customer with customer ID \"" + customerID + "\" :");
             System.out
                     .println(
                             "-------------------------------------------------------------------------------------------");
-            System.out.println("Products returned by customer with customer ID \"" + customerID + "\": ");
+            ResultSet result = pstmt.executeQuery();// executing query
+
+            System.out.println("Products returned by customer with customer ID \"" + customerID + "\":\n");
             int n = 0;
             while (result.next()) {
                 System.out
                         .println("\t" + (n + 1) + ")" + result.getString("prod_name"));
                 n++;
+                System.out.println();
             }
             result.close();
             pstmt.close();
@@ -1185,7 +1207,7 @@ public class Database {
             System.out.println("\nSearching the database for Regions");
             System.out.println(
                     "------------------------------------------------");
-            System.out.println("List of available regions:");
+            System.out.println("List of available regions:\n");
             int n = 0;
             // Printing the results of query
             while (result.next()) {
@@ -1195,6 +1217,7 @@ public class Database {
                                 + result.getString("regionID"));
 
                 n++;
+                System.out.println();
             }
 
             result.close();
@@ -1230,13 +1253,13 @@ public class Database {
             System.out
                     .println(
                             "-------------------------------------------------------------------------------------------");
-            System.out.println("Products returned in region\"" + regionName + "\": ");
+            System.out.println("Products returned in region \"" + regionName + "\":\n");
             int n = 0;
             while (result.next()) {
                 System.out
                         .println("\t" + (n + 1) + ")" + result.getString("prod_name"));
                 n++;
-
+                System.out.println();
             }
 
             System.out.println("\nQuery executed. \n" + n + " records found.\n");
@@ -1275,10 +1298,10 @@ public class Database {
                                 + result.getString("name") + " (" + categoryID + ")" + "\" :");
                 System.out.println(
                         "----------------------------------------------------------------------------------------------");
-                System.out.println("Average price of product for category \"" + categoryID + "\" :");
+                System.out.println("Average price of product for category \"" + categoryID + "\" :\n");
                 // Printing the results of query
                 System.out.println(
-                        "Category:\n\t" + result.getString("name") + " - "
+                        "\t-> " + result.getString("name") + " - "
                                 + String.format("%.2f", result.getDouble("averagePrice")));
             } else {
                 System.out.println(
@@ -1321,7 +1344,7 @@ public class Database {
                     "\nSearching the database for ship modes of order  quantities greater than " + x + " :");
             System.out.println(
                     "----------------------------------------------------------------------------------------------");
-            System.out.println("Ship Modes of  orders with quantity greater than " + x + ": ");
+            System.out.println("Ship Modes of  orders with quantity greater than " + x + ":\n");
             // Printing the results of query
             int n = 0;
             while (result.next()) {
@@ -1329,6 +1352,7 @@ public class Database {
                         "\t" + (n + 1) + ") " + result.getString("ship_mode") + " - "
                                 + result.getString("avg_days_to_ship") + " days.");
                 n++;
+                System.out.println();
             }
             result.close();
             pstmt.close();
@@ -1365,7 +1389,7 @@ public class Database {
                     "\nSearching the database for order with largest total for each country which were returned");
             System.out.println(
                     "----------------------------------------------------------------------------------------------");
-            System.out.println("Largest order total by country which were returned are: ");
+            System.out.println("Largest order total by country which were returned are:\n");
             // Printing the results of query
             int n = 0;
             while (result.next()) {
@@ -1373,6 +1397,7 @@ public class Database {
                         "\t" + (n + 1) + ") " + result.getString("country_name") + " - "
                                 + result.getString("max_total"));
                 n++;
+                System.out.println();
             }
             result.close();
             pstmt.close();
