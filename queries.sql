@@ -34,3 +34,32 @@ WHERE prodID='US-TEC-PH-10002262';
 -- SELECT * FROM Customer
 SELECT *
 FROM Category
+
+SELECT TOP (7)
+    con.name, a.city, a.state, cust.fName, cust.lName, MAX(od_sales.order_total) AS max_total
+FROM Country con
+    LEFT JOIN Address a ON a.countryCode = con.countryCode
+    JOIN Store s ON a.addressID = s.addressID
+    JOIN [Order] o ON s.storeID = o.storeID
+    JOIN Customer cust ON o.custID = cust.custID
+    JOIN (
+    SELECT od.orderID, SUM(od.sales) as order_total
+    FROM OrderDetails od
+    GROUP BY od.orderID
+) AS od_sales ON o.orderID = od_sales.orderID
+WHERE o.isReturned = 1
+GROUP BY con.name, o.orderID, cust.fName, cust.lName, a.city, a.state
+ORDER BY max_total DESC;
+
+SELECT od.orderID, SUM(od.sales) as order_total
+FROM OrderDetails od
+GROUP BY od.orderID
+ORDER BY order_total DESC;
+
+SELECT * 
+FROM [order] o 
+join OrderDetails od on o.orderID = od.orderID
+join Product p on od.prodID = p.prodID
+where o.orderID = 'CA-2022-140151'
+
+

@@ -194,6 +194,10 @@ public class App {
             }
         } else if (parts[0].equalsIgnoreCase("lra")) {
             if (parts.length >= 2) {
+                System.out.println(
+                        "\nSearching the database for order with largest total for each country which were returned");
+                System.out.println(
+                        "----------------------------------------------------------------------------------------------");
                 db.largestReturnedAmount(Integer.parseInt(parts[1]));
             } else {
                 System.out.println("Require an argument for this command");
@@ -240,6 +244,9 @@ public class App {
                 System.out.println("Require an argument for this command");
             }
         } else if (parts[0].equals("sRegions")) {
+            System.out.println("\nSearching the database for Regions");
+            System.out.println(
+                    "------------------------------------------------");
             db.showRegions();
         } else if (parts[0].equalsIgnoreCase("i")) {
             String message = db.initializeDatabase();

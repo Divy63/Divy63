@@ -1129,13 +1129,13 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
             ResultSet result = pstmt.executeQuery();// executing query
-            
+
             int n = 0;
             while (result.next()) {
                 output += "\t" + (++n) + ") Number of Products:" + result.getInt("num_products")
-                                + ", Sub-Category: "
-                                + result.getString("subcategory") + ", Category: "
-                                + result.getString("category") + " Total quantity sold :"
+                        + ", Sub-Category: "
+                        + result.getString("subcategory") + ", Category: "
+                        + result.getString("category") + " Total quantity sold :"
                         + result.getInt("total_quantity_sold") + "\n";
             }
             result.close();
@@ -1172,7 +1172,7 @@ public class Database {
 
             pstmt.setString(1, customerID);
             ResultSet result = pstmt.executeQuery();// executing query
-            
+
             int n = 0;
             while (result.next()) {
                 if (n == 0) {
@@ -1180,7 +1180,7 @@ public class Database {
                 }
                 output += "\t" + (++n) + ")" + result.getString("prod_name") + "\n";
             }
-            
+
             if (output.equalsIgnoreCase("")) {
                 output = String.format("%s, %s has not returned any items yet\n", result.getString(1),
                         result.getString(2));
@@ -1202,6 +1202,7 @@ public class Database {
      * regionID
      */
     public String showRegions() {
+        String output = "";
         try {// try
              // SQL QUERY
             String query = "SELECT regionID, regionName from Region";
@@ -1209,19 +1210,14 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
             ResultSet result = pstmt.executeQuery();// executing query
-            System.out.println("\nSearching the database for Regions");
-            System.out.println(
-                    "------------------------------------------------");
-            System.out.println("List of available regions:");
+
             int n = 0;
             // Printing the results of query
             while (result.next()) {
-                System.out.print("\t" + (n + 1) + ") ");
-                System.out.println(
-                        result.getString("regionName") + " - "
-                                + result.getString("regionID"));
 
-                n++;
+                output += "\t" + (++n) + ") " + result.getString("regionName") + " - "
+                        + result.getString("regionID") + "\n";
+
             }
 
             result.close();
@@ -1373,40 +1369,42 @@ public class Database {
      * @param x
      */
     public String largestReturnedAmount(int x) {
+        String output = "";
         try {// try
              // SQL QUERY
-            String query = "SELECT TOP ? c.name AS country_name,COUNT(DISTINCT s.storeID) AS num_stores,SUM(od.profit) "
-                    +
-                    "FROM Store s " +
-                    "INNER JOIN Address a ON s.addressID=a.addressID " +
-                    "INNER JOIN Country c a ON a.countryCode=c.countryCode " +
-                    "INNER JOIN [Order] ON s.storeID=o.storeID " +
-                    "INNER JOIN OrderDetails od ON o.orderID=od.orderID " +
-                    "GROUP BY c.name " +
-                    "ORDER BY num_stores DESC;";
+            String query = "SELECT TOP (?) con.name, a.city, a.state, cust.fName, cust.lName, MAX(od_sales.order_total) AS max_total "
+                    + "FROM Country con LEFT JOIN Address a ON a.countryCode = con.countryCode " +
+                    "JOIN Store s ON a.addressID = s.addressID JOIN Orders o ON s.storeID = o.storeID " +
+                    "JOIN Customer cust ON o.custID = cust.custID JOIN " +
+                    "( SELECT od.orderID, SUM(od.sales) as order_total FROM OrderDetails od GROUP BY od.orderID ) " +
+                    "AS od_sales ON o.orderID = od_sales.orderID WHERE o.isReturned = 1 " +
+                    "GROUP BY con.name, o.orderID, cust.fName, cust.lName, a.city, a.state " +
+                    "ORDER BY max_total DESC;";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setInt(1, x);
             ResultSet result = pstmt.executeQuery();// executing query
-            System.out.println(
-                    "\nSearching the database for order with largest total for each country which were returned");
-            System.out.println(
-                    "----------------------------------------------------------------------------------------------");
-            System.out.println("Largest order total by country which were returned are: ");
+
             // Printing the results of query
             int n = 0;
             while (result.next()) {
-                System.out.println(
-                        "\t" + (n + 1) + ") " + result.getString("country_name") + " - "
-                                + result.getString("max_total"));
-                n++;
+
+                output += "\t" + (++n) + ") " + result.getString("1") + ", "
+                        + result.getString(3) + ", " + result.getString(2) + " - " + result.getString(4) + ", "
+                        + result.getString(5) + result.getDouble(6)
+                        + "\n";
             }
+
+            if (output.equalsIgnoreCase("")) {
+                output = "No countries in databse\n";
+            }
+
             result.close();
             pstmt.close();
 
             System.out.println("\nQuery executed. \n" + n + " records found.");
         } catch (SQLException sql) {// catch block
-            sql.printStackTrace(System.out);
+            output = "An Error occured: Something went wrong while searching for max returned amount\n";
         }
     }
 
