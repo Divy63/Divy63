@@ -149,7 +149,10 @@ public class App {
             } else if (parts[0].equals("sRegions")) {
                 db.showRegions();
             } else if (parts[0].equalsIgnoreCase("i")) {
-                db.initializeDatabase();
+                String message = db.initializeDatabase();
+                if (message != null) {
+                    System.out.println(message);
+                }
             } else {
                 System.out.println("Enter 'm' for Menu, else Enter your choice:");
             }
