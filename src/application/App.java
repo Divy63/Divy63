@@ -193,7 +193,7 @@ public class App {
         String response;
         if (args.length >= 2) {
             System.out.println(
-                    "\nSearching database for returned products in region \"" + args[2] + "\" :");
+                    "\nSearching database for returned products in region \"" + args[1] + "\" :");
             System.out
                     .println(
                             "-------------------------------------------------------------------------------------------");
