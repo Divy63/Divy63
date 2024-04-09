@@ -809,14 +809,14 @@ public class Database {
      * 
      * @param category
      */
-    public String showSubCategories(String category) {
+    public String showSubCategories(int catID) {
         String output = "";
         try {// try
              // SQL QUERY
-            String query = "SELECT sc.subCatID,sc.name from SubCategory sc INNER JOIN Category c ON sc.catID=c.catID WHERE c.name=?";
+            String query = "SELECT sc.subCatID, sc.name from SubCategory sc WHERE sc.catID = ?";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
-            pstmt.setString(1, category);
+            pstmt.setInt(1, catID);
             ResultSet result = pstmt.executeQuery();// executing query
 
             int n = 0;

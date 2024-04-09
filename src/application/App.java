@@ -280,18 +280,12 @@ public class App {
 
     private static String processSubCat(Database db, String[] args) {
         String response;
-        if (args.length >= 3) {
-            System.out.println("\nSearching the database for categories");
+        if (args.length >= 2) {
+            System.out.println("\nSearching the database for categories with their IDs:");
             System.out.println(
                     "------------------------------------------------");
             System.out.println("List of available sub-categories with their IDs:");
-            response = db.showSubCategories(args[1] + " " + args[2]);
-        } else if (args.length == 2) {
-            System.out.println("\nSearching the database for categories");
-            System.out.println(
-                    "------------------------------------------------");
-            System.out.println("List of available sub-categories with their IDs:");
-            response = db.showSubCategories(args[1]);
+            response = db.showSubCategories(Integer.parseInt(args[1]));
         } else {
             response = "Require an argument for this command";
         }
@@ -419,7 +413,7 @@ public class App {
         System.out.println(
                 "\tscategories - Show all the Categories\n");
         System.out.println(
-                "\tsSubCategories - Show all the Sub-Categories along with their Category\n");
+                "\tsSubCategories <catID> - Show all the Sub-Categories along with their Category\n");
         System.out.println(
                 "\tspc <country limit> - Stores and Profit by Country\n");
         System.out.println(
