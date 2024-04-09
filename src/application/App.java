@@ -396,6 +396,11 @@ public class App {
             return processDatabase(db);
         }
 
+        else if (args[0].equalsIgnoreCase("d")) {
+            db.dropAllTables();
+            return "";
+        }
+        
         else {
             return "Invalid choice. Enter 'm' for Menu";
         }
@@ -441,6 +446,7 @@ public class App {
         System.out.println(
                 "\tlra <country limit> - Country-wise Largest Returned Order Amount\n");
         System.out.println("\ti - Initialize the database\n");
+        System.out.println("d - Delete the Database\n");
         System.out.println("\tm - Display the Menu.\n");
         System.out.println("\te - Exit the system.\n");
 
