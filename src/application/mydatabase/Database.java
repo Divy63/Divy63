@@ -929,6 +929,7 @@ public class Database {
                         + result.getString(3)
                         + " Total Products: "
                         + result.getInt(4) + "\n";
+                n++;
             }
             result.close();
             pstmt.close();
@@ -962,11 +963,6 @@ public class Database {
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setString(1, customerID);
-            System.out.println(
-                    "\nSearching database for number of items returned by customer with id \'" + customerID + "\'");
-            System.out
-                    .println(
-                            "--------------------------------------------------------------------------------------");
             ResultSet result = pstmt.executeQuery();// executing query
 
             if (result.next()) {
@@ -1008,7 +1004,7 @@ public class Database {
         String output = "";
         try {// try
              // SQL QUERY
-            String query = "SELECT p.name as product_name, p.price as price, o.discount as discounts FROM OrderDetails o INNER JOIN Product p ON o.prodID=p.prodID INNER JOIN SubCategory sc ON p.subCatID = sc.subCatID INNER JOIN Category c ON sc.catID=c.catID WHERE o.discount > ? AND c.name = ? ;";
+            String query = "SELECT p.name as product_name, p.price as price, o.discount as discounts FROM OrderDetails o INNER JOIN Product p ON o.prodID=p.prodID INNER JOIN SubCategory sc ON p.subCatID = sc.subCatID INNER JOIN Category c ON sc.catID=c.catID WHERE o.discount >= ? AND c.name = ? ;";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
@@ -1020,7 +1016,7 @@ public class Database {
             while (result.next()) {
                 output += "\t" + (++n) + ") " + result.getString("product_name") +
                         String.format("%.2f", result.getDouble("price")) + ", "
-                        + String.format("%.2f", result.getDouble("discounts") * 100) + " % off.";
+                        + String.format("%.2f", result.getDouble("discounts") * 100) + " % off.\n";
             }
 
             if (output.equalsIgnoreCase("")) {

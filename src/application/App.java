@@ -193,7 +193,7 @@ public class App {
         String response;
         if (args.length >= 2) {
             System.out.println(
-                    "\nSearching database for returned products in region \"" + args[2] + "\" :");
+                    "\nSearching database for returned products in region \"" + args[1] + "\" :");
             System.out
                     .println(
                             "-------------------------------------------------------------------------------------------");
@@ -209,7 +209,7 @@ public class App {
         if (args.length >= 2) {
             System.out.println(
                     "\nSearching the database for Avergae Price of Products in category with category ID \""
-                            + args[2] + "\" :");
+                            + args[1] + "\" :");
             System.out.println(
                     "----------------------------------------------------------------------------------------------");
             response = db.averagePrice(Integer.parseInt(args[1]));
