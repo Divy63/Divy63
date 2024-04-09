@@ -33,8 +33,9 @@ public class App {
         String command = consoleIn.nextLine();
         String[] parts;
         // String arg = "";
+        boolean cont = true;
 
-        while (command != null && !command.equalsIgnoreCase("e")) {
+        while (cont) {
             parts = command.split("\\s+");
             // if (command.indexOf(" ") > 0)
             // arg = command.substring(command.indexOf(" ")).trim();
@@ -152,12 +153,14 @@ public class App {
                 String message = db.initializeDatabase();
                 if (message != null) {
                     System.out.println(message);
+                    cont = false;
                 }
             } else {
                 System.out.println("Enter 'm' for Menu, else Enter your choice:");
             }
             System.out.print("Choice >> ");
             command = consoleIn.nextLine();
+            cont = command != null && !command.equalsIgnoreCase("e");
         }
 
         System.out.println("\nExiting Store Management interface. Have a great day!\n");
