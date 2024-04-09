@@ -4,7 +4,7 @@
 -- SELECT countryCode ,name from Country 
 -- -- SELECT catID,name from Category
 SELECT *
-FROM [Customer]
+FROM [order]
 -- SELECT sc.subCatID,sc.name,c.name as category from SubCategory sc INNER JOIN Category c ON sc.catID=c.catID;
 -- SELECT p.name as product_name, p.price as price, o.discount as discounts FROM OrderDetails o INNER JOIN Product p ON o.prodID=p.prodID INNER JOIN SubCategory sc ON p.subCatID = sc.subCatID INNER JOIN Category c ON sc.catID=c.catID WHERE o.discount > 0.6 AND c.name = 'Office Supplies' ;
 -- SELECT * FROM Category
@@ -55,10 +55,15 @@ FROM OrderDetails od
 GROUP BY od.orderID
 ORDER BY order_total DESC;
 
-SELECT * 
-FROM [order] o 
-join OrderDetails od on o.orderID = od.orderID
-join Product p on od.prodID = p.prodID
+SELECT *
+FROM [order] o
+    join OrderDetails od on o.orderID = od.orderID
+    join Product p on od.prodID = p.prodID
 where o.orderID = 'CA-2022-140151'
 
 
+SELECT o.shipMode as ship_mode, AVG(DATEDIFF(day,1900-01-01,o.shipDate) - DATEDIFF(day,1900-01-01,o.orderDate)) AS avg_days_to_ship
+FROM [order] o
+    JOIN OrderDetails od ON o.orderID = od.orderID
+GROUP BY o.shipMode
+HAVING SUM(od.quantity) > 7

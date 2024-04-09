@@ -49,13 +49,13 @@ public class App {
 
         System.out.print("To get started, ENTER 'm' for Menu: ");
         String cmd = nextNonEmptyLine(consoleIn, "To get started, ENTER 'm' for Menu: ");
+        String output;
 
-        String[] parts;
         boolean cont = true;
-        String message;
 
         while (cont) {
-            processCommand(db, cmd);
+            output = processCommand(db, cmd);
+            System.out.println(output);
             cmd = nextNonEmptyLine(consoleIn, "Choice >> ");
             cont = cmd != null && !cmd.equalsIgnoreCase("e");
         }
@@ -65,212 +65,337 @@ public class App {
 
     }
 
-    private static void processCommand(Database db, String cmd) {
-        String[] parts = cmd.split("\\s+");
+    private static String processSPC(Database db, String[] args) {
+        String response;
+
+        if (args.length >= 2) {
+            try {
+                int limit = Integer.parseInt(args[1]);
+                System.out.println(
+                        "\nSearching the database for Profit across stores for top \'" + limit
+                                + "\' country");
+                System.out.println(
+                        "--------------------------------------------------------------------------------------");
+                response = db.storeProfitByCountry(limit);
+            } catch (NumberFormatException nfe) {
+                response = "Limit must be an integer.";
+            }
+        } else {
+            response = "Require an argument for this command";
+        }
+
+        return response;
+    }
+
+    private static String processTopProducts(Database db, String[] args) {
+        String response;
+        if (args.length >= 2) {
+            System.out.println("\nSearching the database for top most inventory holding store in " + args[1]
+                    + " for each category:");
+            System.out.println(
+                    "-------------------------------------------------------------------------------------------------");
+            response = db.topProducts(args[1]);
+        } else {
+            response = "Require an argument for this command";
+        }
+
+        return response;
+    }
+
+    private static String processRC(Database db, String[] args) {
+        String response;
+        if (args.length >= 2) {
+            System.out.println(
+                    "\nSearching database for number of items returned by customer with id \'" + args[1] + "\'");
+            System.out
+                    .println(
+                            "--------------------------------------------------------------------------------------\n");
+            response = db.returnedItemCount(args[1]);
+        } else {
+            response = "Require an argument for this command";
+        }
+
+        return response;
+    }
+
+    private static String processDP(Database db, String[] args) {
+        String response;
+        if (args.length >= 4) {
+            System.out.println(
+                    "\nSearching database discounted items in category \"" + args[1] + " " + args[2]
+                            + "\" with discount greater than or equal to " + Double.parseDouble(args[3])
+                            + " % : ");
+            System.out.println(
+                    "----------------------------------------------------------------------------------------------------------------");
+            response = db.discountedProducts(args[1] + " " + args[2], Double.parseDouble(args[3]));
+        } else if (args.length == 3) {
+            System.out.println(
+                    "\nSearching database discounted items in category \"" + args[1]
+                            + "\" with discount greater than or equal to " + Double.parseDouble(args[2])
+                            + " % : ");
+            System.out.println(
+                    "----------------------------------------------------------------------------------------------------------------");
+            response = db.discountedProducts(args[1], Double.parseDouble(args[2]));
+        } else {
+            response = "Require an argument for this command";
+        }
+
+        return response;
+    }
+
+    private static String processSD(Database db, String[] args) {
+        String response;
+        if (args.length >= 2) {
+            System.out.println("\nSearching database for order with ID \'" + args[1] + "\'");
+            System.out
+                    .println(
+                            "--------------------------------------------------------------------------------------");
+            response = db.shippingDetails(args[1]);
+        } else {
+            response = "Require an argument for this command";
+        }
+
+        return response;
+    }
+
+    private static String processSS(Database db) {
+        System.out.println("\nSearching database for total sales of each category :");
+        System.out
+                .println("--------------------------------------------------------------------------------------");
+
+        return db.salesSummaryByCategory();
+    }
+
+    private static String processSubCP(Database db) {
+        System.out.println("\nSearching database for distinct products in each sub category :");
+        System.out
+                .println("--------------------------------------------------------------------------------------");
+        return db.subCategoryInventory();
+    }
+
+    private static String processRP(Database db, String[] args) {
+        String response;
+        if (args.length >= 2) {
+            System.out.println(
+                    "\nSearching database for returned products of customer with customer ID \"" + args[1]
+                            + "\" :");
+            System.out
+                    .println(
+                            "-------------------------------------------------------------------------------------------");
+            response = db.returnedProducts(args[1]);
+        } else {
+            response = "Require an argument for this command";
+        }
+        return response;
+    }
+
+    private static String processRPR(Database db, String[] args) {
+        String response;
+        if (args.length >= 2) {
+            System.out.println(
+                    "\nSearching database for returned products in region \"" + args[1] + "\" :");
+            System.out
+                    .println(
+                            "-------------------------------------------------------------------------------------------");
+            response = db.returnedByRegion(args[1]);
+        } else {
+            response = "Require an argument for this command";
+        }
+        return response;
+    }
+
+    private static String processAVGP(Database db, String[] args) {
+        String response;
+        if (args.length >= 2) {
+            System.out.println(
+                    "\nSearching the database for Avergae Price of Products in category with category ID \""
+                            + args[1] + "\" :");
+            System.out.println(
+                    "----------------------------------------------------------------------------------------------");
+            response = db.averagePrice(Integer.parseInt(args[1]));
+        } else {
+            response = "Require an argument for this command";
+        }
+
+        return response;
+    }
+
+    private static String processExceed(Database db, String[] args) {
+        String response;
+        if (args.length >= 2) {
+            System.out.println(
+                    "\nSearching the database for ship modes of order quantities greater than " + args[1] + " :");
+            System.out.println(
+                    "----------------------------------------------------------------------------------------------");
+            response = db.exceedXShipMode(Integer.parseInt(args[1]));
+        } else {
+            response = "Require an argument for this command";
+        }
+        return response;
+    }
+
+    private static String processLRA(Database db, String[] args) {
+        String response;
+        if (args.length >= 2) {
+            System.out.println(
+                    "\nSearching the database for order with largest total for each country which were returned");
+            System.out.println(
+                    "----------------------------------------------------------------------------------------------");
+            response = db.largestReturnedAmount(Integer.parseInt(args[1]));
+        } else {
+            response = "Require an argument for this command";
+        }
+
+        return response;
+    }
+
+    private static String processSC(Database db) {
+        System.out.println("\nSearching the database for countries");
+        System.out.println(
+                "------------------------------------------------");
+        return db.showCountries();
+    }
+
+    private static String processGCID(Database db, String[] args) {
+        String response;
+        if (args.length >= 2) {
+            System.out.println("Searching the database for people with \"" + args[1] + "\" in their name");
+            System.out.println(
+                    "------------------------------------------------------------------------------");
+            System.out.println("List of available people:");
+            response = db.showPeople(args[1]);
+        } else {
+            response = "Require an argument for this command";
+        }
+        return response;
+    }
+
+    private static String processSCat(Database db) {
+        System.out.println("\nSearching the database for categories");
+        System.out.println(
+                "------------------------------------------------");
+        System.out.println("List of available categories with their  IDs:");
+        return db.showCategories();
+    }
+
+    private static String processSubCat(Database db, String[] args) {
+        String response;
+        if (args.length >= 2) {
+            System.out.println("\nSearching the database for categories with their IDs:");
+            System.out.println(
+                    "------------------------------------------------");
+            System.out.println("List of available sub-categories with their IDs:");
+            response = db.showSubCategories(Integer.parseInt(args[1]));
+        } else {
+            response = "Require an argument for this command";
+        }
+        return response;
+    }
+
+    private static String processSRegion(Database db) {
+        System.out.println("\nSearching the database for Regions");
+        System.out.println(
+                "------------------------------------------------");
+        return db.showRegions();
+    }
+
+    private static String processDatabase(Database db) {
+        String message = db.initializeDatabase();
+        if (message == null) {
+            message = "Error in database initialization.";
+        }
+        return message;
+    }
+
+    private static String processCommand(Database db, String cmd) {
+        String[] args = cmd.split("\\s+");
         // if (command.indexOf(" ") > 0)
         // arg = command.substring(command.indexOf(" ")).trim();
 
-        if (parts[0].equalsIgnoreCase("m"))
+        if (args[0].equalsIgnoreCase("m")) {
             displayMenu();
-        else if (parts[0].equalsIgnoreCase("spc")) {
-            if (parts.length >= 2) {
-                try {
-                    int limit = Integer.parseInt(parts[1]);
-                    System.out.println(
-                            "\nSearching the database for Profit across stores for top \'" + limit
-                                    + "\' country");
-                    System.out.println(
-                            "--------------------------------------------------------------------------------------");
-                    db.storeProfitByCountry(limit);
-                } catch (NumberFormatException nfe) {
-                    System.out.println("Limit must be an integer.");
-                }
-            } else {
-                System.out.println("Require an argument for this command");
-            }
+            return "";
         }
 
-        else if (parts[0].equalsIgnoreCase("topproducts")) {
-            if (parts.length >= 2) {
-                System.out.println("\nSearching the database for top most inventory holding store in " + parts[1]
-                        + " for each category:");
-                System.out.println(
-                        "-------------------------------------------------------------------------------------------------");
-                db.topProducts(parts[1]);
-            } else {
-                System.out.println("Require an argument for this command");
-            }
+        else if (args[0].equalsIgnoreCase("spc")) {
+            return processSPC(db, args);
         }
 
-        else if (parts[0].equalsIgnoreCase("rc")) {
-            if (parts.length >= 2) {
-                System.out.println(
-                        "\nSearching database for number of items returned by customer with id \'" + parts[1] + "\'");
-                System.out
-                        .println(
-                                "--------------------------------------------------------------------------------------\n");
-                db.returnedItemCount(parts[1]);
-            } else {
-                System.out.println("Require an argument for this command");
-            }
+        else if (args[0].equalsIgnoreCase("tp")) {
+            return processTopProducts(db, args);
         }
 
-        else if (parts[0].equalsIgnoreCase("dp")) {
-            if (parts.length >= 4) {
-                System.out.println(
-                        "\nSearching database discounted items in category \"" + parts[1] + " " + parts[2]
-                                + "\" with discount greater than or equal to " + Double.parseDouble(parts[3])
-                                + " % : ");
-                System.out.println(
-                        "----------------------------------------------------------------------------------------------------------------");
-                db.discountedProducts(parts[1] + " " + parts[2], Double.parseDouble(parts[3]));
-            } else if (parts.length == 3) {
-                System.out.println(
-                        "\nSearching database discounted items in category \"" + parts[1]
-                                + "\" with discount greater than or equal to " + Double.parseDouble(parts[2])
-                                + " % : ");
-                System.out.println(
-                        "----------------------------------------------------------------------------------------------------------------");
-                db.discountedProducts(parts[1], Double.parseDouble(parts[2]));
-            } else {
-                System.out.println("Require an argument for this command");
-            }
+        else if (args[0].equalsIgnoreCase("rc")) {
+            return processRC(db, args);
         }
 
-        else if (parts[0].equalsIgnoreCase("sd")) {
-            if (parts.length >= 2) {
-                System.out.println("\nSearching database for order with ID \'" + parts[1] + "\'");
-                System.out
-                        .println(
-                                "--------------------------------------------------------------------------------------");
-                db.shippingDetails(parts[1]);
-            } else {
-                System.out.println("Require an argument for this command");
-            }
+        else if (args[0].equalsIgnoreCase("dp")) {
+            return processDP(db, args);
         }
 
-        else if (parts[0].equalsIgnoreCase("ss")) {
-            System.out.println("\nSearching database for total sales of each category :");
-            System.out
-                    .println("--------------------------------------------------------------------------------------");
-
-            db.salesSummaryByCategory();
+        else if (args[0].equalsIgnoreCase("sd")) {
+            return processSD(db, args);
         }
 
-        else if (parts[0].equalsIgnoreCase("subcp")) {
-            System.out.println("\nSearching database for distinct products in each sub category :");
-            System.out
-                    .println("--------------------------------------------------------------------------------------");
-            db.subCategoryInventory();
+        else if (args[0].equalsIgnoreCase("ss")) {
+            return processSS(db);
         }
 
-        else if (parts[0].equalsIgnoreCase("rp")) {
-            if (parts.length >= 2) {
-                System.out.println(
-                        "\nSearching database for returned products of customer with customer ID \"" + parts[1]
-                                + "\" :");
-                System.out
-                        .println(
-                                "-------------------------------------------------------------------------------------------");
-                db.returnedProducts(parts[1]);
-            } else {
-                System.out.println("Require an argument for this command");
-            }
-        } else if (parts[0].equalsIgnoreCase("rpr")) {
-            if (parts.length >= 2) {
-                System.out.println(
-                        "\nSearching database for returned products in region \"" + parts[2] + "\" :");
-                System.out
-                        .println(
-                                "-------------------------------------------------------------------------------------------");
-                db.returnedByRegion(parts[1]);
-            } else {
-                System.out.println("Require an argument for this command");
-            }
-        } else if (parts[0].equalsIgnoreCase("avgp")) {
-            if (parts.length >= 2) {
-                System.out.println(
-                        "\nSearching the database for Avergae Price of Products in category with category ID \""
-                                + parts[2] + "\" :");
-                System.out.println(
-                        "----------------------------------------------------------------------------------------------");
-                db.averagePrice(Integer.parseInt(parts[1]));
-            } else {
-                System.out.println("Require an argument for this command");
-            }
-        } else if (parts[0].equalsIgnoreCase("exceed")) {
-            if (parts.length >= 2) {
-                System.out.println(
-                        "\nSearching the database for ship modes of order quantities greater than " + parts[2] + " :");
-                System.out.println(
-                        "----------------------------------------------------------------------------------------------");
-                db.exceedXShipMode(Integer.parseInt(parts[2]));
-            } else {
-                System.out.println("Require an argument for this command");
-            }
-        } else if (parts[0].equalsIgnoreCase("lra")) {
-            if (parts.length >= 2) {
-                System.out.println(
-                        "\nSearching the database for order with largest total for each country which were returned");
-                System.out.println(
-                        "----------------------------------------------------------------------------------------------");
-                db.largestReturnedAmount(Integer.parseInt(parts[1]));
-            } else {
-                System.out.println("Require an argument for this command");
-            }
-        } else if (parts[0].equalsIgnoreCase("sc")) {
-            System.out.println("\nSearching the database for countries");
-            System.out.println(
-                    "------------------------------------------------");
-            System.out.println("List of available countries:");
-            db.showCountries();
+        else if (args[0].equalsIgnoreCase("subcp")) {
+            return processSubCP(db);
+        }
 
-        } else if (parts[0].equalsIgnoreCase("gcID")) {
-            if (parts.length >= 2) {
-                System.out.println("Searching the database for people with \"" + parts[1] + "\" in their name");
-                System.out.println(
-                        "------------------------------------------------------------------------------");
-                System.out.println("List of available people:");
-                String message = db.showPeople(parts[1]);
-                System.out.println(message);
-            } else {
-                System.out.println("Require an argument for this command");
-            }
+        else if (args[0].equalsIgnoreCase("rp")) {
+            return processRP(db, args);
+        }
 
-        } else if (parts[0].equalsIgnoreCase("scategories")) {
-            System.out.println("\nSearching the database for categories");
-            System.out.println(
-                    "------------------------------------------------");
-            System.out.println("List of available categories with their  IDs:");
-            db.showCategories();
-        } else if (parts[0].equals("sSubCategories")) {
-            if (parts.length >= 3) {
-                System.out.println("\nSearching the database for categories");
-                System.out.println(
-                        "------------------------------------------------");
-                System.out.println("List of available sub-categories with their IDs:");
-                db.showSubCategories(parts[1] + " " + parts[2]);
-            } else if (parts.length == 2) {
-                System.out.println("\nSearching the database for categories");
-                System.out.println(
-                        "------------------------------------------------");
-                System.out.println("List of available sub-categories with their IDs:");
-                db.showSubCategories(parts[1]);
-            } else {
-                System.out.println("Require an argument for this command");
-            }
-        } else if (parts[0].equals("sRegions")) {
-            System.out.println("\nSearching the database for Regions");
-            System.out.println(
-                    "------------------------------------------------");
-            db.showRegions();
-        } else if (parts[0].equalsIgnoreCase("i")) {
-            String message = db.initializeDatabase();
-            if (message != null) {
-                System.out.println(message);
-            }
-        } else {
-            System.out.println("Invalid choice. Enter 'm' for Menu");
+        else if (args[0].equalsIgnoreCase("rpr")) {
+            return processRPR(db, args);
+        }
+
+        else if (args[0].equalsIgnoreCase("avgp")) {
+            return processAVGP(db, args);
+        }
+
+        else if (args[0].equalsIgnoreCase("exceed")) {
+            return processExceed(db, args);
+        }
+
+        else if (args[0].equalsIgnoreCase("lra")) {
+            return processLRA(db, args);
+        }
+
+        else if (args[0].equalsIgnoreCase("sc")) {
+            return processSC(db);
+        }
+
+        else if (args[0].equalsIgnoreCase("gcID")) {
+            return processGCID(db, args);
+        }
+
+        else if (args[0].equalsIgnoreCase("scategories")) {
+            return processSCat(db);
+        }
+
+        else if (args[0].equalsIgnoreCase("sSubCategories")) {
+            return processSubCat(db, args);
+        }
+
+        else if (args[0].equalsIgnoreCase("sRegions")) {
+            return processSRegion(db);
+        }
+
+        else if (args[0].equalsIgnoreCase("i")) {
+            return processDatabase(db);
+        }
+
+        else if (args[0].equalsIgnoreCase("d")) {
+            db.dropAllTables();
+            return "";
+        }
+        
+        else {
+            return "Invalid choice. Enter 'm' for Menu";
         }
 
     }
@@ -288,11 +413,11 @@ public class App {
         System.out.println(
                 "\tscategories - Show all the Categories\n");
         System.out.println(
-                "\tsSubCategories - Show all the Sub-Categories along with their Category\n");
+                "\tsSubCategories <catID> - Show all the Sub-Categories along with their Category\n");
         System.out.println(
                 "\tspc <country limit> - Stores and Profit by Country\n");
         System.out.println(
-                "\ttopproducts <country code> - Top Product Holders by Category\n");
+                "\ttp <country code> - Top Product Holders by Category\n");
         System.out.println(
                 "\trc <customerID>  - Customer Returned Item Count Analysis\n");
         System.out.println(
@@ -314,6 +439,7 @@ public class App {
         System.out.println(
                 "\tlra <country limit> - Country-wise Largest Returned Order Amount\n");
         System.out.println("\ti - Initialize the database\n");
+        System.out.println("\td - Delete the Database\n");
         System.out.println("\tm - Display the Menu.\n");
         System.out.println("\te - Exit the system.\n");
 
