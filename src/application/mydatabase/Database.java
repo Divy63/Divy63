@@ -15,11 +15,7 @@
  */
 package application.mydatabase;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -901,7 +897,7 @@ public class Database {
                     "JOIN Store s ON a.addressID = s.addressID JOIN Inventory inv ON s.storeID = inv.storeID " +
                     "JOIN Product p ON inv.prodID = p.prodID JOIN SubCategory sb ON p.subCatID = sb.subCatID " +
                     "JOIN Category c ON sb.catID = c.catID " +
-                    "WHERE con.countryCode = 'FRA' GROUP BY con.name, c.name, s.storeID " +
+                    "WHERE con.countryCode = ? GROUP BY con.name, c.name, s.storeID " +
                     "HAVING s.storeID IN ( SELECT TOP 1 s_inner.storeID FROM Country con_inner " +
                     "JOIN Address a_inner ON con_inner.countryCode = a_inner.countryCode " +
                     "JOIN Store s_inner ON a_inner.addressID = s_inner.addressID " +
@@ -933,6 +929,7 @@ public class Database {
             }
             System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
+            sql.printStackTrace();
             output = "An Error occured: Something went wrong while searching for top product\n";
         }
         return output;
@@ -1332,7 +1329,7 @@ public class Database {
                     +
                     "FROM [order] o " +
                     "JOIN OrderDetails od ON o.orderID = od.orderID " +
-                    "GROUP BY o.shipMode, " +
+                    "GROUP BY o.shipMode " +
                     "HAVING SUM(od.quantity) > ?;";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
@@ -1355,6 +1352,7 @@ public class Database {
 
             System.out.println("\nQuery executed. \n" + n + " records found.");
         } catch (SQLException sql) {// catch block
+            sql.printStackTrace();
             output = "An Error occured: Something went wrong while searching for returned items in the regions\n";
         }
         return output;
@@ -1372,7 +1370,7 @@ public class Database {
              // SQL QUERY
             String query = "SELECT TOP (?) con.name, a.city, a.state, cust.fName, cust.lName, MAX(od_sales.order_total) AS max_total "
                     + "FROM Country con LEFT JOIN Address a ON a.countryCode = con.countryCode " +
-                    "JOIN Store s ON a.addressID = s.addressID JOIN Orders o ON s.storeID = o.storeID " +
+                    "JOIN Store s ON a.addressID = s.addressID JOIN [Order] o ON s.storeID = o.storeID " +
                     "JOIN Customer cust ON o.custID = cust.custID JOIN " +
                     "( SELECT od.orderID, SUM(od.sales) as order_total FROM OrderDetails od GROUP BY od.orderID ) " +
                     "AS od_sales ON o.orderID = od_sales.orderID WHERE o.isReturned = 1 " +
@@ -1387,7 +1385,7 @@ public class Database {
             int n = 0;
             while (result.next()) {
 
-                output += "\t" + (++n) + ") " + result.getString("1") + ", "
+                output += "\t" + (++n) + ") " + result.getString(1) + ", "
                         + result.getString(3) + ", " + result.getString(2) + " - " + result.getString(4) + ", "
                         + result.getString(5) + result.getDouble(6)
                         + "\n";

@@ -17,8 +17,6 @@ package application;
 import application.mydatabase.Database;
 import java.util.Scanner;
 
-import javax.xml.crypto.Data;
-
 public class App {
     public static void main(String[] args) {
         String reponse;
@@ -51,13 +49,13 @@ public class App {
 
         System.out.print("To get started, ENTER 'm' for Menu: ");
         String cmd = nextNonEmptyLine(consoleIn, "To get started, ENTER 'm' for Menu: ");
+        String output;
 
-        String[] parts;
         boolean cont = true;
-        String message;
 
         while (cont) {
-            processCommand(db, cmd);
+            output = processCommand(db, cmd);
+            System.out.println(output);
             cmd = nextNonEmptyLine(consoleIn, "Choice >> ");
             cont = cmd != null && !cmd.equalsIgnoreCase("e");
         }
@@ -226,10 +224,10 @@ public class App {
         String response;
         if (args.length >= 2) {
             System.out.println(
-                    "\nSearching the database for ship modes of order quantities greater than " + args[2] + " :");
+                    "\nSearching the database for ship modes of order quantities greater than " + args[1] + " :");
             System.out.println(
                     "----------------------------------------------------------------------------------------------");
-            response = db.exceedXShipMode(Integer.parseInt(args[2]));
+            response = db.exceedXShipMode(Integer.parseInt(args[1]));
         } else {
             response = "Require an argument for this command";
         }
@@ -259,7 +257,7 @@ public class App {
         return db.showCountries();
     }
 
-    private static String processGCID(Database db, String[] args) {\
+    private static String processGCID(Database db, String[] args) {
         String response;
         if (args.length >= 2) {
             System.out.println("Searching the database for people with \"" + args[1] + "\" in their name");
@@ -273,7 +271,48 @@ public class App {
         return response;
     }
 
-    private static String process
+    private static String processSCat(Database db) {
+        System.out.println("\nSearching the database for categories");
+        System.out.println(
+                "------------------------------------------------");
+        System.out.println("List of available categories with their  IDs:");
+        return db.showCategories();
+    }
+
+    private static String processSubCat(Database db, String[] args) {
+        String response;
+        if (args.length >= 3) {
+            System.out.println("\nSearching the database for categories");
+            System.out.println(
+                    "------------------------------------------------");
+            System.out.println("List of available sub-categories with their IDs:");
+            response = db.showSubCategories(args[1] + " " + args[2]);
+        } else if (args.length == 2) {
+            System.out.println("\nSearching the database for categories");
+            System.out.println(
+                    "------------------------------------------------");
+            System.out.println("List of available sub-categories with their IDs:");
+            response = db.showSubCategories(args[1]);
+        } else {
+            response = "Require an argument for this command";
+        }
+        return response;
+    }
+
+    private static String processSRegion(Database db) {
+        System.out.println("\nSearching the database for Regions");
+        System.out.println(
+                "------------------------------------------------");
+        return db.showRegions();
+    }
+
+    private static String processDatabase(Database db) {
+        String message = db.initializeDatabase();
+        if (message == null) {
+            message = "Error in database initialization.";
+        }
+        return message;
+    }
 
     private static String processCommand(Database db, String cmd) {
         String[] args = cmd.split("\\s+");
@@ -282,13 +321,14 @@ public class App {
 
         if (args[0].equalsIgnoreCase("m")) {
             displayMenu();
+            return "";
         }
-        
+
         else if (args[0].equalsIgnoreCase("spc")) {
             return processSPC(db, args);
         }
 
-        else if (args[0].equalsIgnoreCase("topproducts")) {
+        else if (args[0].equalsIgnoreCase("tp")) {
             return processTopProducts(db, args);
         }
 
@@ -315,61 +355,49 @@ public class App {
         else if (args[0].equalsIgnoreCase("rp")) {
             return processRP(db, args);
         }
-        
+
         else if (args[0].equalsIgnoreCase("rpr")) {
             return processRPR(db, args);
         }
-        
+
         else if (args[0].equalsIgnoreCase("avgp")) {
             return processAVGP(db, args);
         }
-        
+
         else if (args[0].equalsIgnoreCase("exceed")) {
             return processExceed(db, args);
         }
-        
+
         else if (args[0].equalsIgnoreCase("lra")) {
             return processLRA(db, args);
         }
-        
+
         else if (args[0].equalsIgnoreCase("sc")) {
             return processSC(db);
         }
-        
+
         else if (args[0].equalsIgnoreCase("gcID")) {
             return processGCID(db, args);
         }
-        
+
         else if (args[0].equalsIgnoreCase("scategories")) {
-            
-        } else if (args[0].equals("sSubCategories")) {
-            if (args.length >= 3) {
-                System.out.println("\nSearching the database for categories");
-                System.out.println(
-                        "------------------------------------------------");
-                System.out.println("List of available sub-categories with their IDs:");
-                db.showSubCategories(args[1] + " " + args[2]);
-            } else if (args.length == 2) {
-                System.out.println("\nSearching the database for categories");
-                System.out.println(
-                        "------------------------------------------------");
-                System.out.println("List of available sub-categories with their IDs:");
-                db.showSubCategories(args[1]);
-            } else {
-                System.out.println("Require an argument for this command");
-            }
-        } else if (args[0].equals("sRegions")) {
-            System.out.println("\nSearching the database for Regions");
-            System.out.println(
-                    "------------------------------------------------");
-            db.showRegions();
-        } else if (args[0].equalsIgnoreCase("i")) {
-            String message = db.initializeDatabase();
-            if (message != null) {
-                System.out.println(message);
-            }
-        } else {
-            System.out.println("Invalid choice. Enter 'm' for Menu");
+            return processSCat(db);
+        }
+
+        else if (args[0].equals("sSubCategories")) {
+            return processSubCat(db, args);
+        }
+
+        else if (args[0].equals("sRegions")) {
+            return processSRegion(db);
+        }
+
+        else if (args[0].equalsIgnoreCase("i")) {
+            return processDatabase(db);
+        }
+
+        else {
+            return "Invalid choice. Enter 'm' for Menu";
         }
 
     }
@@ -391,7 +419,7 @@ public class App {
         System.out.println(
                 "\tspc <country limit> - Stores and Profit by Country");
         System.out.println(
-                "\ttopproducts <country code> - Top Product Holders by Category");
+                "\ttp <country code> - Top Product Holders by Category");
         System.out.println(
                 "\trc <customerID>  - Customer Returned Item Count Analysis");
         System.out.println(
