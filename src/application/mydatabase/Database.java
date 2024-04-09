@@ -820,10 +820,9 @@ public class Database {
             int n = 0;
             // Printing the results of query
             while (result.next()) {
-                System.out.print("\t" + (n + 1) + ") ");
-                System.out.println(
+                output += "\t" + (n + 1) + ") " +
                         result.getString("name") + " - "
-                                + result.getString("subCatID"));
+                        + result.getString("subCatID");
                 n++;
             }
 
