@@ -932,6 +932,7 @@ public class Database {
                         + result.getString(3)
                         + " Total Products: "
                         + result.getInt(4) + "\n";
+                n++;
             }
             result.close();
             pstmt.close();
