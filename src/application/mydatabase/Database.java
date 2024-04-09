@@ -1129,13 +1129,13 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
             ResultSet result = pstmt.executeQuery();// executing query
-            
+
             int n = 0;
             while (result.next()) {
                 output += "\t" + (++n) + ") Number of Products:" + result.getInt("num_products")
-                                + ", Sub-Category: "
-                                + result.getString("subcategory") + ", Category: "
-                                + result.getString("category") + " Total quantity sold :"
+                        + ", Sub-Category: "
+                        + result.getString("subcategory") + ", Category: "
+                        + result.getString("category") + " Total quantity sold :"
                         + result.getInt("total_quantity_sold") + "\n";
             }
             result.close();
@@ -1172,7 +1172,7 @@ public class Database {
 
             pstmt.setString(1, customerID);
             ResultSet result = pstmt.executeQuery();// executing query
-            
+
             int n = 0;
             while (result.next()) {
                 if (n == 0) {
@@ -1180,7 +1180,7 @@ public class Database {
                 }
                 output += "\t" + (++n) + ")" + result.getString("prod_name") + "\n";
             }
-            
+
             if (output.equalsIgnoreCase("")) {
                 output = String.format("%s, %s has not returned any items yet\n", result.getString(1),
                         result.getString(2));
@@ -1202,6 +1202,7 @@ public class Database {
      * regionID
      */
     public String showRegions() {
+        String output = "";
         try {// try
              // SQL QUERY
             String query = "SELECT regionID, regionName from Region";
@@ -1209,19 +1210,18 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
             ResultSet result = pstmt.executeQuery();// executing query
-            System.out.println("\nSearching the database for Regions");
-            System.out.println(
-                    "------------------------------------------------");
-            System.out.println("List of available regions:");
+
             int n = 0;
             // Printing the results of query
             while (result.next()) {
-                System.out.print("\t" + (n + 1) + ") ");
-                System.out.println(
+                output += "\t" + (n + 1) + ") " +
                         result.getString("regionName") + " - "
-                                + result.getString("regionID"));
+                        + result.getString("regionID") + "\n";
 
                 n++;
+            }
+            if (output.equalsIgnoreCase("")) {
+                output = String.format("No regions in the database\n");
             }
 
             result.close();
@@ -1229,8 +1229,9 @@ public class Database {
             System.out.println("\nQuery executed. \n" + n + " records found.\n");
 
         } catch (SQLException sql) {// catch block
-            sql.printStackTrace(System.out);
+            output = "An Error occured: Something went wrong while searching for regions\n";
         }
+        return output;
     }
 
     /**
@@ -1239,6 +1240,7 @@ public class Database {
      * @param regionName
      */
     public String returnedByRegion(String regionName) {
+        String output = "";
         try {// try
              // SQL QUERY
             String query = "SELECT DISTINCT p.name AS prod_name\r\n" + //
@@ -1252,18 +1254,15 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setString(1, regionName);
             ResultSet result = pstmt.executeQuery();// executing query
-            System.out.println(
-                    "\nSearching database for returned products in region \"" + regionName + "\" :");
-            System.out
-                    .println(
-                            "-------------------------------------------------------------------------------------------");
-            System.out.println("Products returned in region\"" + regionName + "\": ");
+
             int n = 0;
             while (result.next()) {
-                System.out
-                        .println("\t" + (n + 1) + ")" + result.getString("prod_name"));
+                output += "\t" + (n + 1) + ")" + result.getString("prod_name") + "\n";
                 n++;
 
+            }
+            if (output.equalsIgnoreCase("")) {
+                output = String.format("No returns in this region.\n");
             }
 
             System.out.println("\nQuery executed. \n" + n + " records found.\n");
@@ -1271,8 +1270,9 @@ public class Database {
             pstmt.close();
 
         } catch (SQLException sql) {// catch block
-            sql.printStackTrace(System.out);
+            output = "An Error occured: Something went wrong while searching for returned items in the regions\n";
         }
+        return output;
     }
 
     /**
@@ -1282,6 +1282,7 @@ public class Database {
      * @param categoryID
      */
     public String averagePrice(int categoryID) {
+        String output = "";
         try {// try
              // SQL QUERY
             String query = "SELECT AVG(p.price) AS averagePrice,c.name as name\r\n" + //
@@ -1297,31 +1298,22 @@ public class Database {
             int n = 0;
             if (result.next() == true) {
                 n++;
-                System.out.println(
-                        "\nSearching the database for Avergae Price of Products in category \""
-                                + result.getString("name") + " (" + categoryID + ")" + "\" :");
-                System.out.println(
-                        "----------------------------------------------------------------------------------------------");
-                System.out.println("Average price of product for category \"" + categoryID + "\" :");
                 // Printing the results of query
-                System.out.println(
-                        "Category:\n\t" + result.getString("name") + " - "
-                                + String.format("%.2f", result.getDouble("averagePrice")));
-            } else {
-                System.out.println(
-                        "Searching the database for Avergae Price of Products in category with categoryID \""
-                                + categoryID + "\" :");
-                System.out.println(
-                        "----------------------------------------------------------------------------------------------");
-
+                output += "Category:\n\t" + result.getString("name") + " - "
+                        + String.format("%.2f", result.getDouble("averagePrice")) + "\n";
             }
+            if (output.equalsIgnoreCase("")) {
+                output = String.format("Average price not found for category.\n");
+            }
+
             result.close();
             pstmt.close();
 
             System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
-            sql.printStackTrace(System.out);
+            output = "An Error occured: Something went wrong while searching for returned items in the regions\n";
         }
+        return output;
     }
 
     /**
@@ -1332,6 +1324,7 @@ public class Database {
      * @param x
      */
     public String exceedXShipMode(int x) {
+        String output = "";
         try {// try
              // SQL QUERY
             String query = "SELECT o.shipMode as ship_mode, AVG(DATEDIFF(day,1900-01-01,o.shipDate) - DATEDIFF(day,1900-01-01,o.orderDate)) AS avg_days_to_ship "
@@ -1344,26 +1337,26 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setInt(1, x);
             ResultSet result = pstmt.executeQuery();// executing query
-            System.out.println(
-                    "\nSearching the database for ship modes of order  quantities greater than " + x + " :");
-            System.out.println(
-                    "----------------------------------------------------------------------------------------------");
-            System.out.println("Ship Modes of  orders with quantity greater than " + x + ": ");
+
             // Printing the results of query
             int n = 0;
             while (result.next()) {
-                System.out.println(
-                        "\t" + (n + 1) + ") " + result.getString("ship_mode") + " - "
-                                + result.getString("avg_days_to_ship") + " days.");
+                output += "\t" + (n + 1) + ") " + result.getString("ship_mode") + " - "
+                        + result.getString("avg_days_to_ship") + " days." + "\n";
                 n++;
             }
+            if (output.equalsIgnoreCase("")) {
+                output = String.format("Unable to find ship mode of orders with item greater than  %d.\n", x);
+            }
+
             result.close();
             pstmt.close();
 
             System.out.println("\nQuery executed. \n" + n + " records found.");
         } catch (SQLException sql) {// catch block
-            sql.printStackTrace(System.out);
+            output = "An Error occured: Something went wrong while searching for returned items in the regions\n";
         }
+        return output;
     }
 
     /**

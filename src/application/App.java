@@ -28,7 +28,7 @@ public class App {
         } else {
             simulate(db);
         }
-        
+
         System.out.println("\nEnd of processing\n");
     }
 
@@ -64,8 +64,8 @@ public class App {
         consoleIn.close();
 
     }
-    
-    private static void processCommand(Database db, String cmd){
+
+    private static void processCommand(Database db, String cmd) {
         String[] parts = cmd.split("\\s+");
         // if (command.indexOf(" ") > 0)
         // arg = command.substring(command.indexOf(" ")).trim();
@@ -119,14 +119,16 @@ public class App {
             if (parts.length >= 4) {
                 System.out.println(
                         "\nSearching database discounted items in category \"" + parts[1] + " " + parts[2]
-                                + "\" with discount greater than or equal to " + Double.parseDouble(parts[3]) + " % : ");
+                                + "\" with discount greater than or equal to " + Double.parseDouble(parts[3])
+                                + " % : ");
                 System.out.println(
                         "----------------------------------------------------------------------------------------------------------------");
                 db.discountedProducts(parts[1] + " " + parts[2], Double.parseDouble(parts[3]));
             } else if (parts.length == 3) {
                 System.out.println(
                         "\nSearching database discounted items in category \"" + parts[1]
-                                + "\" with discount greater than or equal to " + Double.parseDouble(parts[2]) + " % : ");
+                                + "\" with discount greater than or equal to " + Double.parseDouble(parts[2])
+                                + " % : ");
                 System.out.println(
                         "----------------------------------------------------------------------------------------------------------------");
                 db.discountedProducts(parts[1], Double.parseDouble(parts[2]));
@@ -142,7 +144,7 @@ public class App {
                         .println(
                                 "--------------------------------------------------------------------------------------");
                 db.shippingDetails(parts[1]);
-            } else{
+            } else {
                 System.out.println("Require an argument for this command");
             }
         }
@@ -151,7 +153,7 @@ public class App {
             System.out.println("\nSearching database for total sales of each category :");
             System.out
                     .println("--------------------------------------------------------------------------------------");
-            
+
             db.salesSummaryByCategory();
         }
 
@@ -176,19 +178,33 @@ public class App {
             }
         } else if (parts[0].equalsIgnoreCase("rpr")) {
             if (parts.length >= 2) {
+                System.out.println(
+                        "\nSearching database for returned products in region \"" + parts[2] + "\" :");
+                System.out
+                        .println(
+                                "-------------------------------------------------------------------------------------------");
                 db.returnedByRegion(parts[1]);
             } else {
                 System.out.println("Require an argument for this command");
             }
         } else if (parts[0].equalsIgnoreCase("avgp")) {
             if (parts.length >= 2) {
+                System.out.println(
+                        "\nSearching the database for Avergae Price of Products in category with category ID \""
+                                + parts[2] + "\" :");
+                System.out.println(
+                        "----------------------------------------------------------------------------------------------");
                 db.averagePrice(Integer.parseInt(parts[1]));
             } else {
                 System.out.println("Require an argument for this command");
             }
         } else if (parts[0].equalsIgnoreCase("exceed")) {
             if (parts.length >= 2) {
-                db.exceedXShipMode(Integer.parseInt(parts[3]));
+                System.out.println(
+                        "\nSearching the database for ship modes of order quantities greater than " + parts[2] + " :");
+                System.out.println(
+                        "----------------------------------------------------------------------------------------------");
+                db.exceedXShipMode(Integer.parseInt(parts[2]));
             } else {
                 System.out.println("Require an argument for this command");
             }
@@ -240,6 +256,9 @@ public class App {
                 System.out.println("Require an argument for this command");
             }
         } else if (parts[0].equals("sRegions")) {
+            System.out.println("\nSearching the database for Regions");
+            System.out.println(
+                    "------------------------------------------------");
             db.showRegions();
         } else if (parts[0].equalsIgnoreCase("i")) {
             String message = db.initializeDatabase();
