@@ -707,9 +707,9 @@ public class Database {
             int n = 1;
             // Printing the results of query
             while (result.next()) {
-                output += "\t" + (n++) + ") " + result.getString("First") + " "
-                        + result.getString("Last") + " - "
-                        + result.getString("Last") + "\n";
+                output += "\t" + (n + 1) + ") " + result.getString(1) + " "
+                        + result.getString(2) + " - "
+                        + result.getString(3) + "\n";
             }
 
             if (output.equalsIgnoreCase("")) {
@@ -778,15 +778,12 @@ public class Database {
 
             ResultSet result = pstmt.executeQuery();// executing query
 
-
-
             int n = 0;
             // Printing the results of query
             while (result.next()) {
                 output += "\t" + (++n) + ") " + result.getString("name") + " - "
                         + result.getString("catID") + "\n";
             }
-
 
             if (output.equalsIgnoreCase("")) {
                 output = "No categories in database\n";
@@ -864,7 +861,6 @@ public class Database {
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setInt(1, countryLimit);
-
 
             ResultSet result = pstmt.executeQuery();// executing query
 
@@ -972,7 +968,6 @@ public class Database {
                             "--------------------------------------------------------------------------------------");
             ResultSet result = pstmt.executeQuery();// executing query
 
-
             if (result.next()) {
                 output = result.getString(1) + ",  " + result.getString(2) + ": "
                         + result.getInt(3) + "\n";
@@ -1019,7 +1014,6 @@ public class Database {
             pstmt.setDouble(1, discount / 100);
             pstmt.setString(2, categoryName);
             ResultSet result = pstmt.executeQuery();// executing query
-
 
             int n = 0;
             while (result.next()) {
@@ -1145,7 +1139,6 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
             ResultSet result = pstmt.executeQuery();// executing query
-
 
             int n = 0;
             while (result.next()) {
@@ -1401,7 +1394,6 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setInt(1, x);
             ResultSet result = pstmt.executeQuery();// executing query
-
 
             // Printing the results of query
             int n = 0;
