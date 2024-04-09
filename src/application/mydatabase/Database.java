@@ -73,6 +73,11 @@ public class Database {
             response = createAllTables();
             if (response == null) {
                 response = readInputData();
+                if (response != null) {
+                    dropAllTables();
+                }
+            } else {
+                dropAllTables();
             }
         }
         
