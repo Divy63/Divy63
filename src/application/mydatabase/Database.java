@@ -1012,7 +1012,7 @@ public class Database {
         String output = "";
         try {// try
              // SQL QUERY
-            String query = "SELECT p.name as product_name, p.price as price, o.discount as discounts FROM OrderDetails o INNER JOIN Product p ON o.prodID=p.prodID INNER JOIN SubCategory sc ON p.subCatID = sc.subCatID INNER JOIN Category c ON sc.catID=c.catID WHERE o.discount > ? AND c.name = ? ;";
+            String query = "SELECT p.name as product_name, p.price as price, o.discount as discounts FROM OrderDetails o INNER JOIN Product p ON o.prodID=p.prodID INNER JOIN SubCategory sc ON p.subCatID = sc.subCatID INNER JOIN Category c ON sc.catID=c.catID WHERE o.discount >= ? AND c.name = ? ;";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
