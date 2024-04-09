@@ -704,12 +704,13 @@ public class Database {
             pstmt.setString(2, "%" + partOfName + "%");
             ResultSet result = pstmt.executeQuery();// executing query
 
-            int n = 1;
+            int n = 0;
             // Printing the results of query
             while (result.next()) {
                 output += "\t" + (n + 1) + ") " + result.getString(1) + " "
                         + result.getString(2) + " - "
                         + result.getString(3) + "\n";
+                n++;
             }
 
             if (output.equalsIgnoreCase("")) {
