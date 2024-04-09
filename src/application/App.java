@@ -158,9 +158,12 @@ public class App {
             } else {
                 System.out.println("Enter 'm' for Menu, else Enter your choice:");
             }
-            System.out.print("Choice >> ");
-            command = consoleIn.nextLine();
-            cont = command != null && !command.equalsIgnoreCase("e");
+
+            if (cont) {
+                System.out.print("Choice >> ");
+                command = consoleIn.nextLine();
+                cont = command != null && !command.equalsIgnoreCase("e");
+            }
         }
 
         System.out.println("\nExiting Store Management interface. Have a great day!\n");
