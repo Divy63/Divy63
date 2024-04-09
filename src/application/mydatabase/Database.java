@@ -716,6 +716,8 @@ public class Database {
                 output = "No people containing \'" + partOfName + "\' in their name\n";
             }
 
+            output += "\nQuery executed.\n" + n + " records found.\n";
+
             result.close();
             pstmt.close();
 
@@ -752,9 +754,10 @@ public class Database {
 
             }
 
+            output += "\nQuery executed.\n" + n + " records found.\n";
+
             result.close();
             pstmt.close();
-            System.out.println("\nQuery executed.\n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching for countries\n";
         }
@@ -789,11 +792,11 @@ public class Database {
                 output = "No categories in database\n";
 
             }
+            output += "\nQuery executed.\n" + n + " records found.\n";
 
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching for categories\n";
         }
@@ -824,17 +827,16 @@ public class Database {
                         result.getString("name") + " - "
                                 + result.getString("subCatID"));
                 n++;
-                System.out.println();
             }
 
             if (output.equalsIgnoreCase("")) {
                 output = "No subcategories in database\n";
             }
+            output += "\nQuery executed.\n" + n + " records found.\n";
 
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching for sub-categories\n";
         }
@@ -881,10 +883,10 @@ public class Database {
                 output = "No stores/countries in database\n";
 
             }
+            output += "\nQuery executed.\n" + n + " records found.\n";
 
             result.close();
             pstmt.close();
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
 
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching for store's profit\n";
@@ -937,7 +939,8 @@ public class Database {
             if (output.equalsIgnoreCase("")) {
                 output = "No country with code \'" + countryCode + "\'\n";
             }
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
+            output += "\nQuery executed.\n" + n + " records found.\n";
+
         } catch (SQLException sql) {// catch block
             sql.printStackTrace();
             output = "An Error occured: Something went wrong while searching for top product\n";
@@ -1028,11 +1031,11 @@ public class Database {
             if (output.equalsIgnoreCase("")) {
                 output = "No category with name \'" + categoryName + "\'\n";
             }
+            output += "\nQuery executed.\n" + n + " records found.\n";
 
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching for discounted products\n";
         }
@@ -1073,8 +1076,8 @@ public class Database {
             if (output.equalsIgnoreCase("")) {
                 output = "No order with ID - \'" + orderID + "\'\n";
             }
+            output += "\nQuery executed.\n" + n + " records found.\n";
 
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching for order details\n";
         }
@@ -1111,7 +1114,7 @@ public class Database {
                 output = "No categories in database\n";
             }
 
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
+            output += "\nQuery executed.\n" + n + " records found.\n";
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching categories and sales\n";
         }
@@ -1159,7 +1162,7 @@ public class Database {
                 output = "No sub-categories found in database\n";
             }
 
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
+            output += "\nQuery executed.\n" + n + " records found.\n";
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching sub-categories and sales\n";
         }
@@ -1204,7 +1207,7 @@ public class Database {
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
+            output += "\nQuery executed.\n" + n + " records found.\n";
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching for returned products\n";
         }
@@ -1234,7 +1237,6 @@ public class Database {
                         + result.getString("regionID") + "\n";
 
                 n++;
-                System.out.println();
             }
             if (output.equalsIgnoreCase("")) {
                 output = String.format("No regions in the database\n");
@@ -1242,7 +1244,7 @@ public class Database {
 
             result.close();
             pstmt.close();
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
+            output += "\nQuery executed.\n" + n + " records found.\n";
 
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching for regions\n";
@@ -1280,7 +1282,7 @@ public class Database {
                 output = String.format("No returns in this region.\n");
             }
 
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
+            output += "\nQuery executed.\n" + n + " records found.\n";
             result.close();
             pstmt.close();
 
@@ -1325,7 +1327,7 @@ public class Database {
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
+            output += "\nQuery executed.\n" + n + " records found.\n";
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching for returned items in the regions\n";
         }
@@ -1369,7 +1371,7 @@ public class Database {
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n" + n + " records found.");
+            output += "\nQuery executed.\n" + n + " records found.\n";
         } catch (SQLException sql) {// catch block
             sql.printStackTrace();
             output = "An Error occured: Something went wrong while searching for returned items in the regions\n";
@@ -1418,7 +1420,7 @@ public class Database {
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n" + n + " records found.");
+            output += "\nQuery executed.\n" + n + " records found.\n";
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching for max returned amount\n";
         }
