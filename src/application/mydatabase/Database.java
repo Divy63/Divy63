@@ -807,6 +807,7 @@ public class Database {
      * @param category
      */
     public String showSubCategories(String category) {
+        String output = "";
         try {// try
              // SQL QUERY
             String query = "SELECT sc.subCatID,sc.name from SubCategory sc INNER JOIN Category c ON sc.catID=c.catID WHERE c.name=?";
@@ -814,7 +815,7 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setString(1, category);
             ResultSet result = pstmt.executeQuery();// executing query
-            
+
             int n = 0;
             // Printing the results of query
             while (result.next()) {
@@ -824,12 +825,17 @@ public class Database {
                                 + result.getString("subCatID"));
                 n++;
             }
+
+            if (output.equalsIgnoreCase("")) {
+                output = "No subcategories in database\n";
+            }
+
             result.close();
             pstmt.close();
 
             System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
-            sql.printStackTrace(System.out);
+            output = "An Error occured: Something went wrong while searching for sub-categories";
         }
     }
 

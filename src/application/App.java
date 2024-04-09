@@ -184,8 +184,16 @@ public class App {
             db.showCategories();
         } else if (parts[0].equals("sSubCategories")) {
             if (parts.length >= 3) {
+                System.out.println("\nSearching the database for categories");
+                System.out.println(
+                        "------------------------------------------------");
+                System.out.println("List of available sub-categories with their IDs:");
                 db.showSubCategories(parts[1] + " " + parts[2]);
             } else if (parts.length == 2) {
+                System.out.println("\nSearching the database for categories");
+                System.out.println(
+                        "------------------------------------------------");
+                System.out.println("List of available sub-categories with their IDs:");
                 db.showSubCategories(parts[1]);
             } else {
                 System.out.println("Require an argument for this command");
