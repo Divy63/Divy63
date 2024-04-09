@@ -925,7 +925,7 @@ public class Database {
             int n = 0;
             // Printing the results of query
             while (result.next()) {
-                output += "-> Category: " + result.getString(2) + " Store ID: "
+                output += "\t-> Category: " + result.getString(2) + " Store ID: "
                         + result.getString(3)
                         + " Total Products: "
                         + result.getInt(4) + "\n";
@@ -964,24 +964,28 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setString(1, customerID);
             ResultSet result = pstmt.executeQuery();// executing query
-
+            int n = 0;
             if (result.next()) {
-                output = result.getString(1) + ",  " + result.getString(2) + ": "
+
+                output = "\t" + (n + 1) + ") " + result.getString(1) + ",  " + result.getString(2) + ": "
                         + result.getInt(3) + "\n";
+                n++;
             } else {
                 query = "SELECT fname, lname FROM customer WHERE custID = ?";
                 pstmt = connection.prepareStatement(query);
                 pstmt.setString(1, customerID);
                 result = pstmt.executeQuery();
+
                 if (result.next()) {
                     output = String.format("%s, %s has not returned any items yet\n", result.getString(1),
                             result.getString(2));
+
                 } else {
                     System.out.printf("\'%s\' does not exist\n", customerID);
                 }
 
             }
-
+            output += "\nQuery executed.\n" + n + " records found.\n";
             result.close();
             pstmt.close();
 
@@ -1139,10 +1143,10 @@ public class Database {
 
             int n = 0;
             while (result.next()) {
-                output += "\t" + (++n) + ") Number of Products:" + result.getInt("num_products")
-                        + ", Sub-Category: "
-                        + result.getString("subcategory") + ", Category: "
-                        + result.getString("category") + " Total quantity sold :"
+                output += "\t" + (++n) + ") #Products:" + result.getInt("num_products")
+                        + ", "
+                        + result.getString("subcategory") + ", "
+                        + result.getString("category") + " #Sold :"
                         + result.getInt("total_quantity_sold") + "\n";
             }
             result.close();
@@ -1266,7 +1270,7 @@ public class Database {
             while (result.next()) {
                 output += "\t" + (n + 1) + ")" + result.getString("prod_name") + "\n";
                 n++;
-                System.out.println();
+
             }
             if (output.equalsIgnoreCase("")) {
                 output = String.format("No returns in this region.\n");
@@ -1352,7 +1356,6 @@ public class Database {
                 output += "\t" + (n + 1) + ") " + result.getString("ship_mode") + " - "
                         + result.getString("avg_days_to_ship") + " days." + "\n";
                 n++;
-                System.out.println();
             }
             if (output.equalsIgnoreCase("")) {
                 output = String.format("Unable to find ship mode of orders with item greater than  %d.\n", x);
@@ -1398,7 +1401,7 @@ public class Database {
 
                 output += "\t" + (++n) + ") " + result.getString(1) + ", "
                         + result.getString(3) + ", " + result.getString(2) + " - " + result.getString(4) + ", "
-                        + result.getString(5) + result.getDouble(6)
+                        + result.getString(5) + ", $" + result.getDouble(6)
                         + "\n";
             }
 
