@@ -1,8 +1,20 @@
-
+/**
+ * App.java
+ *
+ * COMP 2150 SECTION A01
+ * INSTRUCTOR Heather Matheson
+ * Project Project
+ * 
+ * @author Het Patel, 7972424
+ * @author Divy Patel,7951650
+ * @author Vince Ibero, //TODO Vince needs to write student number
+ * @version 2024-04-10
+ *
+ *          REMARKS: Program that provides interface to user to get connected to the database and perform analysis on it
+ */
 package application;
 
 import application.mydatabase.Database;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -23,6 +35,15 @@ public class App {
         System.out.println("\nEnd of processing\n");
     }
 
+    /**
+     * Method that gets the Database object and then calls other methods in this
+     * class for simulation purposes.
+     * It takes user input and calls the methods according to the user input and
+     * provides user with the data
+     * they want.
+     * 
+     * @param db
+     */
     private static void simulate(Database db) {
 
         Scanner consoleIn = new Scanner(System.in);// Scanner that takes input from console
@@ -123,7 +144,7 @@ public class App {
             }
         } else if (parts[0].equalsIgnoreCase("avgp")) {
             if (parts.length >= 2) {
-                db.averagePrice(parts[1]);
+                db.averagePrice(Integer.parseInt(parts[1]));
             } else {
                 System.out.println("Require an argument for this command");
             }
@@ -212,10 +233,10 @@ public class App {
         System.out.println(
                 "\tavgp <categoryID> - Average Product Price in Category");
         System.out.println(
-                "\texceed - Order Shipping Mode Details for Orders Exceeding 7 Items");
+                "\texceed <numProducts>- Order Shipping Mode Details for Orders Exceeding 7 Items");
         System.out.println(
                 "\tlra <country limit> - Country-wise Largest Returned Order Amount");
-        System.out.println("\ti - To initialize the database");
+        System.out.println("\ti - Initialize the database");
         System.out.println("\tm - Display the Menu.");
         System.out.println("\te - Exit the system.");
 
