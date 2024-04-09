@@ -396,6 +396,11 @@ public class App {
             return processDatabase(db);
         }
 
+        else if (args[0].equalsIgnoreCase("d")) {
+            db.dropAllTables();
+            return "";
+        }
+        
         else {
             return "Invalid choice. Enter 'm' for Menu";
         }
