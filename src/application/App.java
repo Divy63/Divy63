@@ -253,7 +253,6 @@ public class App {
         System.out.println("\nSearching the database for countries");
         System.out.println(
                 "------------------------------------------------");
-        System.out.println("List of available countries:");
         return db.showCountries();
     }
 
@@ -384,11 +383,11 @@ public class App {
             return processSCat(db);
         }
 
-        else if (args[0].equals("sSubCategories")) {
+        else if (args[0].equalsIgnoreCase("sSubCategories")) {
             return processSubCat(db, args);
         }
 
-        else if (args[0].equals("sRegions")) {
+        else if (args[0].equalsIgnoreCase("sRegions")) {
             return processSRegion(db);
         }
 
