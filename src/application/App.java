@@ -76,6 +76,11 @@ public class App {
             if (parts.length >= 2) {
                 try {
                     int limit = Integer.parseInt(parts[1]);
+                    System.out.println(
+                            "\nSearching the database for Profit across stores for top \'" + limit
+                                    + "\' country");
+                    System.out.println(
+                            "--------------------------------------------------------------------------------------");
                     db.storeProfitByCountry(limit);
                 } catch (NumberFormatException nfe) {
                     System.out.println("Limit must be an integer.");
@@ -87,6 +92,10 @@ public class App {
 
         else if (parts[0].equalsIgnoreCase("topproducts")) {
             if (parts.length >= 2) {
+                System.out.println("\nSearching the database for top most inventory holding store in " + parts[1]
+                        + " for each category:");
+                System.out.println(
+                        "-------------------------------------------------------------------------------------------------");
                 db.topProducts(parts[1]);
             } else {
                 System.out.println("Require an argument for this command");
@@ -95,17 +104,31 @@ public class App {
 
         else if (parts[0].equalsIgnoreCase("rc")) {
             if (parts.length >= 2) {
+                System.out.println(
+                        "\nSearching database for number of items returned by customer with id \'" + parts[1] + "\'");
+                System.out
+                        .println(
+                                "--------------------------------------------------------------------------------------\n");
                 db.returnedItemCount(parts[1]);
             } else {
                 System.out.println("Require an argument for this command");
             }
         }
 
-        else if (parts[0].equals("dp")) {
+        else if (parts[0].equalsIgnoreCase("dp")) {
             if (parts.length >= 4) {
-                System.out.println(parts[3]);
+                System.out.println(
+                        "\nSearching database discounted items in category \"" + parts[1] + " " + parts[2]
+                                + "\" with discount greater than or equal to " + Double.parseDouble(parts[3]) + " % : ");
+                System.out.println(
+                        "----------------------------------------------------------------------------------------------------------------");
                 db.discountedProducts(parts[1] + " " + parts[2], Double.parseDouble(parts[3]));
             } else if (parts.length == 3) {
+                System.out.println(
+                        "\nSearching database discounted items in category \"" + parts[1]
+                                + "\" with discount greater than or equal to " + Double.parseDouble(parts[2]) + " % : ");
+                System.out.println(
+                        "----------------------------------------------------------------------------------------------------------------");
                 db.discountedProducts(parts[1], Double.parseDouble(parts[2]));
             } else {
                 System.out.println("Require an argument for this command");
@@ -113,22 +136,40 @@ public class App {
         }
 
         else if (parts[0].equalsIgnoreCase("sd")) {
-            if (parts.length >= 2)
+            if (parts.length >= 2) {
+                System.out.println("\nSearching database for order with ID \'" + parts[1] + "\'");
+                System.out
+                        .println(
+                                "--------------------------------------------------------------------------------------");
                 db.shippingDetails(parts[1]);
-            else
+            } else{
                 System.out.println("Require an argument for this command");
+            }
         }
 
         else if (parts[0].equalsIgnoreCase("ss")) {
+            System.out.println("\nSearching database for total sales of each category :");
+            System.out
+                    .println("--------------------------------------------------------------------------------------");
+            
             db.salesSummaryByCategory();
         }
 
         else if (parts[0].equalsIgnoreCase("subcp")) {
+            System.out.println("\nSearching database for distinct products in each sub category :");
+            System.out
+                    .println("--------------------------------------------------------------------------------------");
             db.subCategoryInventory();
         }
 
         else if (parts[0].equalsIgnoreCase("rp")) {
             if (parts.length >= 2) {
+                System.out.println(
+                        "\nSearching database for returned products of customer with customer ID \"" + parts[1]
+                                + "\" :");
+                System.out
+                        .println(
+                                "-------------------------------------------------------------------------------------------");
                 db.returnedProducts(parts[1]);
             } else {
                 System.out.println("Require an argument for this command");

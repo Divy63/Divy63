@@ -31,7 +31,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-
 public class Database {
     private Connection connection;
     private static final String regex = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
@@ -708,7 +707,7 @@ public class Database {
             pstmt.setString(1, "%" + partOfName + "%");
             pstmt.setString(2, "%" + partOfName + "%");
             ResultSet result = pstmt.executeQuery();// executing query
-            
+
             int n = 1;
             // Printing the results of query
             while (result.next()) {
@@ -726,7 +725,7 @@ public class Database {
 
         } catch (SQLException sql) {// catch block
             // sql.printStackTrace(System.out);
-            output = "An Error occured: Something went wrong while searching for people";
+            output = "An Error occured: Something went wrong while searching for people\n";
         }
 
         return output;
@@ -744,7 +743,7 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
             ResultSet result = pstmt.executeQuery();// executing query
-            
+
             int n = 0;
             // Printing the results of query
             while (result.next()) {
@@ -760,7 +759,7 @@ public class Database {
             pstmt.close();
             System.out.println("\nQuery executed.\n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
-            output = "An Error occured: Something went wrong while searching for countries";
+            output = "An Error occured: Something went wrong while searching for countries\n";
         }
 
         return output;
@@ -778,7 +777,7 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
             ResultSet result = pstmt.executeQuery();// executing query
-            
+
             int n = 0;
             // Printing the results of query
             while (result.next()) {
@@ -795,7 +794,7 @@ public class Database {
 
             System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
-            output = "An Error occured: Something went wrong while searching for categories";
+            output = "An Error occured: Something went wrong while searching for categories\n";
         }
 
         return output;
@@ -835,8 +834,10 @@ public class Database {
 
             System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
-            output = "An Error occured: Something went wrong while searching for sub-categories";
+            output = "An Error occured: Something went wrong while searching for sub-categories\n";
         }
+
+        return output;
     }
 
     /**
@@ -847,6 +848,7 @@ public class Database {
      * @param countryLimit
      */
     public String storeProfitByCountry(int countryLimit) {
+        String output = "";
         try {// try
              // SQL QUERY
             String query = "SELECT TOP (?) c.name, COUNT(DISTINCT s.storeID) AS num_stores, SUM(od.profit) " +
@@ -860,30 +862,28 @@ public class Database {
             pstmt.setInt(1, countryLimit);
 
             ResultSet result = pstmt.executeQuery();// executing query
-            System.out.println(
-                    "\nSearching the database for Profit across stores for top \'" + countryLimit + "\' country");
-            System.out.println(
-                    "--------------------------------------------------------------------------------------");
 
             int n = 0;
             // Printing the results of query
             while (result.next()) {
-                System.out.print((n + 1) + ") ");
-                System.out.println(
-                        "Country: " + result.getString(1) + " \n\tNumber of Stores: "
-                                + result.getString(2)
-                                + ", Total Profit: "
-                                + result.getInt(3));
-
-                n++;
+                output += (++n) + ") " + "Country: " + result.getString(1) + " \n\tNumber of Stores: "
+                        + result.getString(2)
+                        + ", Total Profit: "
+                        + result.getInt(3) + "\n";
             }
+
+            if (output.equalsIgnoreCase("")) {
+                output = "No stores/countries in database\n";
+            }
+
             result.close();
             pstmt.close();
             System.out.println("\nQuery executed. \n" + n + " records found.\n");
 
         } catch (SQLException sql) {// catch block
-            sql.printStackTrace(System.out);
+            output = "An Error occured: Something went wrong while searching for store's profit\n";
         }
+        return output;
     }
 
     /**
@@ -893,64 +893,49 @@ public class Database {
      * @param countryCode
      */
     public String topProducts(String countryCode) {
+        String output = "";
         try {// try
              // SQL QUERY
-            String query = "SELECT con.name as country_name, c.name as category_name, s.storeID as storeID, count(p.prodID) as total_products\r\n"
-                    + //
-                    "FROM Country con\r\n" + //
-                    "JOIN Address a ON con.countryCode = a.countryCode\r\n" + //
-                    "JOIN Store s ON a.addressID = s.addressID\r\n" + //
-                    "JOIN Inventory inv ON s.storeID = inv.storeID\r\n" + //
-                    "JOIN Product p ON inv.prodID = p.prodID\r\n" + //
-                    "JOIN SubCategory sb ON p.subCatID = sb.subCatID\r\n" + //
-                    "JOIN Category c ON sb.catID = c.catID\r\n" + //
-                    "WHERE c.countryCode = ?\r\n" + //
-                    "GROUP BY c.catID, s.storeID, con.name, c.name, s.storeID\r\n" + //
-                    "HAVING s.storeID in (\r\n" + //
-                    "\tSELECT s_inner.storeID\r\n" + //
-                    "FROM Country con_inner\r\n" + //
-                    "JOIN Address a_inner ON con_inner.countryCode = con_inner.countryCode\r\n" + //
-                    "JOIN Store s_inner ON a_inner.addressID = s_inner.addressID\r\n" + //
-                    "JOIN Inventory inv_inner ON s_inner.storeID = inv_inner.storeID\r\n" + //
-                    "JOIN Product p_inner ON inv_inner.prodID = p_inner.prodID\r\n" + //
-                    "JOIN SubCategory sb_inner ON p_inner.subCatID = sb_inner.subCatID\r\n" + //
-                    "JOIN Category c_inner ON sb_inner.catID = c_inner.catID\r\n" + //
-                    "WHERE c_inner.catID = c.catID AND con_inner.countryCode = con.countryCode\r\n" + //
-                    "GROUP BY c_inner.catID, s_inner.storeID\r\n" + //
-                    "\tORDER BY count(p.prodID) DESC\r\n" + //
-                    "\tTOP 1 )\r\n" + //
-                    "ORDER BY c.name, total_products DESC;\r\n" + //
-                    "";
-
+            String query = "SELECT con.name AS CountryName, c.name AS CategoryName, s.storeID, COUNT(p.prodID) AS total_products "
+                    + "FROM Country con JOIN Address a ON con.countryCode = a.countryCode " +
+                    "JOIN Store s ON a.addressID = s.addressID JOIN Inventory inv ON s.storeID = inv.storeID " +
+                    "JOIN Product p ON inv.prodID = p.prodID JOIN SubCategory sb ON p.subCatID = sb.subCatID " +
+                    "JOIN Category c ON sb.catID = c.catID " +
+                    "WHERE con.countryCode = 'FRA' GROUP BY con.name, c.name, s.storeID " +
+                    "HAVING s.storeID IN ( SELECT TOP 1 s_inner.storeID FROM Country con_inner " +
+                    "JOIN Address a_inner ON con_inner.countryCode = a_inner.countryCode " +
+                    "JOIN Store s_inner ON a_inner.addressID = s_inner.addressID " +
+                    "JOIN Inventory inv_inner ON s_inner.storeID = inv_inner.storeID " +
+                    "JOIN Product p_inner ON inv_inner.prodID = p_inner.prodID " +
+                    "JOIN SubCategory sb_inner ON p_inner.subCatID = sb_inner.subCatID " +
+                    "JOIN Category c_inner ON sb_inner.catID = c_inner.catID " +
+                    "WHERE c_inner.name = c.name AND con_inner.name = con.name " +
+                    "GROUP BY c_inner.catID, s_inner.storeID ORDER BY COUNT(p_inner.prodID) DESC ) " +
+                    "ORDER BY total_products DESC, s.storeID ASC;";
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setString(1, countryCode);
 
-            ResultSet result = pstmt.executeQuery();// executing query
-            System.out.println("\nSearching the database for top most inventory holding store in " + countryCode
-                    + " for each category:");
-            System.out.println(
-                    "-------------------------------------------------------------------------------------------------");
-            System.out.println("Country:  " + result.getString("country_name"));
+            ResultSet result = pstmt.executeQuery();
+
             int n = 0;
             // Printing the results of query
             while (result.next()) {
-                System.out.print((n + 1) + ")");
-                System.out.println(
-                        "-> Category: " + result.getString("category_name") + " Store ID: "
-                                + result.getString("storeID")
-                                + " Total Products: "
-                                + result.getInt("total_products"));
-
-                System.out.println();
-
+                output += "-> Category: " + result.getString(2) + " Store ID: "
+                        + result.getString(3)
+                        + " Total Products: "
+                        + result.getInt(4) + "\n";
             }
             result.close();
             pstmt.close();
 
+            if (output.equalsIgnoreCase("")) {
+                output = "No country with code \'" + countryCode + "\'\n";
+            }
             System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
-            sql.printStackTrace(System.out);
+            output = "An Error occured: Something went wrong while searching for top product\n";
         }
+        return output;
     }
 
     /**
@@ -959,6 +944,7 @@ public class Database {
      * @param customerID
      */
     public String returnedItemCount(String customerID) {
+        String output = "";
         try {// try
              // SQL QUERY
             String query = "SELECT c.fname AS first_name, c.lname AS last_name, SUM(od.quantity) AS returned_items " +
@@ -971,21 +957,17 @@ public class Database {
             pstmt.setString(1, customerID);
 
             ResultSet result = pstmt.executeQuery();// executing query
-            System.out.println(
-                    "\nSearching database for number of items returned by customer with id \'" + customerID + "\'");
-            System.out
-                    .println(
-                            "--------------------------------------------------------------------------------------\n");
+
             if (result.next()) {
-                System.out.println(result.getString(1) + ",  " + result.getString(2) + ": "
-                        + result.getInt(3));
+                output = result.getString(1) + ",  " + result.getString(2) + ": "
+                        + result.getInt(3) + "\n";
             } else {
                 query = "SELECT fname, lname FROM customer WHERE custID = ?";
                 pstmt = connection.prepareStatement(query);
                 pstmt.setString(1, customerID);
                 result = pstmt.executeQuery();
                 if (result.next()) {
-                    System.out.printf("%s, %s has not returned any items yet\n", result.getString(1),
+                    output = String.format("%s, %s has not returned any items yet\n", result.getString(1),
                             result.getString(2));
                 } else {
                     System.out.printf("\'%s\' does not exist\n", customerID);
@@ -996,8 +978,10 @@ public class Database {
             pstmt.close();
 
         } catch (SQLException sql) {// catch block
-            sql.printStackTrace(System.out);
+            output = "An Error occured: Something went wrong while searching for returned products of customer\n";
         }
+
+        return output;
 
     }
 
@@ -1009,6 +993,7 @@ public class Database {
      * @param discount
      */
     public String discountedProducts(String categoryName, Double discount) {
+        String output = "";
         try {// try
              // SQL QUERY
             String query = "SELECT p.name as product_name, p.price as price, o.discount as discounts FROM OrderDetails o INNER JOIN Product p ON o.prodID=p.prodID INNER JOIN SubCategory sc ON p.subCatID = sc.subCatID INNER JOIN Category c ON sc.catID=c.catID WHERE o.discount > ? AND c.name = ? ;";
@@ -1018,25 +1003,26 @@ public class Database {
             pstmt.setDouble(1, discount / 100);
             pstmt.setString(2, categoryName);
             ResultSet result = pstmt.executeQuery();// executing query
-            System.out.println(
-                    "\nSearching database discounted items in category \"" + categoryName
-                            + "\" with discount greater than or equal to " + discount + " % : ");
-            System.out.println(
-                    "----------------------------------------------------------------------------------------------------------------");
+
             int n = 0;
             while (result.next()) {
-                System.out.println("\t" + (n + 1) + ") " + result.getString("product_name") +
+                output += "\t" + (++n) + ") " + result.getString("product_name") +
                         String.format("%.2f", result.getDouble("price")) + ", "
-                        + String.format("%.2f", result.getDouble("discounts") * 100) + " % off.");
-                n++;
+                        + String.format("%.2f", result.getDouble("discounts") * 100) + " % off.";
             }
+
+            if (output.equalsIgnoreCase("")) {
+                output = "No category with name \'" + categoryName + "\'\n";
+            }
+
             result.close();
             pstmt.close();
 
             System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
-            sql.printStackTrace(System.out);
+            output = "An Error occured: Something went wrong while searching for discounted products\n";
         }
+        return output;
     }
 
     /**
@@ -1046,6 +1032,7 @@ public class Database {
      * @param orderID
      */
     public String shippingDetails(String orderID) {
+        String output = "";
         try {// try
              // SQL QUERY
             String query = "SELECT p.name AS name, p.price AS price, o.shipMode AS shipMode " +
@@ -1058,32 +1045,34 @@ public class Database {
             pstmt.setString(1, orderID);
 
             ResultSet result = pstmt.executeQuery();// executing query
-            System.out.println("\nSearching database for order with ID \'" + orderID + "\'");
-            System.out
-                    .println("--------------------------------------------------------------------------------------");
+
             int n = 0;
             while (result.next()) {
                 if (n == 0) {
-                    System.out.println("Shipping Mode -" + result.getString("shipMode"));
-
+                    output += "Shipping Mode -" + result.getString("shipMode") + "\n";
                 }
-                System.out.println("\t" + (n + 1) + ") " + result.getString("name"));
-                n++;
+                output += "\t" + (++n) + ") " + result.getString("name") + "\n";
             }
             result.close();
             pstmt.close();
 
+            if (output.equalsIgnoreCase("")) {
+                output = "No order with ID - \'" + orderID + "\'\n";
+            }
+
             System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
-            sql.printStackTrace(System.out);
+            output = "An Error occured: Something went wrong while searching for order details\n";
         }
 
+        return output;
     }
 
     /**
      * Method that will give total sales for each category
      */
     public String salesSummaryByCategory() {
+        String output = "";
         try {// try
              // SQL QUERY
             String query = "SELECT Category.name AS category_name,SUM(OrderDetails.sales) AS total_sales\r\n" + //
@@ -1096,22 +1085,25 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
             ResultSet result = pstmt.executeQuery();// executing query
-            System.out.println("\nSearching database for total sales of each category :");
-            System.out
-                    .println("--------------------------------------------------------------------------------------");
+
             int n = 0;
             while (result.next()) {
-                System.out.println("\t" + (n + 1) + ") " + result.getString("category_name") + " - "
-                        + String.format("%.2f", result.getDouble("total_sales")));
-                n++;
+                output += "\t" + (++n) + ") " + result.getString("category_name") + " - "
+                        + String.format("%.2f", result.getDouble("total_sales")) + "\n";
             }
             result.close();
             pstmt.close();
 
+            if (output.equalsIgnoreCase("")) {
+                output = "No categories in database\n";
+            }
+
             System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
-            sql.printStackTrace(System.out);
+            output = "An Error occured: Something went wrong while searching categories and sales\n";
         }
+
+        return output;
     }
 
     /**
@@ -1120,6 +1112,7 @@ public class Database {
      * along with the total number of products sold in that sub-category.
      */
     public String subCategoryInventory() {
+        String output = "";
         try {// try
              // SQL QUERY
             String query = "SELECT c.name as category, sb.name as subcategory, count(DISTINCT p.prodID) AS num_products, SUM(od.quantity) AS total_quantity_sold "
@@ -1136,26 +1129,27 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
             ResultSet result = pstmt.executeQuery();// executing query
-            System.out.println("\nSearching database for distinct products in each sub category :");
-            System.out
-                    .println("--------------------------------------------------------------------------------------");
+            
             int n = 0;
             while (result.next()) {
-                System.out
-                        .println("\t" + (n + 1) + ") Number of Products:" + result.getInt("num_products")
+                output += "\t" + (++n) + ") Number of Products:" + result.getInt("num_products")
                                 + ", Sub-Category: "
                                 + result.getString("subcategory") + ", Category: "
                                 + result.getString("category") + " Total quantity sold :"
-                                + result.getInt("total_quantity_sold"));
-                n++;
+                        + result.getInt("total_quantity_sold") + "\n";
             }
             result.close();
             pstmt.close();
 
+            if (output.equalsIgnoreCase("")) {
+                output = "No sub-categories found in database\n";
+            }
+
             System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
-            sql.printStackTrace(System.out);
+            output = "An Error occured: Something went wrong while searching sub-categories and sales\n";
         }
+        return output;
     }
 
     /**
@@ -1165,6 +1159,7 @@ public class Database {
      * @param customerID
      */
     public String returnedProducts(String customerID) {
+        String output = "";
         try {// try
              // SQL QUERY
             String query = "SELECT DISTINCT p.name AS prod_name\r\n" + //
@@ -1177,25 +1172,29 @@ public class Database {
 
             pstmt.setString(1, customerID);
             ResultSet result = pstmt.executeQuery();// executing query
-            System.out.println(
-                    "\nSearching database for returned products of customer with customer ID \"" + customerID + "\" :");
-            System.out
-                    .println(
-                            "-------------------------------------------------------------------------------------------");
-            System.out.println("Products returned by customer with customer ID \"" + customerID + "\": ");
+            
             int n = 0;
             while (result.next()) {
-                System.out
-                        .println("\t" + (n + 1) + ")" + result.getString("prod_name"));
-                n++;
+                if (n == 0) {
+                    output += "Products returned by customer with customer ID \"" + customerID + "\": \n";
+                }
+                output += "\t" + (++n) + ")" + result.getString("prod_name") + "\n";
             }
+            
+            if (output.equalsIgnoreCase("")) {
+                output = String.format("%s, %s has not returned any items yet\n", result.getString(1),
+                        result.getString(2));
+            }
+
             result.close();
             pstmt.close();
 
             System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
-            sql.printStackTrace(System.out);
+            output = "An Error occured: Something went wrong while searching for returned products\n";
         }
+
+        return output;
     }
 
     /**
