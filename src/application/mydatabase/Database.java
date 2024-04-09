@@ -73,11 +73,6 @@ public class Database {
             response = createAllTables();
             if (response == null) {
                 response = readInputData();
-                if (response != null) {
-                    dropAllTables();
-                }
-            } else {
-                dropAllTables();
             }
         }
         
@@ -181,11 +176,11 @@ public class Database {
         } catch(SQLException se){
             response = se.getMessage();
             response += "\n\tErasing the whole database";
-        } catch (FileNotFoundException fnf) {
-            response = fnf.getMessage();
-            response += "\n\tErasing the whole database";
+            dropAllTables();
         } catch (IOException io) {
-            
+            response = io.getMessage();
+            response += "\n\tErasing the whole database";
+            dropAllTables();
         }
 
         return response;
