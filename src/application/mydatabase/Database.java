@@ -869,7 +869,7 @@ public class Database {
             // Printing the results of query
             while (result.next()) {
 
-                output += "\t" + (n + 1) + ") " + "Country: " + result.getString(1) + " \n\tNumber of Stores: "
+                output += "\t" + (n + 1) + ") " + "Country: " + result.getString(1) + " \n\t\tNumber of Stores: "
                         + result.getString(2)
                         + ", Total Profit: "
                         + result.getInt(3) + "\n";
