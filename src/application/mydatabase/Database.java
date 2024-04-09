@@ -903,7 +903,6 @@ public class Database {
         try {// try
              // SQL QUERY
             String query = "SELECT con.name AS CountryName, c.name AS CategoryName, s.storeID, COUNT(p.prodID) AS total_products "
-
                     + "FROM Country con JOIN Address a ON con.countryCode = a.countryCode " +
                     "JOIN Store s ON a.addressID = s.addressID JOIN Inventory inv ON s.storeID = inv.storeID " +
                     "JOIN Product p ON inv.prodID = p.prodID JOIN SubCategory sb ON p.subCatID = sb.subCatID " +
@@ -917,7 +916,6 @@ public class Database {
                     "JOIN SubCategory sb_inner ON p_inner.subCatID = sb_inner.subCatID " +
                     "JOIN Category c_inner ON sb_inner.catID = c_inner.catID " +
                     "WHERE c_inner.name = c.name AND con_inner.name = con.name " +
-
                     "GROUP BY c_inner.catID, s_inner.storeID ORDER BY COUNT(p_inner.prodID) DESC ) " +
                     "ORDER BY total_products DESC, s.storeID ASC;";
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
