@@ -417,7 +417,7 @@ public class App {
         System.out.println(
                 "\tspc <country limit> - Stores and Profit by Country\n");
         System.out.println(
-                "\ttp <country code> - Top Product Holders by Category");
+                "\ttp <country code> - Top Product Holders by Category\n");
         System.out.println(
                 "\trc <customerID>  - Customer Returned Item Count Analysis\n");
         System.out.println(
