@@ -407,42 +407,46 @@ public class App {
      */
     private static void displayMenu() {
         System.out.println(
-                "\tgcID <part of the name of customer> - Gets the Name of all the customer with 'part of the name of the customer' int their name");
+                "\tgcID <part of the name of customer> - Gets the Name of all the customer with 'part of the name of the customer' int their name\n");
         System.out.println(
-                "\tsc - Show all the Countries along with their Country Code");
+                "\tsc - Show all the Countries along with their Country Code\n");
         System.out.println(
-                "\tsRegions - Show all the Regions");
+                "\tsRegions - Show all the Regions\n");
         System.out.println(
-                "\tscategories - Show all the Categories");
+                "\tscategories - Show all the Categories\n");
         System.out.println(
-                "\tsSubCategories - Show all the Sub-Categories along with their Category");
+                "\tsSubCategories - Show all the Sub-Categories along with their Category\n");
         System.out.println(
-                "\tspc <country limit> - Stores and Profit by Country");
+                "\tspc <country limit> - Stores and Profit by Country\n");
         System.out.println(
+<<<<<<< HEAD
                 "\ttp <country code> - Top Product Holders by Category");
+=======
+                "\ttopproducts <country code> - Top Product Holders by Category\n");
+>>>>>>> e99254ec4363954c8dc5a3eea258663468cd8368
         System.out.println(
-                "\trc <customerID>  - Customer Returned Item Count Analysis");
+                "\trc <customerID>  - Customer Returned Item Count Analysis\n");
         System.out.println(
-                "\tdp <category name> <minimum discount> - Discounted Products in Specific Category");
+                "\tdp <category name> <minimum discount> - Discounted Products in Specific Category\n");
         System.out.println(
-                "\tsd <orderID> - Shipping Details for Ordered Products");
+                "\tsd <orderID> - Shipping Details for Ordered Products\n");
         System.out.println(
-                "\tss - Category Sales Summary");
+                "\tss - Category Sales Summary\n");
         System.out.println(
-                "\tsubcp - Sub-Category Product Inventory and Sales Overview");
+                "\tsubcp - Sub-Category Product Inventory and Sales Overview\n");
         System.out.println(
-                "\trp <custID> - Products Returned by Customer");
+                "\trp <custID> - Products Returned by Customer\n");
         System.out.println(
-                "\trpr <region> - Product Returns by Region");
+                "\trpr <region> - Product Returns by Region\n");
         System.out.println(
-                "\tavgp <categoryID> - Average Product Price in Category");
+                "\tavgp <categoryID> - Average Product Price in Category\n");
         System.out.println(
-                "\texceed <numProducts>- Order Shipping Mode Details for Orders Exceeding 7 Items");
+                "\texceed <numProducts>- Order Shipping Mode Details for Orders Exceeding X Items\n");
         System.out.println(
-                "\tlra <country limit> - Country-wise Largest Returned Order Amount");
-        System.out.println("\ti - Initialize the database");
-        System.out.println("\tm - Display the Menu.");
-        System.out.println("\te - Exit the system.");
+                "\tlra <country limit> - Country-wise Largest Returned Order Amount\n");
+        System.out.println("\ti - Initialize the database\n");
+        System.out.println("\tm - Display the Menu.\n");
+        System.out.println("\te - Exit the system.\n");
 
     }
 
