@@ -30,144 +30,150 @@ public class App {
         System.out.println("Welcome to Store Management!");// label
 
         System.out.print("To get started, ENTER 'm' for Menu: ");
-        String command = consoleIn.nextLine();
+        String cmd = nextNonEmptyLine(consoleIn, "To get started, ENTER 'm' for Menu: ");
+
         String[] parts;
-        // String arg = "";
         boolean cont = true;
+        String message;
 
         while (cont) {
-            parts = command.split("\\s+");
-            // if (command.indexOf(" ") > 0)
-            // arg = command.substring(command.indexOf(" ")).trim();
-
-            if (parts[0].equalsIgnoreCase("m"))
-                displayMenu();
-            else if (parts[0].equalsIgnoreCase("spc")) {
-                if (parts.length >= 2) {
-                    try {
-                        int limit = Integer.parseInt(parts[1]);
-                        db.storeProfitByCountry(limit);
-                    } catch (NumberFormatException nfe) {
-                        System.out.println("Limit must be an integer.");
-                    }
-                } else {
-                    System.out.println("Require an argument for this command");
-                }
-            }
-
-            else if (parts[0].equalsIgnoreCase("topproducts")) {
-                if (parts.length >= 2) {
-                    db.topProducts(parts[1]);
-                } else {
-                    System.out.println("Require an argument for this command");
-                }
-            }
-
-            else if (parts[0].equalsIgnoreCase("rc")) {
-                if (parts.length >= 2) {
-                    db.returnedItemCount(parts[1]);
-                } else {
-                    System.out.println("Require an argument for this command");
-                }
-            }
-
-            else if (parts[0].equals("dp")) {
-                if (parts.length >= 4) {
-                    System.out.println(parts[3]);
-                    db.discountedProducts(parts[1] + " " + parts[2], Double.parseDouble(parts[3]));
-                } else if (parts.length == 3) {
-                    db.discountedProducts(parts[1], Double.parseDouble(parts[2]));
-                } else {
-                    System.out.println("Require an argument for this command");
-                }
-            }
-
-            else if (parts[0].equalsIgnoreCase("sd")) {
-                if (parts.length >= 2)
-                    db.shippingDetails(parts[1]);
-                else
-                    System.out.println("Require an argument for this command");
-            }
-
-            else if (parts[0].equalsIgnoreCase("ss")) {
-                db.salesSummaryByCategory();
-            }
-
-            else if (parts[0].equalsIgnoreCase("subcp")) {
-                db.subCategoryInventory();
-            }
-
-            else if (parts[0].equalsIgnoreCase("rp")) {
-                if (parts.length >= 2) {
-                    db.returnedProducts(parts[1]);
-                } else {
-                    System.out.println("Require an argument for this command");
-                }
-            } else if (parts[0].equalsIgnoreCase("rpr")) {
-                if (parts.length >= 2) {
-                    db.returnedByRegion(parts[1]);
-                } else {
-                    System.out.println("Require an argument for this command");
-                }
-            } else if (parts[0].equalsIgnoreCase("avgp")) {
-                if (parts.length >= 2) {
-                    db.averagePrice(parts[1]);
-                } else {
-                    System.out.println("Require an argument for this command");
-                }
-            } else if (parts[0].equalsIgnoreCase("exceed")) {
-                if (parts.length >= 2) {
-                    db.exceedXShipMode(Integer.parseInt(parts[3]));
-                } else {
-                    System.out.println("Require an argument for this command");
-                }
-            } else if (parts[0].equalsIgnoreCase("lra")) {
-                if (parts.length >= 2) {
-                    db.largestReturnedAmount(Integer.parseInt(parts[1]));
-                } else {
-                    System.out.println("Require an argument for this command");
-                }
-            } else if (parts[0].equalsIgnoreCase("sc")) {
-                db.showCountries();
-
-            } else if (parts[0].equalsIgnoreCase("gcID")) {
-                if (parts.length >= 2) {
-                    db.showPeople(parts[1]);
-                } else {
-                    System.out.println("Require an argument for this command");
-                }
-
-            } else if (parts[0].equalsIgnoreCase("scategories")) {
-                db.showCategories();
-            } else if (parts[0].equals("sSubCategories")) {
-                if (parts.length >= 3) {
-                    db.showSubCategories(parts[1] + " " + parts[2]);
-                } else if (parts.length == 2) {
-                    db.showSubCategories(parts[1]);
-                } else {
-                    System.out.println("Require an argument for this command");
-                }
-            } else if (parts[0].equals("sRegions")) {
-                db.showRegions();
-            } else if (parts[0].equalsIgnoreCase("i")) {
-                String message = db.initializeDatabase();
-                if (message != null) {
-                    System.out.println(message);
-                    cont = false;
-                }
-            } else {
-                System.out.println("Enter 'm' for Menu, else Enter your choice:");
-            }
-
-            if (cont) {
-                System.out.print("Choice >> ");
-                command = consoleIn.nextLine();
-                cont = command != null && !command.equalsIgnoreCase("e");
-            }
+            processCommand(db, cmd);
+            cmd = nextNonEmptyLine(consoleIn, "Choice >> ");
+            cont = cmd != null && !cmd.equalsIgnoreCase("e");
         }
 
         System.out.println("\nExiting Store Management interface. Have a great day!\n");
         consoleIn.close();
+
+    }
+    
+    private static void processCommand(Database db, String cmd){
+        String[] parts = cmd.split("\\s+");
+        // if (command.indexOf(" ") > 0)
+        // arg = command.substring(command.indexOf(" ")).trim();
+
+        if (parts[0].equalsIgnoreCase("m"))
+            displayMenu();
+        else if (parts[0].equalsIgnoreCase("spc")) {
+            if (parts.length >= 2) {
+                try {
+                    int limit = Integer.parseInt(parts[1]);
+                    db.storeProfitByCountry(limit);
+                } catch (NumberFormatException nfe) {
+                    System.out.println("Limit must be an integer.");
+                }
+            } else {
+                System.out.println("Require an argument for this command");
+            }
+        }
+
+        else if (parts[0].equalsIgnoreCase("topproducts")) {
+            if (parts.length >= 2) {
+                db.topProducts(parts[1]);
+            } else {
+                System.out.println("Require an argument for this command");
+            }
+        }
+
+        else if (parts[0].equalsIgnoreCase("rc")) {
+            if (parts.length >= 2) {
+                db.returnedItemCount(parts[1]);
+            } else {
+                System.out.println("Require an argument for this command");
+            }
+        }
+
+        else if (parts[0].equals("dp")) {
+            if (parts.length >= 4) {
+                System.out.println(parts[3]);
+                db.discountedProducts(parts[1] + " " + parts[2], Double.parseDouble(parts[3]));
+            } else if (parts.length == 3) {
+                db.discountedProducts(parts[1], Double.parseDouble(parts[2]));
+            } else {
+                System.out.println("Require an argument for this command");
+            }
+        }
+
+        else if (parts[0].equalsIgnoreCase("sd")) {
+            if (parts.length >= 2)
+                db.shippingDetails(parts[1]);
+            else
+                System.out.println("Require an argument for this command");
+        }
+
+        else if (parts[0].equalsIgnoreCase("ss")) {
+            db.salesSummaryByCategory();
+        }
+
+        else if (parts[0].equalsIgnoreCase("subcp")) {
+            db.subCategoryInventory();
+        }
+
+        else if (parts[0].equalsIgnoreCase("rp")) {
+            if (parts.length >= 2) {
+                db.returnedProducts(parts[1]);
+            } else {
+                System.out.println("Require an argument for this command");
+            }
+        } else if (parts[0].equalsIgnoreCase("rpr")) {
+            if (parts.length >= 2) {
+                db.returnedByRegion(parts[1]);
+            } else {
+                System.out.println("Require an argument for this command");
+            }
+        } else if (parts[0].equalsIgnoreCase("avgp")) {
+            if (parts.length >= 2) {
+                db.averagePrice(parts[1]);
+            } else {
+                System.out.println("Require an argument for this command");
+            }
+        } else if (parts[0].equalsIgnoreCase("exceed")) {
+            if (parts.length >= 2) {
+                db.exceedXShipMode(Integer.parseInt(parts[3]));
+            } else {
+                System.out.println("Require an argument for this command");
+            }
+        } else if (parts[0].equalsIgnoreCase("lra")) {
+            if (parts.length >= 2) {
+                db.largestReturnedAmount(Integer.parseInt(parts[1]));
+            } else {
+                System.out.println("Require an argument for this command");
+            }
+        } else if (parts[0].equalsIgnoreCase("sc")) {
+            db.showCountries();
+
+        } else if (parts[0].equalsIgnoreCase("gcID")) {
+            if (parts.length >= 2) {
+                System.out.println("Searching the database for people with \"" + parts[1] + "\" in their name");
+                System.out.println(
+                        "------------------------------------------------------------------------------");
+                System.out.println("List of available people:");
+                String message = db.showPeople(parts[1]);
+                System.out.println(message);
+            } else {
+                System.out.println("Require an argument for this command");
+            }
+
+        } else if (parts[0].equalsIgnoreCase("scategories")) {
+            db.showCategories();
+        } else if (parts[0].equals("sSubCategories")) {
+            if (parts.length >= 3) {
+                db.showSubCategories(parts[1] + " " + parts[2]);
+            } else if (parts.length == 2) {
+                db.showSubCategories(parts[1]);
+            } else {
+                System.out.println("Require an argument for this command");
+            }
+        } else if (parts[0].equals("sRegions")) {
+            db.showRegions();
+        } else if (parts[0].equalsIgnoreCase("i")) {
+            String message = db.initializeDatabase();
+            if (message != null) {
+                System.out.println(message);
+            }
+        } else {
+            System.out.println("Invalid choice. Enter 'm' for Menu");
+        }
 
     }
 
@@ -213,5 +219,24 @@ public class App {
         System.out.println("\tm - Display the Menu.");
         System.out.println("\te - Exit the system.");
 
+    }
+
+    /**
+     * Helper method for Scanner to skip over empty lines.
+     * Print the prompt on each line of input.
+     */
+    private static String nextNonEmptyLine(Scanner in, String prompt) {
+        String line = null;
+
+        System.out.print(prompt);
+        while (line == null && in.hasNextLine()) {
+            line = in.nextLine();
+            if (line.trim().length() == 0) {
+                line = null;
+                System.out.print(prompt);
+            }
+        }
+
+        return line;
     }
 }

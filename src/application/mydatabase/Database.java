@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
+
 public class Database {
     private Connection connection;
     private static final String regex = ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)";
@@ -52,7 +53,7 @@ public class Database {
                     + "encrypt=false;trustServerCertificate=false;loginTimeout=30;";
 
             this.connection = DriverManager.getConnection(url);
-            
+
         } catch (FileNotFoundException fnf) {
             response = "\nAn error occurred: config file not found.";
         } catch (IOException io) {
@@ -75,43 +76,43 @@ public class Database {
                 response = readInputData();
             }
         }
-        
+
         return response;
     }
 
     private String createAllTables() {
         String response = null;
-        try{
+        try {
             this.connection.createStatement().executeUpdate("CREATE TABLE Customer("
                     + "custID VARCHAR(24) PRIMARY KEY,"
                     + "fname VARCHAR(MAX) NOT NULL,"
                     + "lname VARCHAR(MAX) NOT NULL)");
-    
+
             this.connection.createStatement().executeUpdate("CREATE TABLE Manager("
                     + "managerID INTEGER PRIMARY KEY,"
                     + "fname VARCHAR(MAX) NOT NULL,"
                     + "lname VARCHAR(MAX) NOT NULL)");
-    
+
             this.connection.createStatement().executeUpdate("CREATE TABLE Region("
                     + "regionID INTEGER PRIMARY KEY,"
                     + "regionName VARCHAR(MAX),"
                     + "managerID INTEGER REFERENCES Manager(managerID))");
-    
+
             this.connection.createStatement().executeUpdate("CREATE TABLE Country("
                     + "countryCode VARCHAR(24) PRIMARY KEY,"
                     + "name VARCHAR(MAX) NOT NULL)");
-    
+
             this.connection.createStatement().executeUpdate("CREATE TABLE Address("
                     + "addressID INTEGER PRIMARY KEY,"
                     + "city VARCHAR(MAX) NOT NULL,"
                     + "state VARCHAR(MAX) NOT NULL,"
                     + "countryCode VARCHAR(24) REFERENCES Country(countryCode))");
-    
+
             this.connection.createStatement().executeUpdate("CREATE TABLE Store("
                     + "storeID INTEGER PRIMARY KEY,"
                     + "addressID INTEGER REFERENCES Address(addressID),"
                     + "regionID INTEGER REFERENCES Region(regionID))");
-    
+
             this.connection.createStatement().executeUpdate("CREATE TABLE \"order\"("
                     + "orderID VARCHAR(24) PRIMARY KEY,"
                     + "orderDate DATE NOT NULL,"
@@ -121,22 +122,22 @@ public class Database {
                     + "custID VARCHAR(24) FOREIGN KEY REFERENCES customer(custID),"
                     + "storeID INTEGER FOREIGN KEY REFERENCES Store(storeID),"
                     + "isReturned INT)");
-    
+
             this.connection.createStatement().executeUpdate("CREATE TABLE Category("
                     + "catID INTEGER PRIMARY KEY,"
                     + "name VARCHAR(MAX))");
-    
+
             this.connection.createStatement().executeUpdate("CREATE TABLE SubCategory("
                     + "subCatID VARCHAR(24) PRIMARY KEY,"
                     + "name VARCHAR(MAX),"
                     + "catID INTEGER REFERENCES Category(catID))");
-    
+
             this.connection.createStatement().executeUpdate("CREATE TABLE Product("
                     + "prodID VARCHAR(24) PRIMARY KEY,"
                     + "name VARCHAR(MAX),"
                     + "price FLOAT NOT NULL,"
                     + "subCatID VARCHAR(24) REFERENCES SubCategory(subCatID))");
-    
+
             this.connection.createStatement().executeUpdate("CREATE TABLE OrderDetails("
                     + "odID INT PRIMARY KEY IDENTITY(1,1),"
                     + "orderID VARCHAR(24) FOREIGN KEY REFERENCES \"order\"(orderID) NOT NULL, "
@@ -160,7 +161,7 @@ public class Database {
     private String readInputData() {
         String response = null;
 
-        try{
+        try {
             insertIntoCustomer();
             insertIntoManager();
             insertIntoRegion();
@@ -173,7 +174,7 @@ public class Database {
             insertIntoProduct();
             insertIntoInventory();
             insertIntoOrderDetails();
-        } catch(SQLException se){
+        } catch (SQLException se) {
             response = se.getMessage();
             response += "\n\tErasing the whole database";
             dropAllTables();
@@ -496,19 +497,19 @@ public class Database {
             throw new SQLException("An Error occured: Cannot insert into order table");
         } catch (ParseException pe) {
             throw new IOException("An Error occured: Invalid Date format in order.csv");
-        }   
+        }
     }
 
     private void insertIntoOrderDetails() throws SQLException, IOException {
-        try{
+        try {
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/order-details.csv"));
             PreparedStatement pstmt;
             String inputLine;
             String sql;
             String[] inputArr;
-    
+
             br.readLine(); // leaving the headers
-    
+
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
                 sql = String.format("insert into orderdetails values(\'%s\', \'%s\', %f, %d, %f, %f)",
@@ -530,15 +531,15 @@ public class Database {
     }
 
     private void insertIntoInventory() throws SQLException, IOException {
-        try{
+        try {
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/inventory.csv"));
             PreparedStatement pstmt;
             String inputLine;
             String sql;
             String[] inputArr;
-    
+
             br.readLine(); // leaving the headers
-    
+
             while ((inputLine = br.readLine()) != null) {
                 inputArr = inputLine.split(regex);
                 sql = String.format("insert into inventory values(\'%s\', %d)",
@@ -604,7 +605,8 @@ public class Database {
         return response;
     }
 
-    public void showPeople(String partOfName) {
+    public String showPeople(String partOfName) {
+        String output = "";
         try {// try
              // SQL QUERY
             String query = "SELECT c.fname as First, c.lname as Last, c.custID as custID " +
@@ -615,27 +617,28 @@ public class Database {
             pstmt.setString(1, "%" + partOfName + "%");
             pstmt.setString(2, "%" + partOfName + "%");
             ResultSet result = pstmt.executeQuery();// executing query
-            System.out.println("Searching the database for people with \"" + partOfName + "\" in their name");
-            System.out.println(
-                    "------------------------------------------------------------------------------");
-            System.out.println("List of available people:");
+            
             int n = 1;
             // Printing the results of query
             while (result.next()) {
-                System.out.print("\t" + n + ") ");
-                System.out.println(
-                        result.getString("First") + " " + result.getString("Last") + " - "
-                                + result.getString("Last"));
-                n++;
+                output += "\t" + (n++) + ") " + result.getString("First") + " "
+                        + result.getString("Last") + " - "
+                        + result.getString("Last") + "\n";
             }
+
+            if (output.equalsIgnoreCase("")) {
+                output = "No people containing \'" + partOfName + "\' in their name\n";
+             }
+
             result.close();
             pstmt.close();
 
-            System.out.println("Query executed!");
         } catch (SQLException sql) {// catch block
-            sql.printStackTrace(System.out);
+            // sql.printStackTrace(System.out);
+            output = null;
         }
 
+        return output;
     }
 
     public void showCountries() {
