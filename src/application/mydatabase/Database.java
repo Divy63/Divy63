@@ -1404,6 +1404,7 @@ public class Database {
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching for max returned amount\n";
         }
+        return output;
     }
 
 }
