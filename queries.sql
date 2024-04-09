@@ -55,10 +55,15 @@ FROM OrderDetails od
 GROUP BY od.orderID
 ORDER BY order_total DESC;
 
-SELECT * 
-FROM [order] o 
-join OrderDetails od on o.orderID = od.orderID
-join Product p on od.prodID = p.prodID
+SELECT *
+FROM [order] o
+    join OrderDetails od on o.orderID = od.orderID
+    join Product p on od.prodID = p.prodID
 where o.orderID = 'CA-2022-140151'
 
 
+SELECT o.shipMode as ship_mode, AVG(DATEDIFF(day,1900-01-01,o.shipDate) - DATEDIFF(day,1900-01-01,o.orderDate)) AS avg_days_to_ship
+FROM [order] o
+    JOIN OrderDetails od ON o.orderID = od.orderID
+GROUP BY o.shipMode
+HAVING SUM(od.quantity) > 7
