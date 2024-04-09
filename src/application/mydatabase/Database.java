@@ -965,11 +965,6 @@ public class Database {
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setString(1, customerID);
-            System.out.println(
-                    "\nSearching database for number of items returned by customer with id \'" + customerID + "\'");
-            System.out
-                    .println(
-                            "--------------------------------------------------------------------------------------");
             ResultSet result = pstmt.executeQuery();// executing query
 
 
