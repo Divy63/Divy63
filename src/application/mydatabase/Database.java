@@ -1341,7 +1341,7 @@ public class Database {
 
                 // Printing the results of query
                 output += "Category:\n\t" + result.getString("name") + " - "
-                        + String.format("%.2f", result.getDouble("averagePrice")) + "\n";
+                        + String.format("$%.2f", result.getDouble("averagePrice")) + "\n";
             }
             if (output.equalsIgnoreCase("")) {
                 output = String.format("Average price not found for category.\n");
@@ -1429,8 +1429,7 @@ public class Database {
 
                 output += "\t" + (++n) + ") " + result.getString(1) + ", "
                         + result.getString(3) + ", " + result.getString(2) + " - " + result.getString(4) + ", "
-                        + result.getString(5) + ", $" + result.getDouble(6)
-                        + "\n";
+                        + result.getString(5) + String.format("$%.2f\n", result.getDouble(6));
             }
 
             if (output.equalsIgnoreCase("")) {
