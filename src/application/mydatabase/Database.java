@@ -1162,10 +1162,10 @@ public class Database {
 
             int n = 0;
             while (result.next()) {
-                output += "\t" + (++n) + ") #Products:" + result.getInt("num_products")
+                output += "\t" + (++n) + ") #Products: " + result.getInt("num_products")
                         + ", "
                         + result.getString("subcategory") + ", "
-                        + result.getString("category") + " #Sold :"
+                        + result.getString("category") + " #Sold: "
                         + result.getInt("total_quantity_sold") + "\n";
             }
             result.close();
