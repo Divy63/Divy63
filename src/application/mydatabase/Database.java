@@ -81,94 +81,13 @@ public class Database {
         response = dropAllTables();
 
         if (response == null) {
-            response = createAllTables();
-            if (response == null) {
-                response = readInputData();
-            }
+                response = createAllTables();
         }
 
         return response;
     }
 
     private String createAllTables() {
-        String response = null;
-        try {
-            this.connection.createStatement().executeUpdate("CREATE TABLE Customer("
-                    + "custID VARCHAR(24) PRIMARY KEY,"
-                    + "fname VARCHAR(MAX) NOT NULL,"
-                    + "lname VARCHAR(MAX) NOT NULL)");
-
-            this.connection.createStatement().executeUpdate("CREATE TABLE Manager("
-                    + "managerID INTEGER PRIMARY KEY,"
-                    + "fname VARCHAR(MAX) NOT NULL,"
-                    + "lname VARCHAR(MAX) NOT NULL)");
-
-            this.connection.createStatement().executeUpdate("CREATE TABLE Region("
-                    + "regionID INTEGER PRIMARY KEY,"
-                    + "regionName VARCHAR(MAX),"
-                    + "managerID INTEGER REFERENCES Manager(managerID))");
-
-            this.connection.createStatement().executeUpdate("CREATE TABLE Country("
-                    + "countryCode VARCHAR(24) PRIMARY KEY,"
-                    + "name VARCHAR(MAX) NOT NULL)");
-
-            this.connection.createStatement().executeUpdate("CREATE TABLE Address("
-                    + "addressID INTEGER PRIMARY KEY,"
-                    + "city VARCHAR(MAX) NOT NULL,"
-                    + "state VARCHAR(MAX) NOT NULL,"
-                    + "countryCode VARCHAR(24) REFERENCES Country(countryCode))");
-
-            this.connection.createStatement().executeUpdate("CREATE TABLE Store("
-                    + "storeID INTEGER PRIMARY KEY,"
-                    + "addressID INTEGER REFERENCES Address(addressID),"
-                    + "regionID INTEGER REFERENCES Region(regionID))");
-
-            this.connection.createStatement().executeUpdate("CREATE TABLE \"order\"("
-                    + "orderID VARCHAR(24) PRIMARY KEY,"
-                    + "orderDate DATE NOT NULL,"
-                    + "shipDate DATE NOT NULL,"
-                    + "shipMode VARCHAR(24) NOT NULL,"
-                    + "segement VARCHAR(MAX),"
-                    + "custID VARCHAR(24) FOREIGN KEY REFERENCES customer(custID),"
-                    + "storeID INTEGER FOREIGN KEY REFERENCES Store(storeID),"
-                    + "isReturned INT)");
-
-            this.connection.createStatement().executeUpdate("CREATE TABLE Category("
-                    + "catID INTEGER PRIMARY KEY,"
-                    + "name VARCHAR(MAX))");
-
-            this.connection.createStatement().executeUpdate("CREATE TABLE SubCategory("
-                    + "subCatID VARCHAR(24) PRIMARY KEY,"
-                    + "name VARCHAR(MAX),"
-                    + "catID INTEGER REFERENCES Category(catID))");
-
-            this.connection.createStatement().executeUpdate("CREATE TABLE Product("
-                    + "prodID VARCHAR(24) PRIMARY KEY,"
-                    + "name VARCHAR(MAX),"
-                    + "price FLOAT NOT NULL,"
-                    + "subCatID VARCHAR(24) REFERENCES SubCategory(subCatID))");
-
-            this.connection.createStatement().executeUpdate("CREATE TABLE OrderDetails("
-                    + "odID INT PRIMARY KEY IDENTITY(1,1),"
-                    + "orderID VARCHAR(24) FOREIGN KEY REFERENCES \"order\"(orderID) NOT NULL, "
-                    + "prodID VARCHAR(24) FOREIGN KEY REFERENCES Product(prodID) NOT NULL,"
-                    + "sales FLOAT  NOT NULL,"
-                    + "quantity INT  NOT NULL,"
-                    + "discount FLOAT DEFAULT 0,"
-                    + "profit FLOAT);");
-            this.connection.createStatement().executeUpdate("CREATE TABLE Inventory("
-                    + "prodID VARCHAR(24) FOREIGN KEY REFERENCES Product(prodID),"
-                    + "storeID INTEGER FOREIGN KEY REFERENCES store(storeID),"
-                    + "PRIMARY KEY(storeID,prodID));");
-        } catch (SQLException se) {
-            dropAllTables();
-            response = "An error occured: Not able to create tables\n\tErasing the whole database";
-        }
-
-        return response;
-    }
-
-    private String readInputData() {
         String response = null;
 
         try {
@@ -178,10 +97,10 @@ public class Database {
             insertIntoCountry();
             insertIntoAddress();
             insertIntoStore();
-            insertIntoOrder();
             insertIntoCat();
             insertIntoSubCat();
             insertIntoProduct();
+            insertIntoOrder();
             insertIntoInventory();
             insertIntoOrderDetails();
         } catch (SQLException se) {
@@ -206,6 +125,11 @@ public class Database {
      */
     private void insertIntoCustomer() throws SQLException, IOException {
         try {
+            this.connection.createStatement().executeUpdate("CREATE TABLE Customer("
+                    + "custID VARCHAR(24) PRIMARY KEY,"
+                    + "fname VARCHAR(MAX) NOT NULL,"
+                    + "lname VARCHAR(MAX) NOT NULL)");
+            
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/customers.csv"));
             PreparedStatement pstmt;
             String inputLine;
@@ -247,6 +171,12 @@ public class Database {
      */
     private void insertIntoProduct() throws SQLException, IOException {
         try {
+            this.connection.createStatement().executeUpdate("CREATE TABLE Product("
+                    + "prodID VARCHAR(24) PRIMARY KEY,"
+                    + "name VARCHAR(MAX),"
+                    + "price FLOAT NOT NULL,"
+                    + "subCatID VARCHAR(24) REFERENCES SubCategory(subCatID))");
+
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/products.csv"));
             PreparedStatement pstmt;
             String inputLine;
@@ -288,6 +218,11 @@ public class Database {
      */
     private void insertIntoSubCat() throws SQLException, IOException {
         try {
+            this.connection.createStatement().executeUpdate("CREATE TABLE SubCategory("
+                    + "subCatID VARCHAR(24) PRIMARY KEY,"
+                    + "name VARCHAR(MAX),"
+                    + "catID INTEGER REFERENCES Category(catID))");
+
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/sub-category.csv"));
             PreparedStatement pstmt;
             String inputLine;
@@ -322,6 +257,10 @@ public class Database {
      */
     private void insertIntoCat() throws SQLException, IOException {
         try {
+            this.connection.createStatement().executeUpdate("CREATE TABLE Category("
+                    + "catID INTEGER PRIMARY KEY,"
+                    + "name VARCHAR(MAX))");
+
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/category.csv"));
             PreparedStatement pstmt;
             String inputLine;
@@ -356,6 +295,11 @@ public class Database {
      */
     private void insertIntoStore() throws SQLException, IOException {
         try {
+            this.connection.createStatement().executeUpdate("CREATE TABLE Store("
+                    + "storeID INTEGER PRIMARY KEY,"
+                    + "addressID INTEGER REFERENCES Address(addressID),"
+                    + "regionID INTEGER REFERENCES Region(regionID))");
+
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/stores.csv"));
             PreparedStatement pstmt;
             String inputLine;
@@ -391,6 +335,11 @@ public class Database {
      */
     private void insertIntoRegion() throws SQLException, IOException {
         try {
+            this.connection.createStatement().executeUpdate("CREATE TABLE Region("
+                    + "regionID INTEGER PRIMARY KEY,"
+                    + "regionName VARCHAR(MAX),"
+                    + "managerID INTEGER REFERENCES Manager(managerID))");
+
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/region.csv"));
             PreparedStatement pstmt;
             String inputLine;
@@ -424,6 +373,11 @@ public class Database {
      */
     private void insertIntoManager() throws SQLException, IOException {
         try {
+            this.connection.createStatement().executeUpdate("CREATE TABLE Manager("
+                    + "managerID INTEGER PRIMARY KEY,"
+                    + "fname VARCHAR(MAX) NOT NULL,"
+                    + "lname VARCHAR(MAX) NOT NULL)");
+            
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/manager.csv"));
             PreparedStatement pstmt;
             String inputLine;
@@ -459,6 +413,10 @@ public class Database {
      */
     private void insertIntoCountry() throws SQLException, IOException {
         try {
+            this.connection.createStatement().executeUpdate("CREATE TABLE Country("
+                    + "countryCode VARCHAR(24) PRIMARY KEY,"
+                    + "name VARCHAR(MAX) NOT NULL)");
+
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/countries.csv"));
             PreparedStatement pstmt;
             String inputLine;
@@ -494,6 +452,12 @@ public class Database {
      */
     private void insertIntoAddress() throws SQLException, IOException {
         try {
+            this.connection.createStatement().executeUpdate("CREATE TABLE Address("
+                    + "addressID INTEGER PRIMARY KEY,"
+                    + "city VARCHAR(MAX) NOT NULL,"
+                    + "state VARCHAR(MAX) NOT NULL,"
+                    + "countryCode VARCHAR(24) REFERENCES Country(countryCode))");
+
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/address.csv"));
             PreparedStatement pstmt;
             String inputLine;
@@ -533,7 +497,16 @@ public class Database {
      */
     private void insertIntoOrder() throws SQLException, IOException {
         try {
-
+            this.connection.createStatement().executeUpdate("CREATE TABLE \"order\"("
+                    + "orderID VARCHAR(24) PRIMARY KEY,"
+                    + "orderDate DATE NOT NULL,"
+                    + "shipDate DATE NOT NULL,"
+                    + "shipMode VARCHAR(24) NOT NULL,"
+                    + "segement VARCHAR(MAX),"
+                    + "custID VARCHAR(24) FOREIGN KEY REFERENCES customer(custID),"
+                    + "storeID INTEGER FOREIGN KEY REFERENCES Store(storeID),"
+                    + "isReturned INT)");
+            
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/orders.csv"));
             PreparedStatement pstmt;
             String inputLine;
@@ -582,6 +555,16 @@ public class Database {
      */
     private void insertIntoOrderDetails() throws SQLException, IOException {
         try {
+            this.connection.createStatement().executeUpdate("CREATE TABLE OrderDetails("
+                    + "odID INT PRIMARY KEY IDENTITY(1,1),"
+                    + "orderID VARCHAR(24) FOREIGN KEY REFERENCES \"order\"(orderID) NOT NULL, "
+                    + "prodID VARCHAR(24) FOREIGN KEY REFERENCES Product(prodID) NOT NULL,"
+                    + "sales FLOAT  NOT NULL,"
+                    + "quantity INT  NOT NULL,"
+                    + "discount FLOAT DEFAULT 0,"
+                    + "profit FLOAT);");
+            
+
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/order-details.csv"));
             PreparedStatement pstmt;
             String inputLine;
@@ -618,6 +601,13 @@ public class Database {
      */
     private void insertIntoInventory() throws SQLException, IOException {
         try {
+            this.connection.createStatement().executeUpdate("CREATE TABLE Inventory("
+                    + "prodID VARCHAR(24) FOREIGN KEY REFERENCES Product(prodID),"
+                    + "storeID INTEGER FOREIGN KEY REFERENCES store(storeID),"
+                    + "PRIMARY KEY(storeID,prodID));");
+
+            
+            
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/inventory.csv"));
             PreparedStatement pstmt;
             String inputLine;
@@ -754,7 +744,6 @@ public class Database {
             pstmt.close();
 
         } catch (SQLException sql) {// catch block
-            // sql.printStackTrace(System.out);
             output = "An Error occured: Something went wrong while searching for people\n";
         }
 
@@ -971,7 +960,6 @@ public class Database {
             output += "\nQuery executed.\n" + n + " records found.\n";
 
         } catch (SQLException sql) {// catch block
-            sql.printStackTrace();
             output = "An Error occured: Something went wrong while searching for top product\n";
         }
         return output;
@@ -1032,19 +1020,19 @@ public class Database {
      * Method that gives a list of products in a specific category
      * which have discount greater than or equal to the given discount.
      * 
-     * @param categoryName
+     * @param catID
      * @param discount
      */
-    public String discountedProducts(String categoryName, Double discount) {
+    public String discountedProducts(int catID, Double discount) {
         String output = "";
         try {// try
              // SQL QUERY
-            String query = "SELECT p.name as product_name, p.price as price, o.discount as discounts FROM OrderDetails o INNER JOIN Product p ON o.prodID=p.prodID INNER JOIN SubCategory sc ON p.subCatID = sc.subCatID INNER JOIN Category c ON sc.catID=c.catID WHERE o.discount >= ? AND c.name = ? ;";
+            String query = "SELECT p.name as product_name, p.price as price, o.discount as discounts FROM OrderDetails o INNER JOIN Product p ON o.prodID=p.prodID INNER JOIN SubCategory sc ON p.subCatID = sc.subCatID INNER JOIN Category c ON sc.catID=c.catID WHERE o.discount >= ? AND c.catID = ? ;";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
             pstmt.setDouble(1, discount / 100);
-            pstmt.setString(2, categoryName);
+            pstmt.setInt(2, catID);
             ResultSet result = pstmt.executeQuery();// executing query
 
             int n = 0;
@@ -1055,7 +1043,7 @@ public class Database {
             }
 
             if (output.equalsIgnoreCase("")) {
-                output = "No category with name \'" + categoryName + "\'\n";
+                output = "No category with id \'" + catID + "\'\n";
             }
             output += "\nQuery executed.\n" + n + " records found.\n";
 
@@ -1092,7 +1080,7 @@ public class Database {
             int n = 0;
             while (result.next()) {
                 if (n == 0) {
-                    output += "Shipping Mode -" + result.getString("shipMode") + "\n";
+                    output += "Shipping Mode - " + result.getString("shipMode") + "\n";
                 }
                 output += "\t" + (++n) + ") " + result.getString("name") + "\n";
             }
@@ -1131,7 +1119,7 @@ public class Database {
             int n = 0;
             while (result.next()) {
                 output += "\t" + (++n) + ") " + result.getString("category_name") + " - "
-                        + String.format("%.2f", result.getDouble("total_sales")) + "\n";
+                        + String.format("$%.2f", result.getDouble("total_sales")) + "\n";
             }
             result.close();
             pstmt.close();
@@ -1174,10 +1162,10 @@ public class Database {
 
             int n = 0;
             while (result.next()) {
-                output += "\t" + (++n) + ") #Products:" + result.getInt("num_products")
+                output += "\t" + (++n) + ") #Products: " + result.getInt("num_products")
                         + ", "
                         + result.getString("subcategory") + ", "
-                        + result.getString("category") + " #Sold :"
+                        + result.getString("category") + " #Sold: "
                         + result.getInt("total_quantity_sold") + "\n";
             }
             result.close();
@@ -1225,8 +1213,18 @@ public class Database {
             }
 
             if (output.equalsIgnoreCase("")) {
-                output = String.format("%s, %s has not returned any items yet\n", result.getString(1),
-                        result.getString(2));
+                query = "SELECT fname, lname FROM customer WHERE custID = ?";
+                pstmt = connection.prepareStatement(query);
+                pstmt.setString(1, customerID);
+                result = pstmt.executeQuery();
+
+                if (result.next()) {
+                    output = String.format("%s, %s has not returned any items yet\n", result.getString(1),
+                            result.getString(2));
+
+                } else {
+                    System.out.printf("\'%s\' does not exist\n", customerID);
+                }
             }
 
             result.close();
@@ -1280,9 +1278,9 @@ public class Database {
     /**
      * Method that gives list of products returned in the specified region
      * 
-     * @param regionName
+     * @param regionID
      */
-    public String returnedByRegion(String regionName) {
+    public String returnedByRegion(int regionID) {
         String output = "";
         try {// try
              // SQL QUERY
@@ -1292,10 +1290,10 @@ public class Database {
                     "JOIN [order] o ON od.orderID = o.orderID\r\n" + //
                     "JOIN Store s ON o.storeID=s.storeID\r\n" + //
                     "JOIN Region r ON s.regionID=r.regionID \r\n" + //
-                    "WHERE r.regionName= ? and o.isReturned=1;\r\n";
+                    "WHERE r.regionID= ? and o.isReturned=1;\r\n";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
-            pstmt.setString(1, regionName);
+            pstmt.setInt(1, regionID);
             ResultSet result = pstmt.executeQuery();// executing query
             int n = 0;
             while (result.next()) {
@@ -1343,7 +1341,7 @@ public class Database {
 
                 // Printing the results of query
                 output += "Category:\n\t" + result.getString("name") + " - "
-                        + String.format("%.2f", result.getDouble("averagePrice")) + "\n";
+                        + String.format("$%.2f", result.getDouble("averagePrice")) + "\n";
             }
             if (output.equalsIgnoreCase("")) {
                 output = String.format("Average price not found for category.\n");
@@ -1397,7 +1395,6 @@ public class Database {
 
             output += "\nQuery executed.\n" + n + " records found.\n";
         } catch (SQLException sql) {// catch block
-            sql.printStackTrace();
             output = "An Error occured: Something went wrong while searching for returned items in the regions\n";
         }
         return output;
@@ -1432,8 +1429,7 @@ public class Database {
 
                 output += "\t" + (++n) + ") " + result.getString(1) + ", "
                         + result.getString(3) + ", " + result.getString(2) + " - " + result.getString(4) + ", "
-                        + result.getString(5) + ", $" + result.getDouble(6)
-                        + "\n";
+                        + result.getString(5) + String.format(" $%.2f\n", result.getDouble(6));
             }
 
             if (output.equalsIgnoreCase("")) {

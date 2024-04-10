@@ -47,7 +47,6 @@ public class App {
         System.out.println();// Getting on a new line
         System.out.println("Welcome to Store Management!");// label
 
-        System.out.print("To get started, ENTER 'm' for Menu: ");
         String cmd = nextNonEmptyLine(consoleIn, "To get started, ENTER 'm' for Menu: ");
         String output;
 
@@ -91,7 +90,7 @@ public class App {
         String response;
         if (args.length >= 2) {
             System.out.println("\nSearching the database for top most inventory holding store in " + args[1]
-                    + " for each category:");
+                    + " for each category:\nThis query might take time for few countries");
             System.out.println(
                     "-------------------------------------------------------------------------------------------------");
             response = db.topProducts(args[1]);
@@ -120,22 +119,15 @@ public class App {
 
     private static String processDP(Database db, String[] args) {
         String response;
-        if (args.length >= 4) {
-            System.out.println(
-                    "\nSearching database discounted items in category \"" + args[1] + " " + args[2]
-                            + "\" with discount greater than or equal to " + Double.parseDouble(args[3])
-                            + " % : ");
-            System.out.println(
-                    "----------------------------------------------------------------------------------------------------------------");
-            response = db.discountedProducts(args[1] + " " + args[2], Double.parseDouble(args[3]));
-        } else if (args.length == 3) {
+
+        if (args.length >= 3) {
             System.out.println(
                     "\nSearching database discounted items in category \"" + args[1]
                             + "\" with discount greater than or equal to " + Double.parseDouble(args[2])
                             + " % : ");
             System.out.println(
                     "----------------------------------------------------------------------------------------------------------------");
-            response = db.discountedProducts(args[1], Double.parseDouble(args[2]));
+            response = db.discountedProducts(Integer.parseInt(args[1]), Double.parseDouble(args[2]));
         } else {
             response = "Require an argument for this command";
         }
@@ -197,7 +189,7 @@ public class App {
             System.out
                     .println(
                             "-------------------------------------------------------------------------------------------");
-            response = db.returnedByRegion(args[1]);
+            response = db.returnedByRegion(Integer.parseInt(args[1]));
         } else {
             response = "Require an argument for this command";
         }
@@ -307,11 +299,11 @@ public class App {
         System.out.println("Initializing the Database, this might take about 4-5 minutes");
         System.out.println(
                 "------------------------------------------------------------------------------");
-        String message = db.initializeDatabase();
-        if (message == null) {
-            message = "Database successfully initialized";
+        String response = db.initializeDatabase();
+        if (response == null) {
+            response = "Database successfully initialized";
         }
-        return message;
+        return response;
     }
 
     private static String processCustOI(Database db, String[] args) {
@@ -325,6 +317,19 @@ public class App {
             message = "Required an argument for this command";
         }
         return message;
+    }
+
+    private static String processDropDB(Database db) {
+        String response;
+        System.out.println("Droping the Database, the queries will not work untill database is not initialized again");
+        System.out.println(
+                "------------------------------------------------------------------------------");
+
+        if ((response = db.dropAllTables()) == null) {
+            response = "Database Dropped successfully";
+        }
+
+        return response;
     }
 
     private static String processCommand(Database db, String cmd) {
@@ -414,8 +419,7 @@ public class App {
         }
 
         else if (args[0].equalsIgnoreCase("d")) {
-            db.dropAllTables();
-            return "";
+            return processDropDB(db);
         }
 
         else {
@@ -447,7 +451,7 @@ public class App {
         System.out.println(
                 "\trc <customerID>  - Customer Returned Item Count Analysis\n");
         System.out.println(
-                "\tdp <category name> <minimum discount> - Discounted Products in Specific Category\n");
+                "\tdp <categoryID> <minimum discount> - Discounted Products in Specific Category\n");
         System.out.println(
                 "\tsd <orderID> - Shipping Details for Ordered Products\n");
         System.out.println(
@@ -457,7 +461,7 @@ public class App {
         System.out.println(
                 "\trp <custID> - Products Returned by Customer\n");
         System.out.println(
-                "\trpr <region> - Product Returns by Region\n");
+                "\trpr <regionID> - Product Returns by Region\n");
         System.out.println(
                 "\tavgp <categoryID> - Average Product Price in Category\n");
         System.out.println(
@@ -467,7 +471,7 @@ public class App {
         System.out.println("\ti - Initialize the database\n");
         System.out.println("\td - Delete the Database\n");
         System.out.println("\tm - Display the Menu.\n");
-        System.out.println("\te - Exit the system.\n");
+        System.out.println("\te - Exit the system.");
 
     }
 
