@@ -69,3 +69,6 @@ GROUP BY o.shipMode
 HAVING SUM(od.quantity) > 7
 
 SELECT c.custID, c.fname, c.lname, o.orderID From Customer c inner join [order] o on c.custID = o.custID WHERE c.fName like '%alex%' OR c.lName like '%alex%'
+
+SELECT * from [order] o inner join Customer c on o.custID = c.custID where o.custID not in (select oinn.orderID from [order] oinn where oinn.isReturned = 1);
+

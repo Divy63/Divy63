@@ -1080,7 +1080,7 @@ public class Database {
             int n = 0;
             while (result.next()) {
                 if (n == 0) {
-                    output += "Shipping Mode -" + result.getString("shipMode") + "\n";
+                    output += "Shipping Mode - " + result.getString("shipMode") + "\n";
                 }
                 output += "\t" + (++n) + ") " + result.getString("name") + "\n";
             }
@@ -1119,7 +1119,7 @@ public class Database {
             int n = 0;
             while (result.next()) {
                 output += "\t" + (++n) + ") " + result.getString("category_name") + " - "
-                        + String.format("%.2f", result.getDouble("total_sales")) + "\n";
+                        + String.format("$%.2f", result.getDouble("total_sales")) + "\n";
             }
             result.close();
             pstmt.close();
