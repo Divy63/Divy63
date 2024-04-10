@@ -1213,8 +1213,18 @@ public class Database {
             }
 
             if (output.equalsIgnoreCase("")) {
-                output = String.format("%s, %s has not returned any items yet\n", result.getString(1),
-                        result.getString(2));
+                query = "SELECT fname, lname FROM customer WHERE custID = ?";
+                pstmt = connection.prepareStatement(query);
+                pstmt.setString(1, customerID);
+                result = pstmt.executeQuery();
+
+                if (result.next()) {
+                    output = String.format("%s, %s has not returned any items yet\n", result.getString(1),
+                            result.getString(2));
+
+                } else {
+                    System.out.printf("\'%s\' does not exist\n", customerID);
+                }
             }
 
             result.close();
