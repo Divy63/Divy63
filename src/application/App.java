@@ -90,7 +90,7 @@ public class App {
         String response;
         if (args.length >= 2) {
             System.out.println("\nSearching the database for top most inventory holding store in " + args[1]
-                    + " for each category:");
+                    + " for each category:\nThis query might take time for few countries");
             System.out.println(
                     "-------------------------------------------------------------------------------------------------");
             response = db.topProducts(args[1]);
