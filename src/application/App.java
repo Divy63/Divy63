@@ -119,22 +119,15 @@ public class App {
 
     private static String processDP(Database db, String[] args) {
         String response;
-        if (args.length >= 4) {
-            System.out.println(
-                    "\nSearching database discounted items in category \"" + args[1] + " " + args[2]
-                            + "\" with discount greater than or equal to " + Double.parseDouble(args[3])
-                            + " % : ");
-            System.out.println(
-                    "----------------------------------------------------------------------------------------------------------------");
-            response = db.discountedProducts(args[1] + " " + args[2], Double.parseDouble(args[3]));
-        } else if (args.length == 3) {
+
+        if (args.length >= 3) {
             System.out.println(
                     "\nSearching database discounted items in category \"" + args[1]
                             + "\" with discount greater than or equal to " + Double.parseDouble(args[2])
                             + " % : ");
             System.out.println(
                     "----------------------------------------------------------------------------------------------------------------");
-            response = db.discountedProducts(args[1], Double.parseDouble(args[2]));
+            response = db.discountedProducts(Integer.parseInt(args[1]), Double.parseDouble(args[2]));
         } else {
             response = "Require an argument for this command";
         }
@@ -446,7 +439,7 @@ public class App {
         System.out.println(
                 "\trc <customerID>  - Customer Returned Item Count Analysis\n");
         System.out.println(
-                "\tdp <category name> <minimum discount> - Discounted Products in Specific Category\n");
+                "\tdp <categoryID> <minimum discount> - Discounted Products in Specific Category\n");
         System.out.println(
                 "\tsd <orderID> - Shipping Details for Ordered Products\n");
         System.out.println(

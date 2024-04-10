@@ -1020,19 +1020,19 @@ public class Database {
      * Method that gives a list of products in a specific category
      * which have discount greater than or equal to the given discount.
      * 
-     * @param categoryName
+     * @param catID
      * @param discount
      */
-    public String discountedProducts(String categoryName, Double discount) {
+    public String discountedProducts(int catID, Double discount) {
         String output = "";
         try {// try
              // SQL QUERY
-            String query = "SELECT p.name as product_name, p.price as price, o.discount as discounts FROM OrderDetails o INNER JOIN Product p ON o.prodID=p.prodID INNER JOIN SubCategory sc ON p.subCatID = sc.subCatID INNER JOIN Category c ON sc.catID=c.catID WHERE o.discount >= ? AND c.name = ? ;";
+            String query = "SELECT p.name as product_name, p.price as price, o.discount as discounts FROM OrderDetails o INNER JOIN Product p ON o.prodID=p.prodID INNER JOIN SubCategory sc ON p.subCatID = sc.subCatID INNER JOIN Category c ON sc.catID=c.catID WHERE o.discount >= ? AND c.catID = ? ;";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
             pstmt.setDouble(1, discount / 100);
-            pstmt.setString(2, categoryName);
+            pstmt.setInt(2, catID);
             ResultSet result = pstmt.executeQuery();// executing query
 
             int n = 0;
@@ -1043,7 +1043,7 @@ public class Database {
             }
 
             if (output.equalsIgnoreCase("")) {
-                output = "No category with name \'" + categoryName + "\'\n";
+                output = "No category with id \'" + catID + "\'\n";
             }
             output += "\nQuery executed.\n" + n + " records found.\n";
 
