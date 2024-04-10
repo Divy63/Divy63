@@ -1278,9 +1278,9 @@ public class Database {
     /**
      * Method that gives list of products returned in the specified region
      * 
-     * @param regionName
+     * @param regionID
      */
-    public String returnedByRegion(String regionName) {
+    public String returnedByRegion(int regionID) {
         String output = "";
         try {// try
              // SQL QUERY
@@ -1290,10 +1290,10 @@ public class Database {
                     "JOIN [order] o ON od.orderID = o.orderID\r\n" + //
                     "JOIN Store s ON o.storeID=s.storeID\r\n" + //
                     "JOIN Region r ON s.regionID=r.regionID \r\n" + //
-                    "WHERE r.regionName= ? and o.isReturned=1;\r\n";
+                    "WHERE r.regionID= ? and o.isReturned=1;\r\n";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
-            pstmt.setString(1, regionName);
+            pstmt.setInt(1, regionID);
             ResultSet result = pstmt.executeQuery();// executing query
             int n = 0;
             while (result.next()) {

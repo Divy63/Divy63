@@ -189,7 +189,7 @@ public class App {
             System.out
                     .println(
                             "-------------------------------------------------------------------------------------------");
-            response = db.returnedByRegion(args[1]);
+            response = db.returnedByRegion(Integer.parseInt(args[1]));
         } else {
             response = "Require an argument for this command";
         }
@@ -449,7 +449,7 @@ public class App {
         System.out.println(
                 "\trp <custID> - Products Returned by Customer\n");
         System.out.println(
-                "\trpr <region> - Product Returns by Region\n");
+                "\trpr <regionID> - Product Returns by Region\n");
         System.out.println(
                 "\tavgp <categoryID> - Average Product Price in Category\n");
         System.out.println(
