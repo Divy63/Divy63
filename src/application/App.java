@@ -241,7 +241,7 @@ public class App {
                     "\nSearching the database for order with largest total for each country which were returned");
             System.out.println(
                     "----------------------------------------------------------------------------------------------");
-            try{
+            try {
                 response = db.largestReturnedAmount(Integer.parseInt(args[1]));
             } catch (NumberFormatException nfe) {
                 response = "Argument should be number";
@@ -304,9 +304,25 @@ public class App {
     }
 
     private static String processDatabase(Database db) {
+        System.out.println("Initializing the Database, this might take about 4-5 minutes");
+        System.out.println(
+                "------------------------------------------------------------------------------");
         String message = db.initializeDatabase();
         if (message == null) {
-            message = "Error in database initialization.";
+            message = "Database successfully initialized";
+        }
+        return message;
+    }
+
+    private static String processCustOI(Database db, String[] args) {
+        System.out.println("Searching the database for people with \"" + args[1] + "\" in their name");
+        System.out.println(
+                "------------------------------------------------------------------------------");
+        String message;
+        if (args.length >= 2) {
+            message = db.showOrderID(args[1]);
+        } else {
+            message = "Required an argument for this command";
         }
         return message;
     }
@@ -319,6 +335,10 @@ public class App {
         if (args[0].equalsIgnoreCase("m")) {
             displayMenu();
             return "";
+        }
+
+        else if (args[0].equalsIgnoreCase("custOI")) {
+            return processCustOI(db, args);
         }
 
         else if (args[0].equalsIgnoreCase("spc")) {
@@ -397,7 +417,7 @@ public class App {
             db.dropAllTables();
             return "";
         }
-        
+
         else {
             return "Invalid choice. Enter 'm' for Menu";
         }
@@ -410,6 +430,8 @@ public class App {
     private static void displayMenu() {
         System.out.println(
                 "\tgcID <part of the name of customer> - Gets the Name of all the customer with 'part of the name of the customer' int their name\n");
+        System.out.println(
+                "\tcustOI <part of the name of customer> - Gets every order ID of the customer with 'part of the name of the customer' int their name\n");
         System.out.println(
                 "\tsc - Show all the Countries along with their Country Code\n");
         System.out.println(

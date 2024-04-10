@@ -691,6 +691,37 @@ public class Database {
         return response;
     }
 
+    public String showOrderID(String custName) {
+        String output = "";
+        try{
+            String query = "SELECT c.custID, c.fName, c.Lname, o.orderID " +
+                            "FROM Customer c " +
+                            "INNER JOIN [order] o ON c.custID = o.custID " +
+                            "WHERE c.fName LIKE ? OR c.lName LIKE ?";
+
+            PreparedStatement pstmt = connection.prepareStatement(query);
+            pstmt.setString(1, "%" + custName + "%");
+            pstmt.setString(2, "%" + custName + "%");
+
+            ResultSet result = pstmt.executeQuery();
+            int n = 0;
+            while(result.next()){
+                output += "\t" + (++n) + ") " + result.getString(1) + " - " +
+                            result.getString(2) + ", " + result.getString(3) + " - " +
+                            result.getString(4) + "\n";
+            }
+            
+            if(output.equals("")){
+                output = "No people containing \'" + custName + "\' in their name\n";
+            }
+            output += "\nQuery executed.\n" + n + " records found.\n";
+        } catch (SQLException se) {
+            output = "An Error occured: Something went wrong while searching for orderID\n";
+        }
+        
+        return output;
+    }
+
     public String showPeople(String partOfName) {
         String output = "";
         try {// try
