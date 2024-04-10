@@ -497,11 +497,15 @@ public class Database {
      */
     private void insertIntoOrder() throws SQLException, IOException {
         try {
-            this.connection.createStatement().executeUpdate("CREATE TABLE Inventory("
-                    + "prodID VARCHAR(24) FOREIGN KEY REFERENCES Product(prodID),"
-                    + "storeID INTEGER FOREIGN KEY REFERENCES store(storeID),"
-                    + "PRIMARY KEY(storeID,prodID));");
-
+            this.connection.createStatement().executeUpdate("CREATE TABLE \"order\"("
+                    + "orderID VARCHAR(24) PRIMARY KEY,"
+                    + "orderDate DATE NOT NULL,"
+                    + "shipDate DATE NOT NULL,"
+                    + "shipMode VARCHAR(24) NOT NULL,"
+                    + "segement VARCHAR(MAX),"
+                    + "custID VARCHAR(24) FOREIGN KEY REFERENCES customer(custID),"
+                    + "storeID INTEGER FOREIGN KEY REFERENCES Store(storeID),"
+                    + "isReturned INT)");
             
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/orders.csv"));
             PreparedStatement pstmt;
@@ -551,15 +555,15 @@ public class Database {
      */
     private void insertIntoOrderDetails() throws SQLException, IOException {
         try {
-            this.connection.createStatement().executeUpdate("CREATE TABLE \"order\"("
-                    + "orderID VARCHAR(24) PRIMARY KEY,"
-                    + "orderDate DATE NOT NULL,"
-                    + "shipDate DATE NOT NULL,"
-                    + "shipMode VARCHAR(24) NOT NULL,"
-                    + "segement VARCHAR(MAX),"
-                    + "custID VARCHAR(24) FOREIGN KEY REFERENCES customer(custID),"
-                    + "storeID INTEGER FOREIGN KEY REFERENCES Store(storeID),"
-                    + "isReturned INT)");
+            this.connection.createStatement().executeUpdate("CREATE TABLE OrderDetails("
+                    + "odID INT PRIMARY KEY IDENTITY(1,1),"
+                    + "orderID VARCHAR(24) FOREIGN KEY REFERENCES \"order\"(orderID) NOT NULL, "
+                    + "prodID VARCHAR(24) FOREIGN KEY REFERENCES Product(prodID) NOT NULL,"
+                    + "sales FLOAT  NOT NULL,"
+                    + "quantity INT  NOT NULL,"
+                    + "discount FLOAT DEFAULT 0,"
+                    + "profit FLOAT);");
+            
 
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/order-details.csv"));
             PreparedStatement pstmt;
@@ -597,14 +601,12 @@ public class Database {
      */
     private void insertIntoInventory() throws SQLException, IOException {
         try {
-            this.connection.createStatement().executeUpdate("CREATE TABLE OrderDetails("
-                    + "odID INT PRIMARY KEY IDENTITY(1,1),"
-                    + "orderID VARCHAR(24) FOREIGN KEY REFERENCES \"order\"(orderID) NOT NULL, "
-                    + "prodID VARCHAR(24) FOREIGN KEY REFERENCES Product(prodID) NOT NULL,"
-                    + "sales FLOAT  NOT NULL,"
-                    + "quantity INT  NOT NULL,"
-                    + "discount FLOAT DEFAULT 0,"
-                    + "profit FLOAT);");
+            this.connection.createStatement().executeUpdate("CREATE TABLE Inventory("
+                    + "prodID VARCHAR(24) FOREIGN KEY REFERENCES Product(prodID),"
+                    + "storeID INTEGER FOREIGN KEY REFERENCES store(storeID),"
+                    + "PRIMARY KEY(storeID,prodID));");
+
+            
             
             BufferedReader br = new BufferedReader(new FileReader("final-data-files/inventory.csv"));
             PreparedStatement pstmt;
