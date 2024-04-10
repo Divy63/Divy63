@@ -72,3 +72,4 @@ SELECT c.custID, c.fname, c.lname, o.orderID From Customer c inner join [order] 
 
 SELECT * from [order] o inner join Customer c on o.custID = c.custID where o.custID not in (select oinn.orderID from [order] oinn where oinn.isReturned = 1);
 
+select * from [order] o inner join Customer c on o.custID = c.custID inner join OrderDetails od on o.orderID = od.orderID inner join Product p on od.prodID = p.prodID where c.custID = 'pj-19015';
