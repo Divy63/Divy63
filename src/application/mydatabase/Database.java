@@ -704,17 +704,20 @@ public class Database {
             pstmt.setString(2, "%" + partOfName + "%");
             ResultSet result = pstmt.executeQuery();// executing query
 
-            int n = 1;
+            int n = 0;
             // Printing the results of query
             while (result.next()) {
-                output += "\t" + (n++) + ") " + result.getString("First") + " "
-                        + result.getString("Last") + " - "
-                        + result.getString("Last") + "\n";
+                output += "\t" + (n + 1) + ") " + result.getString(1) + " "
+                        + result.getString(2) + " - "
+                        + result.getString(3) + "\n";
+                n++;
             }
 
             if (output.equalsIgnoreCase("")) {
                 output = "No people containing \'" + partOfName + "\' in their name\n";
             }
+
+            output += "\nQuery executed.\n" + n + " records found.\n";
 
             result.close();
             pstmt.close();
@@ -752,9 +755,10 @@ public class Database {
 
             }
 
+            output += "\nQuery executed.\n" + n + " records found.\n";
+
             result.close();
             pstmt.close();
-            System.out.println("\nQuery executed.\n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching for countries\n";
         }
@@ -775,8 +779,6 @@ public class Database {
 
             ResultSet result = pstmt.executeQuery();// executing query
 
-
-
             int n = 0;
             // Printing the results of query
             while (result.next()) {
@@ -784,16 +786,15 @@ public class Database {
                         + result.getString("catID") + "\n";
             }
 
-
             if (output.equalsIgnoreCase("")) {
                 output = "No categories in database\n";
 
             }
+            output += "\nQuery executed.\n" + n + " records found.\n";
 
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching for categories\n";
         }
@@ -806,35 +807,33 @@ public class Database {
      * 
      * @param category
      */
-    public String showSubCategories(String category) {
+    public String showSubCategories(int catID) {
         String output = "";
         try {// try
              // SQL QUERY
-            String query = "SELECT sc.subCatID,sc.name from SubCategory sc INNER JOIN Category c ON sc.catID=c.catID WHERE c.name=?";
+            String query = "SELECT sc.subCatID, sc.name from SubCategory sc WHERE sc.catID = ?";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
-            pstmt.setString(1, category);
+            pstmt.setInt(1, catID);
             ResultSet result = pstmt.executeQuery();// executing query
 
             int n = 0;
             // Printing the results of query
             while (result.next()) {
-                System.out.print("\t" + (n + 1) + ") ");
-                System.out.println(
+                output += "\t" + (n + 1) + ") " +
                         result.getString("name") + " - "
-                                + result.getString("subCatID"));
+                        + result.getString("subCatID") + "\n";
                 n++;
-                System.out.println();
             }
 
             if (output.equalsIgnoreCase("")) {
                 output = "No subcategories in database\n";
             }
+            output += "\nQuery executed.\n" + n + " records found.\n";
 
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching for sub-categories\n";
         }
@@ -863,7 +862,6 @@ public class Database {
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setInt(1, countryLimit);
 
-
             ResultSet result = pstmt.executeQuery();// executing query
 
             System.out.println("List of Countries with total stores and total profit:\n");
@@ -871,20 +869,21 @@ public class Database {
             // Printing the results of query
             while (result.next()) {
 
-                output += (++n) + ") " + "Country: " + result.getString(1) + " \n\tNumber of Stores: "
+                output += "\t" + (n + 1) + ") " + "Country: " + result.getString(1) + " \n\t\tNumber of Stores: "
                         + result.getString(2)
                         + ", Total Profit: "
                         + result.getInt(3) + "\n";
+                n++;
             }
 
             if (output.equalsIgnoreCase("")) {
                 output = "No stores/countries in database\n";
 
             }
+            output += "\nQuery executed.\n" + n + " records found.\n";
 
             result.close();
             pstmt.close();
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
 
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching for store's profit\n";
@@ -926,10 +925,11 @@ public class Database {
             int n = 0;
             // Printing the results of query
             while (result.next()) {
-                output += "-> Category: " + result.getString(2) + " Store ID: "
+                output += "\t-> Category: " + result.getString(2) + " Store ID: "
                         + result.getString(3)
                         + " Total Products: "
                         + result.getInt(4) + "\n";
+                n++;
             }
             result.close();
             pstmt.close();
@@ -937,7 +937,8 @@ public class Database {
             if (output.equalsIgnoreCase("")) {
                 output = "No country with code \'" + countryCode + "\'\n";
             }
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
+            output += "\nQuery executed.\n" + n + " records found.\n";
+
         } catch (SQLException sql) {// catch block
             sql.printStackTrace();
             output = "An Error occured: Something went wrong while searching for top product\n";
@@ -962,31 +963,29 @@ public class Database {
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
             pstmt.setString(1, customerID);
-            System.out.println(
-                    "\nSearching database for number of items returned by customer with id \'" + customerID + "\'");
-            System.out
-                    .println(
-                            "--------------------------------------------------------------------------------------");
             ResultSet result = pstmt.executeQuery();// executing query
-
-
+            int n = 0;
             if (result.next()) {
-                output = result.getString(1) + ",  " + result.getString(2) + ": "
+
+                output = "\t" + (n + 1) + ") " + result.getString(1) + ",  " + result.getString(2) + ": "
                         + result.getInt(3) + "\n";
+                n++;
             } else {
                 query = "SELECT fname, lname FROM customer WHERE custID = ?";
                 pstmt = connection.prepareStatement(query);
                 pstmt.setString(1, customerID);
                 result = pstmt.executeQuery();
+
                 if (result.next()) {
                     output = String.format("%s, %s has not returned any items yet\n", result.getString(1),
                             result.getString(2));
+
                 } else {
                     System.out.printf("\'%s\' does not exist\n", customerID);
                 }
 
             }
-
+            output += "\nQuery executed.\n" + n + " records found.\n";
             result.close();
             pstmt.close();
 
@@ -1009,7 +1008,7 @@ public class Database {
         String output = "";
         try {// try
              // SQL QUERY
-            String query = "SELECT p.name as product_name, p.price as price, o.discount as discounts FROM OrderDetails o INNER JOIN Product p ON o.prodID=p.prodID INNER JOIN SubCategory sc ON p.subCatID = sc.subCatID INNER JOIN Category c ON sc.catID=c.catID WHERE o.discount > ? AND c.name = ? ;";
+            String query = "SELECT p.name as product_name, p.price as price, o.discount as discounts FROM OrderDetails o INNER JOIN Product p ON o.prodID=p.prodID INNER JOIN SubCategory sc ON p.subCatID = sc.subCatID INNER JOIN Category c ON sc.catID=c.catID WHERE o.discount >= ? AND c.name = ? ;";
 
             PreparedStatement pstmt = connection.prepareStatement(query);// preparing a statement
 
@@ -1017,22 +1016,21 @@ public class Database {
             pstmt.setString(2, categoryName);
             ResultSet result = pstmt.executeQuery();// executing query
 
-
             int n = 0;
             while (result.next()) {
                 output += "\t" + (++n) + ") " + result.getString("product_name") +
                         String.format("%.2f", result.getDouble("price")) + ", "
-                        + String.format("%.2f", result.getDouble("discounts") * 100) + " % off.";
+                        + String.format("%.2f", result.getDouble("discounts") * 100) + " % off.\n";
             }
 
             if (output.equalsIgnoreCase("")) {
                 output = "No category with name \'" + categoryName + "\'\n";
             }
+            output += "\nQuery executed.\n" + n + " records found.\n";
 
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching for discounted products\n";
         }
@@ -1073,8 +1071,8 @@ public class Database {
             if (output.equalsIgnoreCase("")) {
                 output = "No order with ID - \'" + orderID + "\'\n";
             }
+            output += "\nQuery executed.\n" + n + " records found.\n";
 
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching for order details\n";
         }
@@ -1111,7 +1109,7 @@ public class Database {
                 output = "No categories in database\n";
             }
 
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
+            output += "\nQuery executed.\n" + n + " records found.\n";
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching categories and sales\n";
         }
@@ -1143,13 +1141,12 @@ public class Database {
 
             ResultSet result = pstmt.executeQuery();// executing query
 
-
             int n = 0;
             while (result.next()) {
-                output += "\t" + (++n) + ") Number of Products:" + result.getInt("num_products")
-                        + ", Sub-Category: "
-                        + result.getString("subcategory") + ", Category: "
-                        + result.getString("category") + " Total quantity sold :"
+                output += "\t" + (++n) + ") #Products:" + result.getInt("num_products")
+                        + ", "
+                        + result.getString("subcategory") + ", "
+                        + result.getString("category") + " #Sold :"
                         + result.getInt("total_quantity_sold") + "\n";
             }
             result.close();
@@ -1159,7 +1156,7 @@ public class Database {
                 output = "No sub-categories found in database\n";
             }
 
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
+            output += "\nQuery executed.\n" + n + " records found.\n";
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching sub-categories and sales\n";
         }
@@ -1204,7 +1201,7 @@ public class Database {
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
+            output += "\nQuery executed.\n" + n + " records found.\n";
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching for returned products\n";
         }
@@ -1234,7 +1231,6 @@ public class Database {
                         + result.getString("regionID") + "\n";
 
                 n++;
-                System.out.println();
             }
             if (output.equalsIgnoreCase("")) {
                 output = String.format("No regions in the database\n");
@@ -1242,7 +1238,7 @@ public class Database {
 
             result.close();
             pstmt.close();
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
+            output += "\nQuery executed.\n" + n + " records found.\n";
 
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching for regions\n";
@@ -1274,13 +1270,13 @@ public class Database {
             while (result.next()) {
                 output += "\t" + (n + 1) + ")" + result.getString("prod_name") + "\n";
                 n++;
-                System.out.println();
+
             }
             if (output.equalsIgnoreCase("")) {
                 output = String.format("No returns in this region.\n");
             }
 
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
+            output += "\nQuery executed.\n" + n + " records found.\n";
             result.close();
             pstmt.close();
 
@@ -1325,7 +1321,7 @@ public class Database {
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n" + n + " records found.\n");
+            output += "\nQuery executed.\n" + n + " records found.\n";
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching for returned items in the regions\n";
         }
@@ -1360,7 +1356,6 @@ public class Database {
                 output += "\t" + (n + 1) + ") " + result.getString("ship_mode") + " - "
                         + result.getString("avg_days_to_ship") + " days." + "\n";
                 n++;
-                System.out.println();
             }
             if (output.equalsIgnoreCase("")) {
                 output = String.format("Unable to find ship mode of orders with item greater than  %d.\n", x);
@@ -1369,7 +1364,7 @@ public class Database {
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n" + n + " records found.");
+            output += "\nQuery executed.\n" + n + " records found.\n";
         } catch (SQLException sql) {// catch block
             sql.printStackTrace();
             output = "An Error occured: Something went wrong while searching for returned items in the regions\n";
@@ -1400,14 +1395,13 @@ public class Database {
             pstmt.setInt(1, x);
             ResultSet result = pstmt.executeQuery();// executing query
 
-
             // Printing the results of query
             int n = 0;
             while (result.next()) {
 
                 output += "\t" + (++n) + ") " + result.getString(1) + ", "
                         + result.getString(3) + ", " + result.getString(2) + " - " + result.getString(4) + ", "
-                        + result.getString(5) + result.getDouble(6)
+                        + result.getString(5) + ", $" + result.getDouble(6)
                         + "\n";
             }
 
@@ -1418,7 +1412,7 @@ public class Database {
             result.close();
             pstmt.close();
 
-            System.out.println("\nQuery executed. \n" + n + " records found.");
+            output += "\nQuery executed.\n" + n + " records found.\n";
         } catch (SQLException sql) {// catch block
             output = "An Error occured: Something went wrong while searching for max returned amount\n";
         }

@@ -4,7 +4,7 @@
 -- SELECT countryCode ,name from Country 
 -- -- SELECT catID,name from Category
 SELECT *
-FROM [Customer]
+FROM [order]
 -- SELECT sc.subCatID,sc.name,c.name as category from SubCategory sc INNER JOIN Category c ON sc.catID=c.catID;
 -- SELECT p.name as product_name, p.price as price, o.discount as discounts FROM OrderDetails o INNER JOIN Product p ON o.prodID=p.prodID INNER JOIN SubCategory sc ON p.subCatID = sc.subCatID INNER JOIN Category c ON sc.catID=c.catID WHERE o.discount > 0.6 AND c.name = 'Office Supplies' ;
 -- SELECT * FROM Category

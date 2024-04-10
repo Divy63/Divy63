@@ -193,7 +193,7 @@ public class App {
         String response;
         if (args.length >= 2) {
             System.out.println(
-                    "\nSearching database for returned products in region \"" + args[2] + "\" :");
+                    "\nSearching database for returned products in region \"" + args[1] + "\" :");
             System.out
                     .println(
                             "-------------------------------------------------------------------------------------------");
@@ -209,7 +209,7 @@ public class App {
         if (args.length >= 2) {
             System.out.println(
                     "\nSearching the database for Avergae Price of Products in category with category ID \""
-                            + args[2] + "\" :");
+                            + args[1] + "\" :");
             System.out.println(
                     "----------------------------------------------------------------------------------------------");
             response = db.averagePrice(Integer.parseInt(args[1]));
@@ -241,7 +241,11 @@ public class App {
                     "\nSearching the database for order with largest total for each country which were returned");
             System.out.println(
                     "----------------------------------------------------------------------------------------------");
-            response = db.largestReturnedAmount(Integer.parseInt(args[1]));
+            try{
+                response = db.largestReturnedAmount(Integer.parseInt(args[1]));
+            } catch (NumberFormatException nfe) {
+                response = "Argument should be number";
+            }
         } else {
             response = "Require an argument for this command";
         }
@@ -253,7 +257,6 @@ public class App {
         System.out.println("\nSearching the database for countries");
         System.out.println(
                 "------------------------------------------------");
-        System.out.println("List of available countries:");
         return db.showCountries();
     }
 
@@ -281,18 +284,12 @@ public class App {
 
     private static String processSubCat(Database db, String[] args) {
         String response;
-        if (args.length >= 3) {
-            System.out.println("\nSearching the database for categories");
+        if (args.length >= 2) {
+            System.out.println("\nSearching the database for categories with their IDs:");
             System.out.println(
                     "------------------------------------------------");
             System.out.println("List of available sub-categories with their IDs:");
-            response = db.showSubCategories(args[1] + " " + args[2]);
-        } else if (args.length == 2) {
-            System.out.println("\nSearching the database for categories");
-            System.out.println(
-                    "------------------------------------------------");
-            System.out.println("List of available sub-categories with their IDs:");
-            response = db.showSubCategories(args[1]);
+            response = db.showSubCategories(Integer.parseInt(args[1]));
         } else {
             response = "Require an argument for this command";
         }
@@ -384,11 +381,11 @@ public class App {
             return processSCat(db);
         }
 
-        else if (args[0].equals("sSubCategories")) {
+        else if (args[0].equalsIgnoreCase("sSubCategories")) {
             return processSubCat(db, args);
         }
 
-        else if (args[0].equals("sRegions")) {
+        else if (args[0].equalsIgnoreCase("sRegions")) {
             return processSRegion(db);
         }
 
@@ -396,6 +393,11 @@ public class App {
             return processDatabase(db);
         }
 
+        else if (args[0].equalsIgnoreCase("d")) {
+            db.dropAllTables();
+            return "";
+        }
+        
         else {
             return "Invalid choice. Enter 'm' for Menu";
         }
@@ -415,11 +417,11 @@ public class App {
         System.out.println(
                 "\tscategories - Show all the Categories\n");
         System.out.println(
-                "\tsSubCategories - Show all the Sub-Categories along with their Category\n");
+                "\tsSubCategories <catID> - Show all the Sub-Categories along with their Category\n");
         System.out.println(
                 "\tspc <country limit> - Stores and Profit by Country\n");
         System.out.println(
-                "\ttp <country code> - Top Product Holders by Category");
+                "\ttp <country code> - Top Product Holders by Category\n");
         System.out.println(
                 "\trc <customerID>  - Customer Returned Item Count Analysis\n");
         System.out.println(
@@ -441,6 +443,7 @@ public class App {
         System.out.println(
                 "\tlra <country limit> - Country-wise Largest Returned Order Amount\n");
         System.out.println("\ti - Initialize the database\n");
+        System.out.println("\td - Delete the Database\n");
         System.out.println("\tm - Display the Menu.\n");
         System.out.println("\te - Exit the system.\n");
 
