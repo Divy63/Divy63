@@ -97,10 +97,10 @@ public class Database {
             insertIntoCountry();
             insertIntoAddress();
             insertIntoStore();
-            insertIntoOrder();
             insertIntoCat();
             insertIntoSubCat();
             insertIntoProduct();
+            insertIntoOrder();
             insertIntoInventory();
             insertIntoOrderDetails();
         } catch (SQLException se) {
