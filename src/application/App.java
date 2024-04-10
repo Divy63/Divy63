@@ -47,7 +47,6 @@ public class App {
         System.out.println();// Getting on a new line
         System.out.println("Welcome to Store Management!");// label
 
-        System.out.print("To get started, ENTER 'm' for Menu: ");
         String cmd = nextNonEmptyLine(consoleIn, "To get started, ENTER 'm' for Menu: ");
         String output;
 
@@ -467,7 +466,7 @@ public class App {
         System.out.println("\ti - Initialize the database\n");
         System.out.println("\td - Delete the Database\n");
         System.out.println("\tm - Display the Menu.\n");
-        System.out.println("\te - Exit the system.\n");
+        System.out.println("\te - Exit the system.");
 
     }
 
