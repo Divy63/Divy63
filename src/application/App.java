@@ -299,11 +299,11 @@ public class App {
         System.out.println("Initializing the Database, this might take about 4-5 minutes");
         System.out.println(
                 "------------------------------------------------------------------------------");
-        String message = db.initializeDatabase();
-        if (message == null) {
-            message = "Database successfully initialized";
+        String response = db.initializeDatabase();
+        if (response == null) {
+            response = "Database successfully initialized";
         }
-        return message;
+        return response;
     }
 
     private static String processCustOI(Database db, String[] args) {
@@ -317,6 +317,19 @@ public class App {
             message = "Required an argument for this command";
         }
         return message;
+    }
+
+    private static String processDropDB(Database db) {
+        String response;
+        System.out.println("Droping the Database, the queries will not work untill database is not initialized again");
+        System.out.println(
+                "------------------------------------------------------------------------------");
+
+        if ((response = db.dropAllTables()) == null) {
+            response = "Database Dropped successfully";
+        }
+
+        return response;
     }
 
     private static String processCommand(Database db, String cmd) {
@@ -406,8 +419,7 @@ public class App {
         }
 
         else if (args[0].equalsIgnoreCase("d")) {
-            db.dropAllTables();
-            return "";
+            return processDropDB(db);
         }
 
         else {
